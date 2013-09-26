@@ -1,3 +1,11 @@
 <h1>Sessions#index</h1>
-<%= link_to 'sign in with rdio', 'sessions#create'%>
+<div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to "Sign out", signout_path %>
+    <%= current_user.id%>
+  <% else %>
+    <%= link_to "Sign in with Rdio", 'auth/rdio/' %>
+  <% end %>
+</div>
 <p>Find me in app/views/sessions/index.html.erb</p>
