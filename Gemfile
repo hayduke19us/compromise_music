@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+#twitter-bootsrap
+gem 'twitter-bootstrap-rails'
+
+#rdio 
+gem 'rdio'
+
 #Omniauth-rdio authentication
 gem 'omniauth-rdio'
 
