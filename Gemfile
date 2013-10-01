@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 #twitter-bootsrap
 gem 'twitter-bootstrap-rails'
 
-#rdio 
-gem 'rdio'
+#rdio_api ruby wrapper 
+gem 'rdio_api'
 
 #Omniauth-rdio authentication
 gem 'omniauth-rdio'

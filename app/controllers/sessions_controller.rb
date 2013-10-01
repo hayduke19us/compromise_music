@@ -1,5 +1,16 @@
 class SessionsController < ApplicationController
+  
+  
   def index
+    if current_user
+      @token = current_user.oauth_token
+      @secret = current_user.oauth_secret
+      client = RdioApi.new(:consumer_key => CONSUMER_KEY,
+                           :consumer_secret => CONSUMER_SECRET,
+                           :access_token =>  @token,
+                           :access_secret => @secret)
+      @current = client.currentUser                      
+    end                                            
   end
   
   def create
