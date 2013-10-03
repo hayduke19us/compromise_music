@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
 
+# figaro for keeping ENV variables safe
+gem "figaro"
+
+# oauth...for further auhentications
+gem 'oauth'
+
 #twitter-bootsrap
 gem 'twitter-bootstrap-rails'
 
-#rdio_api ruby wrapper 
-gem 'rdio_api'
+#rdio
+gem 'rdio'
 
 #Omniauth-rdio authentication
 gem 'omniauth-rdio'
@@ -35,6 +41,10 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+# Better errors in the browser
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
       user.image = auth.info.image
       user.oauth_token = auth.credentials.token
       user.oauth_secret = auth.credentials.secret
+      user.access_token = auth.extra.access_token.token
+      user.access_secret = auth.extra.access_token.secret
       user.save!
-    end
-  end
+     end
+  end        
 end
 
