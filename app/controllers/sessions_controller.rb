@@ -5,18 +5,43 @@ class SessionsController < ApplicationController
       @secret = current_user.access_secret.to_s
       
       #for browsing the info
-      filename = '.access_token.yml'
+      filename = '.access_token.yaml'
         File.open filename, 'w' do |f|
           f.write @token
           f.write @secret
           f.close
         end
-    end
-    rdio = Rdio::SimpleRdio.new([Figaro.env.omniauth_consumer_key, Figaro.env.omniauth_consumer_secret],
+    
+      rdio = Rdio::SimpleRdio.new([Figaro.env.omniauth_consumer_key, Figaro.env.omniauth_consumer_secret],
                                 [@token, @secret])
-                             
-    #calls to rdio --->
-      @playlist = rdio.call('getPlaylists')['result']['owned']                 
+      playlist = rdio.call('getPlaylists')['result']['owned']
+      @playlist = playlist
+      names = []
+      embed = []
+      playlist.each do |title|
+        names << title["name"]
+        embed << title["embedUrl"]
+        @names = names
+        @embed = embed
+      end
+       
+  
+ 
+       
+      
+      
+        
+      
+      
+   
+    
+           
+      
+      
+    
+      
+      @current_info = rdio.call('currentUser')                
+    end
   end
   
   def create

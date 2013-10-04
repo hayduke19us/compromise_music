@@ -1,30 +1,44 @@
 
   <div class="span4">
+	 
   </div>
   <div class="span4" id= "user-widget">
 	  <% if current_user %>
-	  <div class="well" id="signed_in">
-		  <div class= "lead"> 
-		    <%= current_user.name %>
-        <%= link_to "Sign out", signout_path %>
-        <%= @token%>
-        <%= @secret%>
-        <%= @playlist%>
-        
-      </div>
-      <div class= "user_image">
-        <%= image_tag current_user.image%>
+	    <div class="well" id="signed_in">
+		    <div class= "lead"> 
+		      <%= current_user.name %>
+          <%= link_to "Sign out", signout_path %>
+        </div>
+        <div class="make_playlist">
+          <%=link_to 'make_playlist'%>
+        </div>
+        <div class="make_friend">
+	        <%=link_to 'make a friend' %>
+	      </div>
+	      </div class= "collection">
+	        <%=link_to 'my playlist' %>
+	      </div> 
      
+
+    
         
-      </div>
-    </div>
+        <div class= "user_image">
+          <%= image_tag current_user.image%>
+        </div>
     <% else %>
-    <div class="well" id="sign_in">
-	    <%= link_to "Sign in with Rdio", 'auth/rdio/' %>
-	  </div>
+      <div class="well" id="sign_in">
+	      <%= link_to "Sign in with Rdio", 'auth/rdio/' %>
+	    </div>
 		<% end %>
-	</div>
   <div>
+	  
+	  <% @names.each do |h| %>
+	  <li><%=h%></li>
+	  <%end%>
+	  <% @embed.each do |h| %>
+	  <li><%=h%></li>
+	  <%end%>
+	  
   <div class="span4">
 
 
