@@ -1,7 +1,15 @@
-  <div class="span8">
-	  <% if current_user %>
-	    <% @playlists.each do |title| %>
-		    <li><%= link_to title["name"], title['embedUrl']  %></li>
-	    <%end%>
-	  <% end %>
+  <div class="span4">
+	</div>
+	<div class="span4", id="playlist_list">
+		<h1 class="lead">My Playlist</h1>
+    <div class="well", id= "playlist_well">
+      <% if current_user %>
+		    <% @playlists.each do |title| %>
+			    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'], "id" => "playlist_names"  %></h4>
+		    <%end%>
+		  <%end%>
+		</div>
+		<%=link_to 'back', root_path%>
+	</div>
+	<div class="span4">
 	</div>
