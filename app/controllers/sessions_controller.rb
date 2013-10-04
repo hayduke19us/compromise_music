@@ -16,31 +16,6 @@ class SessionsController < ApplicationController
                                 [@token, @secret])
       playlist = rdio.call('getPlaylists')['result']['owned']
       @playlists = playlist
-      #names = []
-      #embed = []
-      #playlist.each do |title|
-        #names << title["name"]
-       # embed << title["embedUrl"]
-      #  @names = names
-       # @embed = embed
-      #end
-       
-  
- 
-       
-      
-      
-        
-      
-      
-   
-    
-           
-      
-      
-    
-      
-      @current_info = rdio.call('currentUser')                
     end
   end
   
