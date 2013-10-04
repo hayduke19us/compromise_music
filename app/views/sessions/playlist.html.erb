@@ -1,0 +1,7 @@
+  <div class="span8">
+	  <% if current_user %>
+	    <% @playlists.each do |title| %>
+		    <li><%= link_to title["name"], title['embedUrl']  %></li>
+	    <%end%>
+	  <% end %>
+	</div>
