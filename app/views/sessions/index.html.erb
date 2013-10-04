@@ -10,7 +10,7 @@
           <%= link_to "Sign out", signout_path %>
         </div>
         <div class="make_playlist">
-          <%=link_to 'make_playlist'%>
+          <%=link_to image_tag('http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/32/Music-Note-icon.png'), "id" => "make_playlist" %>
         </div>
         <div class="make_friend">
 	        <%=link_to 'make a friend' %>
@@ -23,7 +23,7 @@
     
         
         <div class= "user_image">
-          <%= image_tag current_user.image%>
+          <%= image_tag current_user.image, 'id' => "user_image"%>
         </div>
     <% else %>
       <div class="well" id="sign_in">
@@ -32,12 +32,11 @@
 		<% end %>
   <div>
 	  
-	  <% @names.each do |h| %>
-	  <li><%=h%></li>
+	  <% @playlists.each do |title| %>
+	  <li><%= link_to title["name"], title['embedUrl']  %></li>
+	  
 	  <%end%>
-	  <% @embed.each do |h| %>
-	  <li><%=h%></li>
-	  <%end%>
+	  
 	  
   <div class="span4">
 

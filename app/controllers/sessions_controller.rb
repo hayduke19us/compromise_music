@@ -15,15 +15,15 @@ class SessionsController < ApplicationController
       rdio = Rdio::SimpleRdio.new([Figaro.env.omniauth_consumer_key, Figaro.env.omniauth_consumer_secret],
                                 [@token, @secret])
       playlist = rdio.call('getPlaylists')['result']['owned']
-      @playlist = playlist
-      names = []
-      embed = []
-      playlist.each do |title|
-        names << title["name"]
-        embed << title["embedUrl"]
-        @names = names
-        @embed = embed
-      end
+      @playlists = playlist
+      #names = []
+      #embed = []
+      #playlist.each do |title|
+        #names << title["name"]
+       # embed << title["embedUrl"]
+      #  @names = names
+       # @embed = embed
+      #end
        
   
  
