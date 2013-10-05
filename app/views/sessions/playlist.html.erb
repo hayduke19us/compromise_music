@@ -4,8 +4,13 @@
 		<h1 class="lead">My Playlist</h1>
     <div class="well", id= "playlist_well">
       <% if current_user %>
+       
 		    <% @playlists.each do |title| %>
 			    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'], "id" => "playlist_names"  %></h4>
+			  <% @tracks.each do |title|%>
+			  <%= title["tracks"]%>
+			    
+			
 		    <%end%>
 		  <%end%>
 		</div>
