@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -12,6 +11,17 @@ class User < ActiveRecord::Base
       user.access_secret = auth.extra.access_token.secret
       user.save!
      end
-  end        
+  end
+
+has_many :friendships
+has_many :friends, :through => :friendships      
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end  
 end
 

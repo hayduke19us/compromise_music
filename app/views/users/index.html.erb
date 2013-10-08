@@ -1,0 +1,17 @@
+<div class="span4">
+</div>
+<div class="span4 form-search", id="all_users">
+	<%= form_tag users_path, :method => 'get' do%>
+  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
+  <%= submit_tag "Search", :name => nil, 'class' => 'btn', 'id' =>"submit" %>
+		
+  <%end%>
+	<div class= "well">
+		<% @users.each do |user|%>
+			<%= user.name%></br>
+		<%end%>
+	</div>
+	<%= link_to 'home', root_path%>
+</div>
+<div class="span4">
+</div>
