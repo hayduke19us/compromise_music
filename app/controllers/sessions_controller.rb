@@ -31,21 +31,31 @@ class SessionsController < ApplicationController
           File.open filename, 'w' do |f|
             f.write "ACCESS_TOKEN  #{@token}"
             puts 
-            f.write "ACCESS_SECRET  #{@secret}" 
+            f.write "ACCESS_SECRET  #{@secret}"
             f.close
           end
 
         rdio = Rdio::SimpleRdio.new([Figaro.env.omniauth_consumer_key, Figaro.env.omniauth_consumer_secret],
                                     [@token, @secret])
         playlist = rdio.call('getPlaylists')['result']['owned']
-        tracks = rdio.call('getPlaylists', "extras" => "tracks")["result"]["owned"]
-        HH
+        @tracks = rdio.call('getPlaylists', "extras" => "tracks")["result"]["owned"]
+        
+       
+        
+       
+                     
+       
+         
+        
+      
+        
+        
         @playlists = playlist
-        @tracks = tracks
+    
         
       
       
-    
+  
     end
   end
 

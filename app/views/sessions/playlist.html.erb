@@ -5,14 +5,19 @@
     <div class="well", id= "playlist_well">
       <% if current_user %>
        
-		    <% @playlists.each do |title| %>
-			    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'], "id" => "playlist_names"  %></h4>
-			  <% @tracks.each do |title|%>
-			  <%= title["tracks"]%>
-			    
+		    <% @tracks.each do |title| %>
+			    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'],"id" => "playlist_names"%></br></h4>
+				  <%  @songs = title["tracks"]%>
+				  <%  @songs.each do |h| %>
+				  <%= link_to h["name"].capitalize, h["embedUrl"] %></br>
+				  
+				  <%end%>
+				  
+			  <%end%>
+			      
 			
-		    <%end%>
-		  <%end%>
+		    <%=@collection%>
+		 <%end%>
 		</div>
 		<%=link_to 'back', root_path%>
 	</div>
