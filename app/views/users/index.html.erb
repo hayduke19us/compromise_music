@@ -7,11 +7,21 @@
 		
   <%end%>
 	<div class= "well">
-		<% @users.each do |user|%>
-			<%= user.name%></br>
+	  <% @users.each do |user|%>
+			<%= user.name%>
+			<%=link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link' %>
+			<%=link_to 'remove friend', friendships_path(:friend_id => user), :method => :delete%></br>
 		<%end%>
 	</div>
 	<%= link_to 'home', root_path%>
 </div>
-<div class="span4">
+<div class="span4", id="all_friends">
+	<div class="well">
+		<h2>Your Friends</h2>  
+		<ul>  
+		<%current_user.friends.each do |h| %>
+		<%= h.name%> 
+		<%end%>  
+		</ul>
+	</div>
 </div>
