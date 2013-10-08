@@ -2,13 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.span4#all_users {padding-top: 10%;
-										 overflow: scroll;
-}
-a#add_friend_link {float: right;
+div.span5#all_users{padding-top:5%}
 
-}
+
+
+div.span5#all_friends{padding-top:5%}
+
+a#add_friend_link {float: right;}
+
+a#remove_friend_link {float: right;}
 
 form {padding-left: 3px;}
 
 div.span4#all_friends { padding-top: 14%;}
+
+div.well#all_users {height: 300px;
+                    overflow: scroll;
+}
+
+div.well#all_friends {height: 300px;
+                      overflow: scroll;
+}
+
+strong {float: right;
+     
+}
+
+
