@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Omniauth rdio authentication
+gem 'omniauth-rdio'
 
 # figaro for keeping ENV variables safe
 gem "figaro"
@@ -14,6 +16,7 @@ gem 'rdio'
 
 #Omniauth-rdio authentication
 gem 'omniauth-rdio'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -41,6 +44,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
 
 # Better errors in the browser
 gem 'better_errors'

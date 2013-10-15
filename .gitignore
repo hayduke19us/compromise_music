@@ -14,9 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+<<<<<<< HEAD
+=======
 
 # Ignore application configuration
 /config/application.yml
 
 #Ignore rdio access_token
 /.access_token.txt
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
