@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'formtastic'
+
 
 # Omniauth rdio authentication
 gem 'omniauth-rdio'

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<% if @playlist.nil? %>
+  <% provide(:name, 'Not found') %>
+  No user with that ID has been found.
+<% else %>
+  <!-- Contents of your current show.html.erb -->
+
+<p>
+  <b>Name:</b>
+  <%= @playlist.name%>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @playlist.description %>
+  <%=:notice %>
+</p>
+
+
+<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+<%= link_to 'Back', playlists_path %>
+<% end %>
