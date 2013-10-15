@@ -26,7 +26,10 @@ CompromiseMusic::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+<<<<<<< HEAD
 
   # action mailer config for devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+=======
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
 end

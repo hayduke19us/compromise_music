@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
+<<<<<<< HEAD
 CompromiseMusic::Application.config.secret_key_base = '7852315c3a9eff7439aea3207d144f007b30abf4d3ab176fd657efc657f41e0a292f92dd137bdd03c0dffe1f8be8ada5545db1f123a73528d850f4e3ce2b570e'
+=======
+CompromiseMusic::Application.config.secret_key_base = 'a01f90459da88c7ec3a03936b1c2a2a1343884f412daaf7304d85a1ae0716ce76213d9dce2a179f019a982dcaaa28a28038f23173108d08543fb79361bab7993'
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680

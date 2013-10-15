@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+<<<<<<< HEAD
 gem 'formtastic'
 
 
@@ -8,6 +9,22 @@ gem 'omniauth-rdio'
 
 # Devise authentication
 gem 'devise'
+=======
+# figaro for keeping ENV variables safe
+gem "figaro"
+
+# oauth...for further auhentications
+gem 'oauth'
+
+#twitter-bootsrap
+gem 'twitter-bootstrap-rails'
+
+#rdio
+gem 'rdio'
+
+#Omniauth-rdio authentication
+gem 'omniauth-rdio'
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -36,6 +53,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+<<<<<<< HEAD
+=======
+# Better errors in the browser
+gem 'better_errors'
+gem 'binding_of_caller'
+
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

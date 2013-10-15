@@ -1,15 +1,27 @@
 CompromiseMusic::Application.routes.draw do
+<<<<<<< HEAD
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout" }
   resources :users do
     resources :playlists
   end
   
   get "homes/index"
+=======
+  get "sessions/index"
+  get "sessions/playlist"
+  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+<<<<<<< HEAD
   root 'playlists#index'
+=======
+  root 'sessions#index'
+>>>>>>> cbdef9db19fd030a10f80b2a1182e898ec1c5680
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
