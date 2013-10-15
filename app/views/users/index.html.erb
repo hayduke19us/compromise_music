@@ -1,42 +1,44 @@
-<div class="span1", id="spacer">
-</div>
-<div class="span5", id="all_users">
-  <div class="lead">
-	  Users
-	  <strong><%= @all_user.count%></strong>
-	</div> 
-	<div class= "well" id="search">
-	  <div class="form-search">
-		  <%= form_tag users_path, :method => 'get' do%>
-		  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
-		  <%= submit_tag "Search", :name => nil, 'class' => 'btn', 'id' =>"submit" %>
-			<%end%>
-	  </div>
+<div class='row-fluid'> 
+	<div class="span1", id="spacer">
 	</div>
-	<div class="well", id="all_users">
-    <% @all_user.each do |user| %>
-	    <%= user.name%>
-	    <%= link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link' %></br>
-	  <%end%>
-	</div>
-	<%= link_to 'home', root_path%>
-</div>
-<div class="span5", id="all_friends">
-	<div class="lead">
-		Your Friends
-	  <strong><%=current_user.friendships.count 'id' => 'friends_count'%></strong>
-	</div>  
-  <div class="well" id= "search">
-		 <div class="form-search">
+	<div class="span5", id="all_users">
+	  <div class="lead">
+		  Users
+		  <strong><%= @all_user.count%></strong>
+		</div> 
+		<div class= "well" id="search">
+		  <div class="form-search">
 			  <%= form_tag users_path, :method => 'get' do%>
 			  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
 			  <%= submit_tag "Search", :name => nil, 'class' => 'btn', 'id' =>"submit" %>
 				<%end%>
-		 </div>
+		  </div>
+		</div>
+		<div class="well", id="all_users">
+	    <% @all_user.each do |user| %>
+		    <%= user.name%>
+		    <%= link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link' %></br>
+		  <%end%>
+		</div>
+		<%= link_to 'home', root_path%>
 	</div>
-	<div class="well" id="all_friends" >
-    <%for friendship in current_user.friendships %>
-    <%=h friendship.friend.name %><%=link_to 'Remove friend', friendship, :method => :delete, 'id' => 'remove_friend_link' %></br>
-    <%end%>
-  </div>
-</div>
+	<div class="span5", id="all_friends">
+		<div class="lead">
+			Your Friends
+		  <strong><%=current_user.friendships.count 'id' => 'friends_count'%></strong>
+		</div>  
+	  <div class="well" id= "search">
+			 <div class="form-search">
+				  <%= form_tag users_path, :method => 'get' do%>
+				  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
+				  <%= submit_tag "Search", :name => nil, 'class' => 'btn', 'id' =>"submit" %>
+					<%end%>
+			 </div>
+		</div>
+		<div class="well" id="all_friends" >
+	    <%for friendship in current_user.friendships %>
+	    <%=h friendship.friend.name %><%=link_to 'Remove friend', friendship, :method => :delete, 'id' => 'remove_friend_link' %></br>
+	    <%end%>
+	  </div>
+	</div>
+</div>	

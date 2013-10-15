@@ -20,18 +20,18 @@ class SessionsController < ApplicationController
   end
    RDIO_KEY = 'vc76wjg3xyyqawc7m7dttjmq'
    RDIO_SECRET = 'NxMYesjNWW'
+  
   def playlist
-     
-    if current_user
+     if current_user
        @token = current_user.access_token.to_s
        @secret = current_user.access_secret.to_s
       
         #for browsing the info
         filename = '.access_token.yaml'
           File.open filename, 'w' do |f|
-            f.write "ACCESS_TOKEN  #{@token}"
+            f.write "ACCESS_TOKEN....  #{@token}"
             puts 
-            f.write "ACCESS_SECRET  #{@secret}"
+            f.write "ACCESS_SECRET....  #{@secret}"
             f.close
           end
 
@@ -39,26 +39,13 @@ class SessionsController < ApplicationController
                                     [@token, @secret])
         playlist = rdio.call('getPlaylists')['result']['owned']
         @tracks = rdio.call('getPlaylists', "extras" => "tracks")["result"]["owned"]
-        
-       
-        
-       
-                     
-       
-         
-        
-      
-        
-        
         @playlists = playlist
-    
+        #@new_playlist = rdio.call('createPlaylist','name' => 'create_playlist_test','description' => 'a_test_created_playlist','tracks' => 't35335073')
         
-      
-      
-  
+        
+        
+        
     end
   end
-
-    
 
 end

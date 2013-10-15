@@ -1,25 +1,31 @@
-  <div class="span4">
-	</div>
-	<div class="span4", id="playlist_list">
-		<h1 class="lead">My Playlist</h1>
-    <div class="well", id= "playlist_well">
-      <% if current_user %>
+	<div class= 'row-fluid'>  
+	  <div class="span1">
+		</div>
+		<div class="span5", id="playlist_list">
+			<p class="lead">My Playlist</p>
+	    <div class="well", id= "playlist_well">
+	      <% if current_user %>
        
-		    <% @tracks.each do |title| %>
-			    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'],"id" => "playlist_names"%></br></h4>
-				  <%  @songs = title["tracks"]%>
-				  <%  @songs.each do |h| %>
-				  <%= link_to h["name"].capitalize, h["embedUrl"] %></br>
+			    <% @tracks.each do |title| %>
+				    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'],"id" => "playlist_names"%></br></h4>
+					  <%  @songs = title["tracks"]%>
+					  <%  @songs.each do |h| %>
+					  <%= link_to h["name"].capitalize, h["embedUrl"] %></br>
+			      <%= h["key"]%>
+				  
+					  <%end%>
 				  
 				  <%end%>
-				  
-			  <%end%>
 			      
 			
-		    <%=@collection%>
-		 <%end%>
+			    <%=@collection%>
+			 <%end%>
+			</div>
+			<%=link_to 'back', root_path%>
 		</div>
-		<%=link_to 'back', root_path%>
-	</div>
-	<div class="span4">
+		<div class="span5", id="shared_playlist">
+			<p class="lead">Shared Playlist</p>
+			<div class="well", id="playlist_well">
+			</div>
+		</div>
 	</div>
