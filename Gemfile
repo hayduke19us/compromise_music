@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+
+group :development do
+  gem 'sextant'
+end
+
 # Omniauth rdio authentication
 gem 'omniauth-rdio'
 
