@@ -18,5 +18,7 @@ div#header{ text-align: center;
 }
 #header {text-align: center;
 	       padding-top:1%;
-	       color: #FF9C00;  
+	       color: #0088cc;
+	        
 }
+div.alert.fade.in.alert {background-color: white;}

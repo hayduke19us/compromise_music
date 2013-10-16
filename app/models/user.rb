@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.name = auth.info.name
       user.image = auth.info.image
-     # user.key = auth.extra.raw_info.key
+      user.key = auth.extra.raw_info["key"]
       user.oauth_token = auth.credentials.token
       user.oauth_secret = auth.credentials.secret
       user.access_token = auth.extra.access_token.token
       user.access_secret = auth.extra.access_token.secret
       user.save!
-     end
+    end
   end
 
 has_many :friendships

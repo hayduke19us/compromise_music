@@ -2,8 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {background-image:url('jukebox.jpg');
+      
+} 
 
-div.well{background-color: #DFEFF7}
+div.well{background-color: white;
+         border: solid 1px #DFF7F3;
+         border-radius:5px;
+         opacity: 0.8;
+}
 
 div#user-widget.span4 {padding-top: 3%;
 }
