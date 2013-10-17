@@ -56,9 +56,9 @@
 						<% if current_user %>
 						  <div class="control_panel">
 						 	 <div class= "user_image">
-				        <%= link_to image_tag(current_user.image, 'id' => 'user_image'), root_path %>
+				        <%= link_to image_tag(current_user.image, 'id' => 'user_image', 'class' => 'img-circle'), root_path %>
 						    </div>
-						      <%=link_to image_tag('make_playlist.png'), "/sessions/playlist", "id" => "make_playlist" %> 
+						      <%=link_to image_tag('make_playlist.png'), "/playlists/index", "id" => "make_playlist" %> 
 						      <%=link_to image_tag('make_friend.png'),"/users/index", "id" => "make_friend" %>
 						  </div>
 						<% end %>

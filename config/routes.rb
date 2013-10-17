@@ -1,13 +1,20 @@
 CompromiseMusic::Application.routes.draw do
- 
+  
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
-  resources :friendships
-  get "users/index"
-  resources :users
+  
   get "sessions/index"
-  get "sessions/playlist"
-  get "sessions/new_playlist"
+  
+  get "users/index"
+  
+  get "playlists/index"
+  get "playlists/new_playlist"
+  
+  resources :friendships
+  resources :user
+   
+  match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

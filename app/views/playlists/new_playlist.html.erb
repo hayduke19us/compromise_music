@@ -1,0 +1,14 @@
+<div class="row-fluid">
+  <div class="span4">
+	</div>	
+	<div class= "well span4", id= "new_playlist_form">
+	<%= form_tag({controller: "playlists", action: "create_playlist"}, method: "get", class: "new_playlist_form") %>
+  	<%= label_tag(:name, "name") %>
+  	<%= text_field_tag(:name)%>
+  	<%= label_tag(:description, "description") %>
+  	<%= text_area_tag(:description) %>
+	  <%= submit_tag "Create Playlist", 'class' => 'btn'%>
+  </div>
+	<div class="span4">
+	</div>
+</div>

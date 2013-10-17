@@ -2,7 +2,13 @@ source 'https://rubygems.org'
 
 group :development do
   gem 'sextant'
+  gem "rails-erd"
 end
+
+gem "formtastic-bootstrap"
+
+#formtastic
+gem 'formtastic'
 
 # Omniauth rdio authentication
 gem 'omniauth-rdio'

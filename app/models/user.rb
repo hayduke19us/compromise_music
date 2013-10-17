@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   end
 
 has_many :friendships
-has_many :friends, :through => :friendships      
+has_many :friends, :through => :friendships  
+has_many :playlists    
 
   def self.search(search)
     if search
