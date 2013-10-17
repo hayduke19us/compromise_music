@@ -4,9 +4,13 @@
 
 fieldset.form-actions{background-color: none;}
 
-body {background-image:url('jukebox.jpg');
-      
-} 
+body {
+  background: url('jukebox.jpg') center center no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 div.well{background-color: white;
          border: solid 1px #DFF7F3;
