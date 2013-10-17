@@ -5,11 +5,6 @@ group :development do
   gem "rails-erd"
 end
 
-gem "formtastic-bootstrap"
-
-#formtastic
-gem 'formtastic'
-
 # Omniauth rdio authentication
 gem 'omniauth-rdio'
 
@@ -19,15 +14,11 @@ gem "figaro"
 # oauth...for further auhentications
 gem 'oauth'
 
-#twitter-bootsrap
+#twitter-bootstrap
 gem 'twitter-bootstrap-rails'
 
 #rdio
 gem 'rdio'
-
-#Omniauth-rdio authentication
-gem 'omniauth-rdio'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'

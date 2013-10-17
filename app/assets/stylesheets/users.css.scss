@@ -2,13 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.span5#all_users{padding-top:5%}
+h4#user {float:left;}
 
-div.span5#all_friends{padding-top:5%}
+div.span5#all_users{padding-top:3%}
 
-a#add_friend_link {float: right;}
+div.span5#all_friends{padding-top:3%}
 
-a#remove_friend_link {float: right;}
+a#add_friend_link {float: right;
+                   padding-top: 10px;
+}
+
+a#remove_friend_link {float: right;
+											padding-top: 10px;
+}
 
 form {padding-left: 3px;}
 

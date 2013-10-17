@@ -10,16 +10,41 @@
  *
  *= require_self
  *= require_tree .
- *= require formtastic-bootstrap
  */
 
+body {background-image:url('jukebox.jpg');}
+
 div.notify {padding-top: 3%;
+            opacity: 0.8;
 }
-div#header{ text-align: center;
-}
-#header {text-align: center;
-	       padding-top:1%;
-	       color: #0088cc;
-	        
-}
+
 div.alert.fade.in.alert {background-color: white;}
+
+a:hover {text-decoration: none;}
+
+div.well{background-color: white;
+         border: solid 1px #DFF7F3;
+         border-radius:5px;
+         opacity: 0.8;
+}
+
+
+div.user_image {padding-top: 5%;
+                padding-bottom: 10%;
+}
+
+
+#user_image {width: 100px;
+     	  		 box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						 -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						 -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+#make_playlist {padding: 2%;}
+
+#make_friend {padding:2%;}
+
+#make_playlist:hover {opacity: 0.4;}
+
+#make_friend:hover {opacity: 0.4;}
+
