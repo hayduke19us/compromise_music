@@ -11,7 +11,7 @@ CompromiseMusic::Application.routes.draw do
   get "playlists/new_playlist"
   
   resources :friendships
-  resources :user
+  resources :users
    
   match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get]
   
