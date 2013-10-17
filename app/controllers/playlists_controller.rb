@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   def index
     playlist
+    
   end
   
   def rdio_user
@@ -31,6 +32,7 @@ class PlaylistsController < ApplicationController
       
       #now we make a request to rdio with the new object and with rdio's api's  getPlaylist method including extras => tracks                          
       @tracks = @rdio.call('getPlaylists', "extras" => "tracks")['result']['owned']
+      @search_result = @rdio.call('search','query' => 'bob dylan Ramona', 'types' => "Track")["result"]["results"]
     end
   end
   
@@ -38,6 +40,7 @@ class PlaylistsController < ApplicationController
   
   def new_playlist
     @playlist = Playlist.new
+    
   end
   
   def create_playlist 
@@ -45,10 +48,14 @@ class PlaylistsController < ApplicationController
       rdio_user
       name = params[:name]
       description = params[:description]
-      playlist = @rdio.call('createPlaylist','name' => "#{name}",'description' => "#{description}",'tracks' => 't35335083')
+      playlist = @rdio.call('createPlaylist','name' => "#{name}",'description' => "#{description}",'tracks' => 't35335083', 'collaborationMode' => '1')
       redirect_to playlists_index_path
         
     end
   end
+  
+  
+ 
+  
 
 end

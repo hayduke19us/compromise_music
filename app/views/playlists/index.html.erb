@@ -19,6 +19,9 @@
 		<div class="span5", id="shared_playlist">
 			<p class="lead">Shared Playlist</p>
 			<div class="well", id="playlist_well">
+				<%@search_result.each do |f|%>
+				<%=link_to f['name'], f["embedUrl"]%></br>
+				<%end%>
 		  </div>
 		</div>
 	</div>
