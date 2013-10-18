@@ -16,7 +16,6 @@ class PlaylistsController < ApplicationController
   end
  
   def new
-    
   end
   
   def create_playlist 
@@ -36,15 +35,14 @@ class PlaylistsController < ApplicationController
       flash[:notice] = "You were unable to save a Playlist"
       redirect_to new_playlist_path
     end
-  
-      
-     
   end
 
   def add_songs_to_playlist
     @new_playlist = current_user.playlists.last
-    
-    
+    if params[:query] && params[:type] 
+      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
+    end
   end
+
 end
 

@@ -6,6 +6,7 @@
 div.well.new_playlist {text-align: center;}
 
 div#search_box { float: left;
+                 padding-right: 10%;
 }
 
 div.span5#search_well{padding-top: 1%;
@@ -33,14 +34,19 @@ input#new_playlist_btn.btn {padding-left: 10%;
                             padding-right: 10%;
 }
 
-#add_songs {height:400px;}
+#add_songs {height:400px;
+            overflow: scroll;
+}
 
 h2#new_playlist_name {text-align: center;
- 											padding-bottom: 1%;
-											border-bottom: solid 1px #88b2FD; 
+ 									
 }
 
 h4#new_playlist_description {text-align: center}
+
+div.search_results {float:right;
+                    padding-right:20%;
+}
 
 
 
