@@ -2,11 +2,11 @@
 	<div class="span1", id="spacer">
 	</div>
 	<div class="span5", id="all_users">
-	  <div class="lead">
-		  Users
-		  <strong><%= @all_user.count%></strong>
-		</div> 
-		<div class= "well" id="search">
+	  <div class= "well" id="search">
+			 <div class="lead">
+				  Users
+				  <strong><%= @all_user.count%></strong>
+				</div>
 		  <div class="form-search">
 			  <%= form_tag users_path, :method => 'get' do%>
 			  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
@@ -23,11 +23,11 @@
 		<%= link_to 'home', root_path%>
 	</div>
 	<div class="span5", id="all_friends">
-		<div class="lead">
-			Your Friends
-		  <strong><%=current_user.friendships.count 'id' => 'friends_count'%></strong>
-		</div>  
 	  <div class="well" id= "search">
+		  	<div class="lead">
+					Your Friends
+				  <strong><%=current_user.friendships.count 'id' => 'friends_count'%></strong>
+				</div>
 			 <div class="form-search">
 				  <%= form_tag users_path, :method => 'get' do%>
 				  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
