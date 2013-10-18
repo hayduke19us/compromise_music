@@ -5,22 +5,20 @@
 
 div.well.new_playlist {text-align: center;}
 
-div.well#playlist_well {height: 400px;
-                        overflow: scroll;
+div#search_box { float: left;
 }
 
-div.span5#playlist_list {padding-top: 1%;
-                         padding-bottom: 5%;
+div.span5#search_well{padding-top: 1%;
+ 										  height: 400px;
 }
 
 div.span5#shared_playlist {padding-top: 1%;
-                           padding-bottom: 5%;
+                           height: 400px;
+                           
 }
 
-h4#playlist_names {border-bottom: solid 1px #E2ECFD ;
-                   padding-bottom: 1%;
-}
-
+p.lead {border-bottom: solid 1px #88b2FD}
+div#search_for_stuff_form {border-right: solid 1px;}
 
 input#name {width: 100%;}
 textarea#description {width: 100%;
