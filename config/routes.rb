@@ -7,14 +7,17 @@ CompromiseMusic::Application.routes.draw do
   
   get "users/index"
   
-  get "playlists/index"
+  
   get "playlists/new_playlist"
+  get 'playlists/add_songs_to_playlist'
   
   resources :friendships
   resources :users
+  resources :playlists
+  
    
-  match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get]
-  match 'search_for_stuff', to: 'playlists#search_for_stuff', as: 'search_for_stuff', via: [:get]
+  match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get, :post]
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

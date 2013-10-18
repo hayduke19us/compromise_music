@@ -1,0 +1,28 @@
+  <div class="row-fluid">
+	  <div class="span3">
+		</div>
+    <div class="span6 well", id="add_songs">
+	    <h2 id="new_playlist_name"><%=@new_playlist.name%></h2>
+	    <h4 id="new_playlist_description"><%=@new_playlist.description%></h4>
+	  		<p class="lead">Search for Songs</p>
+		    <div id= "search_box">
+			    <div id=" search_for_stuff_form form-search">
+			      <%=form_tag({controller: "playlists", action: "index"}, method: "get",class: "search_for_stuff")%>
+			      <h4>Type of Search</h4>
+			      <%=text_field_tag :type, nil, :placeholder => "Artist, Track, Album", 'class' => "input-medium search-query"%>
+			      <h4>Search query</h5>
+			      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'class' => "input-medium search-query"%></br></br>
+			      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
+			    </div>
+			  </div>
+			  <div class="search_results">
+				  <% unless @search_result.blank? %>
+				    <% @search_result.each do |result|%>
+				    <%= result["name"]%></br>
+				    <%end%>
+	       <%end%>
+			  </div>  
+    </div>
+ 	  <div class="span3">
+		</div>
+  </div>

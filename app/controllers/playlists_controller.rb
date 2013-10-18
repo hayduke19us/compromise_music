@@ -15,23 +15,36 @@ class PlaylistsController < ApplicationController
     end
   end
  
-  def new_playlist
-    @playlist = Playlist.new
+  def new
     
   end
   
   def create_playlist 
+    @playlist = Playlist.new
     name = params[:name]
     description = params[:description]
     playlist = @rdio.call('createPlaylist','name' => "#{name}",'description' => "#{description}",'tracks' => 't35335083', 'collaborationMode' => '1')
-    redirect_to playlists_index_path
-  end
+    @playlist.name = playlist['result']['name']
+    @playlist.description = description
+    @playlist.embedUrl = playlist['result']['embedUrl']
+    @playlist.key = playlist['result']['key']
+    @playlist.user_id = current_user.id
+    if @playlist.save
+      flash[:notice] = "You have succesfully created a Playlist"  
+      redirect_to '/playlists/add_songs_to_playlist'
+    else
+      flash[:notice] = "You were unable to save a Playlist"
+      redirect_to new_playlist_path
+    end
   
-  def search_for_stuff
-    user_query = params[:query]
-    user_type = params[:type]
-    @search_result = @rdio.call('search','query' => "#{user_query}", 'types' => "#{user_type}")["result"]["results"]
-    redirect_to playlists_index_path
+      
+     
+  end
+
+  def add_songs_to_playlist
+    @new_playlist = current_user.playlists.last
+    
+    
   end
 end
 

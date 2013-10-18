@@ -13,15 +13,14 @@
 		      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
 		    </div>
 		  </div>
-		 <div class="search_results">
-			<% unless @search_result.blank? %>
-			  <% @search_result.each do |result|%>
-			  <%= result["name"]%></br>
-			  <%end%>
-     <%end%>
-		 </div>
-
-		</div>
+		  <div class="search_results">
+			  <% unless @search_result.blank? %>
+			    <% @search_result.each do |result|%>
+			    <%= result["name"]%></br>
+			    <%end%>
+       <%end%>
+		  </div>
+    </div>
 		<div class="span5 well", id="shared_playlist">
 			<p class="lead">Shared Playlist</p>
 		</div>

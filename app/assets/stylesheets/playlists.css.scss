@@ -18,9 +18,10 @@ div.span5#shared_playlist {padding-top: 1%;
 }
 
 p.lead {border-bottom: solid 1px #88b2FD}
-div#search_for_stuff_form {border-right: solid 1px;}
+
 
 input#name {width: 100%;}
+
 textarea#description {width: 100%;
  											padding-bottom: 10%;
 }
@@ -31,6 +32,15 @@ div#new_playlist_btn {padding-left: 25%;
 input#new_playlist_btn.btn {padding-left: 10%;
                             padding-right: 10%;
 }
+
+#add_songs {height:400px;}
+
+h2#new_playlist_name {text-align: center;
+ 											padding-bottom: 1%;
+											border-bottom: solid 1px #88b2FD; 
+}
+
+h4#new_playlist_description {text-align: center}
 
 
 
