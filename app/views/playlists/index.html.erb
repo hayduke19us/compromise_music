@@ -1,27 +1,28 @@
   <div class= 'row-fluid'>  
 	  <div class="span1">
 		</div>
-		<div class="span5", id="playlist_list">
-			<p class="lead">My Playlist</p>
-	    <div class="well", id= "playlist_well">
-	      <% if current_user %>
-          <% @tracks.each do |title| %>
-				    <h4 id="playlist_names"><%=link_to  title["name"].capitalize, title['embedUrl'],"id" => "playlist_names"%></br></h4>
-				    <%  @songs = title["tracks"]%>
-				    <%  @songs.each do |h| %>
-				    <%= link_to h["name"].capitalize, h["embedUrl"] %></br>
-		        <%= h["key"]%>
-		        <%end%>
-			    <%end%>
-			  <%end%>
-			</div>
-		</div>
-		<div class="span5", id="shared_playlist">
-			<p class="lead">Shared Playlist</p>
-			<div class="well", id="playlist_well">
-				<%@search_result.each do |f|%>
-				<%=link_to f['name'], f["embedUrl"]%></br>
-				<%end%>
+		<div class="span5 well", id="search_well">
+			<p class="lead">Search for Songs</p>
+	    <div id= "search_box">
+		    <div id=" search_for_stuff_form form-search">
+		      <%=form_tag({controller: "playlists", action: "index"}, method: "get",class: "search_for_stuff")%>
+		      <h4>Type of Search</h4>
+		      <%=text_field_tag :type, nil, :placeholder => "Artist, Track, Album", 'class' => "input-medium search-query"%>
+		      <h4>Search query</h5>
+		      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'class' => "input-medium search-query"%></br></br>
+		      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
+		    </div>
 		  </div>
+		 <div class="search_results">
+			<% unless @search_result.blank? %>
+			  <% @search_result.each do |result|%>
+			  <%= result["name"]%></br>
+			  <%end%>
+     <%end%>
+		 </div>
+
+		</div>
+		<div class="span5 well", id="shared_playlist">
+			<p class="lead">Shared Playlist</p>
 		</div>
 	</div>
