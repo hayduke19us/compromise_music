@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background: url('jukebox.jpg') center center no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+div.well{background-color: white;
+         border: solid 1px #DFF7F3;
+         border-radius:5px;
+         opacity: 0.8;
+}
 a:hover {text-decoration: none;}
 
 div#user-widget.span4 {padding-top: 3%;
