@@ -17,7 +17,11 @@
 			  <div class="search_results">
 				  <% unless @search_result.blank? %>
 				    <% @search_result.each do |result|%>
-				    <%= link_to result["name"], result["embedUrl"]%></br>
+				      <%= link_to result["name"], result["embedUrl"]%> 
+				      <% @key = result["key"]%>		
+				    	<div id="add"><%=check_box_tag @key%></div></br>
+				       
+				    
 				    <%end%>
 	       <%end%>
 			  </div>  
