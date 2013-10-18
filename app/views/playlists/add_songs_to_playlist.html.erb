@@ -8,9 +8,9 @@
 			    <div id=" search_for_stuff_form form-search">
 			      <%=form_tag({controller: "playlists", action: "add_songs_to_playlist"}, method: "get",class: "search_for_stuff")%>
 			      <h4>Type of Search</h4>
-			      <%=text_field_tag :type, nil, :placeholder => "Artist, Track, Album", 'class' => "input-medium search-query"%>
+			      <%=select_tag(:type, options_for_select(["Artist", "Album", "Track"]))%>
 			      <h4>Search query</h5>
-			      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'class' => "input-medium search-query"%></br></br>
+			      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album"%></br></br>
 			      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
 			    </div>
 			  </div>
@@ -20,8 +20,6 @@
 				      <%= link_to result["name"], result["embedUrl"]%> 
 				      <% @key = result["key"]%>		
 				    	<div id="add"><%=check_box_tag @key%></div></br>
-				       
-				    
 				    <%end%>
 	       <%end%>
 			  </div>  
