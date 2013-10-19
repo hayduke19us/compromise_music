@@ -6,5 +6,5 @@ class Friend < User
       find(:all)
     end
   end  
-has_many :playlists :through => :shared_playlist
+  has_many :playlists 
 end
