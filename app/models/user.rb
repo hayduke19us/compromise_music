@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
 
 has_many :friendships
 has_many :friends, :through => :friendships  
-has_many :playlists    
-
+has_many :playlists
+  
   def self.search(search)
     if search
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])

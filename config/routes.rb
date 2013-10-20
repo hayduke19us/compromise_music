@@ -7,7 +7,6 @@ CompromiseMusic::Application.routes.draw do
   
   get "users/index"
   
-  
   get "playlists/new_playlist"
   get 'playlists/add_songs_to_playlist'
   
@@ -16,7 +15,7 @@ CompromiseMusic::Application.routes.draw do
   resources :playlists
   
    
-  match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get, :post]
+ # match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get, :post]
 
   
   # The priority is based upon order of creation: first created -> highest priority.

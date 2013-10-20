@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019065942) do
+ActiveRecord::Schema.define(version: 20131019073501) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131019065942) do
     t.string   "user_id"
     t.string   "key"
     t.string   "embedUrl"
+    t.string   "friend_id"
   end
 
   create_table "tracks", force: true do |t|

@@ -18,10 +18,12 @@
 				  <% unless @search_result.blank? %>
 				    <% @search_result.each do |result|%>
 				      <%= link_to result["name"], result["embedUrl"]%> 
-				      <% @key = result["key"]%>		
-				    	<div id="add"><%=check_box_tag @key%></div></br>
+				      <% params[:key] = result["key"]%>		
+              <div id="add">
+                <%=link_to 'add' %>
+              </div></br>
 				    <%end%>
-	       <%end%>
+          <%end%>
 			  </div>  
     </div>
  	  <div class="span1">

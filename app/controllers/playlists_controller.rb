@@ -23,7 +23,7 @@ class PlaylistsController < ApplicationController
   end
 
   
-  def create_playlist 
+  def create
     if params[:name].blank? || params[:description].blank?
       flash[:notice] = "A playlist must have a name and a description"
       redirect_to new_playlist_path
@@ -48,10 +48,9 @@ class PlaylistsController < ApplicationController
 
   def add_songs_to_playlist
     @new_playlist = current_user.playlists.last
+   
     if params[:query] && params[:type] 
       @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
     end
   end
-
 end
-

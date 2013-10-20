@@ -15,7 +15,7 @@
 		  </div>
 		</div>
 		<div class="well", id="all_users">
-	    <% @all_user.each do |user| %>
+      <% @all_user.each do |user| %>
 		    <h4 id="user"><%= user.name%></h4>
 		    <%= link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link' %></br>
 		  <%end%>

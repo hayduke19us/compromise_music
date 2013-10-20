@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#add_to_collection {text-align: center;}
+
+#my{float:left;
+    color: #929999;
+}
+
+#playlist_list_title {float:left;
+}
+
+#track_count_title {text-align: right;
+                    color: #929999;
+}
+
+#playlist_name {float: left;}
+
+#playlist_description {;}
+
+#tracks_count {text-align: right;}
 
 div.well.new_playlist {text-align: center;}
 
@@ -15,7 +33,6 @@ div.span5#search_well{padding-top: 1%;
 
 div.span5#shared_playlist {padding-top: 1%;
                            height: 400px;
-                           
 }
 
 p.lead {border-bottom: solid 1px #88b2FD}
