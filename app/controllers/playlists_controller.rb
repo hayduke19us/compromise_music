@@ -19,7 +19,11 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    redirect_to root_url
+    @playlist = Playlist.find(params[:id])
+    if params[:query] && params[:type] 
+      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
+    end
+    
   end
 
   
@@ -28,7 +32,7 @@ class PlaylistsController < ApplicationController
       flash[:notice] = "A playlist must have a name and a description"
       redirect_to new_playlist_path
     else
-      @playlist = Playlist.new
+      @playlist = Playlist.new(params[:playlist])
       rdio_playlist = @rdio.call('createPlaylist','name' => "#{params[:name]}",'description' => "#{params[:description]}",'tracks' => 't35335083', 'collaborationMode' => '1')
       @playlist.name = rdio_playlist['result']['name']
       @playlist.description = params[:description]
@@ -37,10 +41,10 @@ class PlaylistsController < ApplicationController
       @playlist.user_id = current_user.id
         if @playlist.save
           flash[:notice] = "You have succesfully created a Playlist"  
-           redirect_to '/playlists/add_songs_to_playlist'
+           redirect_to action: :show, id: @playlist.id
         else
           flash[:notice] = "You were unable to save a Playlist"
-          redirect_to new_playlist_path
+          redirect_to  new_playlist_path
         end
     end
      

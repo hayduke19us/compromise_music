@@ -1,5 +1,6 @@
 CompromiseMusic::Application.routes.draw do
   
+  get "tracks/create"
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   
@@ -9,11 +10,12 @@ CompromiseMusic::Application.routes.draw do
   
   get "playlists/new_playlist"
   get 'playlists/add_songs_to_playlist'
+  get 'tracks/fix'
   
   resources :friendships
   resources :users
   resources :playlists
-  
+  resources :tracks  
    
  # match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get, :post]
 

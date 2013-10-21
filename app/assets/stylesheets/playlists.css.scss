@@ -9,11 +9,16 @@
 }
 
 #playlist_list_title {float:left;
+                      padding-right: 2%;
 }
+
+#friends_list_title {float: left;}
 
 #track_count_title {text-align: right;
                     color: #929999;
 }
+
+
 
 #playlist_name {float: left;}
 
@@ -23,9 +28,7 @@
 
 div.well.new_playlist {text-align: center;}
 
-div#search_box { float: left;
-                 padding-right: 10%;
-}
+
 
 div.span5#search_well{padding-top: 1%;
  										  height: 400px;
@@ -60,10 +63,6 @@ h2#new_playlist_name {text-align: center;
 }
 
 h4#new_playlist_description {text-align: center}
-
-div.search_results {float:right;
-                    padding-right:25%;
-}
 
 #add{float:right;
      padding-left:10px;

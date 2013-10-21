@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019073501) do
+ActiveRecord::Schema.define(version: 20131021192717) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 20131019073501) do
   create_table "playlists", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "tracks"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_id"
     t.string   "key"
     t.string   "embedUrl"
     t.string   "friend_id"
+    t.string   "track_id"
   end
 
   create_table "tracks", force: true do |t|
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20131019073501) do
     t.datetime "updated_at"
     t.string   "playlist_key"
     t.string   "playlist_id"
+    t.integer  "index"
   end
 
   create_table "users", force: true do |t|
