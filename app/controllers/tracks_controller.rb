@@ -9,7 +9,7 @@ class TracksController < ApplicationController
     elsif track_count >= 1
       @index = track_count + 1
     end
-    #add_to_playlist = @rdio.call('addToPlaylist', 'playlist' => "#{params[:playlist_key]}", 'tracks' => "#{params[:key]}")
+    add_to_playlist = @rdio.call('addToPlaylist', 'playlist' => "#{params[:playlist_key]}", 'tracks' => "#{params[:key]}")
     @track = Track.new
     @track.name = params[:name]
     @track.key = params[:key]
@@ -29,10 +29,25 @@ class TracksController < ApplicationController
   end
   
   def destroy
+    all_tracks = Track.all
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
-    #remove_from_playlist = @rdio.call('removeFromPlaylist', 'playlist' => "#{track.playlist_key}",)
-    track.delete
+  
+    if track.delete
+      all_tracks.each do |t|
+        unless t.index <= track.index
+         index = t.index
+         t.index = (index -1)
+         t.save
+        end
+      end
+    end   
+      
+    
+    remove_from_playlist = @rdio.call('removeFromPlaylist', 'playlist' => "#{track.playlist_key}", 'index' =>"#{track.index}",
+                                      'count' => '1', 'tracks' => "#{track.key}")
     redirect_to(:controller => "playlists", :action => "show", :id => track.playlist_id)
   end
+  
+ 
 end

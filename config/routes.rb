@@ -5,17 +5,15 @@ CompromiseMusic::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   
   get "sessions/index"
-  
-  get "users/index"
-  
   get "playlists/new_playlist"
   get 'playlists/add_songs_to_playlist'
-  get 'tracks/fix'
+
   
   resources :friendships
   resources :users
   resources :playlists
-  resources :tracks  
+  resources :tracks 
+ 
    
  # match 'create_playlist', to: 'playlists#create_playlist', as: 'create_playlist', via: [:get, :post]
 
@@ -24,7 +22,7 @@ CompromiseMusic::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sessions#index'
+  root "sessions#index"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
