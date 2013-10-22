@@ -53,10 +53,10 @@ class PlaylistsController < ApplicationController
   def destroy
     playlist = Playlist.find(params[:id])
     @rdio.call('deletePlaylist', 'playlist' => "#{playlist.key}")
-      if playlist.delete 
-        flash[:notice] = "You have deleted #{playlist.name}"
-        redirect_to root_path 
-      end
+    if playlist.destroy
+      flash[:notice] = "You have deleted #{playlist.name}"
+      redirect_to root_path 
+    end
   end
 
 end
