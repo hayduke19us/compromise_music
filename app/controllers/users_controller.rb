@@ -4,4 +4,7 @@ class UsersController < ApplicationController
     @all_user = User.find(:all, :conditions => [ "id != ?", current_user.id])
     @friendships = Friend.search(params[:search])
   end
+  def show
+    @user = User.find(params[:id])
+  end
 end

@@ -58,7 +58,6 @@
 						 	 <div class= "user_image">
 				        <%= link_to image_tag(current_user.image, 'id' => 'user_image', 'class' => 'img-circle'), root_path %>
 						    </div>
-						     <%=link_to image_tag('make_friend.png'), users_path, "id" => "make_friend" %>
 						  </div>
 						<% end %>
 					</div>
@@ -75,10 +74,8 @@
 				  <div class="span4" id= "user-widget">
 					  <% if current_user %>
 					    <div class="well" id="signed_in">
-						    <div class= "lead"> 
-						      <%= current_user.name.capitalize %>
+                 <h4><%= current_user.name.capitalize %></h4>
 				          <%= link_to "Sign out", signout_path %>
-				        </div>
 				      </div> 
 				    <%else%>
 				      <div class="well" id="sign_in">

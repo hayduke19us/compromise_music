@@ -28,7 +28,9 @@
 
 div.well.new_playlist {text-align: center;}
 
-
+div#search_box { float: left;
+                 padding-right: 10%;
+}
 
 div.span5#search_well{padding-top: 1%;
  										  height: 400px;
@@ -63,6 +65,8 @@ h2#new_playlist_name {text-align: center;
 }
 
 h4#new_playlist_description {text-align: center}
+
+div.search_results {width: 50%;}
 
 #add{float:right;
      padding-left:10px;

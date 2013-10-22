@@ -21,7 +21,7 @@ div#user-widget.span4 {padding-top: 3%;
 }
 
 div.control_panel {padding-left: 37%;
-                   padding-bottom:7%;
+                   padding-bottom:2%;
 }
 
 div#sign_in.well {padding: 10%;
@@ -33,6 +33,23 @@ div#signed_in.well {padding: 5%;
 }
 
 #instruct_for_new{text-align: center;}
+
+#friend_image {width: 100px;
+							 float: left;	
+     	  		   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						
+}
+
+#friend_show_image{width: 100px;
+						    	 float: left;	
+     	  		       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						       -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+						      -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+#friend_playlist_count {text-align:right;}
+
 
 
 

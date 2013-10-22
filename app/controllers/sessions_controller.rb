@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   
   def index
+  params[:id] = current_user
   end
   
   def create

@@ -49,12 +49,14 @@ class PlaylistsController < ApplicationController
     end
      
   end
-
-  def add_songs_to_playlist
-    @new_playlist = current_user.playlists.last
-   
-    if params[:query] && params[:type] 
-      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
-    end
+  
+  def destroy
+    playlist = Playlist.find(params[:id])
+    @rdio.call('deletePlaylist', 'playlist' => "#{playlist.key}")
+      if playlist.delete 
+        flash[:notice] = "You have deleted #{playlist.name}"
+        redirect_to root_path 
+      end
   end
+
 end

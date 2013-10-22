@@ -29,10 +29,10 @@
   <div class="span6 well", id= "add_songs">
 	  <h2 id="new_playlist_name"><%=link_to @playlist.name.capitalize, @playlist.embedUrl%></h2>
 	  <% @playlist.tracks.each do |track|%>
-	  <div class= "well">
-	    <%=link_to track.name, track.embedUrl%></br>
-	    <%=link_to "remove", track, method: "delete", :id => track.id %>
-	  </div>
+	    <div class= "well">
+	      <%=link_to track.name, track.embedUrl%></br>
+	      <%=link_to "remove", track, method: "delete", :id => track.id %>
+	    </div>
 	  <%end%>
 	  
 	

@@ -3,7 +3,7 @@
       <% if current_user %>
         <% unless current_user.playlists.count > 0 %>
 	        <div class= "well new_playlist">
-		        <h1><%= link_to "Make your first playlist", new_playlist_path %></h1>
+            <h1><%= link_to "Make your first playlist", new_playlist_path %></h1>
           </div>
         <% else %>
           <div class="well" id="add_to_collection" >
@@ -20,6 +20,34 @@
                   <%=info.tracks.count %>
                 </h4>
                 <li><h6 id= "playlist_description"><%= info.description %></h6></li>
+                <h6><%=link_to "delete", info, method: "delete", 'class' => 'btn'%> </h6>
+              </div>  
+            <%end%>
+          </div>  
+        <%end%>
+      <%end%>
+	  </div>
+	  <div class="span6">
+      <% if current_user %>
+        <% unless current_user.friends.count > 0 %>
+	        <div class= "well new_playlist">
+		        <h1><%= link_to "Make your first friend", users_path %></h1>
+          </div>
+        <% else %>
+          <div class="well" id="add_to_collection" >
+            <h1><%= link_to "Make a new friend", users_path %></h1> 
+          </div>
+          <div class="well">
+            <h2 id= "my">My</h2>
+            <h2 id="playlist_list_title">Friends</h2>
+            <h2 id="track_count_title">Playlists</h2>.
+            <% current_user.friends.each do |info| %>
+              <div class="well">
+	              <%= image_tag info.image, 'id' => 'friend_image', 'class' => 'img-circle' %>
+                <h4 id="friend_playlist_count"><%= info.playlists.count%></h4></br>
+                <h4 id="friend_name"><%=link_to info.name, :controller => "users", :action => "show", :id => info.id %></h4>
+               
+              
               </div>  
             <%end%>
           </div>  
