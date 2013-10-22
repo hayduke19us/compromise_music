@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   before_filter :get_rdio_user
+
   def create
-   
     playlist = Playlist.find(params[:playlist_id])
     track_count = playlist.tracks.count
     if track_count == 0
