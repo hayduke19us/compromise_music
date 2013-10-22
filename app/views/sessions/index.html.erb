@@ -13,14 +13,14 @@
             <h2 id= "my">My</h2>
             <h2 id="playlist_list_title">Playlists</h2>
             <h2 id="track_count_title">Tracks</h2>.
-            <% current_user.playlists.each do |info| %>
+            <% current_user.playlists.each do |playlist| %>
               <div class="well">
-                <h4 id= "playlist_name"><%= link_to info.name, "playlists/#{info.id}" %></h4>
+                <h4 id= "playlist_name"><%= link_to playlist.name, "playlists/#{playlist.id}" %></h4>
                 <h4 id="tracks_count">
-                  <%=info.tracks.count %>
+                  <%=playlist.tracks.count %>
                 </h4>
-                <li><h6 id= "playlist_description"><%= info.description %></h6></li>
-                <h6><%=link_to "delete", info, method: "delete", 'class' => 'btn'%> </h6>
+                <li><h6 id= "playlist_description"><%= playlist.description %></h6></li>
+                <h6><%=link_to "delete", playlist, method: "delete", 'class' => 'btn'%> </h6>
               </div>  
             <%end%>
           </div>  
