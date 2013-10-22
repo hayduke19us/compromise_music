@@ -28,8 +28,6 @@ ActiveRecord::Schema.define(version: 20131021192717) do
     t.string   "user_id"
     t.string   "key"
     t.string   "embedUrl"
-    t.string   "friend_id"
-    t.string   "track_id"
   end
 
   create_table "tracks", force: true do |t|
@@ -39,7 +37,7 @@ ActiveRecord::Schema.define(version: 20131021192717) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "playlist_key"
-    t.string   "playlist_id"
+    t.integer  "playlist_id",  limit: 255
     t.integer  "index"
   end
 
