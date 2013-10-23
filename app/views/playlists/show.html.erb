@@ -1,25 +1,22 @@
 <div class="row-fluid">
   <div class="span6 well", id="add_songs">
-  		<h2>Search for Songs</h2>
-	    <div id= "search_box">
-		    <div id=" search_for_stuff_form form-search">
+  		<h2 id="search_songs_title">Search for Songs</h2>
+	    <div class= "well search_box">
+		    <div id="search_for_stuff_form form-search">
 		      <%=form_tag({controller: "playlists", action: "show"}, method: "get",class: "search_for_stuff")%>
-		      <h4>Type of Search</h4>
-		      <%=select_tag(:type, options_for_select(["Artist", "Album", "Track"]))%>
-		      <h4>Search query</h5>
-		      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album"%></br></br>
-		      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
+          <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'id' => 'search_track'%></br>
+          <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%></br>
 		    </div>
 		  </div>
 		  <div class="search_results">
         <% unless @search_result.blank? %>
-			    <div class="lead"> Search Results</div>
 			    <% @search_result.each do |result|%>
             <div class="well song_search">
               <%= link_to result["name"], result["embedUrl"]%>
               <div id="add">
                 <%=link_to 'add', tracks_path(:playlist_id => @playlist, :name => "#{result['name']}", :playlist_key => @playlist.key,
-                                              :key => "#{result['key']}", :embedUrl => "#{result['embedUrl']}" ), method: "post" %>
+                                              :key => "#{result['key']}", :embedUrl => "#{result['embedUrl']}" ), method: "post", 'class' =>
+                                              'btn btn-primary'%>
               </div></br>
             </div>  
           <%end%>
@@ -29,14 +26,24 @@
   <div class="span6 well", id= "add_songs">
 	  <h2 id="new_playlist_name"><%=link_to @playlist.name.capitalize, @playlist.embedUrl%></h2>
 	  <% @playlist.tracks.each do |track|%>
-	    <div class= "well">
-	      <%=link_to track.name, track.embedUrl%></br>
-	      <%=link_to "remove", track, method: "delete", :id => track.id %>
-	    </div>
+      <div class= "well">
+        <h4 id="track_name">
+          <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
+        </h4>
+        <% if @playlist.user_id = current_user.id  %>
+          <div id="remove_button">
+          <%=link_to "remove", track, method: "delete", :id => track.id, 'class' => 'btn btn-danger' %>
+          </div>
+        <%else%>
+          <div id="vote_up">
+            vote_up
+          </div>
+          <div id="vote down">
+            vote_down
+          </div>
+        <%end%>
+      </div>
 	  <%end%>
-	  
-	
-	  
 	</div>
 </div>
 
