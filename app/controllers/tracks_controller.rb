@@ -33,11 +33,11 @@ class TracksController < ApplicationController
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
   
-    if track.delete
+    if track.destroy
       all_tracks.each do |t|
         unless t.index <= track.index
          index = t.index
-         t.index = (index -1)
+         t.index = (index - 1)
          t.save
         end
       end
