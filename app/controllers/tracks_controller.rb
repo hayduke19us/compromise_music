@@ -29,12 +29,11 @@ class TracksController < ApplicationController
   end
   
   def destroy
-    all_tracks = Track.all
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
   
     if track.destroy
-      all_tracks.each do |t|
+      playlist.tracks.each do |t|
         unless t.index <= track.index
          index = t.index
          t.index = (index - 1)
@@ -44,8 +43,8 @@ class TracksController < ApplicationController
     end   
       
     
-    remove_from_playlist = @rdio.call('removeFromPlaylist', 'playlist' => "#{track.playlist_key}", 'index' =>"#{track.index}",
-                                      'count' => '1', 'tracks' => "#{track.key}")
+    @rdio.call('removeFromPlaylist', 'playlist' => "#{track.playlist_key}", 'index' =>"#{track.index}",
+                                     'count' => '1', 'tracks' => "#{track.key}")
     redirect_to(:controller => "playlists", :action => "show", :id => track.playlist_id)
   end
   
