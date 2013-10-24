@@ -19,10 +19,13 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    @friend_view = params[:friend_view]
     @playlist = Playlist.find(params[:id])
     if params[:query]  
       @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
     end
+    
+   
     
   end
 
@@ -58,5 +61,6 @@ class PlaylistsController < ApplicationController
       redirect_to root_path 
     end
   end
+  
 
 end

@@ -6,5 +6,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @friend_view = params[:friend_view]
+    
   end
 end

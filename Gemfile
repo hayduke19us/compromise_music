@@ -1,9 +1,15 @@
 source 'https://rubygems.org'
 
+
+
 group :development do
   gem 'sextant'
   gem "rails-erd"
 end
+
+#makes playlist voteable
+gem 'thumbs_up'
+
 
 # Omniauth rdio authentication
 gem 'omniauth-rdio'

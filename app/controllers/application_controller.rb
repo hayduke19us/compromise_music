@@ -26,4 +26,5 @@ class ApplicationController < ActionController::Base
                                     [@token, @secret])
     end
   end
+  @full_name = name = []
 end

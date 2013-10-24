@@ -6,21 +6,21 @@
             <h1><%= link_to "Make your first playlist", new_playlist_path %></h1>
           </div>
         <% else %>
-          <div class="well" id="add_to_collection" >
-            <h1><%= link_to "Make a new playlist", new_playlist_path %></h1> 
-          </div>
           <div class="well">
             <h2 id= "my">My</h2>
             <h2 id="playlist_list_title">Playlists</h2>
-            <h2 id="track_count_title">Tracks</h2>.
-            <% current_user.playlists.each do |playlist| %>
+            <h2 id="track_count_title">Tracks</h2>
+            <p>
+            <%= link_to "Make a new playlist", new_playlist_path,'class'=>"btn btn-primary"%>
+	          </p>
+	          <% current_user.playlists.each do |playlist| %>
               <div class="well">
-                <h4 id= "playlist_name"><%= link_to playlist.name, "playlists/#{playlist.id}" %></h4>
+                <h4 id= "playlist_name"><%= link_to playlist.name, :controller => "playlists", :action => "show", :id => playlist.id, :friend_view => current_user.id %></h4>
                 <h4 id="tracks_count">
                   <%=playlist.tracks.count %>
                 </h4>
                 <li><h6 id= "playlist_description"><%= playlist.description %></h6></li>
-                <h6><%= button_to "delete", playlist_path(playlist), method: :delete, 'class' => 'btn', confirm: "Are you sure?"%> </h6>
+                <h6><%= button_to "delete", playlist_path(playlist), method: :delete, 'class' => 'btn', confirm: "Are you sure?", 'class' => 'btn btn-danger'%> </h6>
               </div>  
             <%end%>
           </div>  
@@ -34,18 +34,17 @@
 		        <h1><%= link_to "Make your first friend", users_path %></h1>
           </div>
         <% else %>
-          <div class="well" id="add_to_collection" >
-            <h1><%= link_to "Make a new friend", users_path %></h1> 
-          </div>
+      
           <div class="well">
             <h2 id= "my">My</h2>
             <h2 id="playlist_list_title">Friends</h2>
-            <h2 id="track_count_title">Playlists</h2>.
+            <h2 id="track_count_title">Playlists</h2>
+            <p><%= link_to "Make a new friend", users_path, 'class' => 'btn btn-primary' %></p>
             <% current_user.friends.each do |info| %>
               <div class="well">
 	              <%= image_tag info.image, 'id' => 'friend_image', 'class' => 'img-circle' %>
                 <h4 id="friend_playlist_count"><%= info.playlists.count%></h4></br>
-                <h4 id="friend_name"><%=link_to info.name, :controller => "users", :action => "show", :id => info.id %></h4>
+                <h4 id="friend_name"><%=link_to info.name, :controller => "users", :action => "show", :id => info.id, :friend_view => current_user.id%></h4>
                
               
               </div>  

@@ -8,8 +8,12 @@ CompromiseMusic::Application.routes.draw do
   resources :friendships
   resources :users 
   resources :playlists
-  resources :tracks 
-
+  resources :tracks do
+    member do
+      get :vote_up
+      get :vote_down
+    end 
+  end
   root "sessions#index"
 
 end
