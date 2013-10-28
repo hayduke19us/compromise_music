@@ -11,7 +11,7 @@
             <h2 id="playlist_list_title">Playlists</h2>
             <h2 id="track_count_title">Tracks</h2>
             <p>
-            <%= link_to "Make a new playlist", new_playlist_path,'class'=>"btn btn-primary"%>
+            <%= link_to "Make a new playlist", new_playlist_path,'class'=>"btn"%>
 	          </p>
 	          <% current_user.playlists.each do |playlist| %>
               <div class="well">
@@ -20,7 +20,7 @@
                   <%=playlist.tracks.count %>
                 </h4>
                 <li><h6 id= "playlist_description"><%= playlist.description %></h6></li>
-                <h6><%= button_to "delete", playlist_path(playlist), method: :delete, 'class' => 'btn', confirm: "Are you sure?", 'class' => 'btn btn-danger'%> </h6>
+                <h6><%= button_to "delete", playlist_path(playlist), method: :delete, 'class' => 'btn btn-danger', confirm: "Are you sure?"%> </h6>
               </div>  
             <%end%>
           </div>  
@@ -58,6 +58,7 @@
   </div>
   
   
+
 
 
 

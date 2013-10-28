@@ -8,25 +8,13 @@ div.span5#all_users{padding-top:3%}
 
 div.span5#all_friends{padding-top:3%}
 
-a#add_friend_link {float: right;
-                   padding-top: 10px;
+a#add_friend_link {float:right;
 }
 
-a#remove_friend_link {float: right;
-											padding-top: 10px;
-}
-
-form {padding-left: 3px;}
+a#remove_friend_link {float: right;}
 
 div.span4#all_friends { padding-top: 14%;}
 
-div.well#all_users {height: 200px;
-                    overflow: scroll;
-}
-
-div.well#all_friends {height: 200px;
-                      overflow: scroll;
-}
 
 strong {float: right;
 }

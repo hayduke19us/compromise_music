@@ -3,8 +3,10 @@ class PlaylistsController < ApplicationController
   before_filter :get_rdio_user
   
   def index
+    @friend_view = params[:friend_view]
     if params[:query] && params[:type] 
       @search_result = @rdio.call('search','query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
+      redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id])
     end
   end
   

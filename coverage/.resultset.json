@@ -1,0 +1,35 @@
+{
+  "Unknown Test Framework": {
+    "coverage": {
+      "/Users/hayduke19us/rails_projects_new/compromise_music/test/test_helper.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/hayduke19us/rails_projects_new/compromise_music/app/models/playlist.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/hayduke19us/rails_projects_new/compromise_music/app/models/shared_playlist.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1382789008
+  }
+}

@@ -19,13 +19,12 @@ has_many :friendships
 has_many :friends, :through => :friendships  
 has_many :playlists, :dependent => :delete_all
 
-  
-  def self.search(search)
+ def self.search(search)
     if search
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
     else
       find(:all)
     end
-  end  
+ end  
 end
 

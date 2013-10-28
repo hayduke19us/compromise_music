@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
-
-
+group :test do
+  gem 'hirb'
+  gem 'simplecov', :require => false
+end
 
 group :development do
   gem 'sextant'

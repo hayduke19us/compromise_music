@@ -15,10 +15,14 @@
 		  </div>
 		</div>
 		<div class="well", id="all_users">
-      <% @all_user.each do |user| %>
-		    <h4 id="user"><%= user.name%></h4>
-		    <%= link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link' %></br>
-		  <%end%>
+			
+        <% @all_user.each do |user| %>
+        <div class="well">
+		      <h4 id="user"><%= user.name%></h4>
+		      <%= link_to 'Add friend', friendships_path(:friend_id => user), :method => :post ,'id' => 'add_friend_link', 'class' => 'btn btn-primary' %></br>
+		    </div>
+		    <%end%>
+
 		</div>
 		<%= link_to 'home', root_path%>
 	</div>
@@ -35,10 +39,13 @@
 					<%end%>
 			 </div>
 		</div>
-		<div class="well" id="all_friends" >
+		<div class="w	ell" id="all_friends" >
+			
 	    <%for friendship in current_user.friendships %>
+	    <div class='well'>
 	    <h4 id='user'><%=h friendship.friend.name %></h4>
-	    <%=link_to 'Remove friend', friendship, :method => :delete, 'id' => 'remove_friend_link' %></br>
+	    <%=link_to 'Remove friend', friendship, :method => :delete, 'id' => 'remove_friend_link', 'class' => 'btn btn-danger' %></br>
+	    </div>
 	    <%end%>
 	  </div>
 	</div>
