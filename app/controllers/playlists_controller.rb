@@ -9,30 +9,9 @@ class PlaylistsController < ApplicationController
       redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id])
     end
   end
-  
-  def playlist
-    if current_user
-      #now we make a request to rdio with the new object and with rdio's api's  getPlaylist method including extras => tracks                          
-      @tracks = @rdio.call('getPlaylists', "extras" => "tracks")['result']['owned']
-    end
-  end
- 
+   
   def new
   end
-
-  def show
-    @user = current_user
-    @user_id = @user.id.to_i
-    @playlist = Playlist.find(params[:id])
-    @playlist_user_id = @playlist.user_id.to_i
-    if params[:query]  
-      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
-    end
-    
-   
-    
-  end
-
   
   def create
     if params[:name].blank? || params[:description].blank?
@@ -54,7 +33,16 @@ class PlaylistsController < ApplicationController
           redirect_to  new_playlist_path
         end
     end
-     
+  end
+
+  def show
+    @user = current_user
+    @user_id = @user.id.to_i
+    @playlist = Playlist.find(params[:id])
+    @playlist_user_id = @playlist.user_id.to_i
+    if params[:query]  
+      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
+    end
   end
   
   def destroy
@@ -65,6 +53,13 @@ class PlaylistsController < ApplicationController
       redirect_to root_path 
     end
   end
+  
+  def rdio_playlist
+     if current_user
+       #now we make a request to rdio with the new object and with rdio's api's  getPlaylist method including extras => tracks                          
+       @tracks = @rdio.call('getPlaylists', "extras" => "tracks")['result']['owned']
+     end
+   end
   
 
 end

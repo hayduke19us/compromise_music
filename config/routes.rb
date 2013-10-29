@@ -6,9 +6,9 @@ CompromiseMusic::Application.routes.draw do
 
   get "sessions/index"
 
-  resources :users do
-    resources :friendships
-  end  
+  
+  resources :friendships
+ 
   
   resources :users do
     resources :friends
