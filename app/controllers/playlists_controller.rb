@@ -41,7 +41,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @playlist_user_id = @playlist.user_id.to_i
     if params[:query]  
-      @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
+      @search_result = @rdio.call('search','extras' => 'isrcs, iframeUrl, bigIcon', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
     end
   end
   

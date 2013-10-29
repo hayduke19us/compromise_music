@@ -14,14 +14,13 @@ class TracksController < ApplicationController
     elsif track_count >= 1
       @index = track_count + 1
     end
-    @rdio.call('addToPlaylist', 'playlist' => "#{params[:playlist_key]}", 'tracks' => "#{params[:key]}")
+    track = @rdio.call('addToPlaylist', 'playlist' => "#{params[:playlist_key]}", 'tracks' => "#{params[:key]}")
     @track.name = params[:name]
     @track.key = params[:key]
     @track.embedUrl = params[:embedUrl]
     @track.playlist_key = params[:playlist_key]
     @track.playlist_id = params[:playlist_id]
     @track.index = @index
-    
     if @track.save
       flash[:notice] = "#{@track.name} added to playlist"
       redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])

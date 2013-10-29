@@ -4,6 +4,23 @@
 
 #add_to_collection {text-align: center;}
 
+div.well.song_search{background:transparent;}
+
+iframe {float:left;
+        height: 30px;
+        width: 30px;
+    
+}
+
+#search_track_name{text-align: center;
+                 
+}
+#search_track_image{width:100%; 
+                    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+		                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
+}
+
 #my{float:left;
     color: #929999;
 }
@@ -76,7 +93,6 @@ h2#new_playlist_name {;
 h4#new_playlist_description {text-align: center}
 
 #add{float:right;
-     padding-left:10px;
 }
 
 
