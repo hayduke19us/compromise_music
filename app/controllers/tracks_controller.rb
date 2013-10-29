@@ -1,7 +1,6 @@
 class TracksController < ApplicationController
   before_filter :get_rdio_user
     
-
   def create
     playlist = Playlist.find(params[:playlist_id])
     track_count = playlist.tracks.count
@@ -49,25 +48,27 @@ class TracksController < ApplicationController
     redirect_to(:controller => "playlists", :action => "show", :id => track.playlist_id)
   end
   def vote_up
+     @user = current_user
      track = Track.find(params[:id])
-     unless current_user.voted_for?(track)
-     current_user.vote_exclusively_for(track)
+     unless @user.voted_for?(track)
+     @user.vote_exclusively_for(track)
      flash[:notice] = "#{track.name} voted up"  
-     redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id])
+     redirect_to friend_playlist_path(@playlist)
      else
        flash[:notice] = "#{track.name} already voted for"  
-       redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id])
+       redirect_to friend_playlist_path(@playlist)
      end
   end
   def vote_down
+    @user = current_user
     track = Track.find(params[:id])
-    unless current_user.voted_against?(track)
-      current_user.vote_exclusively_against(track)
+    unless @user.voted_against?(track)
+      @user.vote_exclusively_against(track)
       flash[:notice] = "#{track.name} voted down"  
-      redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id], :track_id => track.id)
+       redirect_to friend_playlist_path(@playlist)
     else
        flash[:notice] = "#{track.name} already voted down"  
-       redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id], :track_id => track.id)
+       redirect_to friend_playlist_path(@playlist)
     end
   end
 end

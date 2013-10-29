@@ -21,8 +21,10 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    @friend_view = params[:friend_view]
+    @user = current_user
+    @user_id = @user.id.to_i
     @playlist = Playlist.find(params[:id])
+    @playlist_user_id = @playlist.user_id.to_i
     if params[:query]  
       @search_result = @rdio.call('search','extras' => 'embedUrl', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
     end

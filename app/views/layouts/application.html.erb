@@ -74,7 +74,7 @@
 				  <div class="span4" id= "user-widget">
 					  <% if current_user %>
 					    <div class="well" id="signed_in">
-                 <h4><%= current_user.name.capitalize %></h4>
+                 <h4><%= current_user.name.titleize %></h4>
 				          <%= link_to "Sign out", signout_path %>
 				      </div> 
 				    <%else%>

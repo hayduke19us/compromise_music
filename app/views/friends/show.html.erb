@@ -1,0 +1,14 @@
+<div class= "row-fluid">
+  <div class="span12 well">
+	  <h2 id="buddy_name_title"><%=@friend.name.titleize%></h2>
+	  <h2 id="friends_playlist">Playlists</h2>
+	  <h2 id="friends_tracks">Tracks</h2>
+	  <% @friend.playlists.each do |playlist|%>
+	  <div class= "well">
+      <h4 id="buddy_name"><%=link_to playlist.name, friend_playlist_path(@friend, playlist) %></h4>
+	    <h4 id="buddy_track_count"><%= playlist.tracks.count%></h4>
+	  </div>
+	  <%end%>
+	</div>
+</div>
+</div>

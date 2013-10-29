@@ -1,9 +1,9 @@
   <div class="row-fluid">	
     <div class="span6">
-      <% if current_user %>
-        <% unless current_user.playlists.count > 0 %>
+      <% if @user %>
+        <% unless @user.playlists.count > 0 %>
 	        <div class= "well new_playlist">
-            <h1><%= link_to "Make your first playlist", new_playlist_path %></h1>
+            <h1><%= link_to "Make your first playlist", new_user_playlist_path(@user) %></h1>
           </div>
         <% else %>
           <div class="well">
@@ -11,16 +11,16 @@
             <h2 id="playlist_list_title">Playlists</h2>
             <h2 id="track_count_title">Tracks</h2>
             <p>
-            <%= link_to "Make a new playlist", new_playlist_path,'class'=>"btn"%>
+            <%= link_to "Make a new playlist", new_user_playlist_path(@user), 'class'=>"btn"%>
 	          </p>
-	          <% current_user.playlists.each do |playlist| %>
+	          <% @user.playlists.each do |playlist| %>
               <div class="well">
-                <h4 id= "playlist_name"><%= link_to playlist.name, :controller => "playlists", :action => "show", :id => playlist.id, :friend_view => current_user.id %></h4>
+                <h4 id= "playlist_name"><%= link_to playlist.name.titleize, user_playlist_path(@user, playlist)%></h4>
                 <h4 id="tracks_count">
                   <%=playlist.tracks.count %>
                 </h4>
                 <li><h6 id= "playlist_description"><%= playlist.description %></h6></li>
-                <h6><%= button_to "delete", playlist_path(playlist), method: :delete, 'class' => 'btn btn-danger', confirm: "Are you sure?"%> </h6>
+                <h6><%= button_to "delete", user_playlist_path(@user, playlist), method: :delete, 'class' => 'btn btn-danger', confirm: "Are you sure?"%> </h6>
               </div>  
             <%end%>
           </div>  
@@ -28,8 +28,8 @@
       <%end%>
 	  </div>
 	  <div class="span6">
-      <% if current_user %>
-        <% unless current_user.friends.count > 0 %>
+      <% if @user %>
+        <% unless @user.friends.count > 0 %>
 	        <div class= "well new_playlist">
 		        <h1><%= link_to "Make your first friend", users_path %></h1>
           </div>
@@ -40,11 +40,11 @@
             <h2 id="playlist_list_title">Friends</h2>
             <h2 id="track_count_title">Playlists</h2>
             <p><%= link_to "Make a new friend", users_path, 'class' => 'btn btn-primary' %></p>
-            <% current_user.friends.each do |info| %>
+            <% @user.friends.each do |friend| %>
               <div class="well">
-	              <%= image_tag info.image, 'id' => 'friend_image', 'class' => 'img-circle' %>
-                <h4 id="friend_playlist_count"><%= info.playlists.count%></h4></br>
-                <h4 id="friend_name"><%=link_to info.name, :controller => "users", :action => "show", :id => info.id, :friend_view => current_user.id%></h4>
+	              <%= image_tag friend.image, 'id' => 'friend_image', 'class' => 'img-circle' %>
+                <h4 id="friend_playlist_count"><%= friend.playlists.count%></h4></br>
+                <h4 id="friend_name"><%=link_to friend.name.titleize, user_friend_path(@user, friend) %>
                
               
               </div>  
