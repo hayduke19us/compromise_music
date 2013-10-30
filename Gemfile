@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+gem 'minitest-rails'
+
 group :test do
   gem 'hirb'
   gem 'simplecov', :require => false

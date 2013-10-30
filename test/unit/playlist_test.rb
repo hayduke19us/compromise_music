@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class PlaylistTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  test "2 + 2 = 4" do
+    assert false, true
+  end
 end
+  
+
+
+
+
