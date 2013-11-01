@@ -1,0 +1,23 @@
+#sample data for users
+
+martha:
+  id: 1
+  name: martha
+  provider: rdio
+  key: abc123
+  oauth_token: def123
+  oauth_secret: ghi123
+  access_token: jkl123
+  access_secret: mno123
+  uid: pqr123
+
+tom:
+  id: 2
+  name: tom
+  provider: rdio
+  key: abc456
+  oauth_token: abc789
+  oauth_secret: abc123
+  access_token: dfg123
+  access_secret: hij123
+  uid: klm123 

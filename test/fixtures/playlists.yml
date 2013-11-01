@@ -1,0 +1,17 @@
+#a bunch of sample playlist
+
+road_trip:
+  id: 1
+  name: road trip
+  description: a playlist for long trips 
+  key: abc123
+  embedUrl: http/embedurl
+  user_id: 1
+  
+short_trip:
+  id: 2
+  name: short tri
+  description: a playlist for short trips
+  key: def123
+  embedUrl: http/embedurl
+  user_id: 2

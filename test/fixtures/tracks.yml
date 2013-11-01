@@ -1,0 +1,17 @@
+#a bunch of sample tracks
+
+ramona:
+  name: ramona
+  key: abc123
+  embedUrl: http/embedUrl
+  playlist_id: 1
+  playlist_key: abc123
+  index: 1
+
+armchairs:
+  name: armchairs
+  key: def123
+  embedUrl: http/embedUrl
+  playlist_id: 2
+  playlist_key: def123
+  index: 1 
