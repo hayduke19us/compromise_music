@@ -60,21 +60,19 @@ div.span5#search_well{padding-top: 1%;
 
 div.well.search_box{background:transparent;}
 
-
-div.span5#shared_playlist {padding-top: 1%;
-                           height: 400px;
-}
-
-p.lead {border-bottom: solid 1px #88b2FD}
-
-
 input#name {width: 96%;}
 
 input#search_track {width: 100%;}
 
+#my_playlist {position: fixed;
+              margin-left: 50%;
+}
+
 h4#track_name{float: left;
 							padding-right: 2%;
 }
+
+
 
 div#remove_button{float:left;}
 

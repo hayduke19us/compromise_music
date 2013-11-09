@@ -1,68 +1,104 @@
 <div class="row-fluid">
-  <div class="span6 well", id="add_songs">
-  		<h3 id="search_songs_title">Search for Songs</h3>
-	    <div class= "well search_box">
-		    <div id="search_for_stuff_form form-search">
-		      <%=form_tag({controller: "playlists", action: "show"}, method: "get",class: "search_for_stuff")%>
-          <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'id' => 'search_track'%></br>
-          <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button" %></br>
-		    </div>
-		  </div>
-		 
-        <% unless @search_result.blank? %>
-			    <% @search_result.each do |result|%>
-            <div class="well song_search">
-	            <iframe src=<%="#{result['iframeUrl']}"%> seamless></iframe>
+  <% if @user_id == @playlist_user_id %> 
+ 	  <div class="span6", id="add_songs">
+	    <h3 id="search_songs_title">Search for Songs</h3>
+	      <div class="search_box">
+			    <div id="search_for_stuff_form form-search">
+			      <%=form_tag({controller: "playlists", action: "show"}, method: "get",class: "search_for_stuff")%>
+	          <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'id' => 'search_track'%></br>
+	          <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button" %></br>
+	        </div>
+	      </div>
+	        <% unless @search_result.blank? %>
+				    <% @search_result.each do |result|%>
+	            <div class="well song_search">
+		            <iframe src=<%="#{result['iframeUrl']}"%> seamless></iframe>
               
-                 <div id="add">
-	                  <%=link_to 'add', new_track_path(playlist_id: @playlist.id, playlist_key: @playlist.key, user_id: @playlist.user_id, 
-	    																						   name: "#{result['name']}", key: "#{result['key']}", embedUrl: "#{result['embedUrl']}",
-	                                                   artist: "#{result['artist']}", album: "#{result['album']}"), class: "btn btn-primary" %></br>
-	              </div>
+	                 <div id="add">
+		                  <%=link_to 'add', new_track_path(playlist_id: @playlist.id, playlist_key: @playlist.key, user_id: @playlist.user_id, 
+		    																						   name: "#{result['name']}", key: "#{result['key']}", embedUrl: "#{result['embedUrl']}",
+		                                                   artist: "#{result['artist']}", album: "#{result['album']}"), class: "btn btn-primary" %></br>
+		              </div>
 	             
-	                <h4 id= "search_track_name"><%= result["name"].titleize %> by <%= result["artist"]%></h4> 
-	                <%= image_tag "#{result['bigIcon']}", 'id' => "search_track_image"%>
+		                <h4 id= "search_track_name"><%= result["name"].titleize %> by <%= result["artist"]%></h4> 
+		                <%= image_tag "#{result['bigIcon']}", 'id' => "search_track_image"%>
 	        
              
-            </div>  
-          <%end%>
-        <%end%>
+	            </div>  
+	          <%end%>
+	        <%end%>
 		    
-  </div>
-  <div class="span6 well", id= "add_songs">
-	  <h3 id="new_playlist_name"><%=link_to @playlist.name.titleize, @playlist.embedUrl, :target => "_blank"%></h3>
-	  <h3 id="votes">Votes</h3>
-	  <div id="publish">
-    <%if @user_id == @playlist_user_id%>
-      <%unless @playlist.tracks.count < 1%>
-	    <%= link_to 'publish', ({controller: "playlists", action: "publish"}), "class" => "btn", confirm: "Are you sure?" %>
-      <%end%>
-    <%end%>
-   </div>
-	  <% @playlist.tracks.each do |track|%>
-      <div class= "well">
-        <h4 id="track_name">
-          <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
-        </h4>
+	  </div>
+	  <div class="span6 well", id= "my_playlist">
+		  <h3 id="new_playlist_name"><%=link_to @playlist.name.titleize, @playlist.embedUrl, :target => "_blank"%></h3>
+		  <h3 id="votes">Votes</h3>
+		  <div id="publish">
+	    <%if @user_id == @playlist_user_id%>
+	      <%unless @playlist.tracks.count < 1%>
+		    <%= link_to 'publish', ({controller: "playlists", action: "publish"}), "class" => "btn", confirm: "Are you sure?" %>
+	      <%end%>
+	    <%end%>
+	   </div>
+		  <% @playlist.tracks.each do |track|%>
+	      <div class= "well">
+	        <h4 id="track_name">
+	          <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
+	        </h4>
         
-        <% unless @user_id == @playlist_user_id %> 
-          <div id="vote">
-	          <%=link_to raw("<i class='icon-thumbs-up'></i>"), controller: "tracks", action: "vote_up", id: track.id, 
-	                                                            playlist_id: @playlist.id, user_id: @playlist.user_id %>
-	          <%=link_to raw("<i class='icon-thumbs-down'></i>"), controller: "tracks", action: "vote_down", id: track.id, 
-	                                                              playlist_id: @playlist.id, user_id: @playlist.user_id %>
-          </div>
-        <%else%>
-          <div id="remove_button">
-		        <%=link_to "delete", track_path(track), method: "delete", :id => track.id %>
-	        </div>
+	        <% unless @user_id == @playlist_user_id %> 
+	          <div id="vote">
+		          <%=link_to raw("<i class='icon-thumbs-up'></i>"), controller: "tracks", action: "vote_up", id: track.id, 
+		                                                            playlist_id: @playlist.id, user_id: @playlist.user_id %>
+		          <%=link_to raw("<i class='icon-thumbs-down'></i>"), controller: "tracks", action: "vote_down", id: track.id, 
+		                                                              playlist_id: @playlist.id, user_id: @playlist.user_id %>
+	          </div>
+	        <%else%>
+	          <div id="remove_button">
+			        <%=link_to "delete", track_path(track), method: "delete", :id => track.id %>
+		        </div>
           
-        <%end%>
-        <div id="vote_count">
-        <h4><%=track.votes_for - track.votes_against%></h4>
-        </div></br>
-      </div>
-	  <%end%>
-	</div>
+	        <%end%>
+	        <div id="vote_count">
+	        <h4><%=track.votes_for - track.votes_against%></h4>
+	        </div></br>
+	      </div>
+		  <%end%>
+		</div>
+  <%else%>
+  
+    <div class= "span12 well">
+	    <h3 id="new_playlist_name"><%=link_to @playlist.name.titleize, @playlist.embedUrl, :target => "_blank"%></h3>
+		  <h3 id="votes">Votes</h3>
+			<div id="publish">
+		    <%if @user_id == @playlist_user_id%>
+		      <%unless @playlist.tracks.count < 1%>
+			    <%= link_to 'publish', ({controller: "playlists", action: "publish"}), "class" => "btn", confirm: "Are you sure?" %>
+		      <%end%>
+		    <%end%>
+		  </div>
+		  <% @playlist.tracks.each do |track|%>
+		    <div class= "well">
+		      <h4 id="track_name">
+		        <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
+		      </h4>
+          <% unless @user_id == @playlist_user_id %> 
+		        <div id="vote">
+			        <%=link_to raw("<i class='icon-thumbs-up'></i>"), controller: "tracks", action: "vote_up", id: track.id, 
+			                                                          playlist_id: @playlist.id, user_id: @playlist.user_id %>
+		          <%=link_to raw("<i class='icon-thumbs-down'></i>"), controller: "tracks", action: "vote_down", id: track.id, 
+	                                                                playlist_id: @playlist.id, user_id: @playlist.user_id %>
+	          </div>
+		      <%else%>
+		        <div id="remove_button">
+				      <%=link_to "delete", track_path(track), method: "delete", :id => track.id %>
+			      </div>
+			    <%end%>
+		      <div id="vote_count">
+		        <h4><%=track.votes_for - track.votes_against%></h4>
+		      </div></br>
+		    </div>
+		  <%end%>
+	  </div>
+  <%end%>
 </div>
 
