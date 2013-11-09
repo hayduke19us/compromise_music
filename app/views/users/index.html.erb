@@ -1,8 +1,7 @@
 <div class='row-fluid'> 
 	<div class="span6", id="all_users">
 	  <div class= "well" id="search">
-      <h2 id= users_title>Users</h2>
-      <h3 id= "users_count"><%=@users.count%></h3>
+      <h3 id= users_title>Users</h3>
 		  <div class="form-search", id= "search_form">
         <%= form_tag users_path, :method => 'get' do%>
 			  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
