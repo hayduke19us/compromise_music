@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if params[:search].blank? && current_user.friends.empty?
       users = User.where("id != ?", current_user.id)
     elsif params[:search].blank? 
-     users = User.where.not(id: @friend_array )
+      users = User.where.not(id: @friend_array )
     else
       users = User.search(params[:search])
     end
