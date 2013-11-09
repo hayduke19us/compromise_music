@@ -1,0 +1,5 @@
+#sample data for a friendship
+
+short_friendship:
+  user_id: 1
+  friend_id: 2

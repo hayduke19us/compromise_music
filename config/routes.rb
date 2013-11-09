@@ -1,5 +1,5 @@
 CompromiseMusic::Application.routes.draw do
-
+ 
   get "friends/show"
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
@@ -32,6 +32,12 @@ CompromiseMusic::Application.routes.draw do
       get :vote_down, as: 'vote_down'
     end 
   end
+  
+   resources :playlists do
+     member do
+       get :publish, as: 'publish'
+     end
+   end
     
   
   root "sessions#index"

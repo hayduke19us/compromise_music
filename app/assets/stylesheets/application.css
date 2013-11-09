@@ -12,6 +12,14 @@
  *= require_tree .
  */
 
+div.navbar-inner.pull-right {background: none;
+														 border: none;
+														 box-shadow: none;
+														 font-size: 17.5px;
+														 border-radius: 5px;
+														 
+}
+
 
 div.notify {padding-top: 3%;
             opacity: 0.8;
@@ -19,14 +27,8 @@ div.notify {padding-top: 3%;
 
 div.alert.fade.in.alert {background-color: white;}
 
+
 a:hover {text-decoration: none;}
-
-div.well{background-color: white;
-         border: solid 1px #DFF7F3;
-         border-radius:5px;
-         opacity: 0.8;
-}
-
 
 div.user_image {padding-bottom: 10%;
 }

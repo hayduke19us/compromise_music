@@ -12,22 +12,20 @@ class User < ActiveRecord::Base
       user.oauth_secret = auth.credentials.secret
       user.access_token = auth.extra.access_token.token
       user.access_secret = auth.extra.access_token.secret
+      user.oauth_expires_at = Time.now + (12 * 60 * 60)
       user.save!
     end
   end
 
-has_many :friendships
+has_many :friendships, :dependent => :delete_all
 has_many :friends, :through => :friendships  
 has_many :playlists, :dependent => :delete_all
-
-
-
- def self.search(search)
+  def self.search(search)
     if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+      find(:all, :conditions => ["name LIKE ?", "%#{search}%"])
     else
       find(:all)
     end
- end  
+  end  
 end
 

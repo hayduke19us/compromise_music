@@ -45,16 +45,12 @@
 	              <%= image_tag friend.image, 'id' => 'friend_image', 'class' => 'img-circle' %>
                 <h4 id="friend_playlist_count"><%= friend.playlists.count%></h4></br>
                 <h4 id="friend_name"><%=link_to friend.name.titleize, user_friend_path(@user, friend) %>
-               
-              
               </div>  
             <%end%>
           </div>  
         <%end%>
       <%end%>
 	  </div>
-        
-        
   </div>
   
   

@@ -3,11 +3,7 @@ class PlaylistsController < ApplicationController
   before_filter :get_rdio_user
   
   def index
-    @friend_view = params[:friend_view]
-    if params[:query] && params[:type] 
-      @search_result = @rdio.call('search','query' => "#{params[:query]}", 'types' => "#{params[:type]}")["result"]["results"]
-      redirect_to(:controller => 'playlists', :action => "show", :id => params[:playlist_id])
-    end
+    rdio_playlist
   end
    
   def new
@@ -27,7 +23,7 @@ class PlaylistsController < ApplicationController
       @playlist.user_id = current_user.id
         if @playlist.save
           flash[:notice] = "You have succesfully created a Playlist"  
-           redirect_to action: :show, id: @playlist.id
+           redirect_to user_playlist_path(@playlist.user_id, @playlist.id)
         else
           flash[:notice] = "You were unable to save a Playlist"
           redirect_to  new_playlist_path
@@ -53,13 +49,24 @@ class PlaylistsController < ApplicationController
       redirect_to root_path 
     end
   end
-  
+  def publish
+    playlist = Playlist.find(params[:id])
+    playlist.tracks.each do |track|
+      unless track.votes_for >= 1
+        track.delete
+      end
+    end
+    redirect_to user_playlist_path(playlist.user_id, playlist.id)
+  end
   def rdio_playlist
      if current_user
        #now we make a request to rdio with the new object and with rdio's api's  getPlaylist method including extras => tracks                          
        @tracks = @rdio.call('getPlaylists', "extras" => "tracks")['result']['owned']
      end
-   end
-  
+  end
+ 
+  def activity_stream
+    @stream = @rdio.call('getHeavyRotation',"user" => current_user.key, "type" => "artist", "friends" => "true")
+  end 
 
 end

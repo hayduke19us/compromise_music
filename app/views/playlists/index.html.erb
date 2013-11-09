@@ -1,27 +1,16 @@
-  <div class= 'row-fluid'>  
-	  <div class="span1">
-		</div>
-		<div class="span5 well", id="search_well">
-			<p class="lead">Search for Songs</p>
-	    <div id= "search_box">
-		    <div id=" search_for_stuff_form form-search">
-		      <%=form_tag({controller: "playlists", action: "index"}, method: "get",class: "search_for_stuff")%>
-		      <h4>Type of Search</h4>
-		      <%=text_field_tag :type, nil, :placeholder => "Artist, Track, Album", 'class' => "input-medium search-query"%>
-		      <h4>Search query</h5>
-		      <%=text_field_tag :query, nil, :placeholder => "search for Tracks, Artist, or Album", 'class' => "input-medium search-query"%></br></br>
-		      <%=submit_tag "Search", "class" => "btn primary-btn", "id" => "track_search_button"%>
-		    </div>
-		  </div>
-		  <div class="search_results">
-			  <% unless @search_result.blank? %>
-			    <% @search_result.each do |result|%>
-			    <%= result["name"]%></br>
-			    <%end%>
-       <%end%>
-		  </div>
-    </div>
-		<div class="span5 well", id="shared_playlist">
-			<p class="lead">Shared Playlist</p>
-		</div>
+<div class= "row-fluid">
+  <div class="span12 well">
+	  <h2 id="buddy_name_title"><%=current_user.name.titleize%></h2>
+	  <h2 id="friends_playlist">Playlists</h2>
+	  <h2 id="friends_tracks">Tracks</h2>
+	  <% current_user.playlists.each do |playlist|%>
+	  <div class= "well">
+      <h4 id="buddy_name"><%=link_to playlist.name.titleize, friend_playlist_path(@user, playlist) %></h4>
+	    <h4 id="buddy_track_count"><%= playlist.tracks.count%></h4>
+	    <h5><li><%= playlist.description%></h5></li>
+	    <h5>Created on <%=playlist.created_at.strftime("%B %d, %Y")%></h5>
+	  </div>
+	  <%end%>
 	</div>
+</div>
+</div>

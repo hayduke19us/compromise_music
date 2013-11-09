@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       #we first create a rdio object with current users info
       @rdio = Rdio::SimpleRdio.new([Figaro.env.omniauth_consumer_key, Figaro.env.omniauth_consumer_secret],
                                     [@token, @secret])
+      @stream = @rdio.call('getHeavyRotation',"user" => current_user.key, "type" => "albums", "friends" => "true")['result']
     end
   end
-  @full_name = name = []
 end

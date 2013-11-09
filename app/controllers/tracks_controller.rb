@@ -23,10 +23,10 @@ class TracksController < ApplicationController
     @track.index = @index
     if @track.save
       flash[:notice] = "#{@track.name} added to playlist"
-      redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+      redirect_to user_playlist_path(params[:user_id], params[:playlist_id])
     else
       flash[:notice] = "Something went wrong"
-      redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+      redirect_to user_playlist_path(params[:user_id], params[:playlist_id])
     end
     
   end
@@ -45,7 +45,7 @@ class TracksController < ApplicationController
     end   
     @rdio.call('removeFromPlaylist', 'playlist' => "#{track.playlist_key}", 'index' =>"#{track.index}",
                                      'count' => '1', 'tracks' => "#{track.key}")
-    redirect_to friend_playlist_path(playlist.user_id, playlist.id)
+    redirect_to user_playlist_path(playlist.user_id, playlist.id)
   end
   
   def vote_up

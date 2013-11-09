@@ -2,40 +2,52 @@ require "test_helper.rb"
 
 class PlaylistTest < ActiveSupport::TestCase
 
-  def setup
-    @playlist = Playlist.new
-    @track = Track.new
+  test "An empty playlist it invalid" do
+    playlist = Playlist.new
+    refute  playlist.valid?, "Playlist is missing a proper validation"
   end
-  def teardown
-    @playlist.destroy!
-    @track .destroy!
+
+  test "A playlist without a name is invalid" do
+    playlist = playlists(:road_trip)
+    playlist.name = nil
+    refute playlist.valid?
   end
-  
-  test "Playlist requires validation and attributes to be created" do
-    refute  @playlist.valid?, "Playlist is missing a proper validation"
-    
-    @playlist = playlists(:road_trip)
-    refute_nil @playlist.name, "missing name"
-    refute_nil @playlist.description, "missing description"
-    refute_nil @playlist.id, "missing id"
-    refute_nil @playlist.key, "missing key"
-    refute_nil @playlist.embedUrl, "missing embed Url"
-    refute_nil @playlist.user_id, "missing user_id"
-    assert @playlist.valid?, "Playlist is missing an attribute"
-    @playlist.save
+
+  test "A playlist without a description is invalid" do
+    playlist = playlists(:road_trip)
+    playlist.description = nil
+    refute playlist.valid?
   end
- 
-  test "Playlist has an association to tracks" do
-    @playlist = playlists(:road_trip)
-    @track = tracks(:ramona)
-    assert_equal 1, @playlist.tracks.count
+
+  test "A playlist without an embedUrl is invalid" do
+    playlist = playlists(:road_trip)
+    playlist.embedUrl = nil
+    refute playlist.valid?
   end
   
-  test "if Playlist is deleted associated tracks are deleted" do
-    playlist = playlists(:road_trip) 
+  test "A playlist without a key is invalid" do
+    playlist = playlists(:road_trip)
+    playlist.key = nil
+    refute playlist.valid?
+  end
+  
+  test "A playlist without a user_id is invalid" do
+    playlist = playlists(:road_trip)
+    playlist.user_id = nil
+    refute playlist.valid?
+  end
+
+
+  test "A playlist has an association to tracks" do
+    playlist = playlists(:road_trip)
+    assert_equal 1, playlist.tracks.count
+  end
+
+  test "If a playlist is deleted associated tracks are deleted" do
+    playlist = playlists(:road_trip)
     assert_equal 1, playlist.tracks.count, "road trip playlist track count '1'"
-    tracks = Track.all 
-    assert_equal 2, tracks.count, "all tracks count '2'" 
+    tracks = Track.all
+    assert_equal 2, tracks.count, "all tracks count '2'"
     playlist.destroy
     assert_equal 1, tracks.count, "tracks count after playlist delete '1'"
   end

@@ -5,8 +5,10 @@
 	  <h2 id="friends_tracks">Tracks</h2>
 	  <% @friend.playlists.each do |playlist|%>
 	  <div class= "well">
-      <h4 id="buddy_name"><%=link_to playlist.name, friend_playlist_path(@friend, playlist) %></h4>
+      <h4 id="buddy_name"><%=link_to playlist.name.titleize, friend_playlist_path(@friend, playlist) %></h4>
 	    <h4 id="buddy_track_count"><%= playlist.tracks.count%></h4>
+	    <h5><li><%= playlist.description%></h5></li>
+	    <h5>Created on <%=playlist.created_at.strftime("%B %d, %Y")%></h5>
 	  </div>
 	  <%end%>
 	</div>

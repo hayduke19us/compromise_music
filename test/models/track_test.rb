@@ -2,38 +2,51 @@ require "test_helper"
 
 class TracksTest < ActiveSupport::TestCase
 
-  def setup
-    @track = Track.new
+  test "if track is empty then track is invalid" do
+    track = Track.new
+    refute track.valid?, "a validation parameter is missing in the model"
+  end
+  
+  test "if track is populated then is valid" do
+    track = tracks(:ramona)
+    assert track.valid?, "can't create track, is missing an attribute"
+  end
+  
+  test "track requires name to be valid" do
+    track = tracks(:ramona)
+    track.name = nil
+    refute track.valid?
+  end
+  
+  test "track requires key to be valid" do
+    track = tracks(:ramona)
+    track.key = nil
+    refute track.valid?
+  end
+  
+  test "track requires embedUrl to be valid" do
+    track = tracks(:ramona)
+    track.embedUrl = nil
+    refute track.valid?
+  end
+  
+  test "track requires playlist_id to be valid" do
+    track = tracks(:ramona)
+    track.playlist_id = nil
+    refute track.valid?
   end
 
-  def teardown
-    @track.destroy!
+  test "track requires index to be valid" do
+    track = tracks(:ramona)
+    track.index = nil
+    refute track.valid?
   end
-
-  test "require name, key, playlist_key to be valid" do
-    
-    refute @track.valid?, "a validation parameter is missing in the model"
-    assert_nil @track.name
-    assert_nil @track.key
-    assert_nil @track.playlist_key
-    assert_nil @track.playlist
-    assert_nil @track.embedUrl
-    assert_nil @track.index
-
-    @track = tracks(:ramona)
-
-    refute_nil @track.id, "missing id" 
-    refute_nil @track.name, "missing name"
-    refute_nil @track.key, "missing key"
-    refute_nil @track.playlist_key, "missing playlist_key"
-    refute_nil @track.playlist_id, "missing playlist association thru foreign key"
-    refute_nil @track.embedUrl, "missing embedUrl"
-    refute_nil @track.index, "missing index"
-    assert @track.valid?, "can't create track, is missing an attribute"
+  
+  test "track index is an integer" do
+    track = tracks(:ramona)
+    index = track.index
+    type = index.class
+    assert type.superclass, Integer  
   end
-
-  test "require an association to playlist" do
-    @track.must_respond_to :playlist
-  end
-
+  
 end

@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
   
   def index
-  @user = current_user
+    get_rdio_user
+    @user = current_user
   end
   
   def create
+    reset_session
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     redirect_to root_url

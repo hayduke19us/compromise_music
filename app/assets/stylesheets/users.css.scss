@@ -2,25 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h4#user {float:left;}
+
 
 div.span5#all_users{padding-top:3%}
+h2#users_title {float: left;}
+h3#users_count {text-align:right}
+h4#user {float: left;}
 
 div.span5#all_friends{padding-top:3%}
+h2#your_friends{float: left;}
+h3#friends_count{text-align: right;}
 
-a#add_friend_link {float:right;
-}
-
+a#add_friend_link {float:right;}
 a#remove_friend_link {float: right;}
 
 div.span4#all_friends { padding-top: 14%;}
 
-
-strong {float: right;
-}
 #buddy_image {padding-left: 37%;
               padding-bottom: 40%;
 }
+
 #buddy_name_title{float:left;
 									color: #929999;
 }
@@ -29,6 +30,7 @@ strong {float: right;
 #friends_tracks{text-align: right;
 								color:#929999;
 }
+
 #buddy_name{float:left;}
 #buddy_track_count{text-align:right;}
 
