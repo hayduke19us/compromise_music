@@ -12,18 +12,22 @@ class PlaylistsController < ApplicationController
   def create
     if params[:name].blank? || params[:description].blank?
       flash[:notice] = "A playlist must have a name and a description"
-      redirect_to new_playlist_path
+      render :new
     else
-      @playlist = Playlist.new(params[:playlist])
-      rdio_playlist = @rdio.call('createPlaylist','name' => "#{params[:name]}",'description' => "#{params[:description]}",'tracks' => 't35335083', 'collaborationMode' => '1')
-      @playlist.name = rdio_playlist['result']['name']
-      @playlist.description = params[:description]
-      @playlist.embedUrl = rdio_playlist['result']['embedUrl']
-      @playlist.key = rdio_playlist['result']['key']
-      @playlist.user_id = current_user.id
-        if @playlist.save
+      playlist = Playlist.new(params[:playlist])
+      rdio_playlist = @rdio.call('createPlaylist',
+                                 'name' => "#{params[:name]}",
+                                 'description' => "#{params[:description]}",
+                                 'tracks' => 't35335083', 
+                                 'collaborationMode' => '1')
+      playlist.name = rdio_playlist['result']['name']
+      playlist.description = params[:description]
+      playlist.embedUrl = rdio_playlist['result']['embedUrl']
+      playlist.key = rdio_playlist['result']['key']
+      playlist.user_id = current_user.id
+        if playlist.save
           flash[:notice] = "You have succesfully created a Playlist"  
-           redirect_to user_playlist_path(@playlist.user_id, @playlist.id)
+           redirect_to user_playlist_path(playlist.user_id, playlist.id)
         else
           flash[:notice] = "You were unable to save a Playlist"
           redirect_to  new_playlist_path
@@ -37,7 +41,11 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @playlist_user_id = @playlist.user_id.to_i
     if params[:query]  
-      @search_result = @rdio.call('search','extras' => 'isrcs, iframeUrl, bigIcon', 'query' => "#{params[:query]}", 'types' => "Tracks")["result"]["results"]
+      @search_result = @rdio.call('search',
+                                  'extras' => 'isrcs, 
+                                  iframeUrl, bigIcon',
+                                  'query' => "#{params[:query]}", 
+                                  'types' => "Tracks")["result"]["results"]
     end
   end
   
@@ -49,6 +57,7 @@ class PlaylistsController < ApplicationController
       redirect_to root_path 
     end
   end
+
   def publish
     playlist = Playlist.find(params[:id])
     playlist.tracks.each do |track|
@@ -58,15 +67,18 @@ class PlaylistsController < ApplicationController
     end
     redirect_to user_playlist_path(playlist.user_id, playlist.id)
   end
+
   def rdio_playlist
      if current_user
-       #now we make a request to rdio with the new object and with rdio's api's  getPlaylist method including extras => tracks                          
-       @tracks = @rdio.call('getPlaylists', "extras" => "tracks")['result']['owned']
+       @tracks = @rdio.call('getPlaylists',
+                            "extras" => "tracks")['result']['owned']
      end
   end
  
   def activity_stream
-    @stream = @rdio.call('getHeavyRotation',"user" => current_user.key, "type" => "artist", "friends" => "true")
+    @stream = @rdio.call('getHeavyRotation',
+                         "user" => current_user.key, 
+                         "type" => "artist", 
+                         "friends" => "true")
   end 
-
 end
