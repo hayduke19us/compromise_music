@@ -8,18 +8,10 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap_and_overrides
  *= require_self
  *= require_tree .
  */
-
-div.navbar-inner.pull-right {background: none;
-														 border: none;
-														 box-shadow: none;
-														 font-size: 17.5px;
-														 border-radius: 5px;
-														 
-}
-
 
 div.notify {padding-top: 3%;
             opacity: 0.8;

@@ -9,31 +9,14 @@
   background-size: cover;
 }*/
 
-
-body {background-color: white;}
-
-div.well{
-         border-radius:5px;
-       
-}
 a:hover {text-decoration: none;}
 
-div#user-widget.span4 {padding-top: 3%;
-}
-
-div.control_panel {padding-left: 37%;
-                   padding-bottom:2%;
+div.control_panel {padding: 10% 0% 10% 39%;
 }
 
 div#sign_in.well {padding: 10%;
                   text-align: center;
 }
-
-div#signed_in.well {padding: 5%;
-                    text-align: center;
-}
-
-#new_playlist_btn{ ;}
 
 #friend_image {width: 40px;
 							 float: left;	
@@ -43,12 +26,6 @@ div#signed_in.well {padding: 5%;
 						
 }
 
-#friend_show_image{width: 100px;
-						    	 float: left;	
-     	  		       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-						       -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-						      -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-}
 #friend_playlist_count {text-align:right;}
 
 
