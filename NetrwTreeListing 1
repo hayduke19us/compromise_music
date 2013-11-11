@@ -1,0 +1,51 @@
+" ============================================================================
+" Netrw Directory Listing                                        (netrw v149)
+"   /Users/hayduke19us/rails_projects_new/compromise_music
+"   Sorted by      name
+"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
+"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:exec
+" ============================================================================
+../
+compromise_music/
+| .git/
+| app/
+| | assets/
+| | controllers/
+| | helpers/
+| | mailers/
+| | models/
+| | views/
+| | | friends/
+| | | layouts/
+| | | partials/
+| | | | _show.hmtl.erb
+| | | playlists/
+| | | | index.html.erb
+| | | | new.html.erb
+| | | | show.html.erb
+| | | sessions/
+| | | users/
+| | .DS_Store
+| bin/
+| config/
+| coverage/
+| db/
+| lib/
+| log/
+| public/
+| test/
+| tmp/
+| vendor/
+| .DS_Store
+| .access_token.yaml
+| .gitignore
+| .zeus.sock|
+| Gemfile
+| Gemfile.lock
+| README.rdoc
+| Rakefile
+| _show.hmtl.erb
+| _show.html.erb
+| config.ru
+| erd.pdf
+| legs}
