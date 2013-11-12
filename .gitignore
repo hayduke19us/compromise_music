@@ -21,3 +21,6 @@
 
 #Ignore rdio access_token
 /.access_token.yaml
+
+# Ignore application configuration
+/config/application.yml
