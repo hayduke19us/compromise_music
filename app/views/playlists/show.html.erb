@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <% if @user_id == @playlist_user_id %> 
+  <% if @user.id.to_i == @playlist.user_id.to_i %> 
  	  <div class="span6 well", id="add_songs">
 	    <h3 id="search_songs_title">Search for Songs</h3>
 	      <div class="search_box">
@@ -70,9 +70,12 @@
 	        </div></br>
 	      </div>
 		  <%end%>
-		</div>
+    </div>
+    <div class= "row-fluid", id= "bottom_spacer">
+    </div>
   <%else%>
     <div class= "span12 well">
       <%= render "show" %> 
     </div>
   <%end%>
+  

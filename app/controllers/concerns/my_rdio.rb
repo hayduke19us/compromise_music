@@ -1,5 +1,5 @@
 module My_Rdio
-  def self.verify_user(token, secret)
+  def self.verify_user(token, secret)  
     #create a rdio object with current users info
     @rdio = Rdio::SimpleRdio.new([Figaro.env.rdio_consumer_key, 
                                   Figaro.env.rdio_consumer_secret],

@@ -2,7 +2,8 @@ class PlaylistsController < ApplicationController
   before_filter :get_rdio_user
   def index
   end
-   
+    
+  
   def new
   end
   
@@ -11,40 +12,28 @@ class PlaylistsController < ApplicationController
       My_Rdio.new_playlist(params[:name], params[:description]) 
       playlist_params = My_Rdio.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
-    else
-      flash[:notice] = "A playlist must have a name and a description"
-      render :new
-    end
-    if playlist.save
+      playlist.save
       flash[:notice] = "You have succesfully created a Playlist"  
       redirect_to user_playlist_path(playlist.user_id, playlist.id)
     else
-      flash[:notice] = "You were unable to save a Playlist"
-      render :new
+        flash[:notice] = "A playlist requires a name and description"
+        render :new
     end
   end
 
   def show
     @user = current_user
-    @user_id = @user.id.to_i
     @playlist = Playlist.find(params[:id])
-    @playlist_user_id = @playlist.user_id.to_i
     if params[:query]  
-      @search_result = @rdio.call('search',
-                                  'extras' => 'isrcs, 
-                                  iframeUrl, bigIcon',
-                                  'query' => "#{params[:query]}", 
-                                  'types' => "Tracks")["result"]["results"]
+      @search_result = My_Rdio.search_by_track(params[:query])
     end
   end
   
   def destroy
     playlist = Playlist.find(params[:id])
-    @rdio.call('deletePlaylist', 'playlist' => "#{playlist.key}")
-    if playlist.destroy
-      flash[:notice] = "You have deleted #{playlist.name}"
-      redirect_to root_path 
-    end
+    My_Rdio.delete_playlist(playlist.key)
+    playlist.destroy
+    redirect_to root_url
   end
 
   def publish
@@ -56,18 +45,4 @@ class PlaylistsController < ApplicationController
     end
     redirect_to user_playlist_path(playlist.user_id, playlist.id)
   end
-
-  def rdio_playlist
-     if current_user
-       @tracks = @rdio.call('getPlaylists',
-                            "extras" => "tracks")['result']['owned']
-     end
-  end
- 
-  def activity_stream
-    @stream = @rdio.call('getHeavyRotation',
-                         "user" => current_user.key, 
-                         "type" => "artist", 
-                         "friends" => "true")
-  end 
 end
