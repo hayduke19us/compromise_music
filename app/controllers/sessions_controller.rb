@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   
   def index
-    get_rdio_user
     @user = current_user
   end
   

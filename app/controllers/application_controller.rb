@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  extend My_Rdio
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -8,23 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def get_rdio_user
-    if current_user
-      @token = current_user.access_token.to_s
-      @secret = current_user.access_secret.to_s
-      
-      #for browsing the info
-      filename = '.access_token.yaml'
-        File.open filename, 'w' do |f|
-          f.write "ACCESS_TOKEN....  #{@token}"
-          puts 
-          f.write "ACCESS_SECRET....  #{@secret}"
-          f.close
-        end
-          
-      #we first create a rdio object with current users info
-      @rdio = Rdio::SimpleRdio.new([Figaro.env.rdio_consumer_key, 
-                                    Figaro.env.rdio_consumer_secret],
-                                    [@token, @secret])
-    end
+    My_Rdio.verify_user(current_user.access_token,
+                        current_user.access_secret) 
   end
+
 end

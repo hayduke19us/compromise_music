@@ -1,37 +1,26 @@
 class PlaylistsController < ApplicationController
-  #verifying the user with rdio_user method
   before_filter :get_rdio_user
-  
   def index
-    rdio_playlist
   end
    
   def new
   end
   
   def create
-    if params[:name].blank? || params[:description].blank?
+    unless params[:name].blank? || params[:description].blank?
+      My_Rdio.new_playlist(params[:name], params[:description]) 
+      playlist_params = My_Rdio.playlist_attributes(current_user.id)
+      playlist = Playlist.new(playlist_params)
+    else
       flash[:notice] = "A playlist must have a name and a description"
       render :new
+    end
+    if playlist.save
+      flash[:notice] = "You have succesfully created a Playlist"  
+      redirect_to user_playlist_path(playlist.user_id, playlist.id)
     else
-      playlist = Playlist.new(params[:playlist])
-      rdio_playlist = @rdio.call('createPlaylist',
-                                 'name' => "#{params[:name]}",
-                                 'description' => "#{params[:description]}",
-                                 'tracks' => 't35335083', 
-                                 'collaborationMode' => '1')
-      playlist.name = rdio_playlist['result']['name']
-      playlist.description = params[:description]
-      playlist.embedUrl = rdio_playlist['result']['embedUrl']
-      playlist.key = rdio_playlist['result']['key']
-      playlist.user_id = current_user.id
-        if playlist.save
-          flash[:notice] = "You have succesfully created a Playlist"  
-           redirect_to user_playlist_path(playlist.user_id, playlist.id)
-        else
-          flash[:notice] = "You were unable to save a Playlist"
-          redirect_to  new_playlist_path
-        end
+      flash[:notice] = "You were unable to save a Playlist"
+      render :new
     end
   end
 
