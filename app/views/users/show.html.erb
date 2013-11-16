@@ -6,7 +6,9 @@
 		  <h2 id="friends_tracks">Tracks</h2>
 		  <% @user.playlists.each do |t|%>
 		  <div class= "well">
-        <h4 id="buddy_name"><%=link_to t.name, :controller => "playlists", :action =>"show", :id => t.id, :friend_view => "#{@friend_view}" %></h4>
+        <h4 id="buddy_name"><%=link_to t.name, :controller => "playlists", 
+          :action =>"show", :id => t.id, 
+          :friend_view => "#{@friend_view}" %></h4>
 		    <h4 id="buddy_track_count"><%= t.tracks.count%></h4>
 		  </div>
 		  <%end%>

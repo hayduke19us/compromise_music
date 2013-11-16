@@ -12,7 +12,9 @@
         <div class="well">
 		      <h4 id="user"><%= user.name%></h4>
           <%= link_to 'Add friend', friendships_path(:friend_id => user), 
-                       :method => :post ,'id' => 'add_friend_link', 'class' => 'btn btn-primary' %>
+                                    :method => :post ,
+                                    'id' => 'add_friend_link', 
+                                    'class' => 'btn btn-primary' %>
 		    </div>
 		  <%end%>
     </div>

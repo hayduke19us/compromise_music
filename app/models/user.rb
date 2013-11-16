@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
     end
   end
 
-has_many :friendships, :dependent => :delete_all
+has_many :friendships, :dependent => :destroy
 has_many :friends, :through => :friendships  
-has_many :playlists, :dependent => :delete_all
+has_many :playlists, :dependent => :destroy
   def self.search(search)
     if search
       find(:all, :conditions => ["name LIKE ?", "%#{search}%"])

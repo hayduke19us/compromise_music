@@ -2,8 +2,8 @@ class TracksController < ApplicationController
   before_filter :get_rdio_user
   
   def new
-  @track = Track.new
-  create
+    @track = Track.new
+    create
   end 
     
   def create
