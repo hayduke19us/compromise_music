@@ -1,10 +1,9 @@
 class TracksController < ApplicationController
-  before_filter :get_rdio_user
-  
-  def new
-    @track = Track.new
-    create
-  end 
+   include My_Rdio 
+   before_filter :get_rdio_user
+   
+   
+   
     
   def create
     playlist = Playlist.find(params[:playlist_id])
@@ -14,7 +13,7 @@ class TracksController < ApplicationController
     elsif track_count >= 1
       @index = track_count + 1
     end
-    track = @rdio.call('addToPlaylist', 'playlist' => "#{params[:playlist_key]}", 'tracks' => "#{params[:key]}")
+    @track = Track.new
     @track.name = params[:name]
     @track.key = params[:key]
     @track.embedUrl = params[:embedUrl]

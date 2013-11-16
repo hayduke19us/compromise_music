@@ -20,15 +20,17 @@
 	            <div class="well song_search">
 		            <iframe src=<%="#{result['iframeUrl']}"%> seamless></iframe>
                   <div id="add">
-                    <%=link_to 'add', new_track_path(playlist_id: @playlist.id,
-                                                     playlist_key: @playlist.key,
-                                                     user_id: @playlist.user_id, 
-                                                     name: "#{result['name']}",
-                                                     key: "#{result['key']}",
-                                                     embedUrl: "#{result['embedUrl']}",
-                                                     artist: "#{result['artist']}",
-                                                     album: "#{result['album']}"), 
-                                                     class: "btn btn-primary" %></br>
+                    <%=link_to 'add', tracks_path(
+                                       playlist_id: @playlist.id,
+                                       playlist_key: @playlist.key,
+                                       user_id: @playlist.user_id, 
+                                       name: "#{result['name']}",
+                                       key: "#{result['key']}",
+                                       embedUrl: "#{result['embedUrl']}",
+                                       artist: "#{result['artist']}",
+                                       album: "#{result['album']}"), 
+                                       method: :post,
+                                       class: "btn btn-primary" %></br>
 		              </div>
 	             
                   <h4 id= "search_track_name">

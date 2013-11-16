@@ -1,7 +1,9 @@
 class PlaylistsController < ApplicationController
+  include My_Rdio
   before_filter :get_rdio_user
-  
+ 
   def index
+  
   end
     
   
@@ -18,7 +20,7 @@ class PlaylistsController < ApplicationController
       redirect_to user_playlist_path(playlist.user_id, playlist.id)
     else
         flash[:notice] = "A playlist requires a name and description"
-        render :new
+        redirect_to new_playlist_path
     end
   end
 
@@ -26,7 +28,7 @@ class PlaylistsController < ApplicationController
     @user = current_user
     @playlist = Playlist.find(params[:id])
     if params[:query]  
-      @search_result = My_Rdio::Track.search_by_track(@rdio, params[:query])
+      @search_result = RdioTrack.search_by_track(@rdio, params[:query])
     end
   end
   

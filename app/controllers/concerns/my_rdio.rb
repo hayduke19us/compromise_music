@@ -10,7 +10,7 @@ module My_Rdio
     end 
   end
 
-  class Playlist 
+  class RdioPlaylist 
     def self.new_playlist(rdio, name, description)
       rdio_playlist = rdio.call('createPlaylist',
                                 'name' => name,
@@ -42,7 +42,7 @@ module My_Rdio
     end
   end
   
-  class Track
+  class RdioTrack
     def self.add_track(rdio, playlist_key, track_key)
        rdio.call('addToPlaylist', 
                   'playlist' => playlist_key, 

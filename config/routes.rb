@@ -18,10 +18,6 @@ CompromiseMusic::Application.routes.draw do
     resources :playlists
   end
 
-  resources :playlists do
-    resources :tracks
-  end
-  
   resources :friends do
     resources :playlists
   end
