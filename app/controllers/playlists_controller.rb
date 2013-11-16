@@ -3,7 +3,6 @@ class PlaylistsController < ApplicationController
   before_filter :get_rdio_user
   
   def index
-    rdio_playlist
   end
    
   def new
