@@ -22,13 +22,7 @@
                   <div id="add">
                     <%=link_to 'add', tracks_path(
                                        playlist_id: @playlist.id,
-                                       playlist_key: @playlist.key,
-                                       user_id: @playlist.user_id, 
-                                       name: "#{result['name']}",
-                                       key: "#{result['key']}",
-                                       embedUrl: "#{result['embedUrl']}",
-                                       artist: "#{result['artist']}",
-                                       album: "#{result['album']}"), 
+                                       track: result),
                                        method: :post,
                                        class: "btn btn-primary" %></br>
 		              </div>

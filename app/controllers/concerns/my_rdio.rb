@@ -7,12 +7,17 @@ module My_Rdio
                             Figaro.env.rdio_consumer_secret],
                            [token, secret])
   
-    end 
+    end
   end
 
   class RdioPlaylist 
-    def self.new_playlist(rdio, name, description)
-      rdio_playlist = rdio.call('createPlaylist',
+    def self.verified(rdio)
+      @rdio = rdio
+    end
+    
+    def self.new_playlist(name, description)
+      #creating a new playlist with user "['result'] is a recursive action "
+      rdio_playlist = @rdio.call('createPlaylist',
                                 'name' => name,
                                 'description' => description,
                                 'tracks' => 't35335083', 
@@ -32,19 +37,24 @@ module My_Rdio
            user_id: user_id]
     end
 
-    def self.delete_playlist(rdio, playlist)
-      rdio.call('deletePlaylist', 'playlist' => playlist)
+    def self.delete_playlist(playlist)
+      @rdio.call('deletePlaylist', 'playlist' => playlist)
     end
 
     def self.all_playlist
-       rdio.call('getPlaylists',
+       @rdio.call('getPlaylists',
                    "extras" => "tracks")['result']['owned']
     end
   end
   
   class RdioTrack
-    def self.add_track(rdio, playlist_key, track_key)
-       rdio.call('addToPlaylist', 
+   
+    def self.verified(rdio)
+      @rdio = rdio
+    end
+  
+   def self.add_track(playlist_key, track_key)
+       @rdio.call('addToPlaylist', 
                   'playlist' => playlist_key, 
                   'tracks' => track_key )
         
@@ -60,18 +70,23 @@ module My_Rdio
     
     end
 
-    def remove_track
+    def self.remove_track(playlist_key, index, track_key)
+      @rdio.call('removeFromPlaylist',
+                 'playlist'  => playlist_key,
+                 'index' => index.to_s,
+                 'count' => "1",
+                 'tracks' => track_key)
     end
 
     def self.activity_stream(user)
-       rdio.call('getHeavyRotation',
+       @rdio.call('getHeavyRotation',
                    "user" => user, 
                    "type" => "artist", 
                    "friends" => "true")
     end
 
-    def self.search_by_track(rdio, query)
-      rdio.call('search',
+    def self.search_by_track(query)
+      @rdio.call('search',
                  'extras' => 'isrcs, 
                               iframeUrl,
                               isInCollection,
@@ -81,5 +96,7 @@ module My_Rdio
                   'types' => "Tracks")["result"]["results"]
              
     end
+  
   end
+
 end

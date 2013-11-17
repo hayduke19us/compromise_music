@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  
   include My_Rdio
   
   # Prevent CSRF attacks by raising an exception.
@@ -11,9 +10,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def get_rdio_user
-    @rdio =  RdioUser.verify_user(current_user.access_token,
-                                  current_user.access_secret) 
-
-  
+      member = RdioUser.verify_user(current_user.access_token,
+                                    current_user.access_secret) 
+      RdioPlaylist.verified(member) 
+      RdioTrack.verified(member) 
   end
 end

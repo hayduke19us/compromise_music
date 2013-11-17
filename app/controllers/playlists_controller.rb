@@ -1,19 +1,12 @@
 class PlaylistsController < ApplicationController
-  include My_Rdio
-  before_filter :get_rdio_user
- 
-  def index
-  
-  end
-    
-  
+  before_filter :get_rdio_user  
   def new
   end
   
   def create
     unless params[:name].blank? || params[:description].blank?
-      My_Rdio::Playlist.new_playlist(@rdio, params[:name], params[:description]) 
-      playlist_params = My_Rdio::Playlist.playlist_attributes(current_user.id)
+      RdioPlaylist.new_playlist(params[:name], params[:description]) 
+      playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
       playlist.save
       flash[:notice] = "You have succesfully created a Playlist"  
@@ -28,13 +21,13 @@ class PlaylistsController < ApplicationController
     @user = current_user
     @playlist = Playlist.find(params[:id])
     if params[:query]  
-      @search_result = RdioTrack.search_by_track(@rdio, params[:query])
+      @search_result = RdioTrack.search_by_track(params[:query])
     end
   end
   
   def destroy
     playlist = Playlist.find(params[:id])
-    My_Rdio::Playlist.delete_playlist(@rdio, playlist.key)
+    RdioPlaylist.delete_playlist(playlist.key)
     playlist.destroy
     redirect_to root_url
   end
