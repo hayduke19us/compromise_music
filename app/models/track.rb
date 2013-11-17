@@ -1,5 +1,6 @@
 class Track < ActiveRecord::Base
   belongs_to :playlist
+  belongs_to :user
   acts_as_voteable 
   validates :name, :key, :playlist_id, :playlist_key, :embedUrl, :index,  presence: true
   validates :index, numericality: { only_integer: true }

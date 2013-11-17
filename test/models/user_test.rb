@@ -42,4 +42,12 @@ class UserTest < ActiveSupport::TestCase
     user.destroy
     assert_equal 0, friendships.count, "friendship count after user delete '0'"
   end
+  test "user has an association with tracks" do
+    user = users(:martha)
+    assert_equal 1, user.tracks.count
+  end
+  test "user has an association with votes" do
+   user = users(:martha)
+   refute_nil user.votes
+  end
 end

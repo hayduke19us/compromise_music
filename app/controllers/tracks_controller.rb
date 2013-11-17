@@ -6,7 +6,10 @@ class TracksController < ApplicationController
     all_tracks = playlist.tracks.count
     index = index_create(all_tracks) 
     rdio_track = RdioTrack.track_attributes(params[:track]) 
-    my_track = {playlist_id: playlist.id, index: index, playlist_key: playlist.key}
+    my_track = {playlist_id: playlist.id, 
+                index: index, 
+                playlist_key: playlist.key,
+                user_id: playlist.user_id}
     track_params = rdio_track.merge(my_track)    
     RdioTrack.add_track(playlist.key, rdio_track[:key])
     

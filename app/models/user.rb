@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-
+has_many :tracks 
 has_many :friendships, :dependent => :destroy
 has_many :friends, :through => :friendships  
 has_many :playlists, :dependent => :destroy
