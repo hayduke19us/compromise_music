@@ -10,11 +10,19 @@
         
 	          <div id="vote">
               <%=link_to raw("<i class='icon-thumbs-up'></i>"),
-                controller: "tracks", action: "vote_up", id: track.id, 
-		            playlist_id: @playlist.id, user_id: @playlist.user_id %>
+                controller: "tracks", 
+                action: "vote_up", 
+                id: track.id, 
+                playlist_id: @playlist.id, 
+                user_id: @playlist.user_id,
+                current_user: current_user.id %>
               <%=link_to raw("<i class='icon-thumbs-down'></i>"),
-                controller: "tracks", action: "vote_down", id: track.id, 
-		            playlist_id: @playlist.id, user_id: @playlist.user_id %>
+                controller: "tracks", 
+                action: "vote_down", 
+                id: track.id, 
+                playlist_id: @playlist.id, 
+                user_id: @playlist.user_id,
+                current_user: current_user.id  %>
 	          </div>
           
 	        <div id="vote_count">
