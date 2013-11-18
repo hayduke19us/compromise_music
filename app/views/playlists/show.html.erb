@@ -45,6 +45,7 @@
         <%=link_to @playlist.name.titleize, @playlist.embedUrl, :target => "_blank"%>
       </h3>
 		  <h3 id="votes">Votes</h3>
+      <h3><%=@prizes%></h3>
 		  <div id="publish">
 	      <%unless @playlist.tracks.count < 1%>
           <%= link_to 'publish', ({controller: "playlists", action: "publish"}),

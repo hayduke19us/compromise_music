@@ -1,5 +1,7 @@
 class PlaylistsController < ApplicationController
+  extend Voting_Game
   before_filter :get_rdio_user  
+  
   def new
   end
   
@@ -34,11 +36,8 @@ class PlaylistsController < ApplicationController
 
   def publish
     playlist = Playlist.find(params[:id])
-    playlist.tracks.each do |track|
-      unless track.votes_for >= 1
-        track.destroy
-      end
-    end
-    redirect_to user_playlist_path(playlist.user_id, playlist.id)
+      @prizes = Voting_Game.track_success_filter(playlist)  
+      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+    
   end
 end

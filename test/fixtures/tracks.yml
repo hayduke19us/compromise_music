@@ -1,6 +1,7 @@
 #a bunch of sample tracks
 
 ramona:
+  id: 1
   name: ramona
   key: abc123
   embedUrl: http/embedUrl
@@ -9,6 +10,7 @@ ramona:
   index: 1
   user_id: 1
 armchairs:
+  id: 2
   name: armchairs
   key: def123
   embedUrl: http/embedUrl

@@ -48,5 +48,13 @@ class TracksTest < ActiveSupport::TestCase
     type = index.class
     assert type.superclass, Integer  
   end
+  test "tracks have and association with vote" do
+    track = tracks(:ramona)
+    refute_nil track.votes 
+  end  
   
+  test "tracks can be voted on" do
+    track = tracks(:ramona)
+    assert_equal 1, track.votes.count
+  end
 end
