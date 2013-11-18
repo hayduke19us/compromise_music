@@ -20,7 +20,8 @@ has_many :tracks
 has_many :friendships, :dependent => :destroy
 has_many :friends, :through => :friendships  
 has_many :playlists, :dependent => :destroy
-
+has_many :groups, :dependent => :destroy
+  
   def self.search(search)
     if search
       find(:all, :conditions => ["name LIKE ?", "%#{search}%"])
