@@ -9,14 +9,14 @@
 	        </h4>
         
 	          <div id="vote">
-              <%=link_to raw("<i class='icon-thumbs-up'></i>"),
+              <%=link_to raw("<span class='glyphicon glyphicon-chevron-up'</span>"),
                 controller: "tracks", 
                 action: "vote_up", 
                 id: track.id, 
                 playlist_id: @playlist.id, 
                 user_id: @playlist.user_id,
                 current_user: current_user.id %>
-              <%=link_to raw("<i class='icon-thumbs-down'></i>"),
+              <%=link_to raw("<span class='glyphicon glyphicon-chevron-down'</span>"),
                 controller: "tracks", 
                 action: "vote_down", 
                 id: track.id, 
