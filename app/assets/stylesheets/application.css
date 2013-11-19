@@ -13,14 +13,13 @@
  *= require_tree .
  */
 
+body {padding-top: 70px;}
+
 div.notify {padding-top: 3%;
             opacity: 0.8;
 }
 
 div.alert.fade.in.alert {background-color: white;}
-
-
-a:hover {text-decoration: none;}
 
 div.user_image {padding-bottom: 10%;
 }
