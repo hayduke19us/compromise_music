@@ -4,7 +4,7 @@ module Voting_Game
     success_tracks = []
     failure_tracks = []
     playlist.tracks.each do |track|
-        unless track.votes_for >= 6
+        unless track.votes_for >= 1 
           failure_tracks << track
           track.destroy
         else

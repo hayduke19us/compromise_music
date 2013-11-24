@@ -9,7 +9,7 @@
         <% else %>
           <div class="panel panel-default" style="padding:10%;border-top: none; border-bottom:none;">
             <h4 id= "my">My</h4>
-            <h4 id="playlist_list_title">Playlists</h4>
+            <h4 id="">Playlists</h4>
             <p>
             <%= link_to "Make a new playlist", new_user_playlist_path(@user), 
               'class'=>"btn btn-primary"%>
@@ -71,8 +71,8 @@
       
           <div class="panel panel-default" style="padding:10%; border-top:none;border-bottom:none;">
             <h4 id= "my">My</h4>
-            <h4 id="playlist_list_title">Friends</h4>
-            <p><%= link_to "Make a new friend", users_path, 'type' => 'button', 
+            <h4 id="">Friends</h4>
+            <p><%= link_to "Make a new friend", users_path, 
                            'class' => 'btn btn-primary' %></p>
             <% @user.friends.each do |friend| %>
               <div class="well">
@@ -96,9 +96,11 @@
         <% else %>
           <div class="panel panel-default" style="padding:10%;border-top:none;border-bottom:none;">
             <h4 id="my">My<h4>
-            <h4>Groups</h4>
+            <h4 id="">Groups</h4>
+            <p><%=link_to "Start a Group", "#", 'class' => "btn btn-primary"%></p>
             <% @user.groups.each do |group| %> 
               <div class="well">
+
                 <h4><%=group.name %></h4>
                 <div class="panel-group" id="accordian">
                   <div class="panel panel-default">
@@ -127,7 +129,7 @@
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accorianTwo"
                           href="#collapseTwo">
-                          Playlist
+                          Playlists
                         </a>
                       </h4>
                     </div>

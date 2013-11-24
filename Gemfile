@@ -25,9 +25,6 @@ gem "figaro"
 # oauth...for further auhentications
 gem 'oauth'
 
-#twitter-bootstrap
-gem 'twitter-bootstrap-rails'
-
 #rdio
 gem 'rdio'
 

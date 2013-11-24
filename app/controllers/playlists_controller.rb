@@ -25,6 +25,7 @@ class PlaylistsController < ApplicationController
     if params[:query]  
       @search_result = RdioTrack.search_by_track(params[:query])
     end
+    @type =params[:data]
   end
   
   def destroy

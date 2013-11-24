@@ -34,10 +34,6 @@ iframe {float:left;
     color: #929999;
 }
 
-#playlist_list_title {float:left;
-                      padding-right: 2%;
-}
-
 #friends_list_title {float: left;}
 
 #track_count_title {text-align: right;
@@ -52,23 +48,14 @@ iframe {float:left;
 
 div.well.new_playlist {text-align: center;}
 
-#search_songs_title{;}
 
 div.span5#search_well{padding-top: 1%;
  										  height: 400px;
 }
 
-div.well.search_box{background:transparent;}
-
 input#name {width: 96%;}
 
-input#search_track {width: 100%;}
 
-#my_playlist {position: fixed;
-              margin-left: 48%;
-              height: 400px;
-              overflow: scroll;
-}
 h4#track_name{float: left;
 							padding-right: 2%;
 }
