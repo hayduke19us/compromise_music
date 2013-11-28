@@ -114,10 +114,9 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse out">
                       <div class="panel-body">
-                        <strong>Owner: </strong>
-                        <%=group.user.name%>
-                        <%group.friends.each do |g_friend|%>
-                          <li><%=g_friend.name%></li>
+                         <li><%=group.user.name%></li>
+                         <%group.friends.each do |g_friend|%>
+                         <li><%=g_friend.name.titleize%></li>
                         <%end%>
                       </div>
                     </div>
