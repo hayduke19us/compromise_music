@@ -58,14 +58,32 @@
         <%= yield %>
       <% else %>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-5">
+          
           </div>
-          <div class="col-md-4" id= "user-widget">
-            <div class="jumbotron" id="sign_in">
-              <h1><%= link_to "Sign in with Rdio", 'auth/rdio/' %></h1>
+          <div class="col-md-2" id="raccoon">
+            <%= image_tag 'raccoon.png', 'class' => 'img-circle', '
+             id'=> "raccoon_image"%> 
+          </div>
+          <div class="col-md-5">
+          
+          </div>         
+        </div> 
+        <div class="row">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-6" id= "user-widget" style=padding-top:5%;>
+            <div class="well" id="sign_in">
+              <h2>Welcome to Compromise Music. Make playlist, vote for 
+                your favorite tracks and get rid of songs that 
+                don't make the cut!
+              <h2> 
+              <%= link_to "Sign in with Rdio", 
+                  'auth/rdio/', 
+                  'class' => 'btn btn-primary btn-lg' %>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
           </div>
         </div>
       <%end%>

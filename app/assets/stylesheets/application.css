@@ -33,7 +33,13 @@ div.alert.fade.in.alert {background-color: white;}
 div.user_image {padding-bottom: 10%;
 }
 
-
+#raccoon {padding-left: 60px;
+}
+#raccoon_image{
+          box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+				  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+					-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        }
 #user_image {width: 100px;
      	  		 box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 						 -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
