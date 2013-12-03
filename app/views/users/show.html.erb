@@ -1,6 +1,5 @@
-  <div class="row-fluid">
 	<div class= "row-fluid">
-	  <div class="span12 well">
+	  <div class="col-md-12 well">
 		  <h2 id="buddy_name_title"><%=@user.name.capitalize%></h2>
 		  <h2 id="friends_playlist">Playlists</h2>
 		  <h2 id="friends_tracks">Tracks</h2>
@@ -9,9 +8,12 @@
         <h4 id="buddy_name"><%=link_to t.name, :controller => "playlists", 
           :action =>"show", :id => t.id, 
           :friend_view => "#{@friend_view}" %></h4>
-		    <h4 id="buddy_track_count"><%= t.tracks.count%></h4>
+        <h4 id="buddy_track_count">
+          <span class="badge">
+            <%= t.tracks.count%>
+          </span>
+        </h4>
 		  </div>
 		  <%end%>
 		</div>
 	</div>
-  </div>
