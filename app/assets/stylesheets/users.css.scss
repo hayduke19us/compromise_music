@@ -4,19 +4,12 @@
 
 
 
-div.span5#all_users{padding-top:3%}
-h2#users_title {float: left;}
-h3#users_count {text-align:right}
-h4#user {float: left;}
+div.col-md-6#all_users{padding-top:3%}
+#search_form {padding-bottom: 20px;}
+#search {padding: 0 10% 0 10%;}
+div.col-md-6#all_friends{padding-top:3%}
 
-div.span5#all_friends{padding-top:3%}
-h2#your_friends{float: left;}
-h3#friends_count{text-align: right;}
 
-a#add_friend_link {float:right;}
-a#remove_friend_link {float: right;}
-
-div.span4#all_friends { padding-top: 14%;}
 
 #buddy_image {padding-left: 37%;
               padding-bottom: 40%;

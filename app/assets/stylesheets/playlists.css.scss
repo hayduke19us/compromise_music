@@ -53,7 +53,7 @@ div.span5#search_well{padding-top: 1%;
  										  height: 400px;
 }
 
-input#name {width: 96%;}
+input#name {width: 100%;}
 
 
 h4#track_name{float: left;
@@ -64,10 +64,11 @@ h4#track_name{float: left;
 
 div#remove_button{float:left;}
 
-textarea#description {width: 96%;}
+textarea#description {width: 100%;}
 
 #new_playlist_btn {width: 100%;}
 
+.new_playlist_btn {padding-top: 10px;}
 
 
 #votes{text-align: right;}

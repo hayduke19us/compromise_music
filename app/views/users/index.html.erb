@@ -1,10 +1,11 @@
 <div class='row-fluid'> 
-	<div class="span6", id="all_users">
-	  <div class= "well" id="search">
+	<div class="col-md-6", id="all_users">
+	  <div class= "panel panel-default" id="search">
       <h3 id= users_title>Users</h3>
 		  <div class="form-search", id= "search_form">
         <%= form_tag users_path, :method => 'get' do%>
-			  <%= text_field_tag :search, params[:search], 'class' => "input-medium search-query" %>
+          <%= text_field_tag :search, params[:search], 
+            'class' => "input-medium search-query" %>
 			  <%= submit_tag "Search", :name => nil, 'class' => 'btn', 'id' =>"submit" %>
 				<%end%>
 		  </div>
@@ -14,20 +15,24 @@
           <%= link_to 'Add friend', friendships_path(:friend_id => user), 
                                     :method => :post ,
                                     'id' => 'add_friend_link', 
-                                    'class' => 'btn btn-primary' %>
+                                    'class' => 'btn btn-sm btn-primary' %>
 		    </div>
 		  <%end%>
     </div>
 	</div>
-	<div class="span6", id="all_friends">
-	  <div class="well" id= "search">
-      <h2 id= "your_friends">Friends</h2>
-      <h3 id= "friends_count"><%=current_user.friendships.count%></h3>
+	<div class="col-md-6", id="all_friends">
+	  <div class="panel panel-default" id= "search">
+      <h3 id= "your_friends">Friends
+        <span class="badge pull-right">
+          <%=current_user.friendships.count%>
+        </span>
+      </h3>
 	    <%for friendship in current_user.friendships %>
 	      <div class= "well">
 	        <h4 id="user"><%= friendship.friend.name %></h4>
           <%=link_to 'Remove friend', friendship, :method => :delete, 
-                     'id' => 'remove_friend_link', 'class' => 'btn btn-danger'%>
+            'id' => 'remove_friend_link', 
+            'class' => 'btn btn-sm btn-danger'%>
 	      </div>
 	   <%end%>
     </div> 
