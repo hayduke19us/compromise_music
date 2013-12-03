@@ -76,11 +76,17 @@
                            'class' => 'btn btn-primary' %></p>
             <% @user.friends.each do |friend| %>
               <div class="well">
-                <%= image_tag friend.image, 'id' => 'friend_image', 
-                                            'class' => 'img-circle' %>
-                <h4 id="friend_playlist_count"><%= friend.playlists.count%></h4></br>
-                <h4 id="friend_name"><%=link_to friend.name.titleize, 
-                                                user_friend_path(@user, friend) %>
+                <%= image_tag friend.image, 
+                  'id' => 'friend_image', 
+                  'class' => 'img-circle'%>
+                <h4 id="friend_playlist_count">
+                <span class="badge pull-right">
+                <%= friend.playlists.count%></h4>
+                </span>
+                <h4 id="friend_name">
+                  <%=link_to friend.name.titleize, 
+                  user_friend_path(@user, friend) %>
+                </h4>
               </div>  
             <%end%>
           </div>  
