@@ -101,7 +101,8 @@
       <% if @user %>
         <%unless @user.groups.count > 0 %>
           <div class="well new_group">
-            <h1><%= link_to "Start your first group", "#" %></h1>
+            <h3 style="text-align:center;"><%= link_to "Start your first group", 
+              new_user_group_path(current_user) %></h3>
           </div>
         <% else %>
           <div class="panel panel-default" style="padding:10%;border-top:none;border-bottom:none;">
