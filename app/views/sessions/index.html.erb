@@ -27,7 +27,11 @@
                       'type'=>'button' %>
                     <ul class="dropdown-menu" role="menu">
                       <%current_user.groups.each do |group|%>
-                        <li><%=link_to group.name, "#"%></li>
+                        <li><%=link_to group.name, grouplists_path(
+                          playlist_id: playlist.id, 
+                          group_id: group.id),
+                          :method => :post
+                          %></li>
                       <%end%>  
                     </ul>
                     <%=link_to "edit", "#",
@@ -109,17 +113,17 @@
               <div class="well">
 
                 <h4><%=group.name %></h4>
-                <div class="panel-group" id="accordian">
+                <div class="panel-group" id=<%="#{group.name}"%>>
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian"
-                          href="#collapseOne">
+                        <a data-toggle="collapse" data-parent=<%="##{group.name}"%>
+                        href=<%="##{group.id}"%>>
                           Members
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse out">
+                    <div id=<%="#{group.id}"%> class="panel-collapse collapse out">
                       <div class="panel-body">
                          <li><%=group.user.name%></li>
                          <%group.friends.each do |g_friend|%>
@@ -129,17 +133,22 @@
                     </div>
                   </div>
                 </div> 
-                <div class="panel-group" id="accordianTwo">
+                <div class="panel-group" id=<%="playlist_#{group.name}"%>>
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accorianTwo"
-                          href="#collapseTwo">
+                        <a data-toggle="collapse" 
+                          data-parent=<%="#playlist_#{group.name}"%>
+                          href=<%="#playlist_#{group.id}"%>>
                           Playlists
+                          <span class="badge pull-right">
+                            <%=group.playlists.count%>
+                          </span>
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse out">
+                    <div id=<%="playlist_#{group.id}"%> 
+                      class="panel-collapse collapse out">
                       <div class="panel-body">
                         <%group.playlists.each do |g_playlist|%>
                           <li><%=g_playlist.name%></li>

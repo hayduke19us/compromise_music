@@ -37,8 +37,10 @@ CompromiseMusic::Application.routes.draw do
     resources :groups
   end
   
+  resources :grouplists
+  
   root "sessions#index"
-
+  
 
 
 end
