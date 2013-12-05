@@ -1,4 +1,15 @@
-
-<% @groups.each do |group|%>
-  <%=group.name%>
-<%end%>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default" style="padding:5%;">
+      <h3 style="color:#efefef;float:left;">My</h3>
+      <h3>Groups</h3>
+      <% for group in current_user.groups %>
+        <div class="well"> 
+          <h4><%=group.name%></h4>
+          <%=button_to "Delete", user_groups_path,
+            method: :destroy, 'class' => 'btn btn-danger'%>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
