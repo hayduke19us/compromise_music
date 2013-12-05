@@ -103,7 +103,8 @@
           <div class="panel panel-default" style="padding:10%;border-top:none;border-bottom:none;">
             <h4 id="my">My<h4>
             <h4 id="">Groups</h4>
-            <p><%=link_to "Start a Group", "#", 'class' => "btn btn-primary"%></p>
+            <p><%=link_to "Start a Group", new_user_group_path(@user), 
+              'class' => "btn btn-primary"%></p>
             <% @user.groups.each do |group| %> 
               <div class="well">
 

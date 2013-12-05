@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  validates :name, presence: true 
   belongs_to :user
   has_many :groupships, :dependent => :destroy
   has_many :grouplists, :dependent => :destroy

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" 
+      aria-hidden="true">&times;</button>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+  </div>
+  <div class="col-md-4">
+	</div>	
+	<div class= "col-md-4 well", id= "new_playlist_form">
+    <%=form_tag(controller: "groups", action: "create", user_id: current_user.id)%>
+    <h4>Name</h4>
+    <%=text_field_tag(:name, nil, :placeholder => "Name that group!")%>
+    <div class="new_group_btn">
+      <%=submit_tag "create group", 'class' => 'btn btn-primary' %>
+    </div>
+  </div>
+	<div class="col-md-4">
+	</div>
+</div>
