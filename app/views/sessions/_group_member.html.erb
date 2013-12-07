@@ -1,6 +1,6 @@
 <% @friends_groups.each do |friend_group| %> 
   <div class="well" id="friends_groups">
-    <h4><%=friend_group.name %></h4>
+    <h4><%=friend_group.name.titleize %></h4>
     <div class="panel-group" id=<%="#{friend_group.name}"%>>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -16,7 +16,7 @@
         </div>
         <div id=<%="#{friend_group.id}"%> class="panel-collapse collapse out">
           <div class="panel-body">
-             <li><%=friend_group.user.name%></li>
+            <li id="group_owner"><%=friend_group.user.name.titleize%></li>
              <%friend_group.friends.each do |g_friend|%>
              <li><%=g_friend.name.titleize%></li>
             <%end%>
@@ -42,7 +42,11 @@
           class="panel-collapse collapse out">
           <div class="panel-body">
             <%friend_group.playlists.each do |g_playlist|%>
-              <li><%=g_playlist.name%></li>
+              <li>
+              <%=link_to g_playlist.name, user_playlist_path(
+              user_id: g_playlist.user_id,
+              id: g_playlist.id) %>
+              </li>
             <%end%>
           </div>
         </div>

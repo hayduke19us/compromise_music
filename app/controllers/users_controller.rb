@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @friend_view = params[:friend_view]
   end
-
+  
+  private
   def friend_check
     @friend_array = []
     current_user.friends.each {|friend| @friend_array << friend }
@@ -20,8 +21,9 @@ class UsersController < ApplicationController
       users = User.where.not(id: @friend_array )
     else
       users = User.search(params[:search])
+      users.keep_if {|c| c.id != current_user.id} 
+      @users = users
     end
     @users = users
   end
-
 end

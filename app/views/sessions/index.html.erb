@@ -1,3 +1,16 @@
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+      <h2 id="dashboard_description" style=padding-bottom:50px;>
+        Start by making a few playlists. Then move on to making some new 
+        friendships. After that start a group and explore your herd like
+        instinct.
+      </h2>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div> 
   <div class="row">	
     <div class="col-md-4">
       <% if @user %>
@@ -27,12 +40,22 @@
                       'type'=>'button' %>
                     <ul class="dropdown-menu" role="menu">
                       <%current_user.groups.each do |group|%>
-                        <li><%=link_to group.name, grouplists_path(
+                        <li>
+                          <%=link_to group.name.titleize, grouplists_path(
                           playlist_id: playlist.id, 
                           group_id: group.id),
-                          :method => :post
-                          %></li>
-                      <%end%>  
+                          :method => :post%>
+                        </li>
+                      <%end%> 
+                      <% @friends_groups.each do |member_group|%>
+                        <li>
+                          <%= link_to member_group.name.titleize, grouplists_path(
+                          playlist_id: playlist.id,
+                          group_id: member_group.id),
+                          :method => :post,
+                          'id' => 'member_group'%>
+                        </li>
+                      <%end%> 
                     </ul>
                     <%=link_to "edit", "#",
                       'class'=> "btn btn-sm btn-default",
@@ -78,7 +101,7 @@
                 <%= image_tag friend.image, 
                     'id' => 'friend_image', 
                     'class' => 'img-circle'%>
-                <h5 id="friend_name"><%=friend.name%></h5>
+                <h5 id="friend_name"><%=friend.name.titleize%></h5>
                 <div class="btn-group btn-group-xs">
                   <button type="button" class="btn btn-default" 
                     data-toggle="dropdown">
@@ -86,7 +109,7 @@
                   </button> 
                   <ul class="dropdown-menu" role="menu">
                     <% for group in current_user.groups %>
-                      <li><%= link_to group.name, groupships_path(
+                      <li><%= link_to group.name.titleize, groupships_path(
                         group_id: group.id,
                         friend_id: friend.id),
                         :method => :post %> </li>
@@ -115,7 +138,7 @@
             <% @user.groups.each do |group| %> 
               <div class="well">
 
-                <h4><%=group.name %></h4>
+                <h4><%=group.name.titleize %></h4>
                 <div class="panel-group" id=<%="#{group.name}"%>>
                   <div class="panel panel-default">
                     <div class="panel-heading">
@@ -131,7 +154,7 @@
                     </div>
                     <div id=<%="#{group.id}"%> class="panel-collapse collapse out">
                       <div class="panel-body">
-                         <li><%=group.user.name%></li>
+                         <li id="group_owner"><%=group.user.name.titleize%></li>
                          <%group.friends.each do |g_friend|%>
                          <li><%=g_friend.name.titleize%></li>
                         <%end%>
@@ -157,7 +180,10 @@
                       class="panel-collapse collapse out">
                       <div class="panel-body">
                         <%group.playlists.each do |g_playlist|%>
-                          <li><%=g_playlist.name%></li>
+                          <li>
+                            <%=link_to g_playlist.name, user_playlist_path(
+                              g_playlist.user_id, g_playlist.id)%>
+                          </li>
                         <%end%>
                       </div>
                     </div>
@@ -169,6 +195,15 @@
           </div> 
         <%end%>
       <%end%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="top_button" style=text-align:center;>
+        <a button type="button" class="btn btn-default btn-lg" href="">
+          <span class="glyphicon glyphicon-arrow-up"</span></a>
+        </button>
+      </div>
     </div>
   </div>
   

@@ -22,6 +22,12 @@ url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
 url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+img#raccoon_image.img-circle{width: 100px;
+                             box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+                             -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+                             -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+}
 body {padding-top: 70px;}
 
 div.notify {padding-top: 3%;
@@ -33,13 +39,8 @@ div.alert.fade.in.alert {background-color: white;}
 div.user_image {padding-bottom: 10%;
 }
 
-#raccoon {padding-left: 60px;
+.raccoon {padding-bottom:5%;
 }
-#raccoon_image{
-          box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-				  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-					-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-        }
 #user_image {width: 100px;
      	  		 box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 						 -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
