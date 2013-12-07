@@ -1,0 +1,53 @@
+<% @friends_groups.each do |friend_group| %> 
+  <div class="well" id="friends_groups">
+    <h4><%=friend_group.name %></h4>
+    <div class="panel-group" id=<%="#{friend_group.name}"%>>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent=<%="##{friend_group.name}"%>
+            href=<%="##{friend_group.id}"%>>
+              Members
+            </a>
+            <span class="badge pull-right">
+              <%= friend_group.friends.count %>
+            </span>
+          </h4>
+        </div>
+        <div id=<%="#{friend_group.id}"%> class="panel-collapse collapse out">
+          <div class="panel-body">
+             <li><%=friend_group.user.name%></li>
+             <%friend_group.friends.each do |g_friend|%>
+             <li><%=g_friend.name.titleize%></li>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="panel-group" id=<%="playlist_#{friend_group.name}"%>>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" 
+              data-parent=<%="#playlist_#{friend_group.name}"%>
+              href=<%="#playlist_#{friend_group.id}"%>>
+              Playlists
+              <span class="badge pull-right">
+                <%=friend_group.playlists.count%>
+              </span>
+            </a>
+          </h4>
+        </div>
+        <div id=<%="playlist_#{friend_group.id}"%> 
+          class="panel-collapse collapse out">
+          <div class="panel-body">
+            <%friend_group.playlists.each do |g_playlist|%>
+              <li><%=g_playlist.name%></li>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+<%end%>
+
