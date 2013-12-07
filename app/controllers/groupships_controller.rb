@@ -4,6 +4,8 @@ class GroupshipsController < ApplicationController
                               friend_id: params[:friend_id])
     if groupship.save
       redirect_to root_path 
+    else
+      redirect_to root_path
     end
   end
 end

@@ -47,6 +47,7 @@
                           :method => :post%>
                         </li>
                       <%end%> 
+                      <li class="divider"></li>
                       <% @friends_groups.each do |member_group|%>
                         <li>
                           <%= link_to member_group.name.titleize, grouplists_path(
