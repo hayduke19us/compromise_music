@@ -59,6 +59,7 @@
         </div>
 	      <h4 id="user"><%= friendship.friend.name.titleize %></h4>
         <%=link_to 'Remove friend', friendship, :method => :delete,
+            data: {confirm: "Are you sure?"},
             'id' => 'remove_friend_link',
             'class' => 'btn btn-sm btn-danger'%>
 	      </div>
