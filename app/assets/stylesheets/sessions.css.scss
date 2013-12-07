@@ -28,11 +28,22 @@ div#sign_in.well {padding: 10%;
 a.navbar-link {color:red;}
 img#current_user_image.img-circle {width: 40px;}
 
-div.well#friends_groups {background-color:#9DABBA;}
+/*div.well#friends_groups {background-color:#9DABBA;}*/
 #member_group {color:#9DABBA;}
-
-
 li#group_owner{color:#F1A02D}
+div.well#friends_groups{background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #9dabba 84%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom,
+  color-stop(0%,#ffffff), color-stop(84%,#9dabba)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /*
+  Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#9dabba 84%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff',
+endColorstr='#9dabba',GradientType=0 ); /* IE6-9 */
+}
+
 
 
 
