@@ -21,9 +21,11 @@ class UsersController < ApplicationController
       users = User.where.not(id: @friend_array )
     else
       users = User.search(params[:search])
-      users.keep_if {|c| c.id != current_user.id} 
-      @users = users
+      current_user.friends.each do |friend|
+        users.keep_if {|c| c.id != current_user.id}
+        users.keep_if {|c| c.id != friend.id}
+      end 
     end
-    @users = users
+      @users = users
   end
 end
