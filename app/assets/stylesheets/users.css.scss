@@ -3,12 +3,32 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+// panel that allows you to search for friends 
 
 div.col-md-6#all_users{padding-top:3%}
-#search_form {padding-bottom: 20px;}
-#search {padding: 0 10% 0 10%;}
+h3#users_title{display:inline;}
+#search_panel {padding: 20px 10% 20px 10%;
+               border-top: none;
+               border-bottom: none;
+}
+#friends_search_form {padding: 20px 0 20px 0;}
+div.user_image_search{float:right}
+img.img-circle {width: 60px;
+                box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+}
+
+//panel that list all friends
+
+#friends_panel{padding: 20px 10% 20px 10%;
+               border-top: none;
+               border-bottom: none;
+}
 div.col-md-6#all_friends{padding-top:3%}
 
+h3#your_friends{margin-top: 0;}
 
 
 #buddy_image {padding-left: 37%;

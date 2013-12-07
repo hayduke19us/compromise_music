@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
+    for friend in current_user.friends do 
+    @users = User.all.where.not(:id == current_user.id && 
+                                :id == friend.id)
+    end
     #puts friend's id's in an array for proper listing
     friend_check
   end
