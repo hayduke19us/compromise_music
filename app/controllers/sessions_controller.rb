@@ -2,6 +2,16 @@ class SessionsController < ApplicationController
   
   def index
     @user = current_user
+    @friends_groups = Array.new
+    @user.friends.each do |friend|
+      for group in friend.groups
+        group.friends.each do |member|
+          if member.id == @user.id
+            @friends_groups << group
+          end
+        end
+      end
+    end
   end
   
   def create

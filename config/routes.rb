@@ -38,7 +38,7 @@ CompromiseMusic::Application.routes.draw do
   end
   
   resources :grouplists
-  
+  resources :groupships  
   root "sessions#index"
   
 

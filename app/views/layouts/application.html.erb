@@ -9,78 +9,68 @@
     <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => "true" %>
     <%= javascript_include_tag "application" %>
   </head>
-    
+
   <body>
     <% if current_user %>
       <nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
         <div class="container">
-          <div class= "navbar-header"> 
-            <button type="button" class="navbar-toggle" data-toggle="collapse" 
+          <div class= "navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
               data-target=".navbar-collapse" >
               <span class="sr-only">Toggle-navigation</span>
-              <span class="icon-bar"></span>  
-              <span class="icon-bar"></span>   
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to "Compromise Music", root_path, "class" => "navbar-brand" %> 
+            <%= link_to "Compromise Music", root_path, "class" => "navbar-brand" %>
           </div>
           <div class="collapse navbar-collapse">
-            <ul class= "nav navbar-nav"> 
+            <ul class= "nav navbar-nav">
               <li class="active"><%= link_to "Home", root_path %></li>
               <li><%= link_to "Friends", users_path %></li>
-              <li><%= link_to "Groups", user_groups_path(current_user) %></li> 
+              <li><%= link_to "Groups", user_groups_path(current_user) %></li>
             </ul>
               <p class="navbar-text navbar-right">
-                <%= current_user.name%>
-                <%=link_to 'Log out', signout_path, "class" => "navbar-link"%>
+              <%= image_tag current_user.image, 
+                'id'=> 'current_user_img',  
+                'class' => 'img-circle' %>
+              <%= current_user.name.titleize%>
+              <%=link_to 'Log out', signout_path, 
+                  "class" => "navbar-link btn-sm btn-default"%>
               </p>
-          </div> 
-        </div> 
+          </div>
+        </div>
       </nav>
-      <div class="container"> 
+      <div class="container">
         <div class= "notify">
         </div>
-        <div class="row">
-          <div class="col-md-4">
-          </div>	
-          <div class="col-md-4">
-            <div class="control_panel">
-              <div class= "user_image">
-                <%= link_to image_tag(current_user.image, 
-                                      'id' => 'user_image', 
-                                      'class' => 'img-circle'), root_path %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-          </div>
-        </div>	
-
+        
         <%= yield %>
+
       <% else %>
         <div class="row">
           <div class="col-md-5">
-          
+
           </div>
           <div class="col-md-2" id="raccoon">
             <%= image_tag 'raccoon.png', 'class' => 'img-circle', '
-             id'=> "raccoon_image"%> 
+             id'=> "raccoon_image"%>
           </div>
           <div class="col-md-5">
-          
-          </div>         
-        </div> 
+
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-3">
           </div>
           <div class="col-md-6" id= "user-widget" style=padding-top:5%;>
             <div class="well" id="sign_in">
-              <h2>Welcome to Compromise Music. Make playlist, vote for 
-                your favorite tracks and get rid of songs that 
+              <h2>Welcome to Compromise Music. Make playlist, vote for
+                your favorite tracks and get rid of songs that
                 don't make the cut!
-              <h2> 
-              <%= link_to "Sign in with Rdio", 
-                  'auth/rdio/', 
+              <h2>
+              <%= link_to "Sign in with Rdio",
+                  'auth/rdio/',
                   'class' => 'btn btn-primary btn-lg' %>
             </div>
           </div>
@@ -89,5 +79,5 @@
         </div>
       <%end%>
     </div>
-  </body>  
+  </body>
 </html>
