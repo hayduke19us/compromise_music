@@ -1,0 +1,33 @@
+<%unless @search_result.blank?%>
+  <%@search_result.each do |result|%>
+    <div class="modal fade" id="album_info" role="dialog" 
+      aria-labelledby="album_title"
+      aria-hidden='true'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="lead">
+          </div>
+          <div class="modal-header">
+            <button type="button" class="close" 
+              data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="album_title"><%=result['name']%></h4>
+          </div>
+          <div class="modal-body">
+            <h4> This album was released by <%= result['artist']%> on
+              <%=result['displayDate']%><h3>
+            <div id= "album_big">
+              <%=image_tag result['bigIcon']%>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div><!--/.modal-content-->
+      </div><!-- /.modal-dialog -->>
+    </div><!-- //modal-->
+  <%end%>  
+<%end%>
