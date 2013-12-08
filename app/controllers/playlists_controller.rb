@@ -29,7 +29,11 @@ class PlaylistsController < ApplicationController
     elsif params[:artist_key]
       @search_result = RdioTrack.albums_for_artist(params[:artist_key])
     elsif params[:list]
-      @album_tracks = RdioTrack.get(params[:list].join(","))
+      if params[:list].class == Array
+        @album_tracks = RdioTrack.get(params[:list].join(","))
+      else
+        @album_tracks = RdioTrack.get(params[:list])
+      end
       
     end
   end

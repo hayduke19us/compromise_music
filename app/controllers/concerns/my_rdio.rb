@@ -65,8 +65,8 @@ module My_Rdio
       Hash[name:          track['name'],
            key:           track['key'], 
            embedUrl:      track['embedUrl'], 
-           artist:        track['artist'] 
-           album:         track['album']
+           artist:        track['artist'], 
+           album:         track['album'],
           ] 
     
     end

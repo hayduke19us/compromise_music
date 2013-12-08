@@ -109,7 +109,6 @@
           <%=link_to @playlist.name.titleize, @playlist.embedUrl, 
             :target => "_blank"%>
         </h3>
-        <h3><%=@prizes%></h3>
         <div id="publish">
           <%unless @playlist.tracks.count < 1%>
             <%= link_to 'publish', ({controller: "playlists", 
@@ -124,10 +123,11 @@
               <%=track.votes_for - track.votes_against%>
               <span class= "glyphicon glyphicon-thumbs-up"></span>
             </h4>
-            <h4>
-              <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
-            </h4>
-            <h5>by<%=track.artist %></h5>
+            <h4><%=track.name%></h4>
+            <h6>by <%=track.artist %> from the album 
+              <%=link_to track.album, user_playlist_path(list: track.key
+                                                         )%>
+            </h6>
               <%=link_to "delete", track_path( 
                 method: "delete",
                 :id => track.id),
