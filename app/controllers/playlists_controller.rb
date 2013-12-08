@@ -20,12 +20,18 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    
     @user = current_user
     @playlist = Playlist.find(params[:id])
     if params[:query]  
-      @search_result = RdioTrack.search_by_track(params[:query])
+      @search_result = RdioTrack.search_by_track(params[:search_type], 
+                                                 params[:query])
+    elsif params[:artist_key]
+      @search_result = RdioTrack.albums_for_artist(params[:artist_key])
+    elsif params[:list]
+      @album_tracks = RdioTrack.get(params[:list].join(","))
+      
     end
-    @type =params[:data]
   end
   
   def destroy

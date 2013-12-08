@@ -1,5 +1,4 @@
 module My_Rdio
-    
   class RdioUser
     def self.verify_user(token, secret)  
       #create rdio object with current users info
@@ -66,7 +65,9 @@ module My_Rdio
       Hash[name:          track['name'],
            key:           track['key'], 
            embedUrl:      track['embedUrl'], 
-           ] 
+           artist:        track['artist'] 
+           album:         track['album']
+          ] 
     
     end
 
@@ -85,7 +86,7 @@ module My_Rdio
                    "friends" => "true")
     end
 
-    def self.search_by_track(query)
+    def self.search_by_track(type, query)
       @rdio.call('search',
                  'extras' => 'isrcs, 
                               iframeUrl,
@@ -93,10 +94,25 @@ module My_Rdio
                               playCount,
                               bigIcon',
                   'query' => query, 
-                  'types' => "Tracks")["result"]["results"]
+                  'types' => type)["result"]["results"]
              
     end
-  
+
+    def self.albums_for_artist(artist_key, featured='false')
+      @rdio.call('getAlbumsForArtist',
+                 'extras' => 'iframeUrl,
+                              label,
+                              bigIcon',
+                 'artist' => artist_key,
+                 'featured' => featured)['result']
+    end
+
+    def self.get(object_key)
+      @rdio.call('get', 
+                 'keys' => object_key,
+                 'extras' => 'iframeUrl')['result']
+    
+    end
   end
 
 end

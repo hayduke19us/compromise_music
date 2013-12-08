@@ -2,8 +2,29 @@
   <% if @user.id.to_i == @playlist.user_id.to_i %> 
  	  <div class="col-md-6">
       <div class="panel panel-default" style="padding:10%;">
-        <h3 id="search_songs_title">Search for Songs</h3>
-        <%=form_tag(user_playlist_path, method: "get") do%> 
+        <h3 id="search_songs_title">Search for Songs by:</h3>
+        <%=form_tag(user_playlist_path, method: "get") do%>
+          <div class="radio"> 
+            <label> 
+              <input type="radio" name="search_type"  id="option_track"
+              value="Track" checked>
+              Track
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="search_type"  id="option_artist"
+              value="Artist">
+              Artist
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="search_type"  id="option_album"
+              value="Album">
+              Album
+            </label>
+          </div>
         <div class= "input-group input-group-md", style="padding-bottom:10px;">
           <div class="input-group-btn">
             <button class="btn btn-default dropdown-toggle" 
@@ -11,14 +32,16 @@
               Search
             </button>
           </div>
-          <input name= "query" id="query" type="text" 
+          <input name="query" id="query" type="text" placeholder="track name" 
           class="form-control" >
         <% end %> 
         </div>
           <% unless @search_result.blank? %>
             <% @search_result.each do |result|%>
               <div class="well song_search">
+                <% if result['type'] == "t"%>
                 <iframe src=<%="#{result['iframeUrl']}"%> seamless></iframe>
+              
                   <div id="add">
                     <%=link_to 'add', tracks_path(
                       playlist_id: @playlist.id,
@@ -32,9 +55,51 @@
                   </h4> 
                   <%= image_tag "#{result['bigIcon']}",
                     'id' => "search_track_image"%>
-            
+                <%elsif result['type'] == 'r' %>
+                  <h4 id= "artist_name"><%=result['name']%></h4>
+                  <ul class="nav nav-pills">
+                    <li>
+                    <%=link_to "Albums", user_playlist_path(
+                      artist_key: result['key'])%>
+                    </li>
+                    <li>
+                    <%=link_to "Tracks", "#"%> 
+                    </li>
+                  </ul>
+                <%elsif result['type'] == 'a'%>
+                  <h4 id= "album_name"><%=result['name']%></h4>
+                  <ul class="nav nav-pills" style=padding-bottom:5px;>
+                    <li>
+                      <%=link_to "tracks", user_playlist_path(
+                        list: result['trackKeys'])%>
+                    </li>
+                    <li>
+                      <%= link_to "album info", "#" %>
+                    </li>
+                  </ul>
+                  <%=image_tag result['bigIcon'], 'id' => 'search_track_image'%>
+                <%end%>
+
              </div> 
-            <%end%>
+           <%end%>
+         <%else%>
+           <% unless @album_tracks.blank? %>
+             <blockquote>
+             <h3><%=@album_tracks.first[1]['album']%></h3>
+             <h5>by <%=@album_tracks.first[1]['artist']%></h5>
+             <%= image_tag @album_tracks.first[1]['icon']%>
+             </blockquote>
+             <% @album_tracks.each do |track|%>
+               <div class="well">
+                 <%= track[1]['name']%>
+                 <%=link_to 'add', tracks_path(
+                      playlist_id: @playlist.id,
+                      track: track[1]),
+                      method: :post,
+                      class: "btn btn-xs btn-primary pull-right" %>
+              </div>
+             <%end%>
+           <%end%>
          <%end%>
       </div> 
 	  </div>
@@ -55,17 +120,19 @@
        </div>
         <% @playlist.tracks.each do |track|%>
           <div class= "well">
-            <h4 id="track_name">
+            <h4 class="pull-right">
+              <%=track.votes_for - track.votes_against%>
+              <span class= "glyphicon glyphicon-thumbs-up"></span>
+            </h4>
+            <h4>
               <%= link_to track.name, track.embedUrl, 'id' => 'track_name'%></br>
             </h4>
-            <div id="remove_button">
-              <%=link_to "delete", track_path(track), 
-                          method: "delete",
-                          :id => track.id %>
-            </div>
-            <div id="vote_count">
-              <h4><%=track.votes_for - track.votes_against%></h4>
-            </div></br>
+            <h5>by<%=track.artist %></h5>
+              <%=link_to "delete", track_path( 
+                method: "delete",
+                :id => track.id),
+                'class' => 'btn btn-danger btn-xs',
+                data: {confirm: "are you sure?"}%>
           </div>
         <%end%>
       </div>
