@@ -67,7 +67,8 @@ module My_Rdio
            embedUrl:      track['embedUrl'], 
            artist:        track['artist'], 
            album:         track['album'],
-          ] 
+           album_key:     track['albumKey'] 
+         ] 
     
     end
 
@@ -92,7 +93,7 @@ module My_Rdio
                               iframeUrl,
                               isInCollection,
                               playCount,
-                              bigIcon',
+                              bigIcon', 
                   'query' => query, 
                   'types' => type)["result"]["results"]
              

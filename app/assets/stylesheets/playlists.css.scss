@@ -25,7 +25,7 @@ iframe {float:left;
 #search_track_name{text-align: center;
                  
 }
-#search_track_image{width:100%; 
+#search_track_image{padding:2%; 
                     box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
@@ -90,4 +90,8 @@ h4#new_playlist_description {text-align: center}
 
 #add{float:right;
 }
-
+div#album_big img {width:100%;
+                   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+		               -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}

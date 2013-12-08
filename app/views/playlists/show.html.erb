@@ -53,7 +53,7 @@
                     <%= result["name"].titleize %> by
                     <%= result["artist"]%>
                   </h4> 
-                  <%= image_tag "#{result['bigIcon']}",
+                  <%= image_tag "#{result['icon']}",
                     'id' => "search_track_image"%>
                 <%elsif result['type'] == 'r' %>
                   <h4 id= "artist_name"><%=result['name']%></h4>
@@ -74,10 +74,11 @@
                         list: result['trackKeys'])%>
                     </li>
                     <li>
-                      <%= link_to "album info", "#" %>
+                      <a href= "#album_info" data-toggle="modal">Info</a>
                     </li>
                   </ul>
-                  <%=image_tag result['bigIcon'], 'id' => 'search_track_image'%>
+                  <%= render "album"%>
+                  <%=image_tag result['icon'], 'id' => 'search_track_image'%>
                 <%end%>
 
              </div> 
@@ -124,13 +125,14 @@
               <span class= "glyphicon glyphicon-thumbs-up"></span>
             </h4>
             <h4><%=track.name%></h4>
-            <h6>by <%=track.artist %> from the album 
-              <%=link_to track.album, user_playlist_path(list: track.key
-                                                         )%>
-            </h6>
+            <h6>by <%=link_to track.artist, 
+                user_playlist_path(search_type: 'Artist',
+                                   query: track.artist)%></br> 
+               album <%=link_to track.album, 
+                 user_playlist_path(list: track.album_key)%></h6>
               <%=link_to "delete", track_path( 
-                method: "delete",
                 :id => track.id),
+                :method => "delete",
                 'class' => 'btn btn-danger btn-xs',
                 data: {confirm: "are you sure?"}%>
           </div>

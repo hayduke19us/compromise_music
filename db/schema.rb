@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131208045747) do
+ActiveRecord::Schema.define(version: 20131208052937) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20131208045747) do
     t.integer  "user_id"
     t.string   "album"
     t.string   "artist"
+    t.string   "album_key"
   end
 
   add_index "tracks", ["playlist_id"], name: "index_tracks_on_playlist_id"

@@ -32,7 +32,9 @@ class PlaylistsController < ApplicationController
       if params[:list].class == Array
         @album_tracks = RdioTrack.get(params[:list].join(","))
       else
-        @album_tracks = RdioTrack.get(params[:list])
+        album  = RdioTrack.get(params[:list])
+        album = album.flatten
+        @album_tracks = RdioTrack.get(album[1]['trackKeys'].join(","))
       end
       
     end
