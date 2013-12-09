@@ -1,12 +1,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 <style type="text/css">
-#freq div{
-  height: 10px;
-  background-color: red;
+div.col-md-1#sound{
+  max-height: 100px;
+  background-color: #efefef;
 }
 #upshell div {
-  display: none;
+  display:none;
 }
 </style>
 
@@ -30,21 +30,23 @@
   <dd id="position"></dd>
 </dl>
 
-  <input id="play_key" value="a997982"><button id="play">Play</button><br>
+  <input type="hidden" id="play_key" value="a997982"><button id="play">Play</button><br>
   <button id="stop">Stop</button>
   <button id="pause">Pause</button>
   <button id="previous">Previous</button>
   <button id="next">Next</button>
-
-  <div id="freq">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  
+  <div class="row" id="freq">
+    <div class="col-md-1" id="none"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="sound"></div>
+    <div class="col-md-1" id="none"></div>
   </div>

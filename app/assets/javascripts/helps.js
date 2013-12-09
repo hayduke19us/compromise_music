@@ -129,7 +129,7 @@ callback_object.updateFrequencyData = function updateFrequencyData(arrayAsString
   var arr = arrayAsString.split(',');
 
   $('#freq #sound').each(function(i) {
-    $(this).height(parseInt(parseFloat(arr[i])*100));
+    $(this).width(parseInt(parseFloat(arr[i])*300));
   })
 }
 
