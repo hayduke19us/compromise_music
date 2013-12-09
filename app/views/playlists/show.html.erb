@@ -70,7 +70,12 @@
                   </li>
                 </ul>
               <%elsif result['type'] == 'a'%>
-                <h4 id= "album_name"><%=result['name']%></h4>
+                <h4 id= "album_name"><%=result['name']%>
+                  <button onclick= <%="jukebox('#{result['key']}')"%>
+                    class="btn btn-default btn-md pull-right">
+                    <span class="glyphicon glyphicon-play"></span>
+                  </button> 
+                </h4> 
                 <ul class="nav nav-pills" style=padding-bottom:5px;>
                   <li>
                     <%=link_to "tracks", user_playlist_path(
@@ -80,6 +85,7 @@
                   <a href=<%="##{result['key']}"%> data-toggle="modal">Info</a> 
                   </li>
                 </ul>
+                <!--album_info modal -->
                 <div class="modal fade" id=<%="#{result['key']}"%> 
                   role="dialog" 
                   aria-labelledby="album_title"
@@ -174,10 +180,24 @@
         <div class= "well">
           <h4 class="pull-right">
             <% unless @user.id.to_i == track.user_id %>
-            hello 
+             <div id="vote">
+               <%=link_to raw(
+                 "<span class='glyphicon glyphicon-chevron-up'</span>"),
+                  vote_up_track_path(
+                  id: track.id, 
+                  playlist_id: @playlist.id, 
+                  playlists_owner: @playlist.user_id,
+                  current_user: current_user.id) %>
+                <%=link_to raw(
+                  "<span class='glyphicon glyphicon-chevron-down'</span>"),
+                  vote_down_track_path(
+                  id: track.id, 
+                  playlist_id: @playlist.id, 
+                  playlist_owner: @playlist.user_id,
+                  current_user: current_user.id)  %>
+              </div>
+ 
             <%end%>  
-            <%=track.votes_for - track.votes_against%>
-            <span class= "glyphicon glyphicon-thumbs-up"></span>
           </h4>
           <h5>
 
@@ -194,12 +214,23 @@
                                  query: track.artist)%></br> 
              album <%=link_to track.album, 
                user_playlist_path(list: track.album_key)%></h6>
-            <%=link_to "delete", track_path( 
-              :id => track.id),
-              :method => "delete",
-              'class' => 'btn btn-danger btn-xs',
-              data: {confirm: "are you sure?"}%>
+          <h4>
+             <div class="pull-left">
+               <%unless track.user_id != current_user.id%>
+                 <%=link_to "delete", track_path( 
+                  :id => track.id),
+                  :method => "delete",
+                  'class' => 'btn btn-danger btn-xs',
+                  data: {confirm: "are you sure?"}%>
+              <%end%>
+            </div>
+            <div id="vote" style=text-align:right;>
+              <%=track.votes_for - track.votes_against%>
+              <span class= "glyphicon glyphicon-thumbs-up"></span>  
+            </div>
+          </h4>
         </div>
+
       <%end%>
     </div>
   </div>

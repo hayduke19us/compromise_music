@@ -40,10 +40,10 @@ class TracksController < ApplicationController
    unless @user.voted_for?(track)
      @user.vote_exclusively_for(track)
      flash[:notice] = "#{track.name} voted up"  
-     redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+     redirect_to user_playlist_path(params[:playlists_owner], params[:playlist_id])
    else
      flash[:notice] = "#{track.name} already voted for"  
-     redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+     redirect_to user_playlist_path(params[:playlists_owner], params[:playlist_id])
    end
   end
   
@@ -53,10 +53,12 @@ class TracksController < ApplicationController
     unless @user.voted_against?(track)
       @user.vote_exclusively_against(track)
       flash[:notice] = "#{track.name} voted down"  
-      redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+      redirect_to user_playlist_path(params[:playlist_owner], 
+                                       params[:playlist_id])
     else
        flash[:notice] = "#{track.name} already voted down"  
-       redirect_to friend_playlist_path(params[:user_id], params[:playlist_id])
+       redirect_to user_playlist_path(params[:playlist_owner], 
+                                        params[:playlist_id])
     end
   end
   
