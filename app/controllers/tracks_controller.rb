@@ -9,7 +9,7 @@ class TracksController < ApplicationController
     my_track = {playlist_id: playlist.id, 
                 index: index, 
                 playlist_key: playlist.key,
-                user_id: playlist.user_id}
+                user_id: current_user.id}
     track_params = rdio_track.merge(my_track)    
     RdioTrack.add_track(playlist.key, rdio_track[:key])
     

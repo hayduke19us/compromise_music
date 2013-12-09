@@ -173,6 +173,9 @@
       <% @playlist.tracks.each do |track|%>
         <div class= "well">
           <h4 class="pull-right">
+            <% unless @user.id.to_i == track.user_id %>
+            hello 
+            <%end%>  
             <%=track.votes_for - track.votes_against%>
             <span class= "glyphicon glyphicon-thumbs-up"></span>
           </h4>
