@@ -60,3 +60,19 @@ img.img-circle {width: 40px;
                 -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
 }
+
+div#freq{float:right;
+         width: 500px;
+         height:auto;
+         opacity:0.6;
+         margin-right:200px;
+}
+div#sound{background-color:#C2D1FF;
+          float:left;
+          height:10px;
+          border-top: solid 1px #efefef;
+          opacity: 0.4;
+      
+        }
+        
+          
