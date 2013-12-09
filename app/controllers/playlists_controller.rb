@@ -23,6 +23,9 @@ class PlaylistsController < ApplicationController
     
     @user = current_user
     @playlist = Playlist.find(params[:id])
+    unless params[:play_trck].blank?
+     @play_key = params[:play_track]
+    end
     if params[:query]  
       @search_result = RdioTrack.search_by_track(params[:search_type], 
                                                  params[:query])
@@ -46,7 +49,7 @@ class PlaylistsController < ApplicationController
     playlist.destroy
     redirect_to root_url
   end
-
+  
   def publish
     playlist = Playlist.find(params[:id])
       @prizes = Voting_Game.track_success_filter(playlist)  

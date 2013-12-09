@@ -14,7 +14,7 @@ CompromiseMusic::Application.routes.draw do
   end
 
   resources :users do 
-    resources :playlists
+    resources :playlists 
   end
 
   resources :friends do
@@ -36,6 +36,12 @@ CompromiseMusic::Application.routes.draw do
   
   resources :users do
     resources :groups
+  end
+  
+  resources :playlists do 
+    member do
+      get :music_box
+    end
   end
   
   resources :grouplists

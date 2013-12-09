@@ -35,13 +35,15 @@
           <input name="query" id="query" type="text" placeholder="track name" 
           class="form-control" >
         <% end %> 
-        </div>
-          <% unless @search_result.blank? %>
+      </div>
+           <% unless @search_result.blank? %>
             <% @search_result.each do |result|%>
               <div class="well song_search">
                 <% if result['type'] == "t"%>
-                <iframe src=<%="#{result['iframeUrl']}"%> seamless></iframe>
-              
+                  <button onclick= <%="jukebox('#{result['key']}')"%>
+                  class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>  
                   <div id="add">
                     <%=link_to 'add', tracks_path(
                       playlist_id: @playlist.id,
@@ -53,8 +55,10 @@
                     <%= result["name"].titleize %> by
                     <%= result["artist"]%>
                   </h4> 
-                  <%= image_tag "#{result['icon']}",
-                    'id' => "search_track_image"%>
+                  <div class="center-block" style="padding-left:24%;">
+                    <%= image_tag "#{result['icon']}",
+                      'id' => "search_track_image"%>
+                  </div>
                 <%elsif result['type'] == 'r' %>
                   <h4 id= "artist_name"><%=result['name']%></h4>
                   <ul class="nav nav-pills">
@@ -74,10 +78,47 @@
                         list: result['trackKeys'])%>
                     </li>
                     <li>
-                      <a href= "#album_info" data-toggle="modal">Info</a>
+                    <a href=<%="##{result['key']}"%> data-toggle="modal">Info</a> 
                     </li>
                   </ul>
-                  <%= render "album"%>
+                  <div class="modal fade" id=<%="#{result['key']}"%> 
+                    role="dialog" 
+                    aria-labelledby="album_title"
+                    aria-hidden='true'>
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="lead">
+                        </div>
+                        <div class="modal-header">
+                          <button type="button" class="close" 
+                            data-dismiss="modal" aria-hidden="true">
+                            &times;
+                          </button>
+                          <h3 class="modal-title" id="album_title">
+                            <%=result['name']%>
+                            <!--album name -->
+                          </h3>
+                        </div>
+                        <div class="modal-body">
+                          <h4 id="release">
+                            <!--artist and release date-->
+                            Released by <%=result['artist']%> on
+                            <%= result['displayDate'] %>
+                          </h4>
+                          <div id= "album_big">
+                              <!--album cover -->
+                            <%=image_tag result['bigIcon'], :id => "album_cover"%>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" 
+                            data-dismiss="modal">
+                            Close
+                          </button>
+                        </div>
+                      </div><!--/.modal-content-->
+                    </div><!-- /.modal-dialog -->
+                  </div>
                   <%=image_tag result['icon'], 'id' => 'search_track_image'%>
                 <%end%>
 
@@ -92,6 +133,11 @@
              </blockquote>
              <% @album_tracks.each do |track|%>
                <div class="well">
+                <button onclick= <%="jukebox('#{track[1]['key']}')"%> 
+                  class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>  
+
                  <%= track[1]['name']%>
                  <%=link_to 'add', tracks_path(
                       playlist_id: @playlist.id,
@@ -106,10 +152,17 @@
 	  </div>
 	  <div class="col-md-6", id= "my_playlist">
       <div class="panel panel-default" style="padding:10%;">
+        <div class="pull-right">
+          <button onclick= <%="jukebox('#{@playlist.key}')"%> 
+                  class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-play"></span>
+          </button> 
+        </div>
         <h3>
           <%=link_to @playlist.name.titleize, @playlist.embedUrl, 
             :target => "_blank"%>
         </h3>
+
         <div id="publish">
           <%unless @playlist.tracks.count < 1%>
             <%= link_to 'publish', ({controller: "playlists", 
@@ -124,7 +177,16 @@
               <%=track.votes_for - track.votes_against%>
               <span class= "glyphicon glyphicon-thumbs-up"></span>
             </h4>
-            <h4><%=track.name%></h4>
+            <h5>
+
+              <button onclick= <%="jukebox('#{track.key}')"%> 
+                  class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>  
+
+
+              <%=track.name%>
+            </h5>
             <h6>by <%=link_to track.artist, 
                 user_playlist_path(search_type: 'Artist',
                                    query: track.artist)%></br> 

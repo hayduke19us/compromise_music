@@ -28,7 +28,7 @@ img#raccoon_image.img-circle{width: 100px;
                              -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
 }
-body {padding-top: 70px;}
+body {padding: 70px 0 70px 0;}
 
 div.notify {padding-top: 3%;
             opacity: 0.8;

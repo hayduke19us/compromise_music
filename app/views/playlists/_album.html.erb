@@ -1,5 +1,3 @@
-<%unless @search_result.blank?%>
-  <%@search_result.each do |result|%>
     <div class="modal fade" id="album_info" role="dialog" 
       aria-labelledby="album_title"
       aria-hidden='true'>
@@ -12,13 +10,16 @@
               data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="album_title"><%=result['name']%></h4>
+            <h4 class="modal-title" id="album_title">
+              <!--album name -->
+              <%=@album['name']%>
+            </h4>
           </div>
           <div class="modal-body">
-            <h4> This album was released by <%= result['artist']%> on
-              <%=result['displayDate']%><h3>
-            <div id= "album_big">
-              <%=image_tag result['bigIcon']%>
+            <h4 id="release"><!--artist and release date--></h4>
+              <div id= "album_big">
+                <!--album cover -->
+              <%=image_tag "", :id => "album_cover"%>
             </div>
           </div>
           <div class="modal-footer">
@@ -27,7 +28,5 @@
             </button>
           </div>
         </div><!--/.modal-content-->
-      </div><!-- /.modal-dialog -->>
+      </div><!-- /.modal-dialog -->
     </div><!-- //modal-->
-  <%end%>  
-<%end%>
