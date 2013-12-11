@@ -6,6 +6,11 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     refute user.valid?, "user lacks validations"
   end 
+
+  test "when new User is created a banker is created for the user" do
+    user = User.new
+    refute_nil user.banker, "A user should have a banker from the get go"
+  end
   
   test "if user object is populated it is valid" do
     user = users(:martha)
@@ -58,6 +63,16 @@ class UserTest < ActiveSupport::TestCase
     track = tracks(:ramona)
     user_track = user.tracks.first
     assert_equal 1, user_track.votes.count
+  end
+  
+  test "user has one association with banker" do
+    user = users(:martha)
+    refute_nil user.banker, "martha should have an association with banker"
+  end
+
+  test "user can have 0 simple success points(integer of 0)" do
+    user = users(:martha)
+    assert_equal 0, user.banker.simple_success
   end
 
 end
