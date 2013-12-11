@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     elsif params[:search].blank? 
       users = User.where.not(id: @friend_array )
     else
-      users = User.search(params[:search])
+      users = User.search(params[:search]) 
       current_user.friends.each do |friend|
         users.keep_if {|c| c.id != current_user.id}
         users.keep_if {|c| c.id != friend.id}

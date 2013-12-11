@@ -20,9 +20,11 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    
     @user = current_user
     @playlist = Playlist.find(params[:id])
+    if params[:group]
+      @group_id = params[:group]
+    end
     unless params[:play_trck].blank?
      @play_key = params[:play_track]
     end
@@ -52,8 +54,11 @@ class PlaylistsController < ApplicationController
   
   def publish
     playlist = Playlist.find(params[:id])
-      @prizes = Voting_Game.track_success_filter(playlist)  
-      redirect_to user_playlist_path(playlist.user_id, playlist.id)
-    
+    group = Group.find(params[:group])
+    if Grouplist.where(group_id: group.id, 
+                       playlist_id: playlist.id)
+      @prizes = Voting_Game.track_success_filter(playlist, group)  
+      redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
+    end
   end
 end
