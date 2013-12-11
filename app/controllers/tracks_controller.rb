@@ -65,9 +65,9 @@ class TracksController < ApplicationController
     private
     def index_create(track_count)
       if track_count == 0
-        @index = 1
-      elsif track_count >= 1
-        @index = track_count + 1
+        @index = 0
+      elsif track_count > 0 
+        @index = track_count 
       end
     end 
 

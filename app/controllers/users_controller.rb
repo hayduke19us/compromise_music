@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     for friend in current_user.friends do 
     @users = User.all.where.not(:id == current_user.id && 
@@ -11,6 +12,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @friend_view = params[:friend_view]
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy_remaining_friendships!
+    user.destroy!
+    redirect_to root_path
   end
   
   private

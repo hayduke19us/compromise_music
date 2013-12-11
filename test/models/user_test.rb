@@ -7,11 +7,6 @@ class UserTest < ActiveSupport::TestCase
     refute user.valid?, "user lacks validations"
   end 
 
-  test "when new User is created a banker is created for the user" do
-    user = User.new
-    refute_nil user.banker, "A user should have a banker from the get go"
-  end
-  
   test "if user object is populated it is valid" do
     user = users(:martha)
     assert user.valid?, "user is missing an attribute"   
@@ -42,12 +37,19 @@ class UserTest < ActiveSupport::TestCase
 
   test "when user is deleted users's friendships are deleted" do
     user = users(:martha)
-    friendships = Friendship.all
+    friendships = user.friendships
     assert_equal 1, friendships.count, "all friendships count '1'"
     user.destroy
     assert_equal 0, friendships.count, "friendship count after user delete '0'"
   end
-  
+
+  test "destroy_remaining_friendships! actually destroys friendships" do
+    user = users(:martha)
+    assert_not_nil Friendship.where(friend_id: user)
+    user.destroy_remaining_friendships!
+    assert_equal 0, Friendship.where(friend_id: user).count
+  end
+
   test "user has an association with tracks" do
     user = users(:martha)
     assert_equal 1, user.tracks.count

@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_voter
-  validates :provider, :uid, :name, :key, :oauth_token, :access_token, :access_secret, presence: true 
-  def self.from_omniauth(auth)
+  validates :provider, 
+    :uid, :name, :key, :oauth_token, :access_token, :access_secret, presence: true 
+  def self.from_omniauth
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -16,13 +17,13 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-has_one  :banker
-has_many :tracks 
-has_many :friendships, :dependent => :destroy
-has_many :friends, :through => :friendships  
-has_many :playlists, :dependent => :destroy
-has_many :groups, :dependent => :destroy
-  
+
+  has_one  :banker, :dependent => :destroy
+  has_many :tracks, :dependent => :destroy 
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships  
+  has_many :playlists, :dependent => :destroy
+  has_many :groups, :dependent => :destroy
 
   def self.search(search)
     if search
@@ -30,6 +31,10 @@ has_many :groups, :dependent => :destroy
     else
       find(:all)
     end
-  end  
-end
+  end
 
+  def destroy_remaining_friendships!
+    friendships = Friendship.where(friend_id: self)
+    friendships.each {|f| f.destroy!}
+  end
+end

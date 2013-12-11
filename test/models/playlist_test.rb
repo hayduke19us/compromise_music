@@ -2,9 +2,9 @@ require "test_helper.rb"
 
 class PlaylistTest < ActiveSupport::TestCase
 
-  test "An empty playlist it invalid" do
+  test "An empty playlist object it invalid" do
     playlist = Playlist.new
-    refute  playlist.valid?, "Playlist is missing a proper validation"
+    refute playlist.valid?, "Playlist is missing a proper validation"
   end
 
   test "A playlist without a name is invalid" do

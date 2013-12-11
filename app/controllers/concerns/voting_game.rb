@@ -14,16 +14,14 @@ module Voting_Game
     end
     for track in success_tracks
       user =  User.find(track.user_id) 
-      simple(user)
+      Voting_Game.simple(user)
     end
   end
    
-  private
-  
   #tracks didn't get deleted when the playlist was published
   #the lowest form of success
-  
-  def simple(user)
+   private
+  def self.simple(user)
     banker = user.banker
     banker.simple_success = banker.simple_success + 1
     banker.save 

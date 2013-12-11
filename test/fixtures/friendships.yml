@@ -3,3 +3,7 @@
 short_friendship:
   user_id: 1
   friend_id: 2
+
+long_frienship:
+  user_id: 2
+  friend_id: 1

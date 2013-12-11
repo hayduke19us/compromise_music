@@ -20,8 +20,9 @@ class SessionsController < ApplicationController
   def create
     reset_session
     user = User.from_omniauth(env["omniauth.auth"])
-    banker = Banker.new(user_id: user.id, simple_success: 0)
-    banker.save
+    if user.id
+      banker = Banker.new_account(user.id)
+    end
     session[:user_id] = user.id
     redirect_to root_url
   end
