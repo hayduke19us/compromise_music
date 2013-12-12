@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   validates :provider, 
     :uid, :name, :key, :oauth_token, :access_token, :access_secret, presence: true 
-  def self.from_omniauth
+  def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
