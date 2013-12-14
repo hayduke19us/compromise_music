@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  extend Voting_Game
+  extend VotingGame
   before_filter :get_rdio_user  
   
   def new
@@ -57,7 +57,9 @@ class PlaylistsController < ApplicationController
     group = Group.find(params[:group])
     if Grouplist.where(group_id: group.id, 
                        playlist_id: playlist.id)
-      @prizes = Voting_Game.track_success_filter(playlist, group)  
+      result =  VotingGame.track_success_filter(playlist, 
+                                               group, 
+                                               playlist.tracks.count)  
       redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
     end
   end
