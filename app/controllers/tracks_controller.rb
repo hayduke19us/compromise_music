@@ -3,6 +3,9 @@ class TracksController < ApplicationController
     
    def create
     playlist = Playlist.find(params[:playlist_id])
+    if params[:group]
+      group = Group.find(params[:group_id])
+    end
     all_tracks = playlist.tracks.count
     index = index_create(all_tracks) 
     rdio_track = RdioTrack.track_attributes(params[:track]) 
@@ -16,7 +19,14 @@ class TracksController < ApplicationController
     track = Track.new(track_params) 
     if track.save
       flash[:notice] = "#{track.name} added to playlist"
-      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+      unless params[:group]
+        redirect_to user_playlist_path(playlist.user_id, 
+                                       playlist.id)
+      else
+        redirect_to user_playlist_path(path.user_id,
+                                      playlist.id,
+                                      group: group.id)
+      end
     else
       flash[:notice] = "Something went wrong"
       redirect_to user_playlist_path(playlist.user_id, playlist.id)
@@ -25,13 +35,20 @@ class TracksController < ApplicationController
   end
   
   def destroy
+    if params[:group]
+      group = Group.find(params[:group])
+    end
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
     if track.destroy
      index_destroy(playlist, track) 
     end   
     RdioTrack.remove_track(track.playlist_key,track.index, track.key)
-    redirect_to user_playlist_path(playlist.user_id, playlist.id)
+    unless params[:group]
+      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+    else
+      redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
+    end
   end
   
   def vote_up
