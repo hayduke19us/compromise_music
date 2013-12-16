@@ -78,14 +78,16 @@
                   id: track.id, 
                   playlist_id: @playlist.id, 
                   playlists_owner: @playlist.user_id,
-                  current_user: current_user.id) %>
+                  current_user: current_user.id,
+                  group: @group_id) %>
                <%=link_to raw(
                  "<span class='glyphicon glyphicon-chevron-down'</span>"),
                   vote_down_track_path(
                   id: track.id, 
                   playlist_id: @playlist.id, 
                   playlist_owner: @playlist.user_id,
-                  current_user: current_user.id)  %>
+                  current_user: current_user.id,  
+                  group: @group_id)%>
              </div>
            <%end%>  
          </h4>

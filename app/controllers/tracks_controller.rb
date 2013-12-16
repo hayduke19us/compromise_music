@@ -37,7 +37,6 @@ class TracksController < ApplicationController
     if track.destroy
       track.destroy_with_rdio(1)
     end   
-    RdioTrack.remove_track(track.playlist_key,track.index, track.key)
     unless params[:group]
       redirect_to playlist_path(playlist.id)
     else
@@ -51,10 +50,13 @@ class TracksController < ApplicationController
    unless @user.voted_for?(track)
      @user.vote_exclusively_for(track)
      flash[:notice] = "#{track.name} voted up"  
-     redirect_to playlist_path(params[:playlist_id])
    else
      flash[:notice] = "#{track.name} already voted for"  
+   end
+   unless params[:group]
      redirect_to playlist_path(params[:playlist_id])
+   else
+     redirect_to playlist_path(params[:playlist_id], group: params[:group])
    end
   end
   
@@ -64,10 +66,13 @@ class TracksController < ApplicationController
     unless @user.voted_against?(track)
       @user.vote_exclusively_against(track)
       flash[:notice] = "#{track.name} voted down"  
-      redirect_to playlist_path(params[:playlist_id])
     else
        flash[:notice] = "#{track.name} already voted down"  
-       redirect_to playlist_path(params[:playlist_id])
+    end
+    unless params[:group]
+      redirect_to playlist_path(params[:playlist_id])
+    else
+     redirect_to playlist_path(params[:playlist_id], group: params[:group])
     end
   end
   

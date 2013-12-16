@@ -22,7 +22,8 @@
               new_user_playlist_path(@user) %></h1>
           </div>
         <% else %>
-          <div class="panel panel-default" style="padding:10%;border-top: none; border-bottom:none;">
+          <div class="panel panel-default" 
+            style="padding:10%;border-top: none; border-bottom:none;">
             <h4 id= "my">My</h4>
             <h4 id="">Playlists</h4>
             <p>
@@ -33,8 +34,9 @@
               <div class="well" style="padding-bottom:0;">
                 <div id= "playlist_options">
                   <h4><%= link_to playlist.name.titleize, 
-                    user_playlist_path(@user, playlist)%></h4>
-                  <li><h6 id= "playlist_description"><%= playlist.description %></h6></li>
+                    playlist_path(playlist)%></h4>
+                  <li><h6 id= "playlist_description">
+                    <%= playlist.description %></h6></li>
                   <div class="btn-group">
                     <%= link_to "add to group","#",
                       'class'=>'btn btn-sm btn-default dropdown-toggle',

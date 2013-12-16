@@ -56,15 +56,10 @@ class PlaylistsController < ApplicationController
     group = Group.find(params[:group])
     if Grouplist.where(group_id: group.id, 
                        playlist_id: playlist.id)
-<<<<<<< HEAD
-      @prizes = Voting_Game.track_success_filter(playlist, group)  
-      redirect_to playlist_path(playlist.id, group: group.id)
-=======
       result =  VotingGame.track_success_filter(playlist, 
                                                group, 
                                                playlist.tracks.count)  
       redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
->>>>>>> points
     end
   end
 end
