@@ -28,34 +28,30 @@ class PlaylistsController < ApplicationController
     unless params[:play_track].blank?
      @play_key = params[:play_track]
     end
-    if params[:query]  
-      @search_result = RdioTrack.search_by_track(params[:search_type], 
-                                                 params[:query])
-    elsif params[:artist_key]
-      @search_result = RdioTrack.albums_for_artist(params[:artist_key])
+    search_helper
+  end
+
+  def search_helper
+    if params[:query]
+      rdio_search =  RdioSearch.new(search_type: params[:search_type],
+                                      query: params[:query])
+      @search_results = rdio_search.simple
     elsif params[:list]
-      if params[:list].class == Array
-        @album_tracks = RdioTrack.get(params[:list].join(","))
-      else
-        album  = RdioTrack.get(params[:list])
-        album = album.flatten
-        @album_tracks = RdioTrack.get(album[1]['trackKeys'].join(","))
-      end
-    end
-    unless params[:group]
- 
-    else
-    
+      @album_tracks = RdioSearch.new(list: params[:list]).album_tracks
+    elsif params[:artist_key]
+      rdio_search = RdioSearch.new(artist_key: params[:artist_key])
+      @search_results = rdio_search.artist_albums
     end
   end
-  
+
   def destroy
     playlist = Playlist.find(params[:id])
     RdioPlaylist.delete_playlist(playlist.key)
     playlist.destroy
     redirect_to root_url
   end
-  def search
+ 
+  def search search_type, query
     @user = current_user
     @playlist = Playlist.find(params[:playlist_id])
     if params[:group]
@@ -78,7 +74,7 @@ class PlaylistsController < ApplicationController
         @album_tracks = RdioTrack.get(album[1]['trackKeys'].join(","))
       end
     end
-    redirect_to user_playlist_path(@user, @playlist, @search_results) 
+    @search_results
   end 
   
   def publish

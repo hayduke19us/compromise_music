@@ -4,7 +4,8 @@ CompromiseMusic::Application.routes.draw do
   get "friends/show"
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
-
+  
+  get "playlists/search"
   get "sessions/index"
   
   resources :friendships
