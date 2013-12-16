@@ -1,3 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :rdio, ENV["RDIO_CONSUMER_KEY"], ENV["RDIO_CONSUMER_SECRET"]
+  provider :rdio, "vc76wjg3xyyqawc7m7dttjmq","NxMYesjNWW"
 end
