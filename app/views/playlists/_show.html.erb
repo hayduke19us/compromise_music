@@ -8,7 +8,8 @@
         <div id="add">
           <%=link_to 'add', tracks_path(
             playlist_id: @playlist.id,
-            track: result),
+            track: result,
+            group: @group_id),
             method: :post,
             class: "btn btn-sm btn-primary" %></br>
         </div>
@@ -97,9 +98,10 @@
         <%= track[1]['name']%>
         <%=link_to 'add', tracks_path(
             playlist_id: @playlist.id,
-            track: track[1]),
+            track: track[1],
+            group: @group_id),
             method: :post,
-            class: "btn btn-xs btn-primary pull-right" %>
+            class: "btn btn-xs btn-primary pull-right"%>
       </div>
     <%end%>
   <%end%>

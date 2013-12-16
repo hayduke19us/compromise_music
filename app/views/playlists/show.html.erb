@@ -3,6 +3,9 @@
     <div class="panel panel-default" style="padding:10%;">
       <h3 id="search_songs_title">Search for Songs by:</h3>
         <%=form_tag(playlist_path, method: 'get') do%>
+          <% if @group_id %>
+            <input type='hidden' name="group" value="<%=@group_id %>">
+          <%end%>
           <div class="radio"> 
             <label> 
               <input type="radio" name="search_type"  id="option_track"
