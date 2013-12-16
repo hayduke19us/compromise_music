@@ -36,7 +36,7 @@
         </button></h4> 
         <ul class="nav nav-pills" style=padding-bottom:5px;>
           <li><%=link_to "tracks", playlist_path(
-            list: result['trackKeys'])%></li>
+            list: result['trackKeys']), group: @group_id%></li>
           <li><a href=<%="##{result['key']}"%> data-toggle="modal">Info</a></li>
         </ul>
         <!--album_info modal -->
@@ -81,27 +81,4 @@
         <%=image_tag result['icon'], 'id' => 'search_track_image'%>
       <%end%>
     </div> 
-  <%end%>
-<%else%>
-  <% unless @album_tracks.blank? %>
-    <blockquote>
-      <h3><%=@album_tracks.first[1]['album']%></h3>
-      <h5>by <%=@album_tracks.first[1]['artist']%></h5>
-      <%= image_tag @album_tracks.first[1]['icon']%>
-    </blockquote>
-    <% @album_tracks.each do |track|%>
-      <div class="well">
-        <button onclick= <%="jukebox('#{track[1]['key']}')"%> 
-          class="btn btn-default btn-xs">
-          <span class="glyphicon glyphicon-play"></span>
-        </button>  
-        <%= track[1]['name']%>
-        <%=link_to 'add', tracks_path(
-            playlist_id: @playlist.id,
-            track: track[1],
-            group: @group_id),
-            method: :post,
-            class: "btn btn-xs btn-primary pull-right"%>
-      </div>
-    <%end%>
   <%end%>
