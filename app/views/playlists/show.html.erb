@@ -2,164 +2,49 @@
   <div class="col-md-6">
     <div class="panel panel-default" style="padding:10%;">
       <h3 id="search_songs_title">Search for Songs by:</h3>
-      <%=form_tag(user_playlist_path, method: 'get') do%>
-        <div class="radio"> 
-          <label> 
-            <input type="radio" name="search_type"  id="option_track"
-            value="Track" checked>
-            Track
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="search_type"  id="option_artist"
-            value="Artist">
-            Artist
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="search_type"  id="option_album"
-            value="Album">
-            Album
-          </label>
-        </div>
-        <div class= "input-group input-group-md", style="padding-bottom:10px;">
-          <div class="input-group-btn">
-            <button class="btn btn-default dropdown-toggle" 
-              name="commit" type="submit">
-              Search
-            </button>
+        <%=form_tag(playlist_path, method: 'get') do%>
+          <div class="radio"> 
+            <label> 
+              <input type="radio" name="search_type"  id="option_track"
+              value="Track" checked>
+              Track
+            </label>
           </div>
-        <input name="query" id="query" type="text" placeholder="track name" 
-        class="form-control" >
-      <% end %> 
-    </div>
-         <% unless @search_results.blank? %>
-          <% @search_results.each do |result|%>
-            <div class="well song_search">
-              <% if result['type'] == "t"%>
-                <button onclick= <%="jukebox('#{result['key']}')"%>
-                  class="btn btn-default btn-xs">
-                  <span class="glyphicon glyphicon-play"></span>
-                </button>  
-                <div id="add">
-                  <%=link_to 'add', tracks_path(
-                    playlist_id: @playlist.id,
-                    track: result),
-                    method: :post,
-                    class: "btn btn-sm btn-primary" %></br>
-                </div>
-                <h4 id= "search_track_name">
-                  <%= result["name"].titleize %> by
-                  <%= result["artist"]%>
-                </h4> 
-                <div class="center-block" style="padding-left:24%;">
-                  <%= image_tag "#{result['icon']}",
-                    'id' => "search_track_image"%>
-                </div>
-              <%elsif result['type'] == 'r' %>
-                <h4 id= "artist_name"><%=result['name']%></h4>
-                <ul class="nav nav-pills">
-                  <li>
-                  <%=link_to "Albums", user_playlist_path(
-                    artist_key: result['key'])%>
-                  </li>
-                  <li>
-                  <%=link_to "Tracks", "#"%> 
-                  </li>
-                </ul>
-              <%elsif result['type'] == 'a'%>
-                <h4 id= "album_name"><%=result['name']%>
-                  <button onclick= <%="jukebox('#{result['key']}')"%>
-                    class="btn btn-default btn-md pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                  </button> 
-                </h4> 
-                <ul class="nav nav-pills" style=padding-bottom:5px;>
-                  <li>
-                    <%=link_to "tracks", user_playlist_path(
-                      list: result['trackKeys'])%>
-                  </li>
-                  <li>
-                  <a href=<%="##{result['key']}"%> data-toggle="modal">Info</a> 
-                  </li>
-                </ul>
-                <!--album_info modal -->
-                <div class="modal fade" id=<%="#{result['key']}"%> 
-                  role="dialog" 
-                  aria-labelledby="album_title"
-                  aria-hidden='true'>
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="lead">
-                      </div>
-                      <div class="modal-header">
-                        <button type="button" class="close" 
-                          data-dismiss="modal" aria-hidden="true">
-                          &times;
-                        </button>
-                        <h3 class="modal-title" id="album_title">
-                          <%=result['name']%>
-                          <!--album name -->
-                        </h3>
-                      </div>
-                      <div class="modal-body">
-                        <h4 id="release">
-                          <!--artist and release date-->
-                          Released by <%=result['artist']%> on
-                          <%= result['displayDate'] %>
-                        </h4>
-                        <div id= "album_big">
-                            <!--album cover -->
-                          <%=image_tag result['bigIcon'], :id => "album_cover"%>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" 
-                          data-dismiss="modal">
-                          Close
-                        </button>
-                      </div>
-                    </div><!--/.modal-content-->
-                  </div><!-- /.modal-dialog -->
-                </div>
-                <%=image_tag result['icon'], 'id' => 'search_track_image'%>
-              <%end%>
-
-           </div> 
-         <%end%>
-       <%else%>
-         <% unless @album_tracks.blank? %>
-           <blockquote>
-           <h3><%=@album_tracks.first[1]['album']%></h3>
-           <h5>by <%=@album_tracks.first[1]['artist']%></h5>
-           <%= image_tag @album_tracks.first[1]['icon']%>
-           </blockquote>
-           <% @album_tracks.each do |track|%>
-             <div class="well">
-              <button onclick= <%="jukebox('#{track[1]['key']}')"%> 
-                class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-play"></span>
-              </button>  
-
-               <%= track[1]['name']%>
-               <%=link_to 'add', tracks_path(
-                    playlist_id: @playlist.id,
-                    track: track[1]),
-                    method: :post,
-                    class: "btn btn-xs btn-primary pull-right" %>
+          <div class="radio">
+            <label>
+              <input type="radio" name="search_type"  id="option_artist"
+              value="Artist">
+              Artist
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="search_type"  id="option_album"
+              value="Album">
+              Album
+            </label>
+          </div>
+          <div class= "input-group input-group-md", style="padding-bottom:10px;">
+            <div class="input-group-btn">
+              <button class="btn btn-default dropdown-toggle" 
+                name="commit" type="submit">
+                Search
+              </button>
             </div>
-           <%end%>
-         <%end%>
-       <%end%>
-    </div> 
+            <input name="query" id="query" type="text" placeholder="track name" 
+            class="form-control" >
+          </div>
+      <%end%>
+    </div>
+    <% unless @search_results.blank? %>
+      <%= render "show"%>
+    <%end%>
   </div>
   <div class="col-md-6", id= "my_playlist">
     <div class="panel panel-default" style="padding:10%;">
       <div class="pull-right">
         <button onclick= <%="jukebox('#{@playlist.key}')"%> 
-                class="btn btn-default btn-lg">
+          class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-play"></span>
         </button> 
       </div>
@@ -170,18 +55,19 @@
       <% if @group_id %> 
         <div id="publish">
           <%unless @playlist.tracks.count < 1%>
-            <%= link_to 'publish', ({controller: "playlists", 
-                                     action: "publish",
-                                     group: "#{@group_id}"}),
-                                     "class" => "btn btn-default btn-primary", 
-                                     confirm: "Are you sure?" %>
+            <%= link_to 'publish', 
+              ({controller: "playlists", 
+                action: "publish",
+                group: "#{@group_id}"}),
+               "class" => "btn btn-default btn-primary", 
+                confirm: "Are you sure?" %>
           <%end%>
-        </div>
-      <%end%>
-      <% @playlist.tracks.each do |track|%>
-        <div class= "well">
-          <h4 class="pull-right">
-            <% unless @user.id.to_i == track.user_id %>
+       </div>
+     <%end%>
+     <% @playlist.tracks.each do |track|%>
+       <div class= "well">
+         <h4 class="pull-right">
+           <% unless @user.id.to_i == track.user_id %>
              <div id="vote">
                <%=link_to raw(
                  "<span class='glyphicon glyphicon-chevron-up'</span>"),
@@ -190,51 +76,48 @@
                   playlist_id: @playlist.id, 
                   playlists_owner: @playlist.user_id,
                   current_user: current_user.id) %>
-                <%=link_to raw(
-                  "<span class='glyphicon glyphicon-chevron-down'</span>"),
+               <%=link_to raw(
+                 "<span class='glyphicon glyphicon-chevron-down'</span>"),
                   vote_down_track_path(
                   id: track.id, 
                   playlist_id: @playlist.id, 
                   playlist_owner: @playlist.user_id,
                   current_user: current_user.id)  %>
-              </div>
- 
-            <%end%>  
-          </h4>
-          <h5>
-
-            <button onclick= <%="jukebox('#{track.key}')"%> 
-                class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-play"></span>
-              </button>  
-
-
-            <%=track.name%>
-          </h5>
-          <h6>by <%=link_to track.artist, 
-              user_playlist_path(search_type: 'Artist',
-                                 query: track.artist)%></br> 
-             album <%=link_to track.album, 
-               user_playlist_path(list: track.album_key)%></h6>
-          <h4>
-             <div class="pull-left">
-               <%unless track.user_id != current_user.id%>
-                 <%=link_to "delete", track_path(
-                   :id => track.id,
-                   :group => @group_id),
-                   :method => "delete",
-                   'class' => 'btn btn-danger btn-xs',
-                   data: {confirm: "are you sure?"}%>
-              <%end%>
-            </div>
-            <div id="vote" style=text-align:right;>
-              <%=track.votes_for - track.votes_against%>
-              <span class= "glyphicon glyphicon-thumbs-up"></span>  
-            </div>
-          </h4>
-        </div>
-
-      <%end%>
-    </div>
-  </div>
-  
+             </div>
+           <%end%>  
+         </h4>
+         <h5>
+           <button onclick= <%="jukebox('#{track.key}')"%> 
+            class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-play"></span>
+           </button>  
+           <%=track.name%>
+         </h5>
+         <h6>
+           by <%=link_to track.artist, 
+           playlist_path(search_type: 'Artist',
+                         query: track.artist)%></br> 
+           album <%=link_to track.album, 
+           playlist_path(list: track.album_key)%>
+         </h6>
+         <h4>
+           <div class="pull-left">
+             <%unless track.user_id != current_user.id%>
+               <%=link_to "delete", track_path(
+                :id => track.id,
+                :group => @group_id),
+                :method => "delete",
+                'class' => 'btn btn-danger btn-xs',
+                 data: {confirm: "are you sure?"}%>
+             <%end%>
+           </div>
+           <div id="vote" style=text-align:right;>
+             <%=track.votes_for - track.votes_against%>
+             <span class= "glyphicon glyphicon-thumbs-up"></span>  
+           </div>
+         </h4>
+       </div>
+     <%end%>
+   </div>
+</div>
+    
