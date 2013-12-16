@@ -35,7 +35,7 @@ class TracksController < ApplicationController
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
     if track.destroy
-     index_destroy(playlist, track) 
+      track.destroy_with_rdio(1)
     end   
     RdioTrack.remove_track(track.playlist_key,track.index, track.key)
     unless params[:group]
@@ -74,21 +74,9 @@ class TracksController < ApplicationController
     private
     def index_create(track_count)
       if track_count == 0
-        @index = 1
-      elsif track_count >= 1
-        @index = track_count + 1
+        @index = 0
+      elsif track_count > 0 
+        @index = track_count 
       end
     end 
-
-
-    def index_destroy(ch_play, d_track)
-      ch_play.tracks.each do |t|
-        unless t.index <= d_track.index
-          index = t.index
-          t.index = (index - 1)
-          t.save
-        end
-      end
-    end
-
 end

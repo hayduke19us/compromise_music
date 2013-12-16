@@ -26,6 +26,11 @@ module My_Rdio
       @description = description
       @embedUrl = rdio_playlist['embedUrl']
       @key = rdio_playlist['key']
+      RdioTrack.remove_track(@key, '0', 't35335083', 1)
+    end 
+    
+    def self.delete_playlist(key)
+      @rdio.call('deletePlaylist', 'key' => key)
     end
 
     def self.playlist_attributes(user_id)
@@ -72,11 +77,11 @@ module My_Rdio
 
     end
 
-    def self.remove_track(playlist_key, index, track_key)
+    def self.remove_track(playlist_key, index, track_key, count)
       @rdio.call('removeFromPlaylist',
                  'playlist'  => playlist_key,
                  'index' => index.to_s,
-                 'count' => "1",
+                 'count' => count.to_s,
                  'tracks' => track_key)
     end
 

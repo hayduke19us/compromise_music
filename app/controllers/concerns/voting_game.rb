@@ -1,19 +1,37 @@
-module Voting_Game
-   def self.track_success_filter(playlist, group)
+module VotingGame
+  include My_Rdio
+  def self.track_success_filter(playlist, group, count)
     success_tracks = []
     failure_tracks = []
-    friends = group.friends.count
-    track_count = playlist.tracks.count
+    group = group.friends.count
+    playlist_count = playlist.tracks.count
+    fair_game = group/playlist_count.to_f
     playlist.tracks.each do |track|
-      fair_voting = (friends/track_count - 1)
-      unless track.votes_for >= fair_voting 
-        failure_tracks << track
-        track.destroy
-      else
+      if track.votes_for >= fair_game 
         success_tracks << track
-      end  
+      else
+        failure_tracks << track
+      end
     end
-    
-    success_tracks.size - failure_tracks.size
+    rdio_tracks = []
+    unless failure_tracks.count <= 0 
+      playlist_key = failure_tracks.first.playlist_key
+      track_index = failure_tracks.first.index
+      failure_tracks.each do |track| 
+        rdio_tracks << track.key 
+      end 
+      rdio_tracks = rdio_tracks.join(', ')
+      RdioTrack.remove_track(playlist_key, track_index, rdio_tracks,
+                             failure_tracks.count) 
+      failure_tracks.each do |track|  
+        track.destroy
+      end
+    end
+    x = 0 
+    success_tracks.each do |t|
+     t.index = x
+     x = x + 1
+     t.save
+    end
   end
 end

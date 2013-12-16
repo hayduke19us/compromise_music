@@ -8,7 +8,10 @@ class GroupsController < ApplicationController
     
   end
   def create
-    name = params[:name].gsub!(/\W+/,'') 
+    name = params[:name]
+    if name.match(/'/)
+     name = name.gsub(/'/, '')
+    end
     group = Group.new(name: name, user_id: params[:user_id])
     if group.save
       redirect_to root_path
