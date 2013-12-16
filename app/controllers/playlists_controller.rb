@@ -20,6 +20,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
     @user = current_user
     @playlist = Playlist.find(params[:id])
     if params[:group]
@@ -57,7 +58,7 @@ class PlaylistsController < ApplicationController
     if Grouplist.where(group_id: group.id, 
                        playlist_id: playlist.id)
       @prizes = Voting_Game.track_success_filter(playlist, group)  
-      redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
+      redirect_to group_playlist_path(group.id, playlist.id)
     end
   end
 end

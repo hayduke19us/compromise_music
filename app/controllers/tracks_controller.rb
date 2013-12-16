@@ -20,16 +20,14 @@ class TracksController < ApplicationController
     if track.save
       flash[:notice] = "#{track.name} added to playlist"
       unless params[:group]
-        redirect_to user_playlist_path(playlist.user_id, 
+        redirect_to playlist_path(playlist.user_id, 
                                        playlist.id)
       else
-        redirect_to user_playlist_path(path.user_id,
-                                      playlist.id,
-                                      group: group.id)
+        redirect_to group_playlist_path(group.id, playlist.id)
       end
     else
       flash[:notice] = "Something went wrong"
-      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+      redirect_to playlist_path(playlist.id)
     end
     
   end
@@ -45,9 +43,9 @@ class TracksController < ApplicationController
     end   
     RdioTrack.remove_track(track.playlist_key,track.index, track.key)
     unless params[:group]
-      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+      redirect_to playlist_path(playlist.id)
     else
-      redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
+      redirect_to group_playlist_path(group.id, playlist.id)
     end
   end
   
@@ -57,10 +55,10 @@ class TracksController < ApplicationController
    unless @user.voted_for?(track)
      @user.vote_exclusively_for(track)
      flash[:notice] = "#{track.name} voted up"  
-     redirect_to user_playlist_path(params[:playlists_owner], params[:playlist_id])
+     redirect_to playlist_path(params[:playlists_owner], params[:playlist_id])
    else
      flash[:notice] = "#{track.name} already voted for"  
-     redirect_to user_playlist_path(params[:playlists_owner], params[:playlist_id])
+     redirect_to playlist_path(params[:playlists_owner], params[:playlist_id])
    end
   end
   
@@ -70,11 +68,11 @@ class TracksController < ApplicationController
     unless @user.voted_against?(track)
       @user.vote_exclusively_against(track)
       flash[:notice] = "#{track.name} voted down"  
-      redirect_to user_playlist_path(params[:playlist_owner], 
+      redirect_to playlist_path(params[:playlist_owner], 
                                        params[:playlist_id])
     else
        flash[:notice] = "#{track.name} already voted down"  
-       redirect_to user_playlist_path(params[:playlist_owner], 
+       redirect_to playlist_path(params[:playlist_owner], 
                                         params[:playlist_id])
     end
   end

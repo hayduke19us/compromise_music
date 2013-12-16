@@ -184,8 +184,8 @@
                       <div class="panel-body">
                         <%group.playlists.each do |g_playlist|%>
                           <li>
-                          <%=link_to g_playlist.name, user_playlist_path(
-                            current_user.id, g_playlist.id, group: group.id)%>
+                          <%=link_to g_playlist.name, group_playlist_path(
+                            group.id, g_playlist.id)%>
                           </li>
                         <%end%>
                       </div>
