@@ -1,16 +1,1 @@
-<div class= "row-fluid">
-  <div class="span12 well">
-	  <h2 id="buddy_name_title"><%=current_user.name.titleize%></h2>
-	  <h2 id="friends_playlist">Playlists</h2>
-	  <h2 id="friends_tracks">Tracks</h2>
-	  <% current_user.playlists.each do |playlist|%>
-	  <div class= "well">
-      <h4 id="buddy_name"><%=link_to playlist.name.titleize, friend_playlist_path(@user, playlist) %></h4>
-	    <h4 id="buddy_track_count"><%= playlist.tracks.count%></h4>
-	    <h5><li><%= playlist.description%></h5></li>
-	    <h5>Created on <%=playlist.created_at.strftime("%B %d, %Y")%></h5>
-	  </div>
-	  <%end%>
-	</div>
-</div>
-</div>
+<h1> hello heroku </h1>

@@ -1,17 +1,22 @@
 class PlaylistsController < ApplicationController
   extend VotingGame
-  before_filter :get_rdio_user  
+  before_filter :get_rdio_user
   
-  def new
+  def index
+  
   end
-  
+
+  def new
+
+  end
+
   def create
     unless params[:name].blank? || params[:description].blank?
-      RdioPlaylist.new_playlist(params[:name], params[:description]) 
+      RdioPlaylist.new_playlist(params[:name], params[:description])
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
       playlist.save
-      flash[:notice] = "You have succesfully created a Playlist"  
+      flash[:notice] = "You have succesfully created a Playlist"
       redirect_to user_playlist_path(playlist.user_id, playlist.id)
     else
         flash[:notice] = "A playlist requires a name and description"
@@ -50,15 +55,15 @@ class PlaylistsController < ApplicationController
     playlist.destroy
     redirect_to root_url
   end
- 
+
   def publish
     playlist = Playlist.find(params[:id])
     group = Group.find(params[:group])
-    if Grouplist.where(group_id: group.id, 
+    if Grouplist.where(group_id: group.id,
                        playlist_id: playlist.id)
-      result =  VotingGame.track_success_filter(playlist, 
-                                               group, 
-                                               playlist.tracks.count)  
+      result =  VotingGame.track_success_filter(playlist,
+                                               group,
+                                               playlist.tracks.count)
       redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
     end
   end
