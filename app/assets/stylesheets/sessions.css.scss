@@ -1,49 +1,73 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/*body {
-  background: url('jukebox.jpg') center center no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
 
+
+
+$shadow:  0 0 8px rgba(0, 0, 0, .8);
+
+div.well{background-color: #F8F8F8; }
+
+
+@mixin box-shadow($specs) {
+  -webkit-box-shadow: $specs;
+     -moz-box-shadow: $specs;
+          box-shadow: $specs;
+        }
+
+
+
+#simple_success{height: 30px;
+                background-color: blue;
+                border-bottom: 5px solid white;
+}
+#dependability{height: 30px;
+               background-color: green;
+               border-bottom: 5px solid white;
+
+}
+#outstanding{height: 30px;
+             background-color: red;
+             border-bottom: 5px solid white;
+
+}
+
+div.panel.panel-default{padding:10%; 
+border-top: none; 
+border-bottom: none;
+@include box-shadow(none);}
+
+       
+        
 a:hover {text-decoration: none;}
 
-div.control_panel {padding: 10% 0% 10% 37%;
-}
 
 div#sign_in.well {padding: 10%;
                   text-align: center;
 }
+/*playlist dashboard*/
+
+#new_playlist {padding-bottom: 20px;}
+
+#playlist_title {padding-right: 20px;}
+
+/*friends dashboard*/
+
+#new_friend {padding-bottom: 20px;}
 
 #friend_image {width: 40px;
-     	  		   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-						   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-						   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-
+               @include box-shadow($shadow);
 }
+
 #friend_playlist_count {text-align:right;}
-a.navbar-link {color:red;}
-img#current_user_image.img-circle {width: 40px;}
 
-/*div.well#friends_groups {background-color:#9DABBA;}*/
+/*group dashboard*/
+
+#new_group{padding-bottom: 20px;}
+
 #member_group {color:#9DABBA;}
+
 li#group_owner{color:#F1A02D}
-div.well#friends_groups{background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top,  #ffffff 0%, #9dabba 84%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom,
-  color-stop(0%,#ffffff), color-stop(84%,#9dabba)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /*
-  Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ffffff 0%,#9dabba 84%); /* IE10+ */
-background: linear-gradient(to bottom,  #ffffff 0%,#9dabba 84%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff',
-endColorstr='#9dabba',GradientType=0 ); /* IE6-9 */
-}
 
-
-
+div.well#friends_groups{background-color:transparent; }
 

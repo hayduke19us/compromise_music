@@ -1,105 +1,97 @@
+  <%= render "graph" %>
   <div class="row">
-    <div id="currentpage" value="home"></div>
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <h2 id="dashboard_description" style=padding-bottom:50px;>
+      <h2 class= "lead" id="dashboard_description" style=padding-bottom:50px;>
         Start by making a few playlists. Then move on to making some new 
         friendships. After that start a group and explore your herd like
         instinct.
       </h2>
-    </div>
+    </div>    
     <div class="col-md-1">
     </div>
   </div> 
-  <div class="row">	
+  <div class="row" id="dashboard">	
     <div class="col-md-4">
-      <% if @user %>
-        <div class="home_pg" id="current_page"></div>
-        <% unless @user.playlists.count > 0 %>
-	        <div class= "well new_playlist">
-            <h1><%= link_to "Make your first playlist", 
-              new_user_playlist_path(@user) %></h1>
+      <div class="home_pg" id="current_page"></div>
+        <div class="panel panel-default" 
+          style="padding:10%;border-top: none; border-bottom:none;">
+          <div id= "new_playlist">
+            <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), 
+              new_user_playlist_path(@user), 
+              'class'=>"btn btn-default pull-right"%>
+            <h3 id="playlist_title">Playlists</h3>
           </div>
-        <% else %>
-          <div class="panel panel-default" 
-            style="padding:10%;border-top: none; border-bottom:none;">
-            <h4 id= "my">My</h4>
-            <h4 id="">Playlists</h4>
-            <p>
-            <%= link_to "Make a new playlist", new_user_playlist_path(@user), 
-              'class'=>"btn btn-primary"%>
-	          </p>
-	          <% @user.playlists.each do |playlist| %>
-              <div class="well" style="padding-bottom:0;">
-                <div id= "playlist_options">
-                  <h4><%= link_to playlist.name.titleize, 
-                    playlist_path(playlist)%></h4>
-                  <li><h6 id= "playlist_description">
-                    <%= playlist.description %></h6></li>
-                  <div class="btn-group">
-                    <%= link_to "add to group","#",
-                      'class'=>'btn btn-sm btn-default dropdown-toggle',
-                      'data-toggle' => 'dropdown',
-                      'type'=>'button' %>
-                    <ul class="dropdown-menu" role="menu">
-                      <%current_user.groups.each do |group|%>
-                        <li>
-                          <%=link_to group.name.titleize, grouplists_path(
-                          playlist_id: playlist.id, 
-                          group_id: group.id),
-                          :method => :post%>
-                        </li>
-                      <%end%> 
-                      <li class="divider"></li>
-                      <% @friends_groups.each do |member_group|%>
-                        <li>
-                          <%= link_to member_group.name.titleize, grouplists_path(
-                          playlist_id: playlist.id,
-                          group_id: member_group.id),
-                          :method => :post,
-                          'id' => 'member_group'%>
-                        </li>
-                      <%end%> 
-                    </ul>
-                    <%=link_to "edit", "#",
-                      'class'=> "btn btn-sm btn-default",
-                      'type' => "button" %>               
-                    <%=link_to "delete", user_playlist_path(@user, playlist), 
-                      method: :delete,  
-                      'class' => 'btn btn-sm btn-danger',
-                      'type' => 'button',
-                      confirm: "Are you sure?"%>   
-                  </div>
+          <% @user.playlists.each do |playlist| %>
+            <div class="well" style="padding-bottom:0;">
+              <div id= "playlist_options">
+                <h4><%= link_to playlist.name.titleize, 
+                  playlist_path(playlist)%></h4>
+                <h6 id= "playlist_description">
+                  <%= playlist.description %></h6>
+                <div class="btn-group">
+                  <%= link_to "add to group","#",
+                    'class'=>'btn btn-sm btn-default dropdown-toggle',
+                    'data-toggle' => 'dropdown',
+                    'type'=>'button' %>
+                  <ul class="dropdown-menu" role="menu">
+                    <%current_user.groups.each do |group|%>
+                      <li>
+                        <%=link_to group.name.titleize, grouplists_path(
+                        playlist_id: playlist.id, 
+                        group_id: group.id),
+                        :method => :post%>
+                      </li>
+                    <%end%> 
+                    <li class="divider"></li>
+                    <% @friends_groups.each do |member_group|%>
+                      <li>
+                        <%= link_to member_group.name.titleize, grouplists_path(
+                        playlist_id: playlist.id,
+                        group_id: member_group.id),
+                        :method => :post,
+                        'id' => 'member_group'%>
+                      </li>
+                    <%end%> 
+                  </ul>
+                  <%=link_to "edit", "#",
+                    'class'=> "btn btn-sm btn-default",
+                    'type' => "button" %>               
+                  <%=link_to "delete", user_playlist_path(@user, playlist), 
+                    method: :delete,  
+                    'class' => 'btn btn-sm btn-danger',
+                    'type' => 'button',
+                    confirm: "Are you sure?"%>   
                 </div>
-                <div id="playlist_stats" style=" border-style: solid 1px; 
-                  border-top-color:#efefef; 
-                  padding:10px 10px 0 0; height:30px; width:inherit;">
-                  <span id="stats_inline" style="display:inline">
-                    <span>Tracks: <%=playlist.tracks.count %><span>
-                    <span>
-                      Votes: 
-                      <%z = 0%>
-                      <%playlist.tracks.cycle(1) do |x|  %>
-                        <%z = z + x.votes_for.to_i %>
-                        <%end%>
-                      <%= z %>
-                    </span>  
-                  </span>
-                </div>
-              </div>  
-            <%end%>
-          </div>  
-        <%end%>
-      <%end%>
+              </div>
+              <div id="playlist_stats" style=" border-style: solid 1px; 
+                border-top-color:#efefef; 
+                padding:10px 10px 0 0; height:30px; width:inherit;">
+                <span id="stats_inline" style="display:inline">
+                  <span>Tracks: <%=playlist.tracks.count %><span>
+                  <span>
+                    Votes: 
+                    <%z = 0%>
+                    <%playlist.tracks.cycle(1) do |x|  %>
+                      <%z = z + x.votes_for.to_i %>
+                      <%end%>
+                    <%= z %>
+                  </span>  
+                </span>
+              </div>
+            </div>  
+          <%end%>
+        </div>  
 	  </div>
 	  <div class="col-md-4">
       <% if @user %>
         <div class="panel panel-default" style="padding:10%; border-top:none;border-bottom:none;">
-          <h4 id= "my">My</h4>
-          <h4 id="">Friends</h4>
-          <p><%= link_to "Make a new friend", users_path, 
-                         'class' => 'btn btn-primary' %></p>
+          <div id= new_friend>
+            <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), users_path, 
+                            'class' => 'btn btn-default pull-right' %>
+            <h3 id="friends_title">Friends</h3>
+          </div>
           <% @user.friends.each do |friend| %>
             <div class="well">
               <div class="friend_image">
@@ -128,91 +120,73 @@
       <%end%>
     </div>
     <div class='col-md-4'>
-      <% if @user %>
-        <%unless @user.groups.count > 0 %>
-          <div class="well new_group">
-            <h3 style="text-align:center;"><%= link_to "Start your first group", 
-              new_user_group_path(current_user) %></h3>
-          </div>
-        <% else %>
-          <div class="panel panel-default" style="padding:10%;border-top:none;border-bottom:none;">
-            <h4 id="my">My<h4>
-            <h4 id="">Groups</h4>
-            <p><%=link_to "Start a Group", new_user_group_path(@user), 
-              'class' => "btn btn-primary"%></p>
-            <% @user.groups.each do |group| %> 
-              <div class="well">
-
-                <h4><%=group.name.titleize %></h4>
-                <div class="panel-group" id=<%="#{group.name}"%>>
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent=<%="##{group.name}"%>
-                        href=<%="##{group.id}"%>>
-                          Members
-                        </a>
-                        <span class="badge pull-right">
-                          <%= group.friends.count %>
-                        </span>
-                      </h4>
-                    </div>
-                    <div id=<%="#{group.id}"%> class="panel-collapse collapse out">
-                      <div class="panel-body">
-                         <li id="group_owner"><%=group.user.name.titleize%></li>
-                         <%group.friends.each do |g_friend|%>
-                         <li><%=g_friend.name.titleize%></li>
-                        <%end%>
-                      </div>
-                    </div>
+      <div class="panel panel-default" style="padding:10%;border-top:none;border-bottom:none;">
+        <div id="new_group">
+          <%=link_to raw("<span class='glyphicon glyphicon-plus'></span>"),
+            new_user_group_path(@user),
+            'class' => "btn btn-default pull-right"%>
+          <h3 id="groups_title">Groups</h3>
+        </div>
+        <% @user.groups.each do |group| %> 
+          <div class="well">
+            <h4><%=group.name.titleize %></h4>
+            <div class="panel-group" id=<%="#{group.name}"%>>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent=<%="##{group.name}"%>
+                    href=<%="##{group.id}"%>>
+                      Members
+                    </a>
+                    <span class="badge pull-right">
+                      <%= group.friends.count %>
+                    </span>
+                  </h4>
+                </div>
+                <div id=<%="#{group.id}"%> class="panel-collapse collapse out">
+                  <div class="panel-body">
+                     <li id="group_owner"><%=group.user.name.titleize%></li>
+                     <%group.friends.each do |g_friend|%>
+                     <li><%=g_friend.name.titleize%></li>
+                    <%end%>
                   </div>
-                </div> 
-                <div class="panel-group" id=<%="playlist_#{group.name}"%>>
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" 
-                          data-parent=<%="#playlist_#{group.name}"%>
-                          href=<%="#playlist_#{group.id}"%>>
-                          Playlists
-                          <span class="badge pull-right">
-                            <%=group.playlists.count%>
-                          </span>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id=<%="playlist_#{group.id}"%> 
-                      class="panel-collapse collapse out">
-                      <div class="panel-body">
-                        <%group.playlists.each do |g_playlist|%>
-                          <li>
-                          <%=link_to g_playlist.name, playlist_path(
-                            g_playlist.id, group: group.id)%>
-                          </li>
-                        <%end%>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
+                </div>
               </div>
-            <%end%>
-            <%= render 'group_member'%>
-          </div> 
+            </div> 
+            <div class="panel-group" id=<%="playlist_#{group.name}"%>>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" 
+                      data-parent=<%="#playlist_#{group.name}"%>
+                      href=<%="#playlist_#{group.id}"%>>
+                      Playlists
+                      <span class="badge pull-right">
+                        <%=group.playlists.count%>
+                      </span>
+                    </a>
+                  </h4>
+                </div>
+                <div id=<%="playlist_#{group.id}"%> 
+                  class="panel-collapse collapse out">
+                  <div class="panel-body">
+                    <%group.playlists.each do |g_playlist|%>
+                      <li>
+                      <%=link_to g_playlist.name, playlist_path(
+                        g_playlist.id, group: group.id)%>
+                      </li>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
         <%end%>
-      <%end%>
+        <%= render 'group_member'%>
+      </div> 
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="top_button" style=text-align:center;>
-        <a button type="button" class="btn btn-default btn-lg" href="">
-          <span class="glyphicon glyphicon-arrow-up"</span></a>
-        </button>
-      </div>
-    </div>
-  </div>
-  
-  
+ 
 
 
 

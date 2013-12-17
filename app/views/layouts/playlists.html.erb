@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -11,8 +10,7 @@
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
   </head>
   <body>
-    <% if current_user %>
-      <nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
+  <nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
         <div class="container">
           <div class= "navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -49,8 +47,40 @@
         </div>
         
         <%= yield %>
-      <% else %>
-        <%=render "sign_in"%> 
-      <%end%>
+        
+        <nav class="navbar navbar-default navbar-fixed-bottom" 
+          id= "footer"
+          role="navigation">
+          <div id="apiswf"></div>
+            <ul class="nav navbar-nav">
+              <li>
+              <blockquote>
+              <img src="" id="art" style="width:85px;float:left;">
+              </blockquote>
+              <li>
+              <li class="navbar-text">
+              <li class="navbar-text">
+              <blockquote>
+               <input type="hidden" id="play_key" value="">
+              <dd id="track"></dd>
+              <dd id="artist"></dd>
+              </blockquote>
+              </li>
+            </ul>
+              <div id="freq">
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+                <div id="sound"></div>
+              </div>
+        </nav>
+      
   </body>
 </html>
