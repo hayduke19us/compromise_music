@@ -18,10 +18,6 @@ CompromiseMusic::Application.routes.draw do
     resources :playlists 
   end
 
-  resources :friends do
-    resources :playlists
-  end
-  
   resources :tracks do 
     member do
       get :vote_up, as: 'vote_up'
