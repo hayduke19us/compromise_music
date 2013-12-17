@@ -12,15 +12,6 @@
  *= require_self
  *= require_tree .
  */
-/* Override Bootstrap 3 font locations */
-@font-face {
-font-family: 'Glyphicons Halflings';
-src: url('../assets/glyphicons-halflings-regular.eot');
-src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
-url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
-url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
-url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
 
 img#raccoon_image.img-circle{width: 100px;
                              box-shadow: 0 0 8px rgba(0, 0, 0, .8);
