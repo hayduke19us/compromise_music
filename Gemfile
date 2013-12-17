@@ -12,6 +12,9 @@ group :development do
   gem "rails-erd"
 end
 
+#extends rails logging and fixes assets to be served statically
+gem 'rails_12factor' 
+
 #makes playlist voteable
 gem 'thumbs_up'
 
