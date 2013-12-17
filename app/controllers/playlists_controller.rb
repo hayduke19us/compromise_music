@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  before_filter :get_rdio_user 
   extend VotingGame
   
   def new
