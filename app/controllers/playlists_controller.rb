@@ -21,6 +21,7 @@ class PlaylistsController < ApplicationController
 
   def show
     @user = current_user
+    @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
     @playlist = Playlist.find(params[:id])
     if params[:group]
       @group_id = params[:group]

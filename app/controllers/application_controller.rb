@@ -15,5 +15,6 @@ class ApplicationController < ActionController::Base
                                     current_user.access_secret) 
       RdioPlaylist.verified(member) 
       RdioTrack.verified(member) 
+      RdioUser.verified(member)
   end
 end
