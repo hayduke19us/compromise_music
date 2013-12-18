@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   
   def index
     @user = current_user
-    @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
     @friends_groups = Array.new
     if current_user
       @user.friends.each do |friend|
