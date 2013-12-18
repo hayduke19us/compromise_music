@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
-  
+
   def index
     @user = current_user
-    
+
     @friends_groups = Array.new
     if current_user
       @user.friends.each do |friend|
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
     end
   end
-  
+
   def create
     reset_session
     user = User.from_omniauth(env["omniauth.auth"])
