@@ -1,4 +1,5 @@
-  <%= render "graph" %>
+<% if @user %>
+ <%= render "graph" %>
   <div class="row">
     <div class="col-md-1">
     </div>
@@ -30,7 +31,7 @@
                   playlist_path(playlist)%></h4>
                 <h6 id= "playlist_description">
                   <%= playlist.description %></h6>
-                <div class="btn-group">
+                <div class="btn-group btn-group-xs">
                   <%= link_to "add to group","#",
                     'class'=>'btn btn-sm btn-default dropdown-toggle',
                     'data-toggle' => 'dropdown',
@@ -186,7 +187,7 @@
       </div> 
     </div>
   </div>
- 
+<%end%> 
 
 
 
