@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Compromise" %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "sessions", :media => "all", "data-turbolinks-track" => "true" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
+  </head>
+  <body>
+    <% if current_user %>
+      <nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
+        <div class="container">
+          <div class= "navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-collapse" >
+              <span class="sr-only">Toggle-navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to "Compromise", root_path, "class" => "navbar-brand" %>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class= "nav navbar-nav">
+              <li class="" id="home_pg" >
+                <%= link_to "Home", root_path %>
+              </li>
+              <li class="" id="friends_pg">
+                <%= link_to "Friends", users_path %>
+              </li>
+              <li class="" id="groups_pg">
+                <%= link_to "Groups", user_groups_path(current_user) %>
+              </li>
+            </ul>
+              <p class="navbar-text navbar-right">
+              <%= current_user.name.titleize%>
+              <%=link_to 'Log out', signout_path, 
+                  "class" => "navbar-link btn-sm btn-default"%>
+              </p>
+          </div>
+        </div>
+      </nav>
+        
+        <%= yield %>
+      <% else %>
+        <%=render "sign_in"%> 
+      <%end%>
+  </body>
+</html>

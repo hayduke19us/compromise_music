@@ -1,51 +1,82 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//= require bootstrap
 
+/*font face path fix. In Bootstrap the paths are 'url(...) rails cant find them'*/
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-url('glyphicons-halflings-regular.eot');
+  src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+  font-url('glyphicons-halflings-regular.woff') format('woff'), 
+  font-url('/glyphicons-halflings-regular.ttf') format('truetype'), 
+  font-url('/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+/*Sass variables and mixins */
 
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
-
-div.well{background-color: white; }
-
-
+$shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
           box-shadow: $specs;
-        }
-
-
-
-#simple_success{height: 30px;
-                background-color: blue;
-                border-bottom: 5px solid white;
-}
-#dependability{height: 30px;
-               background-color: green;
-               border-bottom: 5px solid white;
-
-}
-#outstanding{height: 30px;
-             background-color: red;
-             border-bottom: 5px solid white;
-
 }
 
-div.panel.panel-default{padding:10%; 
-border-top: none; 
-border-bottom: none;
-@include box-shadow(none);}
+/*body padding, backgrounds and page wide styles*/
 
-       
-        
-a:hover {text-decoration: none;}
+.navbar-default{background-color: white;}
 
+a:hover {text-decoration: none;
+         color:#333333;
+       }
+a {color: #777777}
 
-div#sign_in.well {padding: 10%;
-                  text-align: center;
+body {padding-top: 70px;
 }
+
+#colored_body {height:100%;
+               background-color:#606a7a;
+               box-shadow: $shadow_light;
+}
+#bottom_body{padding-top: 40px;
+             height:100%;
+}
+
+div.well{background-color: white; }
+
+/*graph*/
+
+#graph_pad{padding-bottom: 5px;}
+
+#simple_success{height: 25px;
+                background-color: #afc5bf;
+                box-shadow: $shadow_light;
+}
+
+#dependability{height: 25px;
+               background-color: #5a7570;
+               box-shadow: $shadow_light;
+
+}
+
+#outstanding{height: 25px;
+             background-color: #bf988e;
+             box-shadow: $shadow_light;
+
+}
+
+
+/*panels*/
+
+div.panel.panel-default{ 
+}
+
 /*playlist dashboard*/
+
+#playlist_panel{padding:5%;}
 
 #new_playlist {padding-bottom: 20px;}
 
@@ -53,15 +84,18 @@ div#sign_in.well {padding: 10%;
 
 /*friends dashboard*/
 
+#friend_panel{padding:5%;}
+
 #new_friend {padding-bottom: 20px;}
 
 #friend_image {width: 40px;
                @include box-shadow($shadow);
 }
 
-#friend_playlist_count {text-align:right;}
 
 /*group dashboard*/
+
+#group_panel{padding:5%;}
 
 #new_group{padding-bottom: 20px;}
 
@@ -71,3 +105,8 @@ li#group_owner{color:#F1A02D}
 
 div.well#friends_groups{background-color:transparent; }
 
+/* sign_in page*/
+
+div#sign_in.well {padding: 10%;
+                  text-align: center;
+}
