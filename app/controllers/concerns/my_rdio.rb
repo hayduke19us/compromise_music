@@ -7,6 +7,19 @@ module My_Rdio
                            [token, secret])
 
     end
+    
+   
+    def self.verified(rdio)
+      @rdio = rdio
+    end
+    
+    def self.heavy_rotation(key, friend)
+      @rdio.call('getHeavyRotation',
+                 'user' => key,
+                 'friends' => 'true',
+                 'count' => '48')['result'] 
+
+    end
   end
 
   class RdioPlaylist

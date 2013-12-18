@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def index
     @user = current_user
-
     @friends_groups = Array.new
     if current_user
       @user.friends.each do |friend|

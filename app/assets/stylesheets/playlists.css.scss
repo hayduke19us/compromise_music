@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*carousel*/
+
+#carousel_pad{padding:0 0 40px 90px;
+}
+#heavy_rotation {width: 812px;
+                 display: inline;
+}
+#carousel_image{height:50px;}
+img#carousel_image:hover{transform:scale(2,2); 
+                         -webkit-transform: scale(2,2);
+                        transition-duration: 2s;
+}
+
+
 #publish_button{style: text;}
 
 #publish {
