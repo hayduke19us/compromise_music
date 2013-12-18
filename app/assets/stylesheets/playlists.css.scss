@@ -2,9 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.glyphicon{top:0px;}
 /*carousel*/
 
-#carousel_pad{padding:0 0 40px 90px;
+#carousel_pad{padding:0 0 0 0;
 }
 #heavy_rotation {width: 812px;
                  display: inline;
@@ -15,6 +17,9 @@ img#carousel_image:hover{transform:scale(2,2);
                         transition-duration: 2s;
 }
 
+/*search panel*/
+
+#search_panel{padding:5%;}
 
 #publish_button{style: text;}
 
@@ -29,12 +34,6 @@ img#carousel_image:hover{transform:scale(2,2);
 
 div.well.song_search{background:transparent;}
 
-iframe {float:left;
-        height: 30px;
-        width: 30px;
-        border-radius: 2px;
-    
-}
 
 #search_track_name{text-align: center;
                  
@@ -45,28 +44,14 @@ iframe {float:left;
 		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
 }
 
-#my{float:left;
-    color: #929999;
-}
 
 #friends_list_title {float: left;}
 
-#track_count_title {text-align: right;
-                    color: #929999;
-}
 
 #playlist_name {float: left;}
 
 #playlist_description {;}
 
-#tracks_count {text-align: right;}
-
-div.well.new_playlist {text-align: center;}
-
-
-div.span5#search_well{padding-top: 1%;
- 										  height: 400px;
-}
 
 input#name {width: 100%;}
 
@@ -102,8 +87,20 @@ h4#new_playlist_description {text-align: center}
 
 #add{float:right;
 }
-div#album_big img {width:100%;
-                   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-		               -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+/*jukebox swf object player*/
+
+div#freq{float:right;
+         padding-top: 30px;
+         width: 500px;
+         height:auto;
+         opacity:0.6;
+         margin-right:200px;
+}
+div#sound{background-color:#C2D1FF;
+          float:left;
+          height:10px;
+          border-top: solid 1px #efefef;
+          opacity: 0.4;
+      
 }

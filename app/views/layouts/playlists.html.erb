@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Compromise" %></title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => "true" %>
+    <%= stylesheet_link_tag "playlists", "application", :media => "all", "data-turbolinks-track" => "true" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
   </head>
@@ -42,45 +42,40 @@
           </div>
         </div>
       </nav>
-      <div class="container">
-        <div class= "notify">
-        </div>
-        
-        <%= yield %>
-        
-        <nav class="navbar navbar-default navbar-fixed-bottom" 
-          id= "footer"
-          role="navigation">
-          <div id="apiswf"></div>
-            <ul class="nav navbar-nav">
-              <li>
-              <blockquote>
-              <img src="" id="art" style="width:85px;float:left;">
-              </blockquote>
-              <li>
-              <li class="navbar-text">
-              <li class="navbar-text">
-              <blockquote>
-               <input type="hidden" id="play_key" value="">
-              <dd id="track"></dd>
-              <dd id="artist"></dd>
-              </blockquote>
-              </li>
-            </ul>
-              <div id="freq">
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-              </div>
-        </nav>
-      
+      <%= yield %>
+      <nav class="navbar navbar-default navbar-fixed-bottom" 
+        id= "footer"
+        role="navigation">
+        <div id="apiswf"></div>
+          <ul class="nav navbar-nav">
+            <li>
+            <blockquote>
+            <img src="" id="art" style="width:85px;float:left;">
+            </blockquote>
+            <li>
+            <li class="navbar-text">
+            <li class="navbar-text">
+            <blockquote>
+             <input type="hidden" id="play_key" value="">
+            <dd id="track"></dd>
+            <dd id="artist"></dd>
+            </blockquote>
+            </li>
+          </ul>
+            <div id="freq">
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+            </div>
+      </nav>
+    
   </body>
 </html>
