@@ -47,10 +47,9 @@ a {color: #777777}
 body {padding-top: 70px;
 }
 
-#colored_body {height:100%;
+#colored_body {height:100vh;
                background-color:#606a7a;
                box-shadow: $shadow_light;
-               min-height:100%;
-               height:auto;
                padding-top: 40px;
 }
+

@@ -1,70 +1,82 @@
-<div class="row">
-  <div class="friends_pg" id="current_page"><!--for nav active class --></div>
-  <div class="col-md-1">
+<div class="container">
+  <div class="row">
+    <div class="friends_pg" id="current_page"><!--for nav active class -->
+    </div>
+    <div class="col-md-6">
+      <div id="friend_description">
+        <div class="lead">
+          Make new friendships and add those friends to a group.
+          Then you can collaborate on playlists.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+    </div>
   </div>
-  <div class="col-md-10">
-    <h2 id="friends_description">
-      Make new friendships and add those friends to a group.
-      Then you can collaborate on playlists.
-    </h2>
-  </div>
-  <div class="col-md-1">
 </div>
-<div class='row'>
-	<div class="col-md-6", id="all_users">
-	  <div class= "panel panel-default" id="search_panel">
-      <h3 id= users_title>Users</h3>
-      <%=link_to "show all", users_path, search: ""%>
-      <span class="badge pull-right">
-        <%=@users.count%>
-      </span>
-		  <div id= "friends_search_form">
-        <%= form_tag(users_path, :method => 'get') do%>
-          <div class="input-group input-group-md">
-            <div class= "input-group-btn">
-              <button class="btn btn-default" 
-                name="commit" 
-                type="submit">
-                Search
-              </button>
-            </div>
-              <input name="search" id="search" type="text" class="form-control">
+<div id="colored_body">
+  <div class="container" id="bottom_body">
+    <div class='row'>
+      <div class="col-md-6">
+        <div class= "panel panel-default" id="search_panel">
+          <h3 id="users_title">
+            <span class="badge pull-right">
+              <%=@users.count%>
+            </span>
+            Users
+          </h3>
+          <%=link_to "show all", users_path, search: ""%>
+          <div id= "friends_search_form">
+            <%= form_tag(users_path, :method => 'get') do%>
+              <div class="input-group input-group-md">
+                <div class= "input-group-btn">
+                  <button class="btn btn-default" 
+                    name="commit" 
+                    type="submit">
+                    Search
+                  </button>
+                </div>
+                <input name="search" id="search" type="text" class="form-control">
+              </div>
             <%end%>
           </div>
+          <% @users.each do |user| %>
+            <div class="well">
+              <div class="pull-right" id="user_image_search">
+                <%= image_tag user.image, 'class' => "img-circle"%></p>
+              </div>
+              <h4 id="user_name"><%= user.name.titleize%></h4>
+              <%= link_to 'Add friend', 
+                friendships_path(:friend_id => user),
+                :method => :post ,
+                'id' => 'add_friend_link',
+                'class' => 'btn btn-sm btn-default' %>
+            </div>
+          <%end%>
         </div>
-			<% @users.each do |user| %>
-        <div class="well">
-          <div class="user_image_search">
-            <%= image_tag user.image, 'class' => "img-circle"%></p>
-          </div>
-		      <h4 id="user"><%= user.name.titleize%></h4>
-          <%= link_to 'Add friend', friendships_path(:friend_id => user),
-                                    :method => :post ,
-                                    'id' => 'add_friend_link',
-                                    'class' => 'btn btn-sm btn-primary' %>
-		    </div>
-		  <%end%>
-    </div>
-	</div>
-	<div class="col-md-6", id="all_friends">
-	  <div class="panel panel-default" id= "friends_panel">
-      <h3 id= "your_friends">Friends
-        <span class="badge pull-right">
-          <%=current_user.friendships.count%>
-        </span>
-      </h3>
-	    <%for friendship in current_user.friendships %>
-	      <div class= "well">
-        <div class="user_image_search">
-          <%= image_tag friendship.friend.image, 'class' => "img-circle"%>
+      </div>
+      <div class="col-md-6", id="all_friends">
+        <div class="panel panel-default" id= "friends_panel">
+          <h3 id= "your_friends">Friends
+            <span class="badge pull-right">
+              <%=current_user.friendships.count%>
+            </span>
+          </h3>
+          <%for friendship in current_user.friendships %>
+            <div class= "well">
+              <div class="pull-right" id="friend_img">
+                <%= image_tag friendship.friend.image, 
+                  'class' => "img-circle"%>
+              </div>
+              <h4 id="user"><%= friendship.friend.name.titleize %></h4>
+              <%=link_to 'Remove friend', friendship, :method => :delete,
+                  data: {confirm: "Are you sure?"},
+                  'id' => 'remove_friend_link',
+                  'class' => 'btn btn-sm btn-danger'%>
+            </div>
+          <%end%>
         </div>
-	      <h4 id="user"><%= friendship.friend.name.titleize %></h4>
-        <%=link_to 'Remove friend', friendship, :method => :delete,
-            data: {confirm: "Are you sure?"},
-            'id' => 'remove_friend_link',
-            'class' => 'btn btn-sm btn-danger'%>
-	      </div>
-	   <%end%>
+      </div>
     </div>
   </div>
 </div>

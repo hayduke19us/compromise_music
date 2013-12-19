@@ -2,17 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#friend_description{padding:20px 0 20px 0;}
+/* panel that allows you to search for friends */
 
-// panel that allows you to search for friends 
+#search_panel{padding:5%;}
 
-div.col-md-6#all_users{padding-top:3%}
-h3#users_title{display:inline;}
-#search_panel {padding: 20px 10% 20px 10%;
-               border-top: none;
-               border-bottom: none;
-}
-#friends_search_form {padding: 20px 0 20px 0;}
-div.user_image_search{float:right}
+#friends_search_form {padding: 10px 0 10px 0;}
+
 img.img-circle {width: 60px;
                 box-shadow: 0 0 8px rgba(0, 0, 0, .8);
                 -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
@@ -22,27 +18,14 @@ img.img-circle {width: 60px;
 
 //panel that list all friends
 
-#friends_panel{padding: 20px 10% 20px 10%;
-               border-top: none;
-               border-bottom: none;
-}
-div.col-md-6#all_friends{padding-top:3%}
-
-h3#your_friends{margin-top: 0;}
-
-
-#buddy_image {padding-left: 37%;
-              padding-bottom: 40%;
-}
+#friends_panel{padding:5%;}
 
 #buddy_name_title{float:left;
 									color: #929999;
 }
 
-#friends_playlist{float:left;}
 #friends_tracks{text-align: right;
 								color:#929999;
 }
-
 
 
