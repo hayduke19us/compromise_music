@@ -1,28 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6" id="popular_title">
-      <div class="lead">
-      <h1>Popular playlist names</h2>
-      But lets be original
+<div id="white_top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" id="popular_title">
+        <div class="lead">
+        <h1>Popular playlist names</h2>
+        But lets be original
+        </div>
       </div>
-    </div>
-    <div class="col-md-6" id="playlist_names_carousel">
-      <div class="lead">
-        <blockquote>
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
-             data-interval=7000 data-pause="hover">
-            <div class="carousel-inner">
-              <div class="item active">
-                Road trip to Mars!
-              </div>
-              <%@playlists.reverse.each do |playlist| %>
-                <div class="item">
-                  <%=playlist.name.titleize%>
+      <div class="col-md-6" id="playlist_names_carousel">
+        <div class="lead">
+          <blockquote>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+               data-interval=7000 data-pause="hover">
+              <div class="carousel-inner">
+                <div class="item active">
+                  Road trip to Mars!
                 </div>
-              <%end%>
+                <%@playlists.reverse.each do |playlist| %>
+                  <div class="item">
+                    <%=playlist.name.titleize%>
+                  </div>
+                <%end%>
+              </div>
             </div>
-          </div>
-        </blockquote>
+          </blockquote>
+        </div>
       </div>
     </div>
   </div>

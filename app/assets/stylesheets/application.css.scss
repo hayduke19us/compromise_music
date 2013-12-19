@@ -44,12 +44,14 @@ a:hover {text-decoration: none;
        }
 a {color: #777777}
 
-body {padding-top: 70px;
+body {padding-bottom: 70px;
+      background-color:#606a7a;
 }
 
-#colored_body {height:100vh;
-               background-color:#606a7a;
-               box-shadow: $shadow_light;
-               padding-top: 40px;
+#colored_body {padding-top: 40px;
 }
+#white_top{background-color:white;
+           padding-top:70px;
+}
+
 

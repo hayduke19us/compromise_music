@@ -1,22 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="lead">
-        <h1><%=@playlist.name.titleize%></h1>
-        <div id="playlist_specs" style="inline">
-          Tracks <%=@playlist.tracks.count%>
-          <%x=0%>
-          <%@playlist.tracks.each {|track| x += track.votes_for}%>
-          Votes <%= x %>
+<div id="white_top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="lead">
+          <h1><%=@playlist.name.titleize%></h1>
+          <div id="playlist_specs" style="inline">
+            Tracks <%=@playlist.tracks.count%>
+            <%x=0%>
+            <%@playlist.tracks.each {|track| x += track.votes_for}%>
+            Votes <%= x %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6" id="carousel_pad">
-      <blockquote>
-      <div id="heavy_rotation" >
-        <%=render "carousel"%>
+      <div class="col-md-6" id="carousel_pad">
+        <blockquote>
+        <div id="heavy_rotation" >
+          <%=render "carousel"%>
+        </div>
+        </blockquote>
       </div>
-      </blockquote>
     </div>
   </div>
 </div>
