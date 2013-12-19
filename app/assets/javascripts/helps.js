@@ -1,5 +1,5 @@
 
-var playback_token = "GAlSpPWzAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdKP07eJre1GqAxhydfjHlbQ="
+var playback_token = "GBxSs3fCAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb20WhrNUm1fOmTGe7kTvk_mc"
 var domain = "warm-wave-8683.herokuapp.com";
 
 
