@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.name = auth.info.name
+      user.name = auth.info.name.downcase
       user.image = auth.info.image
       user.key = auth.extra.raw_info["key"]
       user.oauth_token = auth.credentials.token

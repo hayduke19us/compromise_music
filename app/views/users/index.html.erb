@@ -23,7 +23,7 @@
         <div class= "panel panel-default" id="search_panel">
           <h3 id="users_title">
             <span class="badge pull-right">
-              <%=@users.count%>
+              <%=@all_users.count%>
             </span>
             Users
           </h3>
@@ -42,18 +42,27 @@
               </div>
             <%end%>
           </div>
-          <% @users.each do |user| %>
-            <div class="well">
-              <div class="pull-right" id="user_image_search">
-                <%= image_tag user.image, 'class' => "img-circle"%></p>
+          <%unless @search_users.blank?%>
+            <% @search_users.each do |user| %>
+              <div class="well">
+                <div class="pull-right" id="user_image_search">
+                  <%= image_tag user.image, 'class' => "img-circle"%></p>
+                </div>
+                <h4 id="user_name"><%= user.name.titleize%></h4>
+                <%= link_to 'Add friend', 
+                  friendships_path(:friend_id => user),
+                  :method => :post ,
+                  'id' => 'add_friend_link',
+                  'class' => 'btn btn-sm btn-default' %>
               </div>
-              <h4 id="user_name"><%= user.name.titleize%></h4>
-              <%= link_to 'Add friend', 
-                friendships_path(:friend_id => user),
-                :method => :post ,
-                'id' => 'add_friend_link',
-                'class' => 'btn btn-sm btn-default' %>
-            </div>
+            <%end%>
+          <%else%>
+            <%unless @all_users.blank? %>
+              No results, press show all to restart 
+            <%else%>
+              All users are friends with <%=current_user.name.titleize%>
+            <%end%>
+
           <%end%>
         </div>
       </div>

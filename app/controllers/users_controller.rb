@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
   def index
-    for friend in current_user.friends do 
-    @users = User.all.where.not(:id == current_user.id && 
-                                :id == friend.id)
-    end
-    #puts friend's id's in an array for proper listing
+      unless current_user.friends.blank?
+        all_users = User.where.not("id = ? OR id = ?",
+                                    current_user.id, 
+                                    current_user.friends.each {|f| p f.id })
+        else
+        all_users = User.where.not(id: current_user)  
+      end
+      @all_users = all_users
+      #puts friend's id's in an array for proper listing
     friend_check
   end
   
@@ -24,20 +28,29 @@ class UsersController < ApplicationController
   private
   def friend_check
     @friend_array = []
-    current_user.friends.each {|friend| @friend_array << friend }
+    current_user.friends.each {|friend| @friend_array << friend.id }
     @friend_array << current_user.id
     
     if params[:search].blank? && current_user.friends.empty?
-      users = User.where("id != ?", current_user.id)
+      users = User.where.not(id: current_user.id)
     elsif params[:search].blank? 
-      users = User.where.not(id: @friend_array )
-    else
-      users = User.search(params[:search]) 
-      current_user.friends.each do |friend|
-        users.keep_if {|c| c.id != current_user.id}
-        users.keep_if {|c| c.id != friend.id}
-      end 
+      users = User.where.not("id = ? OR id = ?", 
+                             current_user.id, 
+                             current_user.friends.each {|f| p f}  )
+    else params[:search]
+      users = User.search(params[:search].downcase)
+      ids = []
+      users.collect.each {|user| ids << user[:id]}
+      unless current_user.friends.count > 0
+        ids = ids.reject {|id| id == current_user.id}
+      else current_user.friends.count > 0 
+        ids = ids.reject{|id| id == current_user.id}
+        current_user.friends.each do |f_id|
+          ids = ids.reject{|id| id == f_id.id}
+        end
+      end
+      users = User.where("id = ?", ids) 
     end
-      @users = users
+      @search_users = users
   end
 end
