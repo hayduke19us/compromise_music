@@ -14,12 +14,13 @@
   <div class="col-md-4">
 	</div>	
 	<div class= "col-md-4 well", id= "new_playlist_form">
-    <%=form_tag(controller: "groups", action: "create", user_id: current_user.id)%>
-    <h4>Name</h4>
-    <%=text_field_tag(:name, nil, :placeholder => "Name that group!")%>
-    <div class="new_group_btn">
+    <%=form_tag(controller: "groups", action: "create", user_id: current_user.id) do%>
+      <h4>Name</h4>
+      <%=text_field_tag(:name, nil, :placeholder => "Name that group!")%>
+      <div class="new_group_btn">
       <%=submit_tag "create group", 'class' => 'btn btn-primary' %>
-    </div>
+      </div>
+    <%end%>
   </div>
 	<div class="col-md-4">
 	</div>
