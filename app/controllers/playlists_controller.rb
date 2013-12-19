@@ -3,6 +3,7 @@ class PlaylistsController < ApplicationController
   extend VotingGame
   
   def new
+    @playlists = Playlist.all 
   end
 
   def create

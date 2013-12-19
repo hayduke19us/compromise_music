@@ -54,10 +54,22 @@ div.well.song_search{background:transparent;}
 
 #playlist_name {float: left;}
 
-#playlist_description {;}
+/* playlists new form*/
 
+#popular_title{padding-bottom:40px;}
+
+#playlist_new_panel{padding:5%;}
+
+#playlist_names_carousel{padding-top: 40px;}
+
+textarea#description {width: 100%;}
 
 input#name {width: 100%;}
+
+#new_playlist_btn {width: 100%;}
+
+.new_playlist_btn {padding-top: 10px;}
+
 
 
 h4#track_name{float: left;
@@ -67,12 +79,6 @@ h4#track_name{float: left;
 
 
 div#remove_button{float:left;}
-
-textarea#description {width: 100%;}
-
-#new_playlist_btn {width: 100%;}
-
-.new_playlist_btn {padding-top: 10px;}
 
 
 #new_playlist_name{float:left;

@@ -1,9 +1,46 @@
-<div class="row">
-  <div class="col-md-4">
-  </div>	
-  <div class= "col-md-4 well", id= "new_playlist_form">
-    <%= render "form" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" id="popular_title">
+      <div class="lead">
+      <h1>Popular playlist names</h2>
+      But lets be original
+      </div>
+    </div>
+    <div class="col-md-6" id="playlist_names_carousel">
+      <div class="lead">
+        <blockquote>
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+             data-interval=7000 data-pause="hover">
+            <div class="carousel-inner">
+              <div class="item active">
+                Road trip to Mars!
+              </div>
+              <%@playlists.reverse.each do |playlist| %>
+                <div class="item">
+                  <%=playlist.name.titleize%>
+                </div>
+              <%end%>
+            </div>
+          </div>
+        </blockquote>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
+</div>
+
+
+<div id="colored_body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+      </div>	
+      <div class= "col-md-4", id= "new_playlist_form">
+        <div class="panel panel-default" id="playlist_new_panel">
+          <%= render "form" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
   </div>
 </div>
