@@ -1,5 +1,5 @@
 
-var playback_token = "GBxSs3fCAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb20WhrNUm1fOmTGe7kTvk_mc"
+var playback_token = "GAlSs86uAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdEtTUJDJ5j2ieFZ0Ia7q5zA="
  
 var domain = "localhost";
 

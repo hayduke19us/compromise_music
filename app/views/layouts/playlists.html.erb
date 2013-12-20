@@ -43,7 +43,7 @@
         </div>
       </nav>
       <%= yield %>
-      <div class="hidden" id="hide_nav">
+      <div class="invisible" id="hide_nav">
         <nav class="navbar navbar-default navbar-fixed-bottom" 
           id= "footer"
           role="navigation">
@@ -51,7 +51,7 @@
             <ul class="nav navbar-nav">
               <li>
               <blockquote>
-              <img src="" id="art" style="width:85px;float:left;">
+                <img src="" id="art" style="width:85px;float:left;">
               </blockquote>
               <li>
               <li class="navbar-text">
@@ -62,6 +62,13 @@
               <dd id="artist"></dd>
               </blockquote>
               </li>
+              <div class="navbar-text" id="controls">
+                <li class="navbar-link">
+                <%=link_to_function raw("
+                  <span class='glyphicon glyphicon-pause', id='pause_glyph' ></span>"),
+                 "pause_control()", class: "btn btn-default", id: "control_button"%>
+                </li>
+              </div>
             </ul>
               <div id="freq">
                 <div id="sound"></div>
