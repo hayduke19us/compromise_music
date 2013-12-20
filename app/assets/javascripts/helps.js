@@ -1,6 +1,7 @@
 
 var playback_token = "GBxSs3fCAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb20WhrNUm1fOmTGe7kTvk_mc"
-var domain = "warm-wave-8683.herokuapp.com";
+ 
+var domain = "localhost";
 
 
 // a global variable that will hold a reference to the api swf once it has loaded

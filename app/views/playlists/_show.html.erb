@@ -13,11 +13,11 @@
             method: :post,
             class: "btn btn-sm btn-primary" %></br>
         </div>
-        <h4 id= "search_track_name">
+        <h4 "id= "search_track_name">
           <%= result["name"].titleize %> by
           <%= result["artist"]%>
         </h4> 
-        <div class="center-block" style="padding-left:24%;">
+        <div class="center-block">
           <%= image_tag "#{result['icon']}",
             'id' => "search_track_image"%>
         </div>
