@@ -1,17 +1,50 @@
-<div class="row">
-  <div class="groups_pg" id=current_page></div>
-  <div class="groups" id="current_page"></div>
-  <div class="col-md-12">
-    <div class="panel panel-default" style="padding:5%;">
-      <h3 id="my_groups_my">My</h3>
-      <h3>Groups</h3>
-      <% current_user.groups.each do |group| %>
-        <div class="well"> 
-          <h4><%=group.name%></h4>
-          <%=link_to "Delete", user_group_path(current_user, group),  
-            method: :delete, 'class' => 'btn btn-danger' %> 
-        </div>
-      <%end%>
+<div id="white_top">
+  <div class="container">
+    <div class="row">
+      <div class="groups_pg" id=current_page></div>
+      <div class="col-md-12">
+        <h3>
+          <div class="pull-left" id="my_groups_title">
+            My Groups
+          </div>
+          <div id="group_count">
+            <%=current_user.groups.count%>
+          </div>
+        </h3>
+        <% current_user.groups.each do |group| %>
+          <div class="well"> 
+            <h4><%=group.name%></h4>
+            <%=link_to "Delete", user_groups_path(current_user),  
+              method: :delete, 'class' => 'btn btn-danger' %> 
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="colored_body">
+  <div class="container">
+    <div class="row">
+      <div class="groups_pg" id=current_page></div>
+      <div class="col-md-12">
+        <h3>
+          <div class="pull-left" id="groupships_title">
+            Group Memberships
+          </div>
+          <div id="groupships_count">
+            <%=@groupships.count%>
+          </div>
+        </h3>
+        <% unless @groupships.blank?%>
+          <% @groupships.each do |groupship|%>
+            <div class="well"> 
+              <h4><%=groupship.group.name%></h4>
+              <%=link_to "Remove Me", groupship_path(groupship),  
+                method: :delete, 'class' => 'btn btn-danger' %> 
+            </div>
+          <%end%>
+        <%end%>
+      </div>
     </div>
   </div>
 </div>

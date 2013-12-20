@@ -8,4 +8,10 @@ class GroupshipsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def destroy
+    groupship = Groupship.find(params[:id])
+    groupship.destroy
+    redirect_to user_groups_path(current_user)
+  end
 end

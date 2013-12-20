@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     @groups = user.groups 
+    @groupships = Groupship.where(friend_id: current_user.id)
   end
  
   def new

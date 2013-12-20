@@ -11,7 +11,27 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" id="budding_relationships">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+          data-interval=7000 data-pause="hover">
+            <!-- Wrapper for slides -->
+          <blockquote>
+            <div class="carousel-inner">
+              <div class="item active">
+                <h2>Budding Relationships</h2>
+              </div>
+              <%@friendships_array.each do |friend| %>
+                <div class="item">
+                  <div class="friendships">
+                    <h2> <%=friend[0]%> 
+                    <span class="glyphicon glyphicon-heart"> </span>
+                    <%=friend[1]%></h2>
+                  </div>
+                </div>
+              <%end%>
+            </div>
+          </blockquote>
+        </div>
       </div>
     </div>
   </div>

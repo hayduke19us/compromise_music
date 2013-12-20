@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
 
   def index
-      unless current_user.friends.blank?
-        all_users = User.where.not("id = ? OR id = ?",
-                                    current_user.id, 
-                                    current_user.friends.each {|f| p f.id })
-        else
-        all_users = User.where.not(id: current_user)  
-      end
-      @all_users = all_users
-      #puts friend's id's in an array for proper listing
+    friendships = Friendship.all 
+    friendships_array = []
+    friendships.each do |ships|
+      tmp_array = Array.new
+      user = User.find(ships.user_id)
+      friend = User.find(ships.friend_id)
+      tmp_array << user.name.titleize
+      tmp_array << friend.name.titleize
+      friendships_array << tmp_array
+    end
+    @friendships_array = friendships_array
+    users_except_friends    
     friend_check
   end
   
@@ -26,11 +29,18 @@ class UsersController < ApplicationController
   end
   
   private
+  def users_except_friends
+    unless current_user.friends.blank?
+      all_users = User.where.not("id = ? OR id = ?",
+                                  current_user.id, 
+                                  current_user.friends.each {|f| p f.id })
+    else
+      all_users = User.where.not(id: current_user)  
+    end
+    @all_users = all_users
+  end
+
   def friend_check
-    @friend_array = []
-    current_user.friends.each {|friend| @friend_array << friend.id }
-    @friend_array << current_user.id
-    
     if params[:search].blank? && current_user.friends.empty?
       users = User.where.not(id: current_user.id)
     elsif params[:search].blank? 

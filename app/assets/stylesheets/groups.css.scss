@@ -3,12 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* "groups/new" */
-h2#group_description{padding-bottom:5%;}
 
-div.new_group_btn{padding-top:10px;}
+#new_group_form{padding: 5%;}
 
-input.btn.btn-primary {width: 100%;}
+#group_description{padding:2%;}
+
+#new_group_btn{padding-top:10px;}
+
+#new_group_btn {padding-top:10px;
+                width: 100%;
+}
+
+#new_group_input {width: 100%;}
 
 /* "groups/index" */
-h3#my_groups_my{color:#929999;
-                float:left;}
+
+#my_groups_title{padding: 0 10px 20px 0;}
+
+#groupships_title{color:white;
+                  padding-right:10px;
+}
+
+#groupships_count{color: white;}
