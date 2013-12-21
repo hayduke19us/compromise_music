@@ -2,7 +2,6 @@ function musicbox(key){
   var x=document.getElementById("play_key").value=key;
 }
 
-
 function pause_control(){
   var song = document.getElementById("apiswf").rdio_pause(); 
   var glyph = document.getElementById("pause_glyph");
@@ -12,10 +11,20 @@ function pause_control(){
 }
 
 function jukebox(key){
-  var nav = document.getElementById("hide_nav").className="show";
   var song=document.getElementById("apiswf").rdio_play(key);
+  var nav = document.getElementById("hide_nav").className="show";
   document.getElementById("control_button").setAttribute("onclick", "pause_control();")
   document.getElementById("pause_glyph").className="glyphicon glyphicon-pause";  
+}
+
+function hide_nav(){
+  $("#open_nav_wrapper").removeClass("hidden").addClass("show");
+  $("#hide_nav").removeClass("show").addClass("invisible")
+  
+}
+
+function open_nav(){
+  $("#hide_nav").removeClass("invisible").addClass("show")
 }
 
 

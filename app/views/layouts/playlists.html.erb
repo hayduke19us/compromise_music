@@ -43,10 +43,22 @@
         </div>
       </nav>
       <%= yield %>
+      <div class="hidden" id="open_nav_wrapper">
+        <a href="javascript:undefined" onclick="open_nav()"> 
+          <div class="navbar navbar-default navbar-fixed-bottom" id="open_nav">
+            <span class='glyphicon glyphicon-arrow-up'></span>
+          </div>
+        </a>
+      </div>
       <div class="invisible" id="hide_nav">
         <nav class="navbar navbar-default navbar-fixed-bottom" 
           id= "footer"
           role="navigation">
+            <a href="javascript:undefined" onclick="hide_nav()">
+              <div id="close_nav">
+                <span class='glyphicon glyphicon-arrow-down'></span>
+              </div>
+            </a>
           <div id="apiswf"></div>
             <ul class="nav navbar-nav">
               <li>
@@ -64,25 +76,25 @@
               </li>
               <div class="navbar-text" id="controls">
                 <li class="navbar-link">
-                <%=link_to_function raw("
-                  <span class='glyphicon glyphicon-pause', id='pause_glyph' ></span>"),
-                 "pause_control()", class: "btn btn-default", id: "control_button"%>
+                <%=link_to raw("
+                  <span class='glyphicon glyphicon-pause', id='pause_glyph' ></span>"), '#',
+                  'onclick'=> "pause_control()", class: "btn btn-default", id: "control_button"%>
                 </li>
               </div>
             </ul>
-              <div id="freq">
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-                <div id="sound"></div>
-              </div>
+            <div id="freq">
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+              <div id="sound"></div>
+            </div>
         </nav>
       </div>
   </body>
