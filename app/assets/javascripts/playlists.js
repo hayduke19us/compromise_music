@@ -1,3 +1,13 @@
+function show_play(key_id){
+  var tag = "#" + key_id;
+  $(tag).removeClass("invisible").addClass("show");
+}
+
+function hide_play(key_id){
+  var tag = "#" + key_id;
+  $(tag).removeClass("show").addClass("invisible");
+}
+
 function musicbox(key){
   var x=document.getElementById("play_key").value=key;
 }
@@ -33,6 +43,7 @@ function hide_nav(){
 function open_nav(){
   $("#hide_nav").removeClass("invisible").addClass("show")
 }
+
 
 
 

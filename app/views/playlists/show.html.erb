@@ -36,9 +36,9 @@
 <div id="colored_body">
   <div class="container" id= "bottom_body">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="panel panel-default" id=search_panel>
-          <h3 id="search_songs_title">Search for Songs by:</h3>
+          <h3 id="search_songs_title">Search</h3>
             <%=form_tag(playlist_path, method: 'get', remote: true) do%>
               <% if @group_id %>
                 <input type='hidden' name="group" value="<%=@group_id %>">

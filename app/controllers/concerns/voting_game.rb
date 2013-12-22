@@ -35,9 +35,4 @@ module VotingGame
      t.save
     end
   end
-
-  def multi_thread_remove
-    Thread.new{}
-  end
-
 end

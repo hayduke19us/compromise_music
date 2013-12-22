@@ -3,6 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+//heading
+
+#publish_button{style: text;}
+
+#publish {padding-bottom: 10px;}
+
+#publish_value {width: 50px;
+ 								height: 20px;
+}
+
+
+
 .glyphicon{top:0px;}
 
 #footer{-webkit-box-shadow: 0 5px 0 #888; }
@@ -24,34 +37,30 @@ img#carousel_image:hover{transform:scale(2,2);
 
 #search_panel{padding:5%;}
 
-#publish_button{style: text;}
-
-#publish {
-          padding-bottom: 10px;}
-
-#publish_value {width: 50px;
- 								height: 20px;
-}
-
 #add_to_collection {text-align: center;}
 
-div.well.song_search{background:transparent;}
+#title_and_add{padding-bottom:5px;
+}
 
+div.well.song_search{background:transparent;
+}
 
-                 
 #search_track_image{padding:2%; 
                     box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
 }
 
+#search_track_image:hover{opacity:0.5;}
+
+#glyph_play_track{font-size:20px; }
+
+
 /*modal*/
 
 #album_cover{width: 100%;}
 
-
 #friends_list_title {float: left;}
-
 
 #playlist_name {float: left;}
 
@@ -71,22 +80,13 @@ input#name {width: 100%;}
 
 .new_playlist_btn {padding-top: 10px;}
 
-
-
 h4#track_name{float: left;
 							padding-right: 2%;
 }
 
 
-
-div#remove_button{float:left;}
-
-
 #new_playlist_name{float:left;
 }
-
-
-											
 
 #vote_count{text-align:right;}
 
@@ -96,10 +96,11 @@ h2#new_playlist_name {;
 
 h4#new_playlist_description {text-align: center}
 
-#add{float:right;
-}
-
 // playlist
+
+div#remove_button{float:left;}
+
+#my_playlist_partial{ position:absoute;}
 
 /*jukebox swf object player*/
 

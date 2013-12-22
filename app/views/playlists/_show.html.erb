@@ -1,27 +1,35 @@
 <%unless @search_results.blank?%>
   <%@search_results.each do |result|%>
     <div class="well song_search">
-      <% if result['type'] == "t"%>
-        <button onclick= <%="jukebox('#{result['key']}')"%>
-          class="btn btn-default btn-xs">
-          <span class="glyphicon glyphicon-play"></span>
-        </button>  
-        <div id="add">
-          <%=link_to 'add', tracks_path(
-            playlist_id: @playlist.id,
-            track: result,
-            group: @group_id),
-            remote: true,
-            method: :post,
-            class: "btn btn-sm btn-primary" %></br>
+      <% if result['type'] == "t" %>
+        <div id="title_and_add">
+          <div id="add">
+            <%=link_to 'add', tracks_path(
+              playlist_id: @playlist.id,
+              track: result,
+              group: @group_id),
+              remote: true,
+              method: :post,
+              class: "btn btn-sm btn-default" %></br>
+          </div>
+          <h5 id= "search_track_name">
+            <%= result["name"].titleize %> by
+            <%= result["artist"]%>
+          </h5>
         </div>
-        <h4 "id= "search_track_name">
-          <%= result["name"].titleize %> by
-          <%= result["artist"]%>
-        </h4> 
-        <div class="center-block">
-          <%= image_tag "#{result['icon']}",
-            'id' => "search_track_image"%>
+        <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+          <%= link_to image_tag("#{result['icon']}", 
+            'id' => "search_track_image"), 
+            "javascript:undefined",
+            onclick: "jukebox('#{result['key']}')",
+            onmouseover: "show_play('#{result['key']}')", 
+            onmouseout: "hide_play('#{result['key']}')",
+            style: "postion:relative;left:0;top:0;"%>
+          <div class="invisible" id=<%="#{result['key']}"%>
+            style=position:absolute;left:109px;top:109px;>
+            <span class="glyphicon glyphicon-play" id="glyph_play_track">
+            </span>
+          </div>
         </div>
       <%elsif result['type'] == 'r' %>
         <h4 id= "artist_name"><%=result['name']%></h4>
