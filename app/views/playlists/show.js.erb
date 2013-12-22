@@ -1,0 +1,6 @@
+$("#js_search").html('')
+<% unless @search_results.blank? %>
+  $("#js_search").append('<%= j render "show", collection:@search_results%>')
+<% else %>
+  $("#js_search").append('<%= j render "show", collection:@album_tracks%>')
+<% end %>

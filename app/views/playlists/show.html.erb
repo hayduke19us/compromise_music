@@ -4,6 +4,17 @@
       <div class="col-md-6">
         <div class="lead">
           <h1><%=@playlist.name.titleize%></h1>
+          <% if @group_id %> 
+            <div id="publish">
+                <%= link_to 'publish', 
+                  ({controller: "playlists", 
+                    action: "publish",
+                    playlist_id: @playlist.id,
+                    group: @group_id}),
+                   "class" => "btn btn-default btn-default", 
+                    confirm: "Are you sure?" %>
+            </div>
+         <%end%>
           <div id="playlist_specs" style="inline">
             Tracks <%=@playlist.tracks.count%>
             <%x=0%>
@@ -28,7 +39,7 @@
       <div class="col-md-6">
         <div class="panel panel-default" id=search_panel>
           <h3 id="search_songs_title">Search for Songs by:</h3>
-            <%=form_tag(playlist_path, method: 'get') do%>
+            <%=form_tag(playlist_path, method: 'get', remote: true) do%>
               <% if @group_id %>
                 <input type='hidden' name="group" value="<%=@group_id %>">
               <%end%>
@@ -63,116 +74,17 @@
                 <input name="query" id="query" type="text" placeholder="track name" 
                 class="form-control" >
               </div>
-          <%end%>
-          <% unless @search_results.blank?%>
-            <%= render "show"%>
-          <%else%>
-            <% unless @album_tracks.blank? %>
-              <blockquote>
-                <h3><%=@album_tracks.first[1]['album']%></h3>
-                <h5>by <%=@album_tracks.first[1]['artist']%></h5>
-                <%= image_tag @album_tracks.first[1]['icon']%>
-              </blockquote>
-              <% @album_tracks.each do |track|%>
-                <div class="well">
-                  <button onclick= <%="jukebox('#{track[1]['key']}')"%> 
-                    class="btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-play"></span>
-                  </button>  
-                  <%= track[1]['name']%>
-                  <%=link_to 'add', tracks_path(
-                     playlist_id: @playlist.id,
-                     track: track[1],
-                     group: @group_id),
-                     method: :post,
-                     class: "btn btn-xs btn-primary pull-right"%>
-                </div>
-              <%end%>
             <%end%>
-          <%end%>
-        </div>
-      </div>
-      <div class="col-md-6", id= "my_playlist">
-        <div class="panel panel-default" style="padding:5%;">
-          <div class="pull-right">
-            <button onclick= <%="jukebox('#{@playlist.key}')"%> 
-              class="btn btn-default btn-lg">
-              <span class="glyphicon glyphicon-play"></span>
-            </button> 
-          </div>
-          <h3>
-            <%=link_to @playlist.name.titleize, @playlist.embedUrl, 
-              :target => "_blank"%>
-          </h3>
-          <% if @group_id %> 
-            <div id="publish">
-              <%unless @playlist.tracks.count < 1%>
-                <%= link_to 'publish', 
-                  ({controller: "playlists", 
-                    action: "publish",
-                    group: "#{@group_id}"}),
-                   "class" => "btn btn-default btn-primary", 
-                    confirm: "Are you sure?" %>
+            <div id="js_search">  
+              <% unless @search_results.blank? && @album_tracks.blank?%>
+                <%= render "show"%>
               <%end%>
             </div>
-         <%end%>
-         <% @playlist.tracks.each do |track|%>
-           <div class= "well">
-             <h4 class="pull-right">
-               <% unless @user.id.to_i == track.user_id %>
-                 <div id="vote">
-                   <%=link_to raw(
-                     "<span class='glyphicon glyphicon-chevron-up'</span>"),
-                      vote_up_track_path(
-                      id: track.id, 
-                      playlist_id: @playlist.id, 
-                      playlists_owner: @playlist.user_id,
-                      current_user: current_user.id,
-                      group: @group_id) %>
-                   <%=link_to raw(
-                     "<span class='glyphicon glyphicon-chevron-down'</span>"),
-                      vote_down_track_path(
-                      id: track.id, 
-                      playlist_id: @playlist.id, 
-                      playlist_owner: @playlist.user_id,
-                      current_user: current_user.id,  
-                      group: @group_id)%>
-                 </div>
-               <%end%>  
-             </h4>
-             <h5>
-               <button onclick= <%="jukebox('#{track.key}')"%> 
-                class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-play"></span>
-               </button>  
-               <%=track.name%>
-             </h5>
-             <h6>
-               by <%=link_to track.artist, 
-               playlist_path(search_type: 'Artist',
-                             query: track.artist)%></br> 
-               album <%=link_to track.album, 
-               playlist_path(list: track.album_key)%>
-             </h6>
-             <h4>
-               <div class="pull-left">
-                 <%unless track.user_id != current_user.id%>
-                   <%=link_to "delete", track_path(
-                    :id => track.id,
-                    :group => @group_id),
-                    :method => "delete",
-                    'class' => 'btn btn-danger btn-xs',
-                     data: {confirm: "are you sure?"}%>
-                 <%end%>
-               </div>
-               <div id="vote" style=text-align:right;>
-                 <%=track.votes_for - track.votes_against%>
-                 <span class= "glyphicon glyphicon-thumbs-up"></span>  
-               </div>
-             </h4>
-           </div>
-         <%end%>
-       </div>
+        </div>
+      </div>
+      <div id="my_playlist_partial">
+        <%=render(@playlist)%>
+      </div>
     </div>
   </div>      
 </div>

@@ -21,10 +21,11 @@ module VotingGame
         rdio_tracks << track.key 
       end 
       rdio_tracks = rdio_tracks.join(', ')
+      
       RdioTrack.remove_track(playlist_key, track_index, rdio_tracks,
                              failure_tracks.count) 
       failure_tracks.each do |track|  
-        track.destroy
+        track.delete
       end
     end
     x = 0 
@@ -34,4 +35,9 @@ module VotingGame
      t.save
     end
   end
+
+  def multi_thread_remove
+    Thread.new{}
+  end
+
 end

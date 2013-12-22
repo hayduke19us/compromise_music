@@ -74,12 +74,29 @@
               <dd id="artist"></dd>
               </blockquote>
               </li>
-              <div class="navbar-text" id="controls">
-                <li class="navbar-link">
-                <%=link_to raw("
-                  <span class='glyphicon glyphicon-pause', id='pause_glyph' ></span>"), '#',
-                  'onclick'=> "pause_control()", class: "btn btn-default", id: "control_button"%>
-                </li>
+              <div class="nav navbar-nav" id="controls">
+                <li class="navbar-text">
+                  <%=link_to raw("
+                    <span class='glyphicon glyphicon-backward', id='prev_glyph' >
+                    </span>"), href='javascript:undefined', 
+                    'onclick'=> "previous()", 
+                    id: "control_backward"%>
+                  </li>
+                  <li class="navbar-text">
+                  <%=link_to raw("
+                    <span class='glyphicon glyphicon-pause', id='pause_glyph' >
+                    </span>"), href='javascript:undefined', 
+                    'onclick'=> "pause_control()", 
+                    id: "control_button"%>
+                  </li>
+                  <li class="navbar-text">
+                    <%=link_to raw("
+                      <span class='glyphicon glyphicon-forward', 
+                      id='next_glyph' >
+                      </span>"), href='javascript:undefined', 
+                      'onclick'=> "next()", 
+                      id: "control_next"%>
+                  </li>
               </div>
             </ul>
             <div id="freq">

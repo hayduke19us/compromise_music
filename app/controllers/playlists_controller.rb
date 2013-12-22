@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
   before_filter :get_rdio_user 
   extend VotingGame
-  
+  respond_to :html, :js 
   def new
     @playlists = Playlist.all 
   end
@@ -30,7 +30,8 @@ class PlaylistsController < ApplicationController
     unless params[:play_track].blank?
      @play_key = params[:play_track]
     end
-    search_helper
+    respond_with(search_helper, location:  playlist_path(@playlist))
+    
   end
 
   def search_helper
@@ -56,12 +57,9 @@ class PlaylistsController < ApplicationController
   def publish
     playlist = Playlist.find(params[:id])
     group = Group.find(params[:group])
-    if Grouplist.where(group_id: group.id,
-                       playlist_id: playlist.id)
-      result =  VotingGame.track_success_filter(playlist,
-                                               group,
-                                               playlist.tracks.count)
-      redirect_to user_playlist_path(playlist.user_id, playlist.id, group: group.id)
-    end
+    result =  VotingGame.track_success_filter(playlist,
+                                              group,
+                                              playlist.tracks.count)
+    redirect_to playlist_path(playlist, group: group)
   end
 end
