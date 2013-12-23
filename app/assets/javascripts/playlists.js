@@ -1,12 +1,14 @@
 $(function () {
+  $("#query").focus();
+
   $("#option_track").click(function(){
-    $("#query").attr('placeholder', "Track name");
+    $("#query").attr('placeholder', "Track name").focus();
   })
   $("#option_artist").click(function(){
-    $("#query").attr('placeholder', "Artist name");
+    $("#query").attr('placeholder', "Artist name").focus();
   })
   $("#option_album").click(function(){
-    $("#query").attr('placeholder', "Album Name");
+    $("#query").attr('placeholder', "Album Name").focus();
   })
 })
 
