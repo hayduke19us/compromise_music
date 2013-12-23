@@ -38,12 +38,36 @@
               <h5 id= "artist_name"><%=result['name']%></h5>
             </div>
               <ul class="nav nav-pills">
-                <li><%=link_to "Albums", playlist_path(@playlist,
-                                                       artist_key: result['key'],
-                                                       group: @group_id),
-                                                       remote: true%></li>
-                <li><%=link_to "Tracks", "#"%> </li>
+                <li><%=link_to "Albums", 
+                  playlist_path(@playlist,
+                  artist_key: result['key'],
+                  group: @group_id),
+                  remote: true%>
+                </li>
+                <li><%=link_to "Tracks", 
+                  "javascript:undefined",
+                  onclick: "show_search('#{result['key']}')"%>
+                </li>
               </ul>
+              <% x = 0 %>
+              <div class="hidden" id =<%="#{result['key']}"%>>
+                 <%=form_tag(playlist_path, method: 'get', remote: true) do %>
+                   <div class="input-group input-group-sm" 
+                     id="artist_query_input">
+                     <input type="hidden" name="artist_key_tracks"
+                     value=<%="#{result['key']}"%>>
+                     <input type="text" name="artist_query" 
+                     class="form-control" 
+                     placeholder="Track name or leave blank">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit" name="commit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                 <%end%>
+               </div>
+               <% x += 1 %>
           <%elsif result['type'] == 'a'%>
             <h5 id= "album_name"><%=result['name']%>
             <ul class="nav nav-pills" style=padding-bottom:5px;>

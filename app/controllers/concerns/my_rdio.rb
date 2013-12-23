@@ -117,6 +117,13 @@ module My_Rdio
 
     end
 
+    def self.get_tracks_for_artist(artist_key, query=nil)
+     @rdio.call('getTracksForArtist',
+               'artist' => artist_key,
+               'sort' => 'releaseDate',
+               'query' => query)['result']    
+    end
+
     def self.albums_for_artist(artist_key, featured='false')
       @rdio.call('getAlbumsForArtist',
                  'extras' => 'iframeUrl,
@@ -143,9 +150,12 @@ module My_Rdio
       @list = args.fetch(:list, nil)
     end
 
-    
     def simple
       search_result = RdioTrack.search_by_track search_type, query
+    end
+
+    def artist_tracks(track_name)
+      tracks = RdioTrack.get_tracks_for_artist artist_key, track_name 
     end
 
     def artist_albums

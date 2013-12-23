@@ -1,3 +1,19 @@
+$(function () {
+  $("#option_track").click(function(){
+    $("#query").attr('placeholder', "Track name");
+  })
+  $("#option_artist").click(function(){
+    $("#query").attr('placeholder', "Artist name");
+  })
+  $("#option_album").click(function(){
+    $("#query").attr('placeholder', "Album Name");
+  })
+})
+
+function show_search(artist_key_id){
+  var tag = "#" + artist_key_id
+  $(tag).removeClass("hidden").addClass("show");
+}
 
 function show_play(key_id){
   var tag = "#" + key_id;

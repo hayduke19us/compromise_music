@@ -31,7 +31,6 @@ class PlaylistsController < ApplicationController
      @play_key = params[:play_track]
     end
     respond_with(search_helper, location:  playlist_path(@playlist))
-    
   end
 
   def search_helper
@@ -39,6 +38,10 @@ class PlaylistsController < ApplicationController
       rdio_search =  RdioSearch.new(search_type: params[:search_type],
                                       query: params[:query])
       @search_results = rdio_search.simple
+    elsif params[:artist_key_tracks] 
+      @search_results = RdioSearch.new(
+        artist_key: params[:artist_key_tracks]).artist_tracks(
+        params[:artist_query])
     elsif params[:list]
       @album_tracks = RdioSearch.new(list: params[:list]).album_tracks
     elsif params[:artist_key]

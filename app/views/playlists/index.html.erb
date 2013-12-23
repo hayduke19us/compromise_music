@@ -12,10 +12,11 @@
             <%=current_user.playlists.count%>
           </div>
         </h3>
-        <% current_user.playlists.each do |group| %>
+        <% current_user.playlists.each do |playlist| %>
           <div class="well"> 
-            <h4><%=group.name%></h4>
-            <%=link_to "Delete", user_playlists_path(current_user),  
+            <h4><%=link_to playlist.name, 
+              user_playlist_path(current_user, playlist)%></h4>
+            <%=link_to "Delete", user_playlist_path(current_user, playlist),  
               method: :delete, 'class' => 'btn btn-danger' %> 
           </div>
         <%end%>
