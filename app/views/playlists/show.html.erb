@@ -37,54 +37,75 @@
   <div class="container" id= "bottom_body">
     <div class="row">
       <div class="col-md-4">
-        <div class="panel panel-default" id=search_panel>
-          <h3 id="search_songs_title">Search</h3>
-            <%=form_tag(playlist_path, method: 'get', remote: true) do%>
-              <% if @group_id %>
-                <input type='hidden' name="group" value="<%=@group_id %>">
-              <%end%>
-              <div class="radio"> 
-                <label> 
-                  <input type="radio" name="search_type"  id="option_track"
-                  value="Track" checked>
-                  Track
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="search_type"  id="option_artist"
-                  value="Artist">
-                  Artist
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="search_type"  id="option_album"
-                  value="Album">
-                  Album
-                </label>
-              </div>
-              <div class= "input-group input-group-md", style="padding-bottom:10px;">
-                <div class="input-group-btn">
-                  <button class="btn btn-default dropdown-toggle" 
-                    name="commit" type="submit">
-                    Search
-                  </button>
-                </div>
-                <input name="query" id="query" type="text" placeholder="track name" 
-                class="form-control" >
-              </div>
+          <%=form_tag(playlist_path, method: 'get', remote: true) do%>
+            <% if @group_id %>
+              <input type='hidden' name="group" value="<%=@group_id %>">
             <%end%>
-            <div id="js_search">  
+            <div class= "input-group" >
+              <div class="input-group-btn">
+                <button class="btn btn-default btn-md"
+                  type="submit" name="commit" tabindex= -1>
+                  Search
+                </button>
+                <button class="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown" type="button" 
+                  id="dropdownMenu1"
+                  style=padding:14px;>
+                  <span class="sr-only">hello</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" 
+                  aria-labeledby="dropdownMenu1">
+                  <ul id="radio_hover">
+                    <li class="radio"> 
+                    <label>
+                      <input type="radio" 
+                        name="search_type"  id="option_track"
+                        value="Track" checked>
+                        Track
+                    <label>
+                    </li>
+                  </ul>
+                  <ul id="radio_hover">
+                    <li class="radio">
+                      <label>
+                        <input type="radio" name="search_type"  id="option_artist"
+                          value="Artist">
+                          Artist
+                      </label>
+                    </li>
+                  </ul>
+                  <ul id="radio_hover">
+                    <li class="radio">
+                      <label>
+                        <input type="radio" name="search_type"  id="option_album"
+                          value="Album">
+                          Album
+                        </label>
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <input name="query" id="query" type="text" placeholder="track name" 
+              class="form-control" >
+            </div>
+            <div class="show" id="search_description">
+              <div class="lead">
+                Search for your favorite songs, albums or artist.
+                Be sure to keep an eye on the heavy rotation albums
+                up above. 
+              </div>
+            </div>
+          <%end%>
+          <div id="js_search"> 
               <% unless @search_results.blank? && @album_tracks.blank?%>
                 <%= render "show"%>
               <%end%>
-            </div>
+          </div>
         </div>
-      </div>
       <div id="my_playlist_partial">
         <%=render(@playlist)%>
       </div>
     </div>
-  </div>      
+  </div>
 </div>

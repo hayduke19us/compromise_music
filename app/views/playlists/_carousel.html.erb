@@ -7,7 +7,8 @@
         <% x = 0 %>
         <% 20.times do %>
           <%=link_to image_tag(@heavy_rotation[x]['icon'], {id: 'carousel_image'}), 
-            playlist_path(@playlist, artist_key: @heavy_rotation[x]['artistKey']) %>
+            playlist_path(@playlist, artist_key: @heavy_rotation[x]['artistKey']),
+            remote: true %>
           <% x += 1 %>
         <%end%>
       </div>
@@ -18,7 +19,7 @@
         <% 20.times do %>
         <%= link_to image_tag(@heavy_rotation[x]['icon'], id: 'carousel_image'), 
         playlist_path(@playlist, artist_key: "#{@heavy_rotation[x]['artistKey']}"),
-        'id' => 'carousel_image'%>
+        'id' => 'carousel_image', remote: true%>
         <% x += 1 %>
         <%end%>
       </div>
