@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'minitest-rails'
 
+gem 'sync'
+
 group :test do
   gem 'hirb'
   gem 'simplecov', :require => false
