@@ -1,0 +1,137 @@
+<div class="well" id="search_result_well">
+  <div id="track_background"> 
+    <% if result['type'] == "t" %>
+      <%= link_to raw("<div class='pull-right' id='add_bar'>
+        <span class='glyphicon glyphicon-plus'></span>
+      </div>"), tracks_path(
+          playlist_id: @playlist.id,
+          track: result,
+          group: @group_id),
+          id: "link_add_bar",
+          remote: true,
+          method: :post %></br>
+      <blockquote>
+        <h5 id= "search_track_name" >
+          <%= result["name"].titleize %> by
+          <%= result["artist"]%>
+        </h5>
+      </blockquote>
+      <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+        <%= link_to image_tag("#{result['icon']}", 
+          'id' => "search_track_image"), 
+          "javascript:undefined",
+          onclick: "jukebox('#{result['key']}')",
+          onmouseover: "show_play('#{result['key']}')", 
+          onmouseout: "hide_play('#{result['key']}')",
+          style: "postion:relative;left:0;top:0;"%>
+        <div class="invisible" id=<%="#{result['key']}"%>
+          style=position:absolute;left:109px;top:109px;>
+          <span class="glyphicon glyphicon-play" id="glyph_play_track">
+          </span>
+        </div>
+      </div>
+    <%elsif result['type'] == 'r' %>
+      <div id="artist-align">
+        <h5 id= "artist_name"><%=result['name']%></h5>
+      </div>
+        <ul class="nav nav-pills">
+          <li><%=link_to "Albums", 
+            playlist_path(@playlist,
+            artist_key: result['key'],
+            group: @group_id),
+            remote: true%>
+          </li>
+          <li><%=link_to "Tracks", 
+            "javascript:undefined",
+            onclick: "show_search('#{result['key']}')"%>
+          </li>
+        </ul>
+        <% x = 0 %>
+        <div class="hidden" id =<%="#{result['key']}"%>>
+           <%=form_tag(playlist_path, method: 'get', remote: true) do %>
+             <div class="input-group input-group-sm" 
+               id="artist_query_input">
+               <input type="hidden" name="artist_key_tracks"
+               value=<%="#{result['key']}"%>>
+               <input type="text" name="artist_query" 
+               class="form-control" 
+               placeholder="Track name or leave blank">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" name="commit">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div>
+           <%end%>
+         </div>
+         <% x += 1 %>
+    <%elsif result['type'] == 'a'%>
+      <h5 id= "album_name"><%=result['name']%>
+      <ul class="nav nav-pills" style=padding-bottom:5px;>
+        <li><%=link_to "tracks", 
+          playlist_path(@playlist,
+          list: result['trackKeys'],
+          group: @group_id),
+          remote: true%>
+        </li>
+        <li>
+          <a href=<%="##{result['key'] + result['type']}"%> 
+          data-toggle="modal">Info</a>
+        </li>
+      </ul>
+      <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+        <%= link_to image_tag("#{result['icon']}", 
+          'id' => "search_track_image"), 
+          "javascript:undefined",
+          onclick: "jukebox('#{result['key']}')",
+          onmouseover: "show_play('#{result['key']}')", 
+          onmouseout: "hide_play('#{result['key']}')",
+          style: "postion:relative;left:0;top:0;"%>
+        <div class="invisible" id=<%="#{result['key']}"%>
+          style=position:absolute;left:109px;top:109px;>
+          <span class="glyphicon glyphicon-play" id="glyph_play_track">
+          </span>
+        </div>
+      </div>
+      <!--album_info modal -->
+      <div class="modal fade" id=<%="#{result['key'] + result['type']}"%> 
+        role="dialog" 
+        aria-labelledby="album_title"
+        aria-hidden='true'>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="lead">
+            </div>
+            <div class="modal-header">
+              <button type="button" class="close" 
+                data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h3 class="modal-title" id="album_title">
+                <%=result['name']%>
+                <!--album name -->
+              </h3>
+            </div>
+            <div class="modal-body">
+              <h4 id="release">
+                <!--artist and release date-->
+                Released by <%=result['artist']%> on
+                <%= result['displayDate'] %>
+              </h4>
+              <div id= "album_big">
+                 <!--album cover -->
+                 <%=image_tag result['bigIcon'], :id => "album_cover"%>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" 
+                data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div><!--/.modal-content-->
+        </div><!-- /.modal-dialog -->
+      </div>
+    <%end%>
+  </div>
+</div> 

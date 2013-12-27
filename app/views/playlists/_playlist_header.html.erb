@@ -1,0 +1,18 @@
+<div class="lead">
+  <h1><%=playlist.name.titleize%></h1>
+  <% if group %> 
+    <div id="publish">
+        <%= link_to 'publish', 
+          ({controller: "playlists", 
+            action: "publish",
+            group: group}),
+           "class" => "btn btn-default btn-default", 
+            confirm: "Are you sure?" %>
+    </div>
+  <%end%>
+  <div id="playlist_specs" style="inline">
+    Tracks <%= tracks.count%>
+    Votes <%= votes %>
+  </div>
+</div>
+

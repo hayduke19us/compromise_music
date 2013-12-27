@@ -19,18 +19,26 @@ class PlaylistsController < ApplicationController
         redirect_to new_playlist_path
     end
   end
+  
+  def total_votes tracks
+    x = 0 
+    tracks.each {|track| x += track.votes_for - track.votes_against}
+    x
+  end
 
   def show
     @user = current_user
     @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
     @playlist = Playlist.find(params[:id])
+    @tracks = @playlist.tracks
+    @total_votes = total_votes(@tracks) 
     if params[:group]
-      @group_id = params[:group]
+      @group = params[:group]
     end
-    unless params[:play_track].blank?
+    if params[:play_track]
      @play_key = params[:play_track]
     end
-    respond_with(search_helper, location:  playlist_path(@playlist))
+    respond_with search_helper, location: playlist_path(@playlist)
   end
 
   def search_helper
