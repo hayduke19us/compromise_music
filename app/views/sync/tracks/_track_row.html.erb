@@ -1,28 +1,26 @@
-<tr>
-  <div class= "well">
+<song>
+  <div class="panel default-panel" id="song">
     <h4 class="pull-right">
-      <% unless current_user.id.to_i == track.user_id %>
-        <div id="vote">
-          <%=link_to raw(
-            "<span class='glyphicon glyphicon-chevron-up'</span>"),
-             vote_up_track_path(
-             id: track.id,
-             playlist_id: track.playlist_id,
-             playlists_owner: track.user_id,
-             current_user: current_user.id,
-             group: @group_id),
-             remote: true %>
-          <%=link_to raw(
-            "<span class='glyphicon glyphicon-chevron-down'</span>"),
-             vote_down_track_path(
-             id: track.id,
-             playlist_id: track.playlist_id,
-             playlist_owner: track.user_id,
-             current_user: current_user.id,
-             group: @group_id),
-             remote: true%>
-        </div>
-      <%end%>
+      <div id="vote">
+        <%=link_to raw(
+          "<span class='glyphicon glyphicon-chevron-up'</span>"),
+           vote_up_track_path(
+           id: track.id,
+           playlist_id: track.playlist_id,
+           playlists_owner: track.user_id,
+           current_user: current_user.id,
+           group: @group_id),
+           remote: true %>
+        <%=link_to raw(
+          "<span class='glyphicon glyphicon-chevron-down'</span>"),
+           vote_down_track_path(
+           id: track.id,
+           playlist_id: track.playlist_id,
+           playlist_owner: track.user_id,
+           current_user: current_user.id,
+           group: @group_id),
+           remote: true%>
+      </div>
     </h4>
     <h5>
       <button onclick= <%="jukebox('#{track.key}')"%>
@@ -42,14 +40,13 @@
     </h6>
     <h4>
       <div class="pull-left">
-        <%unless track.user_id != current_user.id%>
-          <%=link_to "delete", track_path(
-            :id => track.id,
-            :group => @group_id),
-            :method => "delete",
-            'class' => 'btn btn-danger btn-xs',
-            data: {confirm: "are you sure?"}%>
-        <%end%>
+        <%=link_to "delete", track_path(
+          id: track.id,
+          group: @group_id),
+          method:"delete",
+          remote: true,
+          'class' => 'btn btn-danger btn-xs',
+          data: {confirm: "are you sure?"}%>
       </div>
       <div id="vote" style=text-align:right;>
         <%=track.votes_for - track.votes_against%>
@@ -57,4 +54,4 @@
       </div>
     </h4>
   </div>
-</tr>
+</song>

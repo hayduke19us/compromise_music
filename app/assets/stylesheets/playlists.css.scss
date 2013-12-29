@@ -112,6 +112,11 @@ img#carousel_image:hover{transform:scale(2,2);
 
 #album_and_tracks{padding:5%;}
 
+//playlist
+
+#delete_track{font-size: 30px;
+            }
+
 
 /*modal*/
 
@@ -153,18 +158,26 @@ h2#new_playlist_name {;
 
 h4#new_playlist_description {text-align: center}
 
-// playlist
+//my_playlist
+
+playlist{width: 70%;}
 
 div#remove_button{float:left;}
 
-#my_playlist_partial{ position:absoute;}
+#playlist_title_box{width:100%;
+                    border-bottom: 3px solid #efefef;
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+}
+
 
 /*jukebox swf object player*/
 
 div#freq{float:right;
          padding-top: 20px;
-         width: 500px;
-         height:auto;
+         width: 200px;
+         height:100px;
          opacity:0.6;
          margin-right:150px;
 }

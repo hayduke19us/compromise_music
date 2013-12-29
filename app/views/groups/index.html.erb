@@ -15,7 +15,7 @@
         <% current_user.groups.each do |group| %>
           <div class="well"> 
             <h4><%=group.name%></h4>
-            <%=link_to "Delete", user_groups_path(current_user),  
+            <%=link_to "Delete", user_group_path(current_user, group),  
               method: :delete, 'class' => 'btn btn-danger' %> 
           </div>
         <%end%>
@@ -32,8 +32,10 @@
           <div class="pull-left" id="groupships_title">
             Group Memberships
           </div>
-          <div id="groupships_count">
-            <%=@groupships.count%>
+          <div class="lead" id="groupships_count">
+            <% if @groupships %>
+              Total: <%= @groupships.count %>
+            <% end %>
           </div>
         </h3>
         <% unless @groupships.blank?%>

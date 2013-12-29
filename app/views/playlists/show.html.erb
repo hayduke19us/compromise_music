@@ -39,14 +39,20 @@
               <span class="glyphicon glyphicon-play"></span>
             </button> 
           </div>
-          <h3>
-            <%=@playlist.name.titleize%>
-          </h3>
-          <tbody>
-           <% @playlist.tracks.each do |track|%>
-             <%= sync partial: 'track_row', resource: track %>
-           <%end%>
-           </tbody>
+          <div class= "panel panel-default "id="playlist_title_box">
+            <h3>
+              <%=@playlist.name.titleize%>
+            </h3>
+          </div>
+          <playlist>
+             <% @sorted_playlist.each do |track|%>
+               <%= sync partial: 'track_row', resource: track %>
+             <%end%>
+          </playlist>
+          <playlist>
+            <%= sync_new partial: 'track_row', resource: Track.new, 
+            scope: @playlist %> 
+          </playlist>
         </div>
       </div>
     </div>

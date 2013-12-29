@@ -1,6 +1,5 @@
 class TracksController < ApplicationController
    before_filter :get_rdio_user
-
    def create
     @playlist = Playlist.find(params[:playlist_id])
     all_tracks = @playlist.tracks.count
@@ -12,11 +11,13 @@ class TracksController < ApplicationController
                 user_id: current_user.id}
     track_params = rdio_track.merge(my_track)
     RdioTrack.add_track(@playlist.key, rdio_track[:key])
-
-    track = Track.new(track_params)
-    if track.save
-      sync_new track
-      respond_with(@playlist, location: playlist_path(@playlist))
+    @track = Track.new(track_params)
+    if @track.save
+      sync_new @track, scope: @playlist
+      respond_to do |format|
+        format.html {redirect_to playlist_path(@path)}
+        format.js {head :no_content}
+      end
     end
 
   end
@@ -40,15 +41,18 @@ class TracksController < ApplicationController
   def vote_up
    @user = User.find(params[:current_user])
    @playlist = Playlist.find(params["playlist_id"])
-   track = Track.find(params[:id])
-   unless @user.voted_for?(track)
-     @user.vote_exclusively_for(track)
-     flash[:notice] = "#{track.name} voted up"
+   @track = Track.find(params[:id])
+   unless @user.voted_for?(@track)
+     @user.vote_exclusively_for(@track)
+     flash[:notice] = "#{@track.name} voted up"
    else
-     flash[:notice] = "#{track.name} already voted for"
+     flash[:notice] = "#{@track.name} already voted for"
    end
-   sync_update track
-   respond_with @playlist, location: playlist_path(@playlist)
+   sync_update @track
+   respond_to do |format|
+     format.html {redirect_to playlist_path(@playlist)}
+     format.js {head :no_content}
+   end
   end
 
   def vote_down
