@@ -161,7 +161,7 @@
                         <%group.playlists.each do |g_playlist|%>
                           <li>
                           <%=link_to g_playlist.name, playlist_path(
-                            g_playlist.id, group: group.id)%>
+                            g_playlist.id, group: group)%>
                           </li>
                         <%end%>
                       </div>
@@ -176,7 +176,7 @@
       </div>
     </div>
   </div>
-<%end%> 
+<%end%>
 
 
 

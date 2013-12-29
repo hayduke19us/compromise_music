@@ -1,6 +1,6 @@
 <%=form_tag(playlist_path, method: 'get', remote: true) do%>
   <% if group %>
-    <input type='hidden' name="group" value="<%=group.id %>">
+    <input type='hidden' name="group" value="<%= group %>">
   <%end%>
   <div class= "input-group" >
     <div class="input-group-btn">

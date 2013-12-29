@@ -22,18 +22,32 @@
   <div class="container" id= "bottom_body">
     <div class="row">
       <div class="col-md-4">
-          <div id= "playlist_search_form">
-            <%= render partial: 'playlist_search_form', locals: {group: @group}%>
-          </div>
-          <div id="js_search"> 
-              <% unless @search_results.blank? && @album_tracks.blank?%>
-                <%= render "show"%>
-              <%end%>
-          </div>
+        <div id= "playlist_search_form">
+          <%= render partial: 'playlist_search_form', locals: {group: @group}%>
         </div>
-      <div id="my_playlist_partial">
-        <%= render partial: 'playlist', locals: {playlist: @playlist,
-                   tracks: @playlist.tracks}%>
+        <div id="js_search"> 
+            <% unless @search_results.blank? && @album_tracks.blank?%>
+              <%= render "show"%>
+            <%end%>
+        </div>
+      </div>
+      <div class="col-md-8", id= "my_playlist">
+        <div class="panel panel-default" style="padding:5%;">
+          <div class="pull-right">
+            <button onclick= <%="jukebox('#{@playlist[:key]}')"%> 
+              class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-play"></span>
+            </button> 
+          </div>
+          <h3>
+            <%=@playlist.name.titleize%>
+          </h3>
+          <tbody>
+           <% @playlist.tracks.each do |track|%>
+             <%= sync partial: 'track_row', resource: track %>
+           <%end%>
+           </tbody>
+        </div>
       </div>
     </div>
   </div>

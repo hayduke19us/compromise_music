@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "playlists", "application", :media => "all", "data-turbolinks-track" => "true" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
+    <%= javascript_include_tag Sync.adapter_javascript_url %>
   </head>
   <body>
   <nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">

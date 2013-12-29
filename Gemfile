@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 
 gem 'minitest-rails'
 
+
 gem 'sync'
+gem 'faye'
+gem 'thin', require: false 
 
 group :test do
   gem 'hirb'

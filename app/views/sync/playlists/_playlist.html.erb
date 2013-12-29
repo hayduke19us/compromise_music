@@ -9,8 +9,8 @@
     <h3>
       <%=playlist.name.titleize%>
     </h3>
-     <% tracks.each do |track|%>
-       <%= render partial: 'playlists/tracks', locals: {track: track} %>
+     <% playlist.tracks.each do |track|%>
+       <%= sync partial: 'track', resource: track %>
      <%end%>
   </div>
 </div>
