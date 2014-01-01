@@ -39,23 +39,21 @@ class TracksController < ApplicationController
   end
 
   def vote_up
-   @playlist = Playlist.find(params["playlist_id"])
-   @track = Track.find(params[:id])
-   current_user.vote_for(@track)
-   sync_update @track
+   track = Track.find(params[:id])
+   track.vote_up current_user
+   sync_update track
    respond_to do |format|
-     format.html {redirect_to playlist_path(@playlist)}
+     format.html {redirect_to playlist_path(track.playlist_id)}
      format.js {head :no_content}
    end
   end
 
   def vote_down
-    @playlist =Playlist.find(params["playlist_id"])
-    @track = Track.find(params[:id])
-    current_user.vote_against(@track)
-    sync_update @track
+    track = Track.find(params[:id])
+    track.vote_down current_user
+    sync_update track
     respond_to do |format|
-      format.html {redirect_to playlist_path(@playlist)}
+      format.html {redirect_to playlist_path(track.playlist_id)}
       format.js {head :no_content}
     end
   end
