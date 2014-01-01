@@ -15,17 +15,17 @@ class Track < ActiveRecord::Base
     user.vote_against self
   end
 
-  def destroy_with_rdio(count)
+  def destroy_with_rdio(count=1)
+    playlist = Playlist.find self.playlist_id
     RdioTrack.remove_track(self.playlist_key, self.index, self.key, count)
-    self.index_destroy
+
+    self.index_destroy playlist 
   end
 
-  def index_destroy
-    playlist = Playlist.find(self.playlist_id)
+  def index_destroy playlist
     playlist.tracks.each do |t|
       unless t.index <= self.index
-        index = t.index
-        t.index = (index - 1)
+        t.index -= 1
         t.save
       end
     end

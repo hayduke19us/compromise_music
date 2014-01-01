@@ -48,6 +48,23 @@ class TracksTest < ActiveSupport::TestCase
     type = index.class
     assert type.superclass, Integer  
   end
+  
+  test "when track is deleted the index of other tracks is appended" do
+    playlist = playlists(:road_trip)
+    assert_equal 2, playlist.tracks.count
+   
+    track1 = tracks(:ramona)
+    assert_equal 0, track1.index
+   
+    track2 = tracks(:imitosis)
+    assert_equal 1, track2.index
+    
+    test_track1 = Track.find track1.id
+    test_track1.index_destroy playlist
+    test_track2 = Track.find track2.id
+    assert_equal 0, test_track2.index
+  end
+
   test "tracks have and association with vote" do
     track = tracks(:ramona)
     refute_nil track.votes 
