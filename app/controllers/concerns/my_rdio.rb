@@ -7,17 +7,17 @@ module My_Rdio
                            [token, secret])
 
     end
-    
-   
+
+
     def self.verified(rdio)
       @rdio = rdio
     end
-    
+
     def self.heavy_rotation(key, friend)
       @rdio.call('getHeavyRotation',
                  'user' => key,
                  'friends' => 'true',
-                 'count' => '48')['result'] 
+                 'count' => '48')['result']
 
     end
   end
@@ -40,8 +40,8 @@ module My_Rdio
       @embedUrl = rdio_playlist['embedUrl']
       @key = rdio_playlist['key']
       RdioTrack.remove_track(@key, '0', 't35335083', 1)
-    end 
-    
+    end
+
     def self.delete_playlist(key)
       @rdio.call('deletePlaylist', 'key' => key)
     end
@@ -61,6 +61,12 @@ module My_Rdio
     def self.all_playlist
        @rdio.call('getPlaylists',
                    "extras" => "tracks")['result']['owned']
+    end
+
+    def self.playlist_order playlist_key, tracks
+      @rdio.call('setPlaylistOrder',
+                 'playlist' => playlist_key,
+                 'tracks' => tracks) 
     end
   end
 
@@ -121,7 +127,7 @@ module My_Rdio
      @rdio.call('getTracksForArtist',
                'artist' => artist_key,
                'sort' => 'releaseDate',
-               'query' => query)['result']    
+               'query' => query)['result']
     end
 
     def self.albums_for_artist(artist_key, featured='false')
@@ -155,7 +161,7 @@ module My_Rdio
     end
 
     def artist_tracks(track_name)
-      tracks = RdioTrack.get_tracks_for_artist artist_key, track_name 
+      tracks = RdioTrack.get_tracks_for_artist artist_key, track_name
     end
 
     def artist_albums
