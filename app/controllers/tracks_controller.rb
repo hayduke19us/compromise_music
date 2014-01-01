@@ -39,15 +39,9 @@ class TracksController < ApplicationController
   end
 
   def vote_up
-   @user = User.find(params[:current_user])
    @playlist = Playlist.find(params["playlist_id"])
    @track = Track.find(params[:id])
-   unless @user.voted_for?(@track)
-     @user.vote_exclusively_for(@track)
-     flash[:notice] = "#{@track.name} voted up"
-   else
-     flash[:notice] = "#{@track.name} already voted for"
-   end
+   current_user.vote_for(@track)
    sync_update @track
    respond_to do |format|
      format.html {redirect_to playlist_path(@playlist)}
@@ -57,14 +51,8 @@ class TracksController < ApplicationController
 
   def vote_down
     @playlist =Playlist.find(params["playlist_id"])
-    @user = User.find(params[:current_user])
     @track = Track.find(params[:id])
-    unless @user.voted_against?(@track)
-      @user.vote_exclusively_against(@track)
-      flash[:notice] = "#{@track.name} voted down"
-    else
-      flash[:notice] = "#{@track.name} already voted down"
-    end
+    current_user.vote_against(@track)
     sync_update @track
     respond_to do |format|
       format.html {redirect_to playlist_path(@playlist)}
