@@ -30,8 +30,7 @@ class PlaylistsController < ApplicationController
     @user = current_user
     @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
     @playlist = Playlist.find(params[:id])
-    sorted_playlist = @playlist.tracks.sort_by {|t| t.votes_for - t.votes_against } 
-    @sorted_playlist = sorted_playlist.reverse
+    @sorted_playlist = @playlist.tracks.sort_by {|t| t.index } 
     @tracks = @playlist.tracks
     @total_votes = total_votes(@tracks) 
     if params[:group]
