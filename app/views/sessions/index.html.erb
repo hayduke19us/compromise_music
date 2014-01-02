@@ -160,8 +160,8 @@
                       <div class="panel-body">
                         <%group.playlists.each do |g_playlist|%>
                           <li>
-                          <%=link_to g_playlist.name, playlist_path(
-                            g_playlist.id, group: group)%>
+                          <%=link_to g_playlist.name, group_playlist_path(group,
+                            g_playlist)%>
                           </li>
                         <%end%>
                       </div>

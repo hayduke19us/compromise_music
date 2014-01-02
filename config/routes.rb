@@ -4,13 +4,8 @@ CompromiseMusic::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
   get "playlists/search"
-  get "sessions/index"
 
   resources :friendships
-
-  resources :users do
-    resources :friends
-  end
 
   resources :users do
     resources :playlists
