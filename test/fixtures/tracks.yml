@@ -15,7 +15,7 @@ armchairs:
   name: armchairs
   key: def123
   embedUrl: http/embedUrl
-  playlist_id: 2 
+  playlist_id: 1 
   playlist_key: def123
   index: 1
   user_id: 2 
@@ -27,7 +27,7 @@ imitosis:
   embedUrl: http/embedUrl
   playlist_id: 1
   playlist_key: abc123
-  index: 1
+  index: 2
   user_id: 3 
 
 

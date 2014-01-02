@@ -61,10 +61,13 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "user can vote on a track" do
+    track = tracks(:imitosis)
+    assert_equal 1, track.votes_for
     user = users(:martha)
-    track = tracks(:ramona)
-    user_track = user.tracks.first
-    assert_equal 1, user_track.votes.count
+    vote = Vote.create vote: true, voteable_type: "Track", voteable_id: track.id,
+      voter_type: "User", voter_id: user.id
+    track = Track.find track.id
+    assert_equal 2, track.votes_for
   end
   
   test "user has one association with banker" do

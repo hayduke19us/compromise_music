@@ -8,9 +8,11 @@ class Track < ActiveRecord::Base
     :embedUrl, :index,  presence: true
   validates :index, numericality: { only_integer: true }
   validates :key, uniqueness: {scope: :playlist_key} 
+
   def vote_up user
     user.vote_for self
     self.save
+
   end
 
   def vote_down user
@@ -18,13 +20,13 @@ class Track < ActiveRecord::Base
     self.save
   end
 
-  def index_after_vote playlist 
+  def index_after 
+    playlist = Playlist.find self.playlist_id 
     sorted_playlist = playlist.tracks.sort_by {|t| t.votes_for - t.votes_against}
     x = 0
     sorted_playlist.reverse.each do |t|
      t.index = x
      t.save
-     sync_update self
      x += 1
     end
   end

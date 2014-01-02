@@ -40,15 +40,15 @@ class PlaylistTest < ActiveSupport::TestCase
 
   test "A playlist has an association to tracks" do
     playlist = playlists(:road_trip)
-    assert_equal 2, playlist.tracks.count
+    assert_equal 3, playlist.tracks.count
   end
 
   test "If a playlist is deleted associated tracks are deleted" do
     playlist = playlists(:road_trip)
-    assert_equal 2, playlist.tracks.count, "road trip playlist track count '2'"
+    assert_equal 3, playlist.tracks.count, "road trip playlist track count '3'"
     tracks = Track.all
     assert_equal 3, tracks.count, "all tracks count '3'"
     playlist.destroy
-    assert_equal 1, tracks.count, "tracks count after playlist delete '1'"
+    assert_equal 0, tracks.count, "tracks count after playlist delete '0'"
   end
 end
