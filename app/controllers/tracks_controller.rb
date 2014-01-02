@@ -39,6 +39,8 @@ class TracksController < ApplicationController
    track = Track.find(params[:id])
    track.vote_up current_user
    playlist = Playlist.find track.playlist_id
+   track.index_after_vote playlist
+=begin
    sorted_playlist = playlist.tracks.sort_by {|t| t.votes_for - t.votes_against}
    x = 0
    sorted_playlist.reverse.each do |track|
@@ -47,6 +49,7 @@ class TracksController < ApplicationController
      sync_update track
      x += 1
    end
+=end
    respond_to do |format|
      format.html {redirect_to playlist_path(track.playlist_id)}
      format.js {head :no_content}

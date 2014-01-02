@@ -10,6 +10,9 @@ gem 'thin', require: false
 group :test do
   gem 'hirb'
   gem 'simplecov', :require => false
+  gem 'autotest-rails'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
 end
 
 group :development do

@@ -3,10 +3,11 @@ class Track < ActiveRecord::Base
   belongs_to :playlist
   belongs_to :user
   acts_as_voteable
+  
   validates :name, :key, :playlist_id, :playlist_key,
     :embedUrl, :index,  presence: true
   validates :index, numericality: { only_integer: true }
-
+  validates :key, uniqueness: {scope: :playlist_key} 
   def vote_up user
     user.vote_for self
     self.save
@@ -20,10 +21,10 @@ class Track < ActiveRecord::Base
   def index_after_vote playlist 
     sorted_playlist = playlist.tracks.sort_by {|t| t.votes_for - t.votes_against}
     x = 0
-    sorted_playlist = sorted_playlist.reverse
-    sorted_playlist.each do |t|
+    sorted_playlist.reverse.each do |t|
      t.index = x
      t.save
+     sync_update self
      x += 1
     end
   end
