@@ -41,7 +41,7 @@ class TracksController < ApplicationController
    track.vote_up current_user
    track.index_after
    playlist = Playlist.find track.playlist_id 
-   playlist.tracks.each {|track| sync_update track}   
+   sync_update track
    respond_to do |format|
      format.html {redirect_to playlist_path(track.playlist_id)}
      format.js {head :no_content}
@@ -50,6 +50,7 @@ class TracksController < ApplicationController
 
   def vote_down
     track = Track.find(params[:id])
+    playlist = Playlist.find track.playlist_id
     track.vote_down current_user
     sync_update track
     respond_to do |format|

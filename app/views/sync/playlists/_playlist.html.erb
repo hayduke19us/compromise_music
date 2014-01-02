@@ -1,16 +1,12 @@
-<div class="col-md-8", id= "my_playlist">
-  <div class="panel panel-default" style="padding:5%;">
-    <div class="pull-right">
-      <button onclick= <%="jukebox('#{playlist[:key]}')"%> 
-        class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-play"></span>
-      </button> 
-    </div>
-    <h3>
-      <%=playlist.name.titleize%>
-    </h3>
-     <% playlist.tracks.each do |track|%>
-       <%= sync partial: 'track', resource: track %>
-     <%end%>
-  </div>
-</div>
+<list>
+  <% sorted = playlist.tracks.sort_by {|track| track.index}%>
+</list>
+<track>
+  <%sorted.each do |track| %>
+    <%= sync partial: 'track_row', resource: track %>
+  <%end%>
+</track>
+<track>
+  <%= sync_new partial: 'track_row', resource: Track.new, 
+    scope: playlist %> 
+</track>

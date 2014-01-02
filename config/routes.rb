@@ -16,10 +16,6 @@ CompromiseMusic::Application.routes.draw do
     resources :playlists
   end
 
-  resources :friends do
-    resources :playlists
-  end
-
   resources :tracks do
     member do
       get :vote_up, as: 'vote_up'
@@ -30,6 +26,7 @@ CompromiseMusic::Application.routes.draw do
   resources :playlists do
     member do
       get :publish, as: 'publish'
+      get :music_box
     end
   end
 
@@ -41,11 +38,6 @@ CompromiseMusic::Application.routes.draw do
    resources :playlists
   end
   
-  resources :playlists do
-    member do
-      get :music_box
-    end
-  end
 
   resources :grouplists
   resources :groupships
