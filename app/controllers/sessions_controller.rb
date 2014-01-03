@@ -14,12 +14,15 @@ class SessionsController < ApplicationController
         end
       end
     end
+    @online_users = User.where("online = ? AND id != ?", true, current_user)
   end
 
   def create
     reset_session
     user = User.from_omniauth(env["omniauth.auth"])
-    if user.id
+    user.online = true
+    user.save
+    unless user.banker
       banker = Banker.new_account(user.id)
     end
     session[:user_id] = user.id
@@ -27,6 +30,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    user = User.find current_user.id
+    user.online = false
+    user.save
     session[:user_id] = nil
     redirect_to root_url
   end

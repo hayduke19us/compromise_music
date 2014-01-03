@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216215540) do
+ActiveRecord::Schema.define(version: 20140103054702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20131216215540) do
     t.string   "access_token"
     t.string   "access_secret"
     t.string   "key"
+    t.boolean  "online"
   end
 
   create_table "votes", force: true do |t|
