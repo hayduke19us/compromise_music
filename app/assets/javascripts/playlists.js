@@ -1,6 +1,6 @@
 $(function () {
   $("#query").focus();
-
+  $("#equalizer").hide();
   $("#option_track").click(function(){
     $("#query").attr('placeholder', "Track name").focus();
   })
@@ -36,6 +36,7 @@ function pause_control(){
   var glyph = document.getElementById("pause_glyph");
   var btn = document.getElementById("control_button").setAttribute("onclick", "jukebox();");
   glyph.className="glyphicon glyphicon-play";
+  $("#equalizer").fadeOut('slow');
 
 }
 
@@ -44,6 +45,8 @@ function jukebox(key){
   var nav = document.getElementById("hide_nav").className="show";
   document.getElementById("control_button").setAttribute("onclick", "pause_control();")
   document.getElementById("pause_glyph").className="glyphicon glyphicon-pause";
+  $("#equalizer").fadeIn("slow");
+  $("#freq").css("height", "50px");
 }
 
 function previous(){
@@ -56,13 +59,13 @@ function next(){
 
 function hide_nav(){
   $("#open_nav_wrapper").removeClass("hidden").addClass("show");
-  $("#hide_nav").removeClass("show").addClass("invisible")
+  $("#hide_nav").removeClass("show").addClass("invisible");
 }
 
 function open_nav(){
-  $("#hide_nav").removeClass("invisible").addClass("show")
-}
+  $("#hide_nav").removeClass("invisible").addClass("show");
 
+}  
 
 
 

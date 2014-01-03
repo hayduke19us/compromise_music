@@ -23,15 +23,7 @@ $(document).ready(function() {
       1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
 
-  // set up the controls
-  $('#play').click(function() {
-    apiswf.rdio_play($('#play_key').val());
-  });
-  $('#stop').click(function() { apiswf.rdio_stop(); });
-  $('#pause').click(function() { apiswf.rdio_pause(); });
-  $('#previous').click(function() { apiswf.rdio_previous(); });
-  $('#next').click(function() { apiswf.rdio_next(); });
-});
+ });
 
 
 // the global callback object
@@ -102,7 +94,16 @@ callback_object.positionChanged = function positionChanged(position) {
   //The position within the track changed to position seconds.
   // This happens both in response to a seek and during playback.
   $('#position').text(position);
+  if(position < 1){
+    $("#freq").fadeOut('slow');
+    $("#freq2").fadeOut('slow');
+  }
+  else if(position > 1){
+    $("#freq").fadeIn('slow');
+    $("#freq2").fadeIn('slow');
+  }
 }
+
 
 callback_object.queueChanged = function queueChanged(newQueue) {
   // The queue has changed to newQueue.
@@ -130,8 +131,12 @@ callback_object.updateFrequencyData = function updateFrequencyData(arrayAsString
   var arr = arrayAsString.split(',');
 
   $('#freq #sound').each(function(i) {
-    $(this).width(parseInt(parseFloat(arr[i])*300));
+    $(this).height(parseInt(parseFloat(arr[i])*50));
   })
+ $('#freq2 #sound2').each(function(i) {
+    $(this).height(parseInt(parseFloat(arr[i])*60));
+  })
+
 }
 
 

@@ -174,18 +174,38 @@ div#remove_button{float:left;}
 
 /*jukebox swf object player*/
 
-div#freq{float:right;
-         padding-top: 20px;
-         width: 200px;
-         height:100px;
-         opacity:0.6;
-         margin-right:150px;
+#track_time{width:0;
+            height:50px;
+            background-color: blue;
+            margin-bottom: 15px;
 }
-div#sound{background-color:#C2D1FF;
-          float:left;
-          height:10px;
-          border-top: solid 1px #efefef;
-          opacity: 0.4;
+
+
+
+div#freq{-webkit-transform:rotate(180deg);
+         width: 200px;
+         height:0px;
+         margin-bottom: 15px;
+         position: absolute;
+        
+}
+div#sound{background-color:#efefef;
+          float: left;
+          width:20px;
+}
+
+div#freq2{-webkit-transform:rotate(180deg);
+          width: 200px;
+          height: 50px;
+          opacity: 0.3;
+          position: absolute;
+          opacity: 0.1;
+}
+div#sound2{background-color: #a3b3cc;
+           float:left;
+           width:20px;
+           border-right: 1px solid #667080;
+           border-top: 1px solid #667080;
 }
 
 //footer
