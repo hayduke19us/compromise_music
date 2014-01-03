@@ -8,11 +8,6 @@
             friendships. After that start a group and explore your herd like
             instinct.
           </h2>
-          <% if @online_users %>
-            <% @online_users.each do |online_user| %>
-              <%=online_user.name%>
-            <%end%>
-          <%end%>
         </div>    
         <div class="col-md-6">
           <%= render "graph" %>
