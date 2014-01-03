@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => "true" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
+    <%= javascript_include_tag Sync.adapter_javascript_url %>
+
   </head>
   <body>
     <% if current_user %>
