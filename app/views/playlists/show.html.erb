@@ -44,9 +44,17 @@
               <%=@playlist.name.titleize%>
             </h3>
           </div>
-          <playlist>
-            <%= sync partial: 'playlist', resource: @playlist %>
-          </playlist>
+          <div id = "my_playlist">
+            <track>
+              <% @sorted.each do |track| %>
+                <%= sync partial: 'track_row', resource: track %>
+              <%end%>
+            </track>
+            <track>
+              <%= sync_new partial: 'track_row', resource: Track.new, 
+                scope: @playlist %> 
+            </track>
+          </div>
         </div>
       </div>
     </div>

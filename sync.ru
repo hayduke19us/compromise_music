@@ -8,5 +8,5 @@ Sync.load_config(
   File.expand_path("../config/sync.yml", __FILE__),
   ENV["RAILS_ENV"] || "development"
 )
-
+Faye::WebSocket.load_adapter('thin')
 run Sync.pubsub_app

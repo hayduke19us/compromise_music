@@ -15,6 +15,7 @@ class TracksController < ApplicationController
      track = Track.new track_params
      if track.save
        sync_new track, scope: playlist
+       sync_update playlist
        track.index_after 
        respond_to do |format|
          format.html {redirect_to playlist_path(playlist.id)}
@@ -42,6 +43,7 @@ class TracksController < ApplicationController
    track.index_after
    playlist = Playlist.find track.playlist_id 
    sync_update track
+   sync_update playlist
    respond_to do |format|
      format.html {redirect_to playlist_path(track.playlist_id)}
      format.js {head :no_content}
@@ -52,7 +54,9 @@ class TracksController < ApplicationController
     track = Track.find(params[:id])
     playlist = Playlist.find track.playlist_id
     track.vote_down current_user
+    track.index_after
     sync_update track
+    sync_update playlist
     respond_to do |format|
       format.html {redirect_to playlist_path(track.playlist_id)}
       format.js {head :no_content}

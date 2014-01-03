@@ -33,7 +33,7 @@ class PlaylistsController < ApplicationController
     @user = current_user
     @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
     @playlist = Playlist.find(params[:id])
-    @sorted_playlist = @playlist.tracks.sort_by {|t| t.index } 
+    @sorted = @playlist.tracks.sort_by {|t| t.index}
     @tracks = @playlist.tracks
     @total_votes = total_votes(@tracks) 
     if params[:play_track]
@@ -68,10 +68,10 @@ class PlaylistsController < ApplicationController
 
   def publish
     playlist = Playlist.find(params[:id])
-    group = Group.find(params[:group])
+    group = Group.find(params[:group_id])
     result =  VotingGame.track_success_filter(playlist,
                                               group,
                                               playlist.tracks.count)
-    redirect_to playlist_path(playlist, group: group)
+    respond_with playlist, location: playlist_path(playlist)
   end
 end

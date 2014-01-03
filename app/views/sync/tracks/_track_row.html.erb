@@ -1,15 +1,15 @@
 <song>
-<div class="pull-left" id = "index_delete" 
-  style=height:100px;width:20px;padding-right:30px;padding-top:40px;>
-  <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
-    track_path(
-    id: track.id,
-    group: @group_id),
-    method:"delete",
-    remote: true,
-    data: {confirm: "are you sure?"}%>
+  <div class="pull-left" id = "index_delete" 
+    style=height:100px;width:20px;padding-right:30px;padding-top:40px;>
+    <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
+      track_path(
+      id: track.id,
+      group: @group_id),
+      method:"delete",
+      remote: true,
+      data: {confirm: "are you sure?"}%>
   </div>
-  <div class="panel default-panel" id="song">
+  <div class="panel" id="song">
     <h4 class="pull-right">
       <div id="vote">
         <%=link_to raw(
