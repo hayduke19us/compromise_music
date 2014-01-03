@@ -67,10 +67,19 @@ class PlaylistsController < ApplicationController
   end
 
   def publish
+    group = Group.find(params[:group_id])
     playlist = Playlist.find(params[:id])
-    VotingGame.track_success_filter(playlist,
-                                    group,
-                                    playlist.tracks.count)
-    respond_with playlist, location: playlist_path(playlist)
+    sorted_playlist = playlist.tracks.sort_by {|t| t.index}
+    sorted_tracks = []
+    sorted_playlist.each do |track|
+      sorted_tracks << track.key
+    end
+
+    RdioPlaylist.playlist_order playlist.key, sorted_tracks.join(", ")  
+      #VotingGame.track_success_filter(playlist,
+       #                             group,
+        #                            playlist.tracks.count)
+    #respond_with playlist, location: playlist_path(playlist)
+    redirect_to group_playlist_path(group, playlist)
   end
 end

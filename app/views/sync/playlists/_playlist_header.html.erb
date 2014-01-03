@@ -6,7 +6,8 @@
   <% if @group %> 
       <%= link_to "Publish", 
       ({controller: "playlists", 
-        action: "publish"}),
+        action: "publish",
+        group_id: @group.id}),
         class: "btn btn-default",
         confirm: "Are you sure?" %>
   <%end%>

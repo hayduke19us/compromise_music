@@ -10,6 +10,7 @@ module VotingGame
     end
 
     def simple_success
+
       @point_adjuster.simple_success @group, @attributes, @count
     end
   end
@@ -31,15 +32,32 @@ module VotingGame
     def simple_success group, attributes, count
       failure_tracks = []
       attributes.tracks.each do |track|
-        if track.votes_for >= group.friends.count/playlist.tracks.count.to_f
+        if track.votes_for >= group.friends.count/attributes.tracks.count.to_f
           failure_tracks << track
         end
-        failure = VotingGame::FailureTracks.new(failure_tracks)
-        failure.rdio_delete
-        failure.compromise_delete
+        #failure = VotingGame::FailureTracks.new(failure_tracks)
+        #failure.rdio_delete
+        #failure.compromise_delete 
       end
     end
   end
+
+  class FailureTracks
+    include My_Rdio
+    def initialize(tracks)
+      @tracks = tracks
+    end
+
+    def rdio_delete
+    end
+
+    def compromise_delete
+      @tracks.each do |track|
+        track.destroy
+      end
+    end
+  end
+
 
   include My_Rdio
   def self.track_success_filter(playlist, group, count)

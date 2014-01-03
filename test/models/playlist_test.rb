@@ -75,9 +75,12 @@ class PlaylistTest < ActiveSupport::TestCase
       group: marthas_friends,
       count: 2,
       point_adjuster: VotingGame::SuccessFilter.new
-    
+
     success =  playlist.simple_success
     assert_equal 3, success.count, "success_tracks [] has 3 tracks"
+    
+    playlist.point_adjuster = VotingGame::FailureFilter.new
+    playlist.simple_success
 
   end
 
