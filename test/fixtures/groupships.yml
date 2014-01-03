@@ -1,10 +1,10 @@
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+friends_tom:
   group_id: 1
-  friend_id: 1
+  friend_id: 2
 
-two:
-  group_id: 1
-  friend_id: 1
+family_tom:
+  group_id: 2
+  friend_id: 2

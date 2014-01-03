@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#white_top {padding-bottom: 20px;}
 
 //playlist index
 #my_playlists_title{padding-right:10px;}
@@ -9,15 +10,9 @@
 
 //heading
 
-#publish_button{style: text;}
-
-#publish {padding-bottom: 10px;}
-
 #publish_value {width: 50px;
  								height: 20px;
 }
-
-
 
 .glyphicon{top:0px;}
 
@@ -174,10 +169,9 @@ div#remove_button{float:left;}
 
 /*jukebox swf object player*/
 
-#track_time{width:0;
+#playlist_header {padding-bottom: 20px;}
+#equalizer{width:0;
             height:50px;
-            background-color: blue;
-            margin-bottom: 15px;
 }
 
 
@@ -185,7 +179,6 @@ div#remove_button{float:left;}
 div#freq{-webkit-transform:rotate(180deg);
          width: 200px;
          height:0px;
-         margin-bottom: 15px;
          position: absolute;
         
 }

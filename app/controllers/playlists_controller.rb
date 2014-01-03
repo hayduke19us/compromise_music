@@ -68,10 +68,9 @@ class PlaylistsController < ApplicationController
 
   def publish
     playlist = Playlist.find(params[:id])
-    group = Group.find(params[:group_id])
-    result =  VotingGame.track_success_filter(playlist,
-                                              group,
-                                              playlist.tracks.count)
+    VotingGame.track_success_filter(playlist,
+                                    group,
+                                    playlist.tracks.count)
     respond_with playlist, location: playlist_path(playlist)
   end
 end

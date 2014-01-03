@@ -2,12 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-6">
+        <playlist-specs>
+        <div id= "playlist_header">
           <%= sync partial: 'playlist_header', 
             resource: @playlist %>
-        <div id = "equalizer">
-          <div id = "track_time">
-            <%= render partial: 'equalizer' %>
-          </div>
+        </div>
+        <playlist-specs>
+        <div  id = "equalizer">
+          <%= render partial: 'equalizer' %>
         </div>
       </div>
       <div class="col-sm-5 col-md-6" id="carousel_pad">
