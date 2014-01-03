@@ -30,6 +30,7 @@ class TracksController < ApplicationController
     if track.destroy
       track.destroy_with_rdio 
       sync_destroy track
+      sync_update playlist.reload
       respond_to do |format|
         format.html {redirect_to playlist_path(playlist)}
         format.js {head :no_content}

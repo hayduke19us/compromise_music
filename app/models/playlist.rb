@@ -5,3 +5,6 @@ class Playlist < ActiveRecord::Base
   validates :key, uniqueness: true
   validates :name, :description, :key, :embedUrl, :user_id, presence: true
 end
+
+
+
