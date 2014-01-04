@@ -2,7 +2,7 @@
 development:
   server: "http://localhost:9292/faye"
   adapter_javascript_url: "http://localhost:9292/faye/faye.js" 
-  auth_token: jsdkfsk5ldksf6dafafdafaf
+  auth_token: "jsdkfsk5ldksf6dafafdafafi"  
   adapter: "Faye"
   async: true
 
@@ -23,8 +23,8 @@ test:
   async: false
 
 production:
-  server: "http://warm-wave-8683.herokuapp.com/faye" 
-  adap"ter_javascript_url: " http://warm-wave-8683.herokuapp.com/faye/faye.js" 
+  server: "http://example.com/faye"
+  adapter_javascript_url: "http://localhost:9292/faye/faye.js" 
   adapter: "Faye"
   auth_token: "1fa3c8ffa887b8e8480184be327887670b652839bc4c8b74d55beede8ec83706"
   async: true
