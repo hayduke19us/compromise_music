@@ -1,2 +1,1 @@
-web: rackup sync.ru -E production -p $PORT 
-web: bin/rails server -p $PORT -e development
+web: rackup sync.ru -E production -p 9292 
