@@ -64,6 +64,12 @@ class PlaylistTest < ActiveSupport::TestCase
 
   end
 
+  test "sort_playlist sorts playlist by index and puts keys in array" do
+    roadtrip = playlists(:road_trip)
+     sort = roadtrip.sort_playlist
+    assert_equal 3, sort.count
+  end
+
   test "strategy pattern for VotingGame is cooperating" do
     roadtrip = playlists(:road_trip)
     assert_equal 3, roadtrip.tracks.count, "playlist has 3 tracks"

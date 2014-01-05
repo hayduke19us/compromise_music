@@ -13,10 +13,12 @@ class TracksController < ApplicationController
      track_params = rdio_track.merge my_track
      RdioTrack.add_track playlist.key, rdio_track[:key]
      track = Track.new track_params
+
      if track.save
        sync_new track, scope: playlist
        sync_update playlist
-       track.index_after 
+       track.index_after
+       playlist.sort_for_rdio
        respond_to do |format|
          format.html {redirect_to playlist_path(playlist.id)}
          format.js {head :no_content}
@@ -28,9 +30,10 @@ class TracksController < ApplicationController
     track = Track.find(params[:id])
     playlist = Playlist.find(track.playlist_id)
     if track.destroy
-      track.destroy_with_rdio 
+      track.destroy_with_rdio
       sync_destroy track
       sync_update playlist.reload
+      playlist.sort_for_rdio
       respond_to do |format|
         format.html {redirect_to playlist_path(playlist)}
         format.js {head :no_content}
@@ -42,9 +45,10 @@ class TracksController < ApplicationController
    track = Track.find(params[:id])
    track.vote_up current_user
    track.index_after
-   playlist = Playlist.find track.playlist_id 
+   playlist = Playlist.find track.playlist_id
    sync_update track
    sync_update playlist
+   playlist.sort_for_rdio
    respond_to do |format|
      format.html {redirect_to playlist_path(track.playlist_id)}
      format.js {head :no_content}
@@ -58,6 +62,7 @@ class TracksController < ApplicationController
     track.index_after
     sync_update track
     sync_update playlist
+    playlist.sort_for_rdio
     respond_to do |format|
       format.html {redirect_to playlist_path(track.playlist_id)}
       format.js {head :no_content}
