@@ -15,3 +15,12 @@ production:
   adapter: "Pusher"
   async: true
 
+test:
+  adapter_javascript_url: "http://js.pusher.com/2.1/pusher.min.js"
+  app_id: "62728"
+  api_key: "bcbbc778881106ba33bf"
+  auth_token: "9670d7eb2526b5eaacc4"
+  adapter: "Pusher"
+  async: true
+
+
