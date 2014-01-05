@@ -11,35 +11,13 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6" id="budding_relationships">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
-          data-interval=7000 data-pause="hover">
-            <!-- Wrapper for slides -->
-          <blockquote>
-            <div class="carousel-inner">
-              <div class="item active">
-                <h2>Budding Relationships</h2>
-              </div>
-              <%@friendships_array.each do |friend| %>
-                <div class="item">
-                  <div class="friendships">
-                    <h2> <%=friend[0]%> 
-                    <span class="glyphicon glyphicon-heart"> </span>
-                    <%=friend[1]%></h2>
-                  </div>
-                </div>
-              <%end%>
-            </div>
-          </blockquote>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 <div id="colored_body">
   <div class="container" id="bottom_body">
     <div class='row'>
-      <div class="col-md-6">
+      <div class="col-sm-6 col-md-6">
         <div class= "panel panel-default" id="search_panel">
           <h3 id="users_title">
             <span class="badge pull-right">
@@ -86,7 +64,7 @@
           <%end%>
         </div>
       </div>
-      <div class="col-md-6", id="all_friends">
+      <div class="col-sm-6 col-md-6", id="all_friends">
         <div class="panel panel-default" id= "friends_panel">
           <h3 id= "your_friends">Friends
             <span class="badge pull-right">

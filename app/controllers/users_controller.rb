@@ -31,22 +31,25 @@ class UsersController < ApplicationController
   private
   def users_except_friends
     unless current_user.friends.blank?
-      all_users = User.where.not("id = ? OR id = ?",
-                                  current_user.id, 
-                                  current_user.friends.each {|f| p f.id })
+      all_users = User.where.not("id IN (#{except_array})")
     else
-      all_users = User.where.not(id: current_user)  
+      all_users = User.where("id != ?", current_user.id)  
     end
     @all_users = all_users
+  end
+  
+  def except_array
+    arr = []
+    arr << current_user.id
+    current_user.friends.each {|f| arr << f.id}
+    arr.join(",")
   end
 
   def friend_check
     if params[:search].blank? && current_user.friends.empty?
-      users = User.where.not(id: current_user.id)
+      users = User.where.not("id = ?", current_user.id)
     elsif params[:search].blank? 
-      users = User.where.not("id = ? OR id = ?", 
-                             current_user.id, 
-                             current_user.friends.each {|f| p f}  )
+      users = User.where.not("id IN (#{except_array})") 
     else params[:search]
       users = User.search(params[:search].downcase)
       ids = []
