@@ -49,7 +49,6 @@
               <% if @group %> 
                 <%= link_to "Publish", publish_playlist_path(@playlist,
                   group_id: @group.id),
-                  class: "btn btn-default btn-xs",
                   data: {confirm: "Are you sure?"} %>
               <%end%>
             </h3>
