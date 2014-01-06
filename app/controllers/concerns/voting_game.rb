@@ -24,8 +24,9 @@ module VotingGame
           success_tracks << track
         end
       end
-        success_tracks
-        #VotingGame::SuccessTracks.new(success_tracks).simple_points
+      unless success_tracks.empty?
+        VotingGame::SuccessTracks.new(success_tracks).simple_success_points
+      end
     end
 
     def simple_failure  attributes, members, total_votes
@@ -36,10 +37,33 @@ module VotingGame
         end
       end
       unless failure_tracks.empty?
+        simple_failure_points failure_tracks
         failure = VotingGame::FailureTracks.new(failure_tracks)
         failure.rdio_delete
         failure = VotingGame::FailureTracks.new(failure_tracks)
         failure.compromise_delete
+      end
+    end
+
+    def simple_failure_points tracks
+      tracks.each do |track|
+        banker = Banker.find_by(user_id: track.user_id)
+        banker.simple_success -= 1
+        banker.save
+      end 
+    end
+  end
+
+  class SuccessTracks
+    def initialize tracks
+      @tracks = tracks
+    end
+
+    def simple_success_points
+      @tracks.each do |track|
+        banker = Banker.find_by(user_id: track.user_id)
+        banker.simple_success += 1
+        banker.save
       end
     end
   end
@@ -47,7 +71,7 @@ module VotingGame
   class FailureTracks
     include My_Rdio
   
-    def initialize(tracks)
+    def initialize tracks
       @tracks = tracks.sort_by {|track| track.index }
     end
 

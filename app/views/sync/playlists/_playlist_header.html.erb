@@ -3,13 +3,5 @@
   <div class = "lead" id="playlist_specs">
   Tracks <%= playlist.tracks.count%>
   </div>
-  <% if @group %> 
-      <%= link_to "Publish", 
-      ({controller: "playlists", 
-        action: "publish",
-        group_id: @group.id}),
-        class: "btn btn-default",
-        confirm: "Are you sure?" %>
-  <%end%>
 </specs>
 
