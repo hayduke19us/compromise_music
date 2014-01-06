@@ -13,7 +13,7 @@ module My_Rdio
       @rdio = rdio
     end
 
-    def self.heavy_rotation(key, friend)
+    def self.heavy_rotation(key)
       @rdio.call('getHeavyRotation',
                  'user' => key,
                  'friends' => 'true',

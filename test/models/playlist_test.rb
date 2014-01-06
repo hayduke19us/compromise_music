@@ -61,7 +61,6 @@ class PlaylistTest < ActiveSupport::TestCase
 
     assert_equal playlist.attributes.name, roadtrip.name
     assert_equal  playlist.group.name, marthas_friends.name
-
   end
 
   test "sort_playlist sorts playlist by index and puts keys in array" do
@@ -69,25 +68,4 @@ class PlaylistTest < ActiveSupport::TestCase
      sort = roadtrip.sort_playlist
     assert_equal 3, sort.count
   end
-
-  test "strategy pattern for VotingGame is cooperating" do
-    roadtrip = playlists(:road_trip)
-    assert_equal 3, roadtrip.tracks.count, "playlist has 3 tracks"
-
-    marthas_friends = groups(:marthas_friends)
-    assert_equal 1, marthas_friends.friends.count, "group has 1 friend"
-
-    playlist = VotingGame::Playlist.new attributes: roadtrip,
-      group: marthas_friends,
-      count: 2,
-      point_adjuster: VotingGame::SuccessFilter.new
-
-    success =  playlist.simple_success
-    assert_equal 3, success.count, "success_tracks [] has 3 tracks"
-    
-    playlist.point_adjuster = VotingGame::FailureFilter.new
-    playlist.simple_success
-
-  end
-
 end

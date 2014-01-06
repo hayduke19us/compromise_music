@@ -2,6 +2,7 @@ class PlaylistsController < ApplicationController
   before_filter :get_rdio_user 
   extend VotingGame
   respond_to :html, :js 
+
   def new
     @playlists = Playlist.all 
   end
@@ -31,7 +32,7 @@ class PlaylistsController < ApplicationController
       @group = Group.find(params[:group_id])
     end
     @user = current_user
-    @heavy_rotation = RdioUser.heavy_rotation(@user.key, 'true')
+    @heavy_rotation = RdioUser.heavy_rotation(@user.key)
     @playlist = Playlist.find(params[:id])
     @sorted = @playlist.tracks.sort_by {|t| t.index}
     @tracks = @playlist.tracks
@@ -71,8 +72,15 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.find(params[:id])
 
     playlist.sort_for_rdio
-    
+
+    #voting game begins
+
+    game = VotingGame::Playlist.new attributes: playlist,
+       group: group,
+       point_adjuster: VotingGame::SuccessFilter.new
+    game.simple_success
+
     #respond_with playlist, location: playlist_path(playlist)
     redirect_to group_playlist_path(group, playlist)
-  end
+ end
 end
