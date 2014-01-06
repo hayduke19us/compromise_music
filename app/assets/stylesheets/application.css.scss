@@ -23,7 +23,7 @@
 
 
 /*Sass variables and mixins */
-
+$color_body: #606a7a;
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
 $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 @mixin box-shadow($specs) {
@@ -32,6 +32,8 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
           box-shadow: $specs;
 }
 
+//beta_link
+div#beta-link a {color: #606a7a;}
 
 /*body padding, backgrounds and page wide styles*/
 
