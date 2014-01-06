@@ -11,10 +11,10 @@ class TracksController < ApplicationController
                  playlist_key: playlist.key,
                  user_id: current_user.id}
      track_params = rdio_track.merge my_track
-     RdioTrack.add_track playlist.key, rdio_track[:key]
      track = Track.new track_params
 
      if track.save
+       RdioTrack.add_track playlist.key, rdio_track[:key]
        sync_new track, scope: playlist
        sync_update playlist
        track.index_after

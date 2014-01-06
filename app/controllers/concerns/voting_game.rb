@@ -62,10 +62,9 @@ module VotingGame
     end
 
     def compromise_delete
-      @async = []
-      @tracks.each do |track|
-        track.destroy
-      end
+      async = []
+      @tracks.each {|track| async << track}
+      async
     end
   end
 end

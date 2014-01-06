@@ -78,8 +78,13 @@ class PlaylistsController < ApplicationController
     game = VotingGame::Playlist.new attributes: playlist,
        group: group,
        point_adjuster: VotingGame::SuccessFilter.new
-    game.simple_success
-
+    async =  game.simple_success
+    unless async == nil 
+      async.each do |track|
+        sync_destroy track
+        track.destroy
+      end
+    end
     #respond_with playlist, location: playlist_path(playlist)
     redirect_to group_playlist_path(group, playlist)
  end
