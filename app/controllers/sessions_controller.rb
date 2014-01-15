@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController
-
+  respond_to :html, :js
   def index
     @user = current_user
+    @playlist = @user.playlists.first
+    @sorted = @playlist.tracks.sort_by {|t| t.index}
     @friends_groups = Array.new
     if current_user
       @user.friends.each do |friend|
@@ -15,6 +17,12 @@ class SessionsController < ApplicationController
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
+  end
+
+  def my_playlist
+    @playlist = Playlist.find(params[:playlist])
+    @sorted = @playlist.tracks.sort_by {|t| t.index}
+    respond_with @playlist
   end
 
   def create

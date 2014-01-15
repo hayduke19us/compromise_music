@@ -60,12 +60,12 @@ div.panel.panel-default{
 }
 
 li {list-style-type: none;}
-#pl_link {color: $dark_title;
+.pl_link {color: $dark_title;
           text-decoration: none
 }
 #new_pl_link {color: white;}
 #new_pl_link:hover {color: black;}
-#pl_link:hover {color: white;}
+.pl_link:hover {color: white;}
 
 #playlist_panel{padding:5%;}
 

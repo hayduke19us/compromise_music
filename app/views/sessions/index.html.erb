@@ -25,9 +25,11 @@
             <div id= "pl_title"> Playlists</div>
            </div>
           <% @user.playlists.each do |playlist|%>
-            <li><%= link_to playlist.name.titleize, "javascript:undefined", 
+            <li><%= link_to playlist.name.titleize, 
+              sessions_my_playlist_path(playlist: playlist),
+              remote: true, 
               onclick: "pl_option('#{playlist.name}')", 
-              id: "#{playlist.name}" + '_1'%></li>
+              id: "#{playlist.name}" + '_1', class: "pl_link"%></li>
             <div class = "hidden" id = <%="#{playlist.name}"%>>
               <li>add to group</li>
               <li>edit</li>
@@ -36,7 +38,9 @@
           <% end %>
           <li><%= link_to "New", new_user_playlist_path(@user), id: "new_pl_link"%></li>
         </div>
-        <div class="col-md-10" id= "playlist_col">
+        <div class="col-md-7" id= "playlist_col">
+          <div id = "my_playlist_partial">
+          </div>
           <div class="home_pg" id="current_page"></div>
             <div class="panel panel-default" id="playlist_panel">
               <% @user.playlists.each do |playlist| %>
