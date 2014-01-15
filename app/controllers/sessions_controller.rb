@@ -30,11 +30,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    user = User.find current_user.id
-    user.online = false
-    user.save
+    if current_user
+      user = User.find current_user.id
+      user.online = false
+      user.save
+    end
     session[:user_id] = nil
-    redirect_to root_url
+    redirect_to "http://warm-wave-8683.herokuapp.com"
   end
 
 end
