@@ -4,7 +4,7 @@
 //
 
 /*Sass variables and mixins */
-
+$dark_title: #CAD0D5;
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
 $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 @mixin box-shadow($specs) {
@@ -52,6 +52,20 @@ div.panel.panel-default{
 }
 
 /*playlist dashboard*/
+
+#playlist_col {height: 100%;}
+
+#pl_title {font-size: 16px; 
+           color: darken($dark_title, 30%);
+}
+
+li {list-style-type: none;}
+#pl_link {color: $dark_title;
+          text-decoration: none
+}
+#new_pl_link {color: white;}
+#new_pl_link:hover {color: black;}
+#pl_link:hover {color: white;}
 
 #playlist_panel{padding:5%;}
 

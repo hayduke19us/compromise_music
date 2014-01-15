@@ -18,15 +18,27 @@
   <div id="colored_body" id="colored_body">
     <div class="container" id= "bottom_body">
       <div class="row" id="dashboard">	
-        <div class="col-md-10">
+        <div class = "col-md-2">
+          <div id = "pl_add">
+            <div id = "new_playlist" class= "pull-right">
+            </div>
+            <div id= "pl_title"> Playlists</div>
+           </div>
+          <% @user.playlists.each do |playlist|%>
+            <li><%= link_to playlist.name.titleize, "javascript:undefined", 
+              onclick: "pl_option('#{playlist.name}')", 
+              id: "#{playlist.name}" + '_1'%></li>
+            <div class = "hidden" id = <%="#{playlist.name}"%>>
+              <li>add to group</li>
+              <li>edit</li>
+              <li>delete</li>
+            </div>
+          <% end %>
+          <li><%= link_to "New", new_user_playlist_path(@user), id: "new_pl_link"%></li>
+        </div>
+        <div class="col-md-10" id= "playlist_col">
           <div class="home_pg" id="current_page"></div>
             <div class="panel panel-default" id="playlist_panel">
-              <div id= "new_playlist">
-                <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), 
-                  new_user_playlist_path(@user), 
-                  'class'=>"btn btn-default pull-right"%>
-                <h3 id="playlist_title">Playlists</h3>
-              </div>
               <% @user.playlists.each do |playlist| %>
                 <div class="well">
                   <div id= "playlist_options">
