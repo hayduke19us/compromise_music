@@ -66,13 +66,9 @@ li {list-style-type: none;}
 }
 #pl_opt_wrap{padding-left: 10px; 
 }
-#pl_opt_link {color: $dark_title;}
-#pl_opt_link_delete {color: darken($delete_red, 30%);}
-#pl_opt_link_delete:hover {color: darken($delete_red, 10%);}
-#pl_opt_link:hover {color: white;}
-#new_pl_link {color: white;}
+#new_pl_link {color: $dark_title;}
 #new_pl_link:hover {color: black;}
-.pl_link:hover {color: white;}
+.pl_link:hover {color: black;}
 
 #playlist_panel{padding:5%;}
 
