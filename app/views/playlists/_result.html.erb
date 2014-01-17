@@ -1,14 +1,27 @@
   <div id="track_background"> 
     <% if result['type'] == "t" %>
-      <%= link_to raw("<div class='pull-right' id='add_bar'>
-        <span class='glyphicon glyphicon-plus'></span>
-      </div>"), tracks_path(
-          playlist_id: @playlist.id,
-          track: result,
-          group: @group_id),
-          id: "link_add_bar",
-          remote: true,
-          method: :post %></br>
+      <div class="dropdown pull-right">
+        <%= link_to raw(
+          "<div class='pull-right' id='add_bar'>
+          <span class='glyphicon glyphicon-plus'></span>
+          </div>"),
+          "#",
+          class: "dropown-toggle", 
+          'data-toggle' => "dropdown",
+          'ariel-labelledby' => "plus" %>
+         <ul class = "dropdown-menu" ariel-labelledby="plus" >
+           <% current_user.playlists.each do |playlist| %>
+             <li>
+              <%= link_to playlist.name, tracks_path(
+                playlist_id: playlist.id,
+                track: result,
+                group: @group_id),
+                remote: true,
+                method: :post %>
+             </li>
+           <% end %>
+         </ul>
+      </div>
       <blockquote>
         <h5 id= "search_track_name" >
           <%= result["name"].titleize %> by

@@ -25,14 +25,25 @@
     </div>
     <% @album_tracks.each do |track|%>
       <div class="well" id="search_result_well">
+        <div class = "dropdown pull-right">
           <%= link_to raw("<div class='pull-right' id='add_bar_tracks'>
-                  <span class='glyphicon glyphicon-plus'></span>
-                  </div>"), tracks_path(
-                  playlist_id: @playlist.id,
-                  track: track[1],
-                  group: @group_id),
-                  remote: true,
-                  method: :post %></br>
+            <span class='glyphicon glyphicon-plus'></span>
+            </div>"), 
+            "javascript:undefined",
+            class: "dropdown-toggle",
+            "data-toggle" => "dropdown"%> 
+          <ul class = "dropdown-menu" >
+          <% current_user.playlists.each do |playlist| %>
+            <li>
+            <%=link_to playlist.name, tracks_path(
+              playlist_id: playlist.id,
+              track: track[1],
+              group: @group_id),
+              remote: true,
+              method: :post %>
+            </li>
+          <%end%>
+        </div>
         <div id="album_tracks_name"> 
           <%= link_to track[1]['name'],"javascript:indefined", 
             onclick:"jukebox('#{track[1]['key']}')"%>
