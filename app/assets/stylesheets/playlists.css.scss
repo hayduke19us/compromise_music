@@ -35,6 +35,9 @@ img#carousel_image:hover{transform:scale(2,2);
 }
 
 /*search panel*/
+#album_inline_wrapper {float: left;
+                       padding-left: 20px;}
+
 #search_description{color: darken($dark_title, 30%);
                     padding-top:20px;
 }
@@ -47,12 +50,13 @@ img#carousel_image:hover{transform:scale(2,2);
          width: 40px;
          background-color:white;
          box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-         -webkit-box-shadow: -1px 1px 5px #5D6870;
-         -moz-box-shadow: -1 1 5px #5D6870;  
+         -webkit-box-shadow: -1px 1px 1px lighten($dark_title, 5%);
+         -moz-box-shadow: -1 1 1px lighten($dark_title, 5%);  
          text-align: center;
          padding-top:16px;
          font-size: 20px;
          border-radius:2px;
+         border-top: 1px solid #efefef;
          
 }
 
@@ -65,12 +69,13 @@ img#carousel_image:hover{transform:scale(2,2);
                width: 20px;
                background-color:white;
                box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-               -webkit-box-shadow: -1px 1px 5px #5D6870;
-               -moz-box-shadow: -1 1 5px #5D6870;  
+               -webkit-box-shadow: -1px 1px 1px lighten($dark_title, 5%);
+               -moz-box-shadow: -1 1 1px lighten($dark_title, 5%);  
                text-align: center;
                padding-top:9px;
                font-size: 10px;
                border-radius:2px;
+               border-top: 1px solid #efefef;
 }
 
 #add_bar_tracks:hover{color:black;}
