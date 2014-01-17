@@ -21,11 +21,7 @@
     <div class="container" id= "bottom_body">
       <div class="row" id="playlist_row">
         <div class = "col-md-2">
-          <div id = "pl_add">
-            <div id = "new_playlist" class= "pull-right">
-            </div>
-            <div id= "pl_title"> Playlists</div>
-           </div>
+          <div id= "pl_title"> Playlists</div>
           <% @user.playlists.each do |playlist|%>
             <span class="badge pull-right"><%=playlist.tracks.count%></span>
             <li><%= link_to playlist.name.titleize,
@@ -34,9 +30,16 @@
               id: "#{playlist.name}" + '_1', class: "pl_link"%>
             </li>
           <% end %>
-          <li><%= link_to "New", new_user_playlist_path(@user), id: "new_pl_link"%></li>
+          <li>
+            <%= link_to "New", 
+            new_user_playlist_path(@user), id: "new_pl_link"%>
+          </li>
         </div>
         <div class="col-md-7" id= "playlist_col">
+          <div id="js_search"> 
+              <% unless @search_results.blank? && @album_tracks.blank?%>
+              <%end%>
+          </div>
           <div id = "my_playlist_partial">
           </div>
           <div class="home_pg" id="current_page"></div>

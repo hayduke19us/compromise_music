@@ -3,7 +3,11 @@ class SessionsController < ApplicationController
   def index
     if current_user
       @user = current_user
-      @playlist = @user.playlists.first
+      if params[:playlist]
+        @playlist = Playlist.find(params[:playlist])
+      else 
+        @playlist = @user.playlists.first
+      end
       @sorted = @playlist.tracks.sort_by {|t| t.index}
     end
     @friends_groups = Array.new
@@ -19,7 +23,27 @@ class SessionsController < ApplicationController
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
+    respond_with search_helper, location: playlist_path(@playlist)
   end
+ 
+  def search_helper
+    if params[:query]
+      rdio_search =  RdioSearch.new(search_type: params[:search_type],
+                                      query: params[:query])
+      @search_results = rdio_search.simple
+    elsif params[:artist_key_tracks] 
+      @search_results = RdioSearch.new(
+        artist_key: params[:artist_key_tracks]).artist_tracks(
+        params[:artist_query])
+    elsif params[:list]
+      @album_tracks = RdioSearch.new(list: params[:list]).album_tracks
+    elsif params[:artist_key]
+      rdio_search = RdioSearch.new(artist_key: params[:artist_key])
+      @search_results = rdio_search.artist_albums
+    end
+  end
+
+
 
   def my_playlist
     @playlist = Playlist.find(params[:playlist])
