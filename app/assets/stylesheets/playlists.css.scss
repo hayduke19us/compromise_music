@@ -5,6 +5,13 @@
 //Sass variables
 $dark_title: #CAD0D5;
 
+$light_shadow: 1px 1px 2px lighten($dark_title, 5%);
+@mixin box-shadow($specs) {
+  -webkit-box-shadow: $specs;
+     -moz-box-shadow: $specs;
+          box-shadow: $specs;
+}
+
 #white_top {padding-bottom: 20px;}
 
 //playlist index
@@ -44,38 +51,34 @@ img#carousel_image:hover{transform:scale(2,2);
 
 #artist_query_input{width: 70%;}
 
-#add_bar{right:0;
-         top:0;
+#add_bar{
          height: 50px;
          width: 40px;
          background-color:white;
-         box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-         -webkit-box-shadow: -1px 1px 1px lighten($dark_title, 5%);
-         -moz-box-shadow: -1 1 1px lighten($dark_title, 5%);  
+        @include box-shadow($light_shadow);
          text-align: center;
          padding-top:16px;
          font-size: 20px;
          border-radius:2px;
          border-top: 1px solid #efefef;
+         border-left: 1px solid #efefef;
+
          
 }
 
 #add_bar:hover{color:black;}
 
 
-#add_bar_tracks{right:0;
-               top:0;
-               height: 30px;
-               width: 20px;
-               background-color:white;
-               box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-               -webkit-box-shadow: -1px 1px 1px lighten($dark_title, 5%);
-               -moz-box-shadow: -1 1 1px lighten($dark_title, 5%);  
-               text-align: center;
-               padding-top:9px;
-               font-size: 10px;
-               border-radius:2px;
-               border-top: 1px solid #efefef;
+#add_bar_tracks{height: 30px;
+                width: 20px;
+                background-color:white;
+                @include box-shadow($light_shadow);
+                text-align: center;
+                padding-top:9px;
+                font-size: 10px;
+                border-radius:2px;
+                border-left: 1px solid #efefef;
+                border-right: 1px solid #efefef;
 }
 
 #add_bar_tracks:hover{color:black;}
@@ -92,17 +95,8 @@ img#carousel_image:hover{transform:scale(2,2);
 #title_and_add{padding-bottom:5px;
 }
 
-#search_result_well{padding-right: 0;
-                   padding-top: 0;
-                   padding-bottom: 0;
-                   border-top: none;
-                   border-right: none;
-                 }
 
-#search_track_image{padding:2%; 
-                    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-		                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-		                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
+#search_track_image{@include box-shadow($light_shadow)
 }
 
 #search_track_image:hover{opacity:0.5;}
