@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   respond_to :html, :js
   def index
-    @user = current_user
-    @playlist = @user.playlists.first
-    @sorted = @playlist.tracks.sort_by {|t| t.index}
+    if current_user
+      @user = current_user
+      @playlist = @user.playlists.first
+      @sorted = @playlist.tracks.sort_by {|t| t.index}
+    end
     @friends_groups = Array.new
     if current_user
       @user.friends.each do |friend|

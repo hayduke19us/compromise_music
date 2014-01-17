@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//Sass variables
+$dark_title: #CAD0D5;
+
+
 #white_top {padding-bottom: 20px;}
 
 //playlist index
@@ -32,7 +36,7 @@ img#carousel_image:hover{transform:scale(2,2);
 }
 
 /*search panel*/
-#search_description{color:#CAD0D5;
+#search_description{color: darken($dark_title, 30%);
                     padding-top:20px;
 }
 

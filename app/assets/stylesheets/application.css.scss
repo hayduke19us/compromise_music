@@ -25,7 +25,7 @@
 /*Sass variables and mixins */
 $color_body: #606a7a;
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
-$shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
+$shadow_light: 1px 1px 1px lighten($color_body, 30%);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
@@ -47,7 +47,7 @@ a:hover {text-decoration: none;
 a {color: #777777}
 
 body {padding-bottom: 150px;
-      background-color:#606a7a;
+      background-color: white;
 }
 
 #colored_body {padding-top: 40px;
