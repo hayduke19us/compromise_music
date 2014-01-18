@@ -1,0 +1,14 @@
+<div id = "group_wrapper">
+  <div id = "gr_name"><h2><%= group.name.titleize%></h2></div>
+  <div class = "pull-right" id = "gp_members">
+    <li id="members_title">Members</li>
+    <% group.friends.each do |member|%>
+      <li><%= member.name.titleize %></li>
+    <% end %>
+  </div>
+  <div id = "gp_playlists">
+    <% group.playlists.each do |playlist| %>
+      <li><%= playlist.name.titleize %></li>
+    <%end%>
+  </div>
+</div>
