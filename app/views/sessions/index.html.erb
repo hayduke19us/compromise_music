@@ -21,18 +21,18 @@
     <div class="container" id= "bottom_body">
       <div class="row" id="playlist_row">
         <div class = "col-md-2">
-          <div id= "pl_title"> Playlists</div>
-          <% @user.playlists.each do |playlist|%>
-            <span class="badge pull-right"><%=playlist.tracks.count%></span>
-            <li><%= link_to playlist.name.titleize,
-              sessions_my_playlist_path(playlist: playlist),
+          <%= sync partial: "playlist_list", resource: @playlist %> 
+          <div id = "gp_title">Groups</div>
+          <% current_user.groups.each do |group|%>
+            <li><%= link_to group.name.titleize,  
+              sessions_my_group_path(group: group),
               remote: true,
-              id: "#{playlist.name}" + '_1', class: "pl_link"%>
+              id: "gp_link" %>
             </li>
-          <% end %>
+          <%end%>
           <li>
-            <%= link_to "New", 
-            new_user_playlist_path(@user), id: "new_pl_link"%>
+          <%= link_to "New", new_user_group_path(@user), 
+            id: "new_gp_link" %>
           </li>
         </div>
         <div class="col-md-10" id= "playlist_col">
@@ -128,76 +128,7 @@
           <%end%>
         </div>
       </div>
-      <div class = 'row'>
-        <div class='col-md-12'>
-          <div class="panel panel-default" id="group_panel">
-            <div id="new_group">
-              <%=link_to raw("<span class='glyphicon glyphicon-plus'></span>"),
-                new_user_group_path(@user),
-                'class' => "btn btn-default pull-right"%>
-              <h3 id="groups_title">Groups</h3>
-            </div>
-            <% @user.groups.each do |group| %>
-              <div class="well">
-                <h4><%=group.name.titleize %></h4>
-                <div class="panel-group" id=<%="#{group.name}"%>>
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent=<%="##{group.name}"%>
-                        href=<%="##{group.id}"%>>
-                          Members
-                        </a>
-                        <span class="badge pull-right">
-                          <%= group.friends.count %>
-                        </span>
-                      </h4>
-                    </div>
-                    <div id=<%="#{group.id}"%> class="panel-collapse collapse out">
-                      <div class="panel-body">
-                         <li id="group_owner"><%=group.user.name.titleize%></li>
-                         <%group.friends.each do |g_friend|%>
-                         <li><%=g_friend.name.titleize%></li>
-                        <%end%>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel-group" id=<%="playlist_#{group.name}"%>>
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse"
-                          data-parent=<%="#playlist_#{group.name}"%>
-                          href=<%="#playlist_#{group.id}"%>>
-                          Playlists
-                          <span class="badge pull-right">
-                            <%=group.playlists.count%>
-                          </span>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id=<%="playlist_#{group.id}"%>
-                      class="panel-collapse collapse out">
-                      <div class="panel-body">
-                        <%group.playlists.each do |g_playlist|%>
-                          <li>
-                          <%=link_to g_playlist.name, group_playlist_path(group,
-                            g_playlist)%>
-                          </li>
-                        <%end%>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <%end%>
-            <%= render 'group_member'%>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      <%= render 'group_member'%>
 <%end%>
 
 

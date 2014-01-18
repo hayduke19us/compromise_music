@@ -5,6 +5,7 @@ CompromiseMusic::Application.routes.draw do
 
   get "playlists/search"
   get "sessions/my_playlist"
+  get "sessions/my_group"
 
   resources :friendships
 

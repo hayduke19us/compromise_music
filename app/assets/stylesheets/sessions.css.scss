@@ -90,6 +90,21 @@ li {list-style-type: none;}
 
 
 /*group dashboard*/
+//users_groups
+
+#gp_title {font-size: 20px; 
+           color: $dark_title;
+           padding-top: 10px;
+}
+
+#gp_link {color: darken($dark_title, 30%);
+          text-decoration: none;
+}
+#gp_link:hover {color: black;}
+
+#new_gp_link {color: $dark_title;}
+#new_gp_link:hover {color: black;}
+
 
 #group_panel{padding:5%;}
 

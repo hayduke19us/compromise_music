@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
   respond_to :html, :js
   def index
     if current_user
+      if params[:group]
+        @group = Group.find(params[:group])
+      end
       @user = current_user
       if params[:playlist]
         @playlist = Playlist.find(params[:playlist])
@@ -23,7 +26,7 @@ class SessionsController < ApplicationController
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
-    respond_with search_helper, location: playlist_path(@playlist)
+    respond_with search_helper
   end
  
   def search_helper
@@ -43,12 +46,15 @@ class SessionsController < ApplicationController
     end
   end
 
-
-
   def my_playlist
     @playlist = Playlist.find(params[:playlist])
     @sorted = @playlist.tracks.sort_by {|t| t.index}
     respond_with @playlist
+  end
+
+  def my_group
+    @group = Group.find(params[:group])
+    respond_with @group
   end
 
   def create
