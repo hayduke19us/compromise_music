@@ -1,19 +1,10 @@
 class UsersController < ApplicationController
+  respond_to :js, :html
 
   def index
-    friendships = Friendship.all 
-    friendships_array = []
-    friendships.each do |ships|
-      tmp_array = Array.new
-      user = User.find(ships.user_id)
-      friend = User.find(ships.friend_id)
-      tmp_array << user.name.titleize
-      tmp_array << friend.name.titleize
-      friendships_array << tmp_array
-    end
-    @friendships_array = friendships_array
     users_except_friends    
     friend_check
+    respond_with friend_check
   end
   
   def show

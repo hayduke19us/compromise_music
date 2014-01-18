@@ -1,0 +1,17 @@
+<%unless search_users.blank?%>
+  <% search_users.each do |user| %>
+    <div class="pull-right" id="user_image_search">
+      <%= image_tag user.image, 'class' => "img-circle", id: "not_fr_image"%></p>
+    </div>
+    <li id="not_fr_name"><%= user.name.titleize%></li>
+    <%= link_to 'Add friend', 
+      friendships_path(:friend_id => user),
+      remote: true,
+      :method => :post ,
+      'id' => 'add_friend_link',
+      'class' => 'btn btn-sm btn-default' %>
+  <%end%>
+<%else%>
+    No results, press show all to restart 
+<%end%>
+

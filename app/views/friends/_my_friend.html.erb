@@ -1,0 +1,30 @@
+<div id="partial_fr_title"><h2>Friends</h2></div>
+<div class = "pull-right" id="search_form_wrapper">
+  <li><span class="badge pull-right"><%=users.count%></span></li>
+  <li id = "user_title">Users</li>
+  <div id= "friends_search_form">
+    <%= form_tag(users_path, :method => 'get', remote: true) do%>
+      <div class="input-group input-group-sm">
+        <div class= "input-group-btn">
+          <button class="btn btn-default" 
+            name="commit" 
+            type="submit">
+            Search
+          </button>
+        </div>
+        <input name="search" id="search" type="text" class="form-control">
+      </div>
+    <%end%>
+    <div id = "not_friends">
+      <% users.each do |user| %>
+       <li><%= user.name %></li>
+      <%end%>
+    </div>
+  </div>
+</div>
+<div id = "friends">
+  <% current_user.friends.each do |friend|%>
+    <li><%= friend.name%></li>
+  <%end%>
+</div>
+

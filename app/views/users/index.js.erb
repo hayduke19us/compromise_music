@@ -1,0 +1,3 @@
+$("#not_friends").html('')
+$("#not_friends").html("<%= j render partial: 'users/not_friends',
+                        locals: {search_users: @search_users}%>")

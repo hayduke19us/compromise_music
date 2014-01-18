@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  respond_to :html, :js
+  respond_to :js, :html
+  
   def index
     if current_user
       if params[:group]
@@ -56,6 +57,28 @@ class SessionsController < ApplicationController
     @group = Group.find(params[:group])
     respond_with @group
   end
+
+  def my_friend
+   @users = users_except_friends
+   respond_with @user
+  end
+
+  def users_except_friends
+    unless current_user.friends.blank?
+      all_users = User.where.not("id IN (#{except_array})")
+    else
+      all_users = User.where("id != ?", current_user.id)  
+    end
+    @all_users = all_users
+  end
+
+  def except_array
+    arr = []
+    arr << current_user.id
+    current_user.friends.each {|f| arr << f.id}
+    arr.join(",")
+  end
+
 
   def create
     reset_session
