@@ -32,6 +32,7 @@ class FriendshipsController < ApplicationController
     @friend = current_user.friendships.find(params[:id]) 
     @friend.destroy
     flash[:notice] = "You just ended a friendship."  
-      redirect_to users_path
+    @users = users_except_friends
+    respond_with @users
   end
 end

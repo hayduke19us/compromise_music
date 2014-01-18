@@ -16,15 +16,58 @@
       </div>
     <%end%>
     <div id = "not_friends">
-      <% users.each do |user| %>
-       <li><%= user.name %></li>
+      <%unless users.blank?%>
+        <% users.each do |user| %>
+          <div class="pull-right" id="user_image_search">
+            <%= image_tag user.image, 
+              'class' => "img-circle", id: "not_fr_image"%></p>
+          </div>
+          <li id="not_fr_name"><%= user.name.titleize%></li>
+          <%= link_to 'Add friend', 
+            friendships_path(:friend_id => user),
+            remote: true,
+            :method => :post ,
+            'id' => 'add_friend_link',
+            'class' => 'btn btn-xs btn-default' %>
+        <%end%>
+      <%else%>
+        Your friends with everyone!
       <%end%>
     </div>
   </div>
 </div>
 <div id = "friends">
-  <% current_user.friends.each do |friend|%>
-    <li><%= friend.name%></li>
+  <% for friendship in current_user.friendships%>
+      <div class = 'pull-left'  id = "fr_image">
+        <%= image_tag friendship.friend.image, 
+          class: 'img-circle',
+          id: "not_fr_image" %> 
+      </div>
+      <li class= "pull-left" id="fr_name"><%= friendship.friend.name%></li>
+      <%=link_to raw("<span class= 'glyphicon glyphicon-remove'</span>"), 
+      friendship, 
+      remote: true,
+      method: :delete,
+      class: "pull-left",
+      id: "rm_friend_glyph"%> 
+     <div id = "add_fr_gp_link">
+       <div class= "dropdown right">
+         <%=link_to raw("<span class= 'glyphicon glyphicon-user'</span>"),
+           "#", 
+           class: "dropdown-toggle",
+           'data-toggle' => 'dropdown'%>
+         <ul class = "dropdown-menu">
+         <% current_user.groups.each do |group| %>
+           <li>
+           <%= link_to group.name, groupships_path(
+               friend_id: friendship.friend.id, 
+               group_id: group),
+               method: :post%>
+           </li>
+         <%end%>
+         </ul>
+       </div>
+     </div>
   <%end%>
 </div>
 

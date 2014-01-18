@@ -9,9 +9,10 @@
       remote: true,
       :method => :post ,
       'id' => 'add_friend_link',
-      'class' => 'btn btn-sm btn-default' %>
+      'class' => 'btn btn-xs btn-default' %>
   <%end%>
 <%else%>
-    No results, press show all to restart 
+  No results, press <%=link_to " show all ", users_path, 
+    remote: true, search: ""%> to restart
 <%end%>
 

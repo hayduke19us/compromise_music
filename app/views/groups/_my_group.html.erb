@@ -3,7 +3,15 @@
   <div class = "pull-right" id = "gp_members">
     <li id="members_title">Members</li>
     <% group.friends.each do |member|%>
-      <li><%= member.name.titleize %></li>
+      <% group.groupships.each do |groupship|%>
+        <li id = "member_name "><%= member.name.titleize %></li>
+        <%= link_to "remove",
+          groupship_path(groupship, group_id: group),
+          remote: true,
+          method: :delete,
+          class: "btn btn-xs btn-default",
+          data: {confirm: "are you sure"}%>
+      <%end%>
     <% end %>
   </div>
   <div id = "gp_playlists">

@@ -1,4 +1,5 @@
 class GroupshipsController < ApplicationController
+  respond_to :html, :js
   def create
     groupship = Groupship.new(group_id: params[:group_id], 
                               friend_id: params[:friend_id])
@@ -10,8 +11,9 @@ class GroupshipsController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:group_id])
     groupship = Groupship.find(params[:id])
     groupship.destroy
-    redirect_to user_groups_path(current_user)
+    respond_with @group 
   end
 end

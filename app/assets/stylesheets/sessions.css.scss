@@ -86,6 +86,14 @@ li {list-style-type: none;}
 #partial_fr_title {color: $dark_title;
                    border-bottom: solid 1px #efefef
 }
+
+#fr_name{padding-top: 15px;
+}
+#fr_image {padding: 10px;}
+#rm_friend_glyph {padding: 18px 0 0 10px;}
+#add_fr_gp_link {padding: 18px 0 0 200px;}
+
+
 #friends_search_form{width: 300px;}
 #search_form_wrapper{width: 300px;
                      height: 100%;
@@ -96,6 +104,7 @@ li {list-style-type: none;}
 #friends {color: darken($dark_title, 30%);}
 #not_friends {color: darken($dark_title, 30%);}
 #not_fr_image{width: 50px; }
+#not_fr_name {padding-bottom: 5px;}
 
 #fr_title {font-size: 20px;
 
