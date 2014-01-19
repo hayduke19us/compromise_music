@@ -1,0 +1,3 @@
+$("#playlist_spec_partial").html('');
+$("#playlist_spec_partial").html("<%= j render partial: 'sessions/playlist_spec',
+                                 locals: {user: current_user}%>")
