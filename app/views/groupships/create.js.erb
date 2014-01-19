@@ -1,3 +1,7 @@
+$("#group_spec_partial").html('');
+$("#group_spec_partial").html("<%= j render partial: '/sessions/group_spec',
+                       locals: {user: current_user}%>");
+
 $("#my_playlist_partial").html('');
 $("#my_playlist_partial").html("<%= j render partial: '/friends/my_friend',
                                locals:{ users: @users } %>");
