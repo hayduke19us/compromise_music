@@ -61,7 +61,8 @@
            <li>
            <%= link_to group.name, groupships_path(
                friend_id: friendship.friend.id, 
-               group_id: group),
+               group_id: group, 
+               users: users),
                remote: true,
                method: :post%>
            </li>

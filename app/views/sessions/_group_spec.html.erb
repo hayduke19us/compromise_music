@@ -1,0 +1,16 @@
+<div id = "gp_title">Groups</div>
+<% user.groups.each do |group|%>
+  <span class= "badge pull-right">
+    <%= group.friends.count %>
+  </span>
+  <li><%= link_to group.name.titleize,  
+    sessions_my_group_path(group: group),
+    remote: true,
+    id: "gp_link" %>
+  </li>
+<%end%>
+<li>
+<%= link_to "New", new_user_group_path(user), 
+  id: "new_gp_link" %>
+</li>
+

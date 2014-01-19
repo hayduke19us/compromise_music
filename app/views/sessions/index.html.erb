@@ -21,26 +21,19 @@
     <div class="container" id= "bottom_body">
       <div class="row" id="playlist_row">
         <div class = "col-md-2">
-          <%= sync partial: "playlist_list", resource: @playlist %> 
-          <div id = "gp_title">Groups</div>
-          <% current_user.groups.each do |group|%>
-            <li><%= link_to group.name.titleize,  
-              sessions_my_group_path(group: group),
-              remote: true,
-              id: "gp_link" %>
-            </li>
-          <%end%>
-          <li>
-          <%= link_to "New", new_user_group_path(@user), 
-            id: "new_gp_link" %>
-          </li>
+          <div id= "playlist_spec_partial">
+            <%= sync partial: "playlist_list", resource: @playlist %> 
+          </div>
+          <div id= "group_spec_partial">
+            <%= render partial: "group_spec", locals: {user: current_user}%>
+          </div>
           <div id = "fr_title">Friends</div>
           <% current_user.friends.each do |friend| %>
             <li><%= link_to friend.name, "#", id: "fr_name" %></li>
           <%end%>
           <li><%= link_to "New", sessions_my_friend_path, 
-              remote: true,
-              id: "new_fr_link"%>
+                remote: true,
+                id: "new_fr_link"%>
           </li>
         </div>
         <div class="col-md-10" id= "playlist_col">
@@ -50,53 +43,6 @@
           </div>
           <div id = "my_playlist_partial">
           </div>
-          <!--
-          <div class="home_pg" id="current_page"></div>
-            <div class="panel panel-default" id="playlist_panel">
-              <% @user.playlists.each do |playlist| %>
-                <div class="well">
-                  <div id= "playlist_options">
-                    <h4><%= link_to playlist.name.titleize,
-                      playlist_path(playlist)%></h4>
-                    <div class="btn-group btn-group-xs">
-                      <%= link_to "add to group","#",
-                        'class'=>'btn btn-sm btn-default dropdown-toggle',
-                        'data-toggle' => 'dropdown',
-                        'type'=>'button' %>
-                      <ul class="dropdown-menu" role="menu">
-                        <%current_user.groups.each do |group|%>
-                          <li>
-                            <%=link_to group.name.titleize, grouplists_path(
-                            playlist_id: playlist.id,
-                            group_id: group.id),
-                            :method => :post%>
-                          </li>
-                        <%end%>
-                        <%unless @friends_groups.blank?%>
-                          <li class="divider"></li>
-                          <% @friends_groups.each do |member_group|%>
-                            <li>
-                              <%= link_to member_group.name.titleize, grouplists_path(
-                              playlist_id: playlist.id,
-                              group_id: member_group.id),
-                              :method => :post,
-                              'id' => 'member_group'%>
-                            </li>
-                          <%end%>
-                        <%end%>
-                      </ul>
-                      <%=link_to "edit", "#",
-                        'class'=> "btn btn-sm btn-default"%>
-                      <%=link_to "delete", user_playlist_path(@user, playlist),
-                        method: :delete,
-                        'class' => 'btn btn-sm btn-danger',
-                        'type' => 'button',
-                        confirm: "Are you sure?"%>
-                    </div>
-                  </div>
-                </div>
-              <%end%>
-            </div> -->
         </div>
       </div>
       <div class = "row" id = "friends_row">
@@ -104,8 +50,9 @@
           <% if @user %>
             <div class="panel panel-default" id="friend_panel">
               <div id= new_friend>
-                <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), users_path,
-                                'class' => 'btn btn-default pull-right' %>
+                <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), 
+                  users_path,
+                  'class' => 'btn btn-default pull-right' %>
                 <h3 id="friends_title">Friends</h3>
               </div>
               <% @user.friends.each do |friend| %>
