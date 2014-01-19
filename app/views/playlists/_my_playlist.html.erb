@@ -1,19 +1,33 @@
-<div class="panel panel-default" style="padding:5%;">
-  <div class="pull-right">
-    <button onclick= <%="jukebox('#{playlist.key}')"%> 
-      class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-play"></span>
-    </button> 
-  </div>
-  <div class= "panel panel-default "id="playlist_title_box">
-    <h3> 
-      <%=playlist.name.titleize%>
-      <% if @group %> 
-        <%= link_to "Publish", publish_playlist_path(playlist,
-          group_id: @group.id),
-          data: {confirm: "Are you sure?"} %>
-      <%end%>
-    </h3>
+  <div id = "pl_header_wrapper">
+    <div id = "pl_play_glyph" class="pull-right">
+      <button onclick= <%="jukebox('#{playlist.key}')"%> 
+        class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-play"></span>
+      </button> 
+    </div>
+    <div id = "pl_main_name" class = pull-left>
+    <%=playlist.name.titleize%>
+    </div>
+    <div class = "dropdown">
+      <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
+      "#",
+      class: "dropdown-toggle",
+      'data-toggle' => "dropdown"%>
+      <ul class = "dropdown-menu">
+        <% current_user.groups.each do |group| %>
+          <li><%= link_to group.name, 
+            grouplists_path(group_id: group,
+                           playlist_id: playlist),
+                           method: :post,
+                           remote: true  %></li>
+        <%end%>
+      </ul>
+    </div>
+    <% if @group %> 
+       <%= link_to "Publish", publish_playlist_path(playlist,
+        group_id: @group.id),
+        data: {confirm: "Are you sure?"} %>
+    <%end%>
   </div>
   <div id = "my_playlist">
     <track>
@@ -26,5 +40,4 @@
         scope: playlist %> 
     </track>
   </div>
-</div>
 

@@ -110,6 +110,13 @@ img#carousel_image:hover{transform:scale(2,2);
 #album_and_tracks{padding:5%;}
 
 //playlist
+#pl_header_wrapper {border-bottom: 1px solid #efefef;
+                    padding-bottom: 30px;
+                 }
+#pl_main_name {font-size: 20px;
+               color: $dark_title;
+               padding-right: 20px;
+}
 #vote {padding-left: 20px;}
 
 #delete_track{font-size: 30px;

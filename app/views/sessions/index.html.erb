@@ -22,7 +22,7 @@
       <div class="row" id="playlist_row">
         <div class = "col-md-2">
           <div id= "playlist_spec_partial">
-            <%= sync partial: "playlist_list", resource: @playlist %> 
+            <%= render partial: "playlist_spec", locals: {user: current_user}%> 
           </div>
           <div id= "group_spec_partial">
             <%= render partial: "group_spec", locals: {user: current_user}%>
@@ -43,44 +43,6 @@
           </div>
           <div id = "my_playlist_partial">
           </div>
-        </div>
-      </div>
-      <div class = "row" id = "friends_row">
-        <div class="col-md-7">
-          <% if @user %>
-            <div class="panel panel-default" id="friend_panel">
-              <div id= new_friend>
-                <%= link_to raw("<span class='glyphicon glyphicon-plus'></span>"), 
-                  users_path,
-                  'class' => 'btn btn-default pull-right' %>
-                <h3 id="friends_title">Friends</h3>
-              </div>
-              <% @user.friends.each do |friend| %>
-                <div class="well">
-                  <div class="friend_image">
-                    <%= image_tag friend.image,
-                        'id' => 'friend_image',
-                        'class' => 'img-circle'%>
-                    <h4 id="friend_name"><%=friend.name.titleize%></h4>
-                    <div class="btn-group btn-group-xs">
-                      <button type="button" class="btn btn-default"
-                        data-toggle="dropdown">
-                        add to group <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <% for group in current_user.groups %>
-                          <li><%= link_to group.name.titleize, groupships_path(
-                            group_id: group.id,
-                            friend_id: friend.id),
-                            :method => :post %> </li>
-                        <%end%>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              <%end%>
-            </div>
-          <%end%>
         </div>
       </div>
       <%= render 'group_member'%>

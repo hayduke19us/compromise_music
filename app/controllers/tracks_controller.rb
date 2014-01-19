@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
-   before_filter :get_rdio_user
+  respond_to :js, :html 
+  before_filter :get_rdio_user
    def create
      playlist = Playlist.find(params[:playlist_id])
      all_tracks = playlist.tracks.count
@@ -18,10 +19,7 @@ class TracksController < ApplicationController
        sync_update playlist
        track.index_after
        playlist.sort_for_rdio
-       respond_to do |format|
-         format.html {redirect_to playlist_path(playlist.id)}
-         format.js {head :no_content}
-       end
+       respond_with 
      end
    end
 
@@ -33,10 +31,7 @@ class TracksController < ApplicationController
       sync_destroy track
       sync_update playlist.reload
       playlist.sort_for_rdio
-      respond_to do |format|
-        format.html {redirect_to playlist_path(playlist)}
-        format.js {head :no_content}
-      end
+      respond_with 
     end
   end
 
