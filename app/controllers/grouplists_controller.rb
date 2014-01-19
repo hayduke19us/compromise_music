@@ -11,4 +11,11 @@ class GrouplistsController < ApplicationController
       respond_with @playlist
     end
   end
+
+  def destroy
+    grouplist = Grouplist.find(params[:id])
+    @group = grouplist.group
+    grouplist.destroy
+    respond_with @group
+  end
 end
