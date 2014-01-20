@@ -1,0 +1,12 @@
+<a data-remote= "true" href = <%= sessions_my_playlist_path(playlist: playlist)%> class = "thumbnail">
+  <div id = "pl_thumb_wrapper">
+    <div class="pl_thumb_name">
+      <li><%= playlist.name.titleize %></li>
+      <%= playlist.name %>
+      <% playlist.tracks.each do |track| %>
+        <li id = "tr_thumb_name">
+        <%= /(.{15}|.{10}|.{5})/.match(track.name)%>...</li> 
+      <% end %>
+    </div>
+  </div>
+</a>

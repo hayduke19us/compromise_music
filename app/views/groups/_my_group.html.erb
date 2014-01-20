@@ -18,17 +18,16 @@
     <% end %>
   </div>
   <div id = "gp_playlists">
-    <% group.playlists.each do |playlist| %>
       <% group.grouplists.each do |grouplist| %>
-      <div class = "pull-left">
-        <li><%= playlist.name.titleize %></li>
-      </div>
-      <%=link_to raw("<span id = 'pl_remove_glyph' 
-        class = 'glyphicon glyphicon-remove'></span>"),
-      grouplist,
-      method: :delete,
-      remote: true %>
+        <div class= "pull-left col-md-3" >
+          <%=link_to raw("<span id = 'pl_remove_glyph' 
+            class = 'glyphicon glyphicon-remove'></span>"),
+            grouplist,
+            method: :delete,
+            remote: true %>
+          <%= render partial: "/playlists/playlist_thumbnail",
+            locals: {playlist: grouplist.playlist, grouplist: grouplist}%>
+        </div>
       <%end%>
-    <%end%>
   </div>
 </div>
