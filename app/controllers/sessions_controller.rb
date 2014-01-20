@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
+     
     respond_with search_helper
   end
  

@@ -5,6 +5,7 @@
 //Sass variables
 $dark_title: #CAD0D5;
 
+$left_shadow: -1px -1px 3px 1px $dark_title; 
 $light_shadow: 1px 1px 2px lighten($dark_title, 5%);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
@@ -165,7 +166,9 @@ h4#new_playlist_description {text-align: center}
 
 //my_playlist
 #my_pl_wrapper { border-left: 1px solid #efefef;
-                padding-left: 10px;
+                 @include box-shadow($left_shadow);
+                 padding: 2%;
+                 
 }
 #my_playlist {padding-top: 30px;}
 playlist{width: 70%;}
