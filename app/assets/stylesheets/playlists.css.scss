@@ -6,7 +6,7 @@
 $dark_title: #CAD0D5;
 
 $left_shadow: -1px -1px 3px 1px $dark_title; 
-$light_shadow: 1px 1px 2px lighten($dark_title, 5%);
+$light_shadow: 1px 1px 1px 1px $dark_title;
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
@@ -111,12 +111,19 @@ img#carousel_image:hover{transform:scale(2,2);
 #album_and_tracks{padding:5%;}
 
 //playlist
-#pl_header_wrapper {border-bottom: 1px solid #efefef;
-                    padding-bottom: 30px;
+#playlist_play_glyph{display: inline;}
+#pl_add_gr{display: inline;}
+
+
+#pl_header_wrapper { padding-bottom: 30px;
+                     height: 70px;
+                     width: 100%;
+                     border-bottom: 2px solid $dark_title;
                  }
 #pl_main_name {font-size: 30px;
                color: $dark_title;
-               padding-right: 20px;
+               padding: 0 0 20px 0;
+               position: absolute;
 }
 #vote {padding-left: 20px;}
 
@@ -168,11 +175,9 @@ h4#new_playlist_description {text-align: center}
 #my_pl_wrapper { border-left: 1px solid #efefef;
                  @include box-shadow($left_shadow);
                  padding: 2%;
-                 
 }
 #my_playlist {padding-top: 30px;}
-playlist{width: 70%;}
-
+#pl_play_glyph{padding-right: 20px;}
 div#remove_button{float:left;}
 
 #playlist_title_box{width:100%;

@@ -1,20 +1,18 @@
 <div id = "my_pl_wrapper">
-  <div id = "pl_header_wrapper">
-    <div id = "pl_play_glyph" class="pull-right">
-      <button onclick= <%="jukebox('#{playlist.key}')"%> 
-        class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-play"></span>
-      </button> 
-    </div>
-    <div id = "pl_main_name" class = pull-left>
-    <%=playlist.name.titleize%>
-    </div>
-    <div class = "dropdown">
+  <div id = "pl_header_wrapper" >
+    <div class = "dropdown pull-right">
+      <li id="playlist_play_glyph">
+       <%= link_to raw("<span class='glyphicon glyphicon-play'></span>"), 
+           "javascript:undefined",
+           onclick: "jukebox('#{playlist.key}')",
+           id: 'pl_play_glyph'%></li>
+
       <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
-      "#",
-      class: "dropdown-toggle",
-      'data-toggle' => "dropdown"%>
-      <ul class = "dropdown-menu">
+        "#",
+        class: "dropdown-toggle",
+        'data-toggle' => "dropdown",
+        id: 'pl_add_gr'%>
+      <ul class = "dropdown-menu ">
         <% current_user.groups.each do |group| %>
           <li><%= link_to group.name, 
             grouplists_path(group_id: group,
@@ -24,6 +22,7 @@
         <%end%>
       </ul>
     </div>
+    <li id="pl_main_name"><%=playlist.name.titleize%></li>
     <% if @group %> 
        <%= link_to "Publish", publish_playlist_path(playlist,
         group_id: @group.id),
