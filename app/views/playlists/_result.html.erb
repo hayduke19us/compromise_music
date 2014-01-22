@@ -1,45 +1,45 @@
   <div id="track_background"> 
     <% if result['type'] == "t" %>
-      <div class="dropdown pull-right">
-        <%= link_to raw(
-          "<div class='pull-right' id='add_bar'>
-          <span class='glyphicon glyphicon-plus'></span>
-          </div>"),
-          "#",
-          class: "dropown-toggle", 
-          'data-toggle' => "dropdown",
-          'ariel-labelledby' => "plus" %>
-         <ul class = "dropdown-menu" ariel-labelledby="plus" >
-           <% current_user.playlists.each do |playlist| %>
-             <li>
-              <%= link_to playlist.name, tracks_path(
-                playlist_id: playlist.id,
-                track: result,
-                group: @group_id),
-                remote: true,
-                method: :post %>
-             </li>
-           <% end %>
-         </ul>
-      </div>
-      <blockquote>
-        <h5 id= "search_track_name" >
-          <%= result["name"].titleize %> by
-          <%= result["artist"]%>
-        </h5>
-      </blockquote>
-      <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
-        <%= link_to image_tag("#{result['icon']}", 
-          'id' => "search_track_image"), 
-          "javascript:undefined",
-          onclick: "jukebox('#{result['key']}')",
-          onmouseover: "show_play('#{result['key']}')", 
-          onmouseout: "hide_play('#{result['key']}')",
-          style: "postion:relative;left:0;top:0;"%>
-        <div class="invisible" id=<%="#{result['key']}"%>
-          style=position:absolute;left:109px;top:109px;>
-          <span class="glyphicon glyphicon-play" id="glyph_play_track">
-          </span>
+      <div id = "result_track_wrapper">
+        <div class="dropdown pull-right">
+          <%= link_to raw(
+            "<div class='pull-right' id='add_bar'>
+            <span class='glyphicon glyphicon-plus'></span>
+            </div>"),
+            "#",
+            class: "dropown-toggle", 
+            'data-toggle' => "dropdown",
+            'ariel-labelledby' => "plus" %>
+           <ul class = "dropdown-menu" ariel-labelledby="plus" >
+             <% current_user.playlists.each do |playlist| %>
+               <li>
+                <%= link_to playlist.name, tracks_path(
+                  playlist_id: playlist.id,
+                  track: result,
+                  group: @group_id),
+                  remote: true,
+                  method: :post %>
+               </li>
+             <% end %>
+           </ul>
+        </div>
+          <h5 id= "search_track_name" >
+            <%= result["name"].titleize %> by
+            <%= result["artist"]%>
+          </h5>
+        <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+          <%= link_to image_tag("#{result['icon']}", 
+            'id' => "search_track_image"), 
+            "javascript:undefined",
+            onclick: "jukebox('#{result['key']}')",
+            onmouseover: "show_play('#{result['key']}')", 
+            onmouseout: "hide_play('#{result['key']}')",
+            style: "postion:relative;left:0;top:0;"%>
+          <div class="invisible" id=<%="#{result['key']}"%>
+            style=position:absolute;left:109px;top:109px;>
+            <span class="glyphicon glyphicon-play" id="glyph_play_track">
+            </span>
+          </div>
         </div>
       </div>
     <%elsif result['type'] == 'r' %>

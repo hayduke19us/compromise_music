@@ -43,6 +43,10 @@ img#carousel_image:hover{transform:scale(2,2);
 }
 
 /*search panel*/
+#result_track_wrapper {border-bottom: solid 1px #efefef;
+                       padding-bottom: 10px;
+}
+
 #album_inline_wrapper {float: left;
                        padding-left: 20px;}
 
@@ -108,7 +112,7 @@ img#carousel_image:hover{transform:scale(2,2);
 
 #album_name{padding-top:3px;}
 
-#album_and_tracks{padding:5%;}
+#album_and_tracks{padding: 0 0 20px 0 ;}
 
 //playlist
 #playlist_play_glyph{display: inline;}
