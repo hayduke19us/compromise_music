@@ -1,49 +1,70 @@
 module VotingGame
   class Playlist
-    attr_reader :group
-    attr_accessor :attributes, :point_adjuster
+    attr_accessor :attributes, :point_adjuster, :grouplists
     def initialize(args)
       @attributes     = args[:attributes]
-      @group          = args[:group]
+      @grouplists     = args[:grouplists]
       @point_adjuster = args[:point_adjuster]
-      @members = (@group.friends.count + 1)/@attributes.tracks.count.to_f
-      @total_votes = lambda {|track| total = track.votes_for - track.votes_against}
+    end
+    
+    def groups
+      array = []
+      self.grouplists.each {|grouplist| array << grouplist.group }
+      array
+    end
+    
+    def members
+      owner_incl = self.grouplists.count # 1 owner per group
+      groups.inject(owner_incl) {|sum, group| sum += group.friends.count }
+    end
+
+    def min_votes
+      members/self.attributes.tracks.count.to_f 
     end
 
     def simple_success
-      @point_adjuster.simple_success @attributes, @members, @total_votes
-      @point_adjuster.simple_failure @attributes, @members, @total_votes
+      @point_adjuster.simple_success @attributes, min_votes
+      @point_adjuster.simple_failure @attributes, min_votes 
     end
   end
 
   class SuccessFilter
-    def simple_success attributes, members, total_votes
-      success_tracks = []
+    attr_accessor :success_tracks, :failure_tracks
+    def initialize
+      @success_tracks = []
+      @failure_tracks = []
+      @total_votes = lambda {|track| total = track.votes_for - track.votes_against}
+    end
+   
+    def simple_success attributes, min_votes 
       attributes.tracks.each do |track|
-        if total_votes.call(track) >= members
-          success_tracks << track
+        if @total_votes.call(track) >= min_votes
+          self.success_tracks = self.success_tracks << track
         end
-      end
-      unless success_tracks.empty?
-        VotingGame::SuccessTracks.new(success_tracks).simple_success_points
       end
     end
 
-    def simple_failure  attributes, members, total_votes
-      failure_tracks = []
+    def simple_failure  attributes, min_votes
       attributes.tracks.each do |track|
-        if total_votes.call(track) < members
-          failure_tracks << track
+        if @total_votes.call(track) < min_votes
+          self.failure_tracks << track
         end
       end
-      unless failure_tracks.empty?
-        simple_failure_points failure_tracks
+   end
+  
+   def points
+      unless self.success_tracks.blank?
+        VotingGame::SuccessTracks.new(self.success_tracks).simple_success_points
+      end
+      unless self.failure_tracks.blank?
+        simple_failure_points self.failure_tracks
         failure = VotingGame::FailureTracks.new(failure_tracks)
         failure.rdio_delete
         failure = VotingGame::FailureTracks.new(failure_tracks)
         failure.compromise_delete
       end
     end
+
 
     def simple_failure_points tracks
       tracks.each do |track|
@@ -64,6 +85,7 @@ module VotingGame
         banker = Banker.find_by(user_id: track.user_id)
         banker.simple_success += 1
         banker.save
+        banker.simple_success
       end
     end
   end

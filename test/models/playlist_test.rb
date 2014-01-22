@@ -52,17 +52,6 @@ class PlaylistTest < ActiveSupport::TestCase
     assert_equal 0, tracks.count, "tracks count after playlist delete '0'"
   end
 
-  test "VotingGame module exists with playlist class" do
-    roadtrip = playlists(:road_trip)
-    marthas_friends = groups(:marthas_friends)
-    playlist = VotingGame::Playlist.new attributes: roadtrip,
-      group: marthas_friends, count: 2, point_adjuster: nil
-    refute_nil playlist, "should not be nil"
-
-    assert_equal playlist.attributes.name, roadtrip.name
-    assert_equal  playlist.group.name, marthas_friends.name
-  end
-
   test "sort_playlist sorts playlist by index and puts keys in array" do
     roadtrip = playlists(:road_trip)
      sort = roadtrip.sort_playlist
