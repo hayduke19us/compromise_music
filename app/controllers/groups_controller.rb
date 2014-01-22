@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
   end
  
   def new
-    
   end
   def create
     name = params[:name]

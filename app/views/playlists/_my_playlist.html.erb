@@ -12,6 +12,11 @@
         class: "dropdown-toggle",
         'data-toggle' => "dropdown",
         id: 'pl_add_gr'%>
+      <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
+      playlist,
+      method: :delete,
+      id: 'pl_remove',
+      data: {confirm: "Sure you want to delete #{playlist.name}"}%>
       <ul class = "dropdown-menu ">
         <% current_user.groups.each do |group| %>
           <li><%= link_to group.name, 

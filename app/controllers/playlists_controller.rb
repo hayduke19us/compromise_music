@@ -14,10 +14,10 @@ class PlaylistsController < ApplicationController
       playlist = Playlist.new(playlist_params)
       playlist.save
       flash[:notice] = "You have succesfully created a Playlist"
-      redirect_to user_playlist_path(playlist.user_id, playlist.id)
+      redirect_to root_path 
     else
         flash[:notice] = "A playlist requires a name and description"
-        redirect_to new_playlist_path
+        redirect_to root_path
     end
   end
   
