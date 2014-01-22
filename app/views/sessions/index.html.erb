@@ -2,7 +2,7 @@
   <div id="white_top">
     <div class="container" id="top_body">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6" id = "serach_form_wrapper">
           <div class = "lead" id = "search_description">
            Search for your favorite Artist, Track, or Playlist.
           </div>
@@ -20,7 +20,7 @@
   <div id="colored_body" id="colored_body">
     <div class="container" id= "bottom_body">
       <div class="row" id="playlist_row">
-        <div class = "col-md-2">
+        <div class = "col-md-2" id = "specs_wrapper">
           <div id= "playlist_spec_partial">
             <%= render partial: "playlist_spec", locals: {user: current_user}%> 
           </div>

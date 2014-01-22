@@ -68,6 +68,7 @@ class PlaylistsController < ApplicationController
   end
 
   def publish
+    grouplists = params[:grouplists]
     group = Group.find(params[:group_id])
     playlist = Playlist.find(params[:id])
 

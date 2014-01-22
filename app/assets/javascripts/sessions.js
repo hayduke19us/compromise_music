@@ -19,6 +19,3 @@ $( function(){
                        delay: {show: 10, hide: 20}
  });
 });
-$( function(){
- $("#add_track_pop").popover("show")
-});

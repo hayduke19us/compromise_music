@@ -1,38 +1,44 @@
 <div id = "my_pl_wrapper">
   <div id = "pl_header_wrapper" >
     <div class = "dropdown pull-right">
+   
       <li id="playlist_play_glyph">
        <%= link_to raw("<span class='glyphicon glyphicon-play'></span>"), 
            "javascript:undefined",
            onclick: "jukebox('#{playlist.key}')",
            id: 'pl_play_glyph'%></li>
 
+      <% unless playlist.grouplists.blank? %> 
+        <li id= "bullhorn_publish">
+           <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
+             publish_playlist_path(playlist, grouplists: playlist.grouplists),
+             data: {confirm: "Are you sure?"}%>
+        </li>
+      <%end%>
+
+
       <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
         "#",
         class: "dropdown-toggle",
         'data-toggle' => "dropdown",
         id: 'pl_add_gr'%>
+       <ul class = "dropdown-menu ">
+          <% current_user.groups.each do |group| %>
+            <li><%= link_to group.name, 
+              grouplists_path(group_id: group,
+                             playlist_id: playlist),
+                             method: :post,
+                             remote: true  %></li>
+          <%end%>
+       </ul>
+ 
       <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
       playlist,
       method: :delete,
       id: 'pl_remove',
       data: {confirm: "Sure you want to delete #{playlist.name}"}%>
-      <ul class = "dropdown-menu ">
-        <% current_user.groups.each do |group| %>
-          <li><%= link_to group.name, 
-            grouplists_path(group_id: group,
-                           playlist_id: playlist),
-                           method: :post,
-                           remote: true  %></li>
-        <%end%>
-      </ul>
     </div>
     <li id="pl_main_name"><%=playlist.name.titleize%></li>
-    <% if @group %> 
-       <%= link_to "Publish", publish_playlist_path(playlist,
-        group_id: @group.id),
-        data: {confirm: "Are you sure?"} %>
-    <%end%>
   </div>
   <div id = "my_playlist">
     <track>

@@ -184,8 +184,14 @@ h4#new_playlist_description {text-align: center}
                  padding: 2%;
 }
 #my_playlist {padding-top: 30px;}
-#pl_play_glyph{padding-right: 20px;}
-div#remove_button{float:left;}
+#pl_play_glyph{padding-right: 20px;
+               color: darken($dark_title, 30%);
+}
+#pl_play_glyph:hover{color: $dark_title;}
+#bullhorn_publish {display: inline;
+                   padding-right: 20px;
+}
+
 
 #playlist_title_box{width:100%;
                     border-bottom: 3px solid #efefef;
