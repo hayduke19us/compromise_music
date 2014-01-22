@@ -11,7 +11,8 @@
       <% unless playlist.grouplists.blank? %> 
         <li id= "bullhorn_publish">
            <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
-             publish_playlist_path(playlist, grouplists: playlist.grouplists),
+             publish_playlist_path(playlist),
+             remote: true,
              data: {confirm: "Are you sure?"}%>
         </li>
       <%end%>

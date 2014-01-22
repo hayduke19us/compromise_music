@@ -23,8 +23,9 @@ module VotingGame
     end
 
     def simple_success
-      @point_adjuster.simple_success @attributes, min_votes
-      @point_adjuster.simple_failure @attributes, min_votes 
+      @point_adjuster.simple_success self.attributes, min_votes
+      @point_adjuster.simple_failure self.attributes, min_votes 
+      @point_adjuster.points
     end
   end
 
@@ -64,7 +65,6 @@ module VotingGame
         failure.compromise_delete
       end
     end
-
 
     def simple_failure_points tracks
       tracks.each do |track|

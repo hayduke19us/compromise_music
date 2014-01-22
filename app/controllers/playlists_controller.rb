@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
   before_filter :get_rdio_user 
   extend VotingGame
-  respond_to :html, :js 
+  respond_to :js, :html 
 
   def new
     @playlists = Playlist.all 
@@ -68,25 +68,23 @@ class PlaylistsController < ApplicationController
   end
 
   def publish
-    grouplists = params[:grouplists]
-    group = Group.find(params[:group_id])
     playlist = Playlist.find(params[:id])
-
+    grouplists = playlist.grouplists
     playlist.sort_for_rdio
 
     #voting game begins
 
     game = VotingGame::Playlist.new attributes: playlist,
-       group: group,
-       point_adjuster: VotingGame::SuccessFilter.new
-    async =  game.simple_success
+                                    grouplists: grouplists,
+                                    point_adjuster: VotingGame::SuccessFilter.new
+    async = game.simple_success
     unless async == nil 
       async.each do |track|
         sync_destroy track
         track.destroy
       end
     end
-    #respond_with playlist, location: playlist_path(playlist)
-    redirect_to group_playlist_path(group, playlist)
- end
+    @playlist = playlist
+    respond_with @playlist
+  end
 end

@@ -54,11 +54,5 @@ module VotingGame
      @success_filter.simple_failure(@roadtrip, 1)
      assert_equal @success_filter.failure_tracks.count, 1
    end
-
-   test "points method"
-  end
-
-  class SuccessTracksTest < ActiveSupport::TestCase 
-  
   end
 end
