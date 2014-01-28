@@ -1,7 +1,10 @@
+var playback_token= "GAlS5vtLAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdJ8OL52Dkys8nRRXmZxlbJo="
+//var playback_token = "GBxSyJp0AKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb21dY3Ro-V0Rd1TWoclJ07DW"
 
-var playback_token = "GBxSyJp0AKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb21dY3Ro-V0Rd1TWoclJ07DW"
- 
-var domain = "warm-wave-8683.herokuapp.com";
+
+var domain = "localhost";
+
+//var domain = "warm-wave-8683.herokuapp.com";
 
 
 // a global variable that will hold a reference to the api swf once it has loaded
@@ -36,7 +39,7 @@ callback_object.ready = function ready(user) {
   apiswf = $('#apiswf').get(0);
 
   apiswf.rdio_startFrequencyAnalyzer({
-    frequencies: '10-band',
+    frequencies: '26-band',
     period: 100
   });
 

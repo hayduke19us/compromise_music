@@ -10,6 +10,9 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
     <%= javascript_include_tag Sync.adapter_javascript_url %>
+    <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js" %>
+    <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"%>
+ 
 
   </head>
   <body>
@@ -35,7 +38,7 @@
                 <%= link_to "Home", root_path %>
               </li>
               <li class="" id="playlist_pg" >
-                <%= link_to "Playlists", user_playlists_path %>
+                <%= link_to "Playlists", user_playlists_path(current_user)%>
               </li>
             </ul>
               <p class="navbar-text navbar-right">

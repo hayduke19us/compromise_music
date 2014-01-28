@@ -1,13 +1,11 @@
 <div id = "my_pl_wrapper">
   <div id = "pl_header_wrapper" >
     <div class = "dropdown pull-right">
-   
       <li id="playlist_play_glyph">
        <%= link_to raw("<span class='glyphicon glyphicon-play'></span>"), 
            "javascript:undefined",
            onclick: "jukebox('#{playlist.key}')",
            id: 'pl_play_glyph'%></li>
-
       <% unless playlist.grouplists.blank? %> 
         <li id= "bullhorn_publish">
            <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
@@ -16,8 +14,6 @@
              data: {confirm: "Are you sure?"}%>
         </li>
       <%end%>
-
-
       <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
         "#",
         class: "dropdown-toggle",
@@ -32,7 +28,6 @@
                              remote: true  %></li>
           <%end%>
        </ul>
- 
       <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
       playlist,
       method: :delete,

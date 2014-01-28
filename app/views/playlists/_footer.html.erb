@@ -1,0 +1,60 @@
+<div class="hidden" id="open_nav_wrapper">
+  <a href="javascript:undefined" onclick="open_nav()"> 
+    <div class="navbar navbar-default navbar-fixed-bottom" id="open_nav">
+      <span class='glyphicon glyphicon-arrow-up'></span>
+    </div>
+  </a>
+</div>
+<div class="invisible" id="hide_nav">
+  <nav class="navbar navbar-default navbar-fixed-bottom" 
+    id= "footer"
+    role="navigation">
+      <a href="javascript:undefined" onclick="hide_nav()">
+        <div id="close_nav">
+          <span class='glyphicon glyphicon-arrow-down'></span>
+        </div>
+      </a>
+    <div id="apiswf"></div>
+      <ul class="nav navbar-nav">
+        <li>
+        <blockquote>
+          <img src="" id="art" style="width:85px;float:left;">
+        </blockquote>
+        <li>
+        <li class="navbar-text">
+        <li class="navbar-text">
+        <blockquote>
+         <input type="hidden" id="play_key" value="">
+        <dd id="track"></dd>
+        <dd id="artist"></dd>
+        <dd id="position"></dd>
+        </blockquote>
+        </li>
+        <div class="nav navbar-nav" id="controls">
+          <li class="navbar-text">
+            <%=link_to raw("
+              <span class='glyphicon glyphicon-backward', id='prev_glyph' >
+              </span>"), href='javascript:undefined', 
+              'onclick'=> "previous()", 
+              id: "control_backward"%>
+            </li>
+            <li class="navbar-text">
+            <%=link_to raw("
+              <span class='glyphicon glyphicon-pause', id='pause_glyph' >
+              </span>"), href='javascript:undefined', 
+              'onclick'=> "pause_control()", 
+              id: "control_button"%>
+            </li>
+            <li class="navbar-text">
+              <%=link_to raw("
+                <span class='glyphicon glyphicon-forward', 
+                id='next_glyph' >
+                </span>"), href='javascript:undefined', 
+                'onclick'=> "next()", 
+                id: "control_next"%>
+            </li>
+        </div>
+      </ul>
+  </nav>
+</div>
+

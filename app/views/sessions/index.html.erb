@@ -13,7 +13,12 @@
           </div>
         </div>
         <div class="col-md-6">
+          <div id = "equalizer">
+            <%= render partial: '/playlists/equalizer' %>
+          </div>
+          <div class = "show" id = "graph">
             <%= render "graph" %>
+          </div>
         </div>
       </div>
     </div>
@@ -23,10 +28,12 @@
       <div class="row" id="playlist_row">
         <div class = "col-md-2" id = "specs_wrapper">
           <div id= "playlist_spec_partial">
-            <%= render partial: "playlist_spec", locals: {user: current_user}%> 
+            <%= render partial: "playlist_spec", 
+              locals: {user: current_user}%> 
           </div>
           <div id= "group_spec_partial">
-            <%= render partial: "group_spec", locals: {user: current_user}%>
+            <%= render partial: "group_spec", 
+              locals: {user: current_user}%>
           </div>
           <div id = "fr_title">Friends</div>
           <% current_user.friends.each do |friend| %>
@@ -47,10 +54,3 @@
         </div>
       </div>
 <%end%>
-
-
-
-
-
-
-

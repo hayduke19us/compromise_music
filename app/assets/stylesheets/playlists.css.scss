@@ -43,7 +43,7 @@ img#carousel_image:hover{transform:scale(2,2);
 }
 
 /*search panel*/
-#result_track_wrapper {border-bottom: solid 1px #efefef;
+#result_track_wrapper {border-top: solid 1px #efefef;
                        padding-bottom: 10px;
 }
 
@@ -203,30 +203,38 @@ h4#new_playlist_description {text-align: center}
 
 /*jukebox swf object player*/
 
+#fade_sound{opacity: 0.3;}
+#fade_sound2{opacity: 0.4;}
+#fade_sound3{opacity: 0.5;}
 #playlist_header {padding-bottom: 30px;}
 #equalizer{width:0;
-            height:50px;
+           height:50px;
+           padding: 55px 0 0 0;
 }
 
 
 
 div#freq{-webkit-transform:rotate(180deg);
-         width: 200px;
+         width: 550px;
          height:0px;
          position: absolute;
         
 }
-div#sound{background-color:#efefef;
+div#sound{background-color: lighten($dark_title, 18%);
           float: left;
           width:20px;
+          border-right: 1px solid lighten($dark_title, 20%);
+          border-top: 1px solid lighten($dark_title, 30%);
+
 }
 
 div#freq2{-webkit-transform:rotate(180deg);
-          width: 200px;
+          width: 550px;
           height: 50px;
           opacity: 0.3;
           position: absolute;
           opacity: 0.1;
+
 }
 div#sound2{background-color: #a3b3cc;
            float:left;

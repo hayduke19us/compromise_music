@@ -45,6 +45,7 @@ function jukebox(key){
   var nav = document.getElementById("hide_nav").className="show";
   document.getElementById("control_button").setAttribute("onclick", "pause_control();")
   document.getElementById("pause_glyph").className="glyphicon glyphicon-pause";
+  $("#graph").attr("class", "hide")
   $("#equalizer").fadeIn("slow");
   $("#freq").css("height", "50px");
 }
