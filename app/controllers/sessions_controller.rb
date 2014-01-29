@@ -12,7 +12,9 @@ class SessionsController < ApplicationController
       else 
         @playlist = @user.playlists.first
       end
-      @sorted = @playlist.tracks.sort_by {|t| t.index}
+      unless @sorted.blank?
+        @sorted = @playlist.tracks.sort_by {|t| t.index}
+      end
     end
     @friends_groups = Array.new
     if current_user
@@ -27,8 +29,6 @@ class SessionsController < ApplicationController
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
-     
-    respond_with search_helper
   end
  
   def search_helper

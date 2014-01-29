@@ -37,13 +37,12 @@
       onclick: "jukebox('#{track.key}')"%>
     </h5>
     <h6>
-      by <%=link_to track.artist,
-        playlist_path(track.playlist_id,
-                      search_type: 'Artist',
-                      query: track.artist),
-                      remote: true%></br>
+      by <%=link_to track.artist, playlists_search_result_path(
+                    search_type: 'Artist',
+                    query: track.artist),
+                    remote: true%></br>
       album <%=link_to track.album,
-        playlist_path(track.playlist_id, list: track.album_key), remote: true%>
+        playlists_search_result_path(list: track.album_key), remote: true%>
     </h6>
     <h4>
       <div id="vote" style=text-align:right;>

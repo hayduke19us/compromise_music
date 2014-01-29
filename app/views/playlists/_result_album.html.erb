@@ -1,11 +1,11 @@
 <div id = "album_inline_wrapper">
-  <h5 id= "album_name">
+  <li id= "album_result_name">
     <%= /(.{20}|.{15}|.{10}|.{5})/.match(result['name']).to_s%>
   ...
   </h5>
   <ul class="nav nav-pills" style=padding-bottom:5px;>
     <li><%=link_to "tracks", 
-      playlist_path(@playlist,
+      playlists_search_result_path(
       list: result['trackKeys'],
       group: @group_id),
       remote: true%>
@@ -15,7 +15,7 @@
       data-toggle="modal">Info</a>
     </li>
   </ul>
-  <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+  <div id="search_image_wrapper"> 
     <%= link_to image_tag("#{result['icon']}", 
       'id' => "search_track_image"), 
       "javascript:undefined",
@@ -23,11 +23,6 @@
       onmouseover: "show_play('#{result['key']}')", 
       onmouseout: "hide_play('#{result['key']}')",
       style: "postion:relative;left:0;top:0;"%>
-    <div class="invisible" id=<%="#{result['key']}"%>
-      style=position:absolute;left:109px;top:109px;>
-      <span class="glyphicon glyphicon-play" id="glyph_play_track">
-      </span>
-    </div>
   </div>
 </div>
 <!--album_info modal -->

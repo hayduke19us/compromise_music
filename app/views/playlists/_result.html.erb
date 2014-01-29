@@ -1,56 +1,64 @@
-  <div id="track_background"> 
     <% if result['type'] == "t" %>
-      <div id = "result_track_wrapper">
-        <div class="dropdown pull-right">
-          <%= link_to raw(
-            "<div class='pull-right' id='add_bar'>
-            <span class='glyphicon glyphicon-plus'></span>
-            </div>"),
-            "#",
-            class: "dropown-toggle", 
-            'data-toggle' => "dropdown",
-            'ariel-labelledby' => "plus" %>
-           <ul class = "dropdown-menu" ariel-labelledby="plus" >
-             <% current_user.playlists.each do |playlist| %>
-               <li>
-                <%= link_to playlist.name, tracks_path(
-                  playlist_id: playlist.id,
-                  track: result,
-                  group: @group_id),
-                  remote: true,
-                  method: :post %>
-               </li>
-             <% end %>
-           </ul>
+      <div id="track_info">
+        <li id="track_result_name">
+        <%= link_to result['name'], 
+          playlists_search_result_path(
+          search_type: 'Track',
+          query: result['name']),
+          remote: true%></li>
+        <li id="album_result_name">
+        <%= link_to result['album'],
+          playlists_search_result_path(
+          search_type: 'Album',
+          list: result['albumKey']),
+          remote: true%></li> 
+        <li id="artist_result_name">
+        <%= link_to result['artist'],
+          playlists_search_result_path(
+          search_type: 'Artist',
+          query: result['artist']),
+          remote: true%></li>
+      </div>
+      <div id="track_result_wrapper">
+        <div id="add_track">
+          <div class="dropdown pull-right">
+            <%= link_to raw(
+              "<div id='add_bar'>
+              <span class='glyphicon glyphicon-plus'></span>
+              </div>"),
+              "#",
+              class: "dropown-toggle", 
+              'data-toggle' => "dropdown",
+              'ariel-labelledby' => "plus" %>
+             <ul class = "dropdown-menu" ariel-labelledby="plus" >
+               <% current_user.playlists.each do |playlist| %>
+                 <li>
+                  <%= link_to playlist.name, tracks_path(
+                    playlist_id: playlist.id,
+                    track: result,
+                    group: @group_id),
+                    remote: true,
+                    method: :post %>
+                 </li>
+               <% end %>
+             </ul>
+          </div>
         </div>
-          <h5 id= "search_track_name" >
-            <%= result["name"].titleize %> by
-            <%= result["artist"]%>
-          </h5>
-        <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+        <div id="search_image_wrapper"> 
           <%= link_to image_tag("#{result['icon']}", 
             'id' => "search_track_image"), 
             "javascript:undefined",
-            onclick: "jukebox('#{result['key']}')",
-            onmouseover: "show_play('#{result['key']}')", 
-            onmouseout: "hide_play('#{result['key']}')",
-            style: "postion:relative;left:0;top:0;"%>
-          <div class="invisible" id=<%="#{result['key']}"%>
-            style=position:absolute;left:109px;top:109px;>
-            <span class="glyphicon glyphicon-play" id="glyph_play_track">
-            </span>
-          </div>
+            onclick: "jukebox('#{result['key']}')"%>
         </div>
+
       </div>
     <%elsif result['type'] == 'r' %>
-      <div id="artist-align">
-        <h5 id= "artist_name"><%=result['name']%></h5>
-      </div>
+      <div id="artist_options">
+        <li id= "artist_result_name"><%=result['name']%></h5>
         <ul class="nav nav-pills">
           <li><%=link_to "Albums", 
-            playlist_path(@playlist,
-            artist_key: result['key'],
-            group: @group_id),
+            playlists_search_result_path(
+            artist_key: result['key']),
             remote: true%>
           </li>
           <li><%=link_to "Tracks", 
@@ -58,9 +66,11 @@
             onclick: "show_search('#{result['key']}')"%>
           </li>
         </ul>
+      </div>
         <% x = 0 %>
         <div class="hidden" id =<%="#{result['key']}"%>>
-           <%=form_tag(playlist_path, method: 'get', remote: true) do %>
+          <%=form_tag(playlists_search_result_path, 
+                      method: 'get', remote: true) do %>
              <div class="input-group input-group-sm" 
                id="artist_query_input">
                <input type="hidden" name="artist_key_tracks"
@@ -80,4 +90,3 @@
     <%elsif result['type'] == 'a'%>
       <%= render partial: "/playlists/result_album", locals: {result: result}%>
     <%end%>
-</div> 

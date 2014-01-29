@@ -6,21 +6,13 @@
 
   <% unless @album_tracks.blank? %>
     <div id="album_and_tracks">
-        <h5><%=@album_tracks.first[1]['album']%></h5>
-        <h6>by <%=@album_tracks.first[1]['artist']%></h6>
-          <div id="search_image_wrapper" style=position:relative;left:0;top:0;> 
+      <li id="track_result_name"><%=@album_tracks.first[1]['album']%></li>
+      <li id="artist_result_name"><%=@album_tracks.first[1]['artist']%></li>
+          <div id="search_image_wrapper" > 
             <%= link_to image_tag("#{@album_tracks.first[1]['icon']}", 
               'id' => "search_track_image"), 
               "javascript:undefined",
-              onclick: "jukebox('#{@album_tracks.first[1]['albumKey']}')",
-              onmouseover: "show_play('#{@album_tracks.first[1]['key']}')", 
-              onmouseout: "hide_play('#{@album_tracks.first[1]['key']}')",
-              style: "postion:relative;left:0;top:0;"%>
-            <div class="invisible" id=<%="#{@album_tracks.first[1]['key']}"%>
-              style=position:absolute;left:109px;top:109px;>
-              <span class="glyphicon glyphicon-play" id="glyph_play_track">
-              </span>
-            </div>
+              onclick: "jukebox('#{@album_tracks.first[1]['albumKey']}')"%>
           </div>
     </div>
     <% @album_tracks.each do |track|%>

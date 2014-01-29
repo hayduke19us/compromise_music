@@ -27,20 +27,11 @@ class PlaylistsController < ApplicationController
     x
   end
 
+  def search_result
+    respond_with search_helper
+  end
+
   def show
-    if params[:group_id]
-      @group = Group.find(params[:group_id])
-    end
-    @user = current_user
-    @heavy_rotation = RdioUser.heavy_rotation(@user.key)
-    @playlist = Playlist.find(params[:id])
-    @sorted = @playlist.tracks.sort_by {|t| t.index}
-    @tracks = @playlist.tracks
-    @total_votes = total_votes(@tracks) 
-    if params[:play_track]
-     @play_key = params[:play_track]
-    end
-    respond_with search_helper, location: playlist_path(@playlist)
   end
 
   def search_helper
