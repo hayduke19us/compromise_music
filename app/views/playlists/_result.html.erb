@@ -5,19 +5,22 @@
           playlists_search_result_path(
           search_type: 'Track',
           query: result['name']),
-          remote: true%></li>
+          remote: true,
+          id: "track_result_name"%></li>
         <li id="album_result_name">
         <%= link_to result['album'],
           playlists_search_result_path(
           search_type: 'Album',
           list: result['albumKey']),
-          remote: true%></li> 
+          remote: true,
+          id: 'album_result_name'%></li> 
         <li id="artist_result_name">
         <%= link_to result['artist'],
           playlists_search_result_path(
           search_type: 'Artist',
           query: result['artist']),
-          remote: true%></li>
+          remote: true,
+          id: 'artist_result_name'%></li>
       </div>
       <div id="track_result_wrapper">
         <div id="add_track">

@@ -64,11 +64,12 @@ img#carousel_image:hover{transform:scale(2,2);
 }
 
 #album_result_name{font-size: 14px;
-                      color: $dark_title;
+                   color: $dark_title;
 }
 
 #artist_result_name {font-size: 14px;
-                      color: $dark_title;
+                     color: $dark_title;
+                     padding-bottom: 5px;
 }
 
 #add_track{padding-left: 30px;}

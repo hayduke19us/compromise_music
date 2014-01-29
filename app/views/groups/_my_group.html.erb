@@ -1,5 +1,14 @@
 <div id = "group_wrapper">
-  <div id = "gr_name"><h2><%= group.name.titleize%></h2></div>
+  <div id = "gr_name_wrapper">
+    <div id="gr_name">
+      <%= group.name.titleize%>
+    </div>
+    <%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"),
+      group,
+      method: :delete,
+      data: {confirm: "Sure you want to delete #{group.name} ?"},
+      id: 'gr_delete'%>
+  </div>
   <div class = "pull-right" id = "gp_members">
     <div id = "members_header">
       <span class= "pull-right badge"><%= group.friends.count%></span>

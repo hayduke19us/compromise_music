@@ -30,23 +30,6 @@ class SessionsController < ApplicationController
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
   end
- 
-  def search_helper
-    if params[:query]
-      rdio_search =  RdioSearch.new(search_type: params[:search_type],
-                                      query: params[:query])
-      @search_results = rdio_search.simple
-    elsif params[:artist_key_tracks] 
-      @search_results = RdioSearch.new(
-        artist_key: params[:artist_key_tracks]).artist_tracks(
-        params[:artist_query])
-    elsif params[:list]
-      @album_tracks = RdioSearch.new(list: params[:list]).album_tracks
-    elsif params[:artist_key]
-      rdio_search = RdioSearch.new(artist_key: params[:artist_key])
-      @search_results = rdio_search.artist_albums
-    end
-  end
 
   def my_playlist
     @playlist = Playlist.find(params[:playlist])
