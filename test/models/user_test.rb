@@ -20,9 +20,9 @@ class UserTest < ActiveSupport::TestCase
   test "when user is deleted users's playlists are deleted" do
     user = users(:martha)
     playlist = Playlist.all
-    assert_equal 2, playlist.count, "all playlist count '2'"
+    assert_equal 3, playlist.count, "all playlist count '2'"
     user.destroy
-    assert_equal 1, playlist.count, "playlist count after user delete '1'"
+    assert_equal 2, playlist.count, "playlist count after user delete '1'"
   end
   
   test "user has an association with friendships" do
@@ -80,4 +80,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, user.banker.simple_success
   end
 
+  test "collab_groups should return a collection of groups" do
+    user = users(:martha)
+    assert_equal 1, user.collab_groups.count
+  end
+
+  test "collab_playlist should return a collection of playlist" do
+    user = users(:martha)
+    assert_equal 1, user.collab_playlist.count
+  end
 end

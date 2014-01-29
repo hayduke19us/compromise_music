@@ -5,13 +5,18 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-marthas_friends: 
-  id: 1 
+marthas_friends:
+  id: 1
   name: "friends"
   user_id: 1
 
 
-marthas_family: 
+marthas_family:
   id: 2
   name: "family"
-  user_id: 1 
+  user_id: 1
+
+toms_friends:
+  id: 3
+  name: "toms_friends"
+  user_id: 2

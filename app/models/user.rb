@@ -37,4 +37,13 @@ class User < ActiveRecord::Base
     friendships = Friendship.where(friend_id: self)
     friendships.each {|f| f.destroy!}
   end
+  
+  def collab_groups
+    g = Groupship.where(friend_id: self)
+    g.inject([]) {|array, groupship| array << groupship.group}
+  end
+
+  def collab_playlist
+    self.collab_groups.inject([]) {|array, group| array << group.playlists}
+  end
 end

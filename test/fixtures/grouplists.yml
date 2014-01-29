@@ -8,3 +8,7 @@ friend_playlist:
 family_playlist:
   group_id: 2
   playlist_id: 2
+
+toms_friends:
+  group_id: 3
+  playlist_id: 3

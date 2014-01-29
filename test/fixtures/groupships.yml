@@ -8,3 +8,7 @@ friends_tom:
 family_tom:
   group_id: 2
   friend_id: 2
+
+toms_friends: 
+  group_id: 3
+  friend_id: 1
