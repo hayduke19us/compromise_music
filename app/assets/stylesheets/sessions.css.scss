@@ -29,8 +29,10 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 a:hover {text-decoration: none;
          color:#333333;
        }
+
 div.well{background-color: white; }
-//playlist_serach_form
+
+//playlist_search_form
 
 /*graph*/
 
@@ -73,8 +75,6 @@ li {list-style-type: none;}
 .pl_link:hover {color: black;}
 
 #playlist_panel{padding:5%;}
-
-#pl_remove_glyph {padding-left: 30px;}
 
 #new_playlist {padding-bottom: 20px;}
 
@@ -129,63 +129,6 @@ li {list-style-type: none;}
 
 #friend_image {width: 40px;
                @include box-shadow($shadow);
-}
-
-
-/*group dashboard*/
-//users_groups
-
-#gp_title {font-size: 20px; 
-           color: $dark_title;
-           padding-top: 10px;
-}
-
-#gp_link {color: darken($dark_title, 30%);
-          text-decoration: none;
-}
-#gp_link:hover {color: black;}
-
-#new_gp_link {color: $dark_title;}
-#new_gp_link:hover {color: black;}
-
-
-#group_panel{padding:5%;}
-
-#new_group{padding-bottom: 20px;}
-
-#member_group {color:#9DABBA;}
-
-li#group_owner{color:#F1A02D}
-
-div.well#friends_groups{background-color:transparent; }
-
-#members_glyph {font-size: 20px;}
-#members_header {padding-bottom: 10px;
-                 border-bottom: solid 1px #efefef;
-                 width: 100px;
-}
-#member_name {padding: 5px 0 5px 0;}
-
-//group_playlist
-#pl_thumb_wrapper{height: 200px;
-                  width: 100%;
-                  overflow: scroll; 
-                  padding: 3%;
-                  border: 1px solid $dark_title;
-                  border-radius: 1px;
-                  @include box-shadow($lighter_shadow);
-}
-#pl_thumb_wrapper:hover {border: 1px solid darken($dark_title, 10%);
-}
-#pl_thumb_name{font-size: 20px;
-              color: $dark_title;
-              border-bottom: 1px solid #efefef;
-}
-#tr_thumb_name {font-size: 12px;
-                border-bottom: solid 1px #efefef;
-}
-#gp_playlists {color: darken($dark_title, 30%);
-              padding-top: 10px;
 }
 
 /* sign_in page*/
