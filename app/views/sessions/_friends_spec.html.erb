@@ -1,0 +1,9 @@
+<div id = "fr_title">Friends</div>
+<% user.friends.each do |friend| %>
+  <li><%= link_to friend.name, "#", id: "fr_name" %></li>
+<%end%>
+<li><%= link_to "New", sessions_my_friend_path,
+      remote: true,
+      id: "new_fr_link"%>
+</li>
+

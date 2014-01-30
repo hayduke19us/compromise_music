@@ -27,24 +27,24 @@
       <div class="row" id="playlist_row">
         <div class = "col-md-2" id = "specs_wrapper">
           <div id= "playlist_spec_partial">
-            <%= render partial: "playlist_spec", 
-              locals: {user: current_user}%> 
-          </div>
-          <div id= "group_spec_partial">
-            <%= render partial: "group_spec", 
+            <%= render partial: "playlist_spec",
               locals: {user: current_user}%>
           </div>
-          <div id = "fr_title">Friends</div>
-          <% current_user.friends.each do |friend| %>
-            <li><%= link_to friend.name, "#", id: "fr_name" %></li>
-          <%end%>
-          <li><%= link_to "New", sessions_my_friend_path, 
-                remote: true,
-                id: "new_fr_link"%>
-          </li>
+          <div id= "group_spec_partial">
+            <%= render partial: "group_spec",
+              locals: {user: current_user}%>
+          </div>
+          <div id="friends_spec_partial">
+            <%= render partial: 'friends_spec', locals: {user: current_user}%>
+          </div>
+          <div id="collaborations_spec_partial">
+            <%= render partial: 'collaborations_spec',
+              locals: {collab_groups: @collab_groups,
+                       collab_playlists: @collab_playlists }%>
+          </div>
         </div>
         <div class="col-md-10" id= "playlist_col">
-          <div id="js_search"> 
+          <div id="js_search">
           </div>
           <div id = "my_playlist_partial">
           </div>
