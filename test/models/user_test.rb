@@ -87,6 +87,6 @@ class UserTest < ActiveSupport::TestCase
 
   test "collab_playlist should return a collection of playlist" do
     user = users(:martha)
-    assert_equal 1, user.collab_playlist.count
+    assert_equal 1, user.collab_playlists.count
   end
 end

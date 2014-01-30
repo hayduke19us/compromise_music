@@ -160,9 +160,8 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
                  }
 #pl_main_name {font-size: 30px;
                color: $dark_title;
-               padding: 0 0 20px 0;
-               position: absolute;
 }
+#pl_owner {color: $dark_title;}
 #vote {padding-left: 20px;}
 
 #delete_track{font-size: 30px;

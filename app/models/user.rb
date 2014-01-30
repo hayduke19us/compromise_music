@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     g.inject([]) {|array, groupship| array << groupship.group}
   end
 
-  def collab_playlist
-    self.collab_groups.inject([]) {|array, group| array << group.playlists}
+  def collab_playlists
+    self.collab_groups.inject([]) {|array, group| group.playlists.each {|p| array << p }}
   end
 end

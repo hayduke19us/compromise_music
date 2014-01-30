@@ -3,29 +3,11 @@ class SessionsController < ApplicationController
   
   def index
     if current_user
-      if params[:group]
-        @group = Group.find(params[:group])
-      end
       @user = current_user
-      if params[:playlist]
-        @playlist = Playlist.find(params[:playlist])
-      else 
-        @playlist = @user.playlists.first
-      end
+      @collab_groups = @user.collab_groups
+      @collab_playlists = @user.collab_playlists
       unless @sorted.blank?
         @sorted = @playlist.tracks.sort_by {|t| t.index}
-      end
-    end
-    @friends_groups = Array.new
-    if current_user
-      @user.friends.each do |friend|
-        for group in friend.groups
-          group.friends.each do |member|
-            if member.id == @user.id
-              @friends_groups << group
-            end
-          end
-        end
       end
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)

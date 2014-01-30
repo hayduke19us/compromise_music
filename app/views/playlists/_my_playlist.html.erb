@@ -6,7 +6,7 @@
            "javascript:undefined",
            onclick: "jukebox('#{playlist.key}')",
            id: 'pl_play_glyph'%></li>
-      <% unless playlist.grouplists.blank? %> 
+      <% unless playlist.user != current_user || playlist.grouplists.blank?%> 
         <li id= "bullhorn_publish">
            <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
              publish_playlist_path(playlist),
@@ -14,27 +14,30 @@
              data: {confirm: "Are you sure?"}%>
         </li>
       <%end%>
-      <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
-        "javascript:undefined",
-        class: "dropdown-toggle",
-        'data-toggle' => "dropdown",
-        id: 'pl_add_gr'%>
-       <ul class = "dropdown-menu ">
-          <% current_user.groups.each do |group| %>
-            <li><%= link_to group.name, 
-              grouplists_path(group_id: group,
-                             playlist_id: playlist),
-                             method: :post,
-                             remote: true  %></li>
-          <%end%>
-       </ul>
-      <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
-      playlist,
-      method: :delete,
-      id: 'pl_remove',
-      data: {confirm: "Sure you want to delete #{playlist.name}"}%>
+      <% unless playlist.user != current_user %>
+        <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
+          "javascript:undefined",
+          class: "dropdown-toggle",
+          'data-toggle' => "dropdown",
+          id: 'pl_add_gr'%>
+         <ul class = "dropdown-menu ">
+            <% current_user.groups.each do |group| %>
+              <li><%= link_to group.name, 
+                grouplists_path(group_id: group,
+                               playlist_id: playlist),
+                               method: :post,
+                               remote: true  %></li>
+            <%end%>
+         </ul>
+        <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
+        playlist,
+        method: :delete,
+        id: 'pl_remove',
+        data: {confirm: "Sure you want to delete #{playlist.name}"}%>
+      <%end%>
     </div>
     <li id="pl_main_name"><%=playlist.name.titleize%></li>
+    <li id="pl_owner">by <%=playlist.user.name %></li>
   </div>
   <div id = "my_playlist">
     <track>
