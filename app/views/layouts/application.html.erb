@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Compromise" %></title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => "true" %>
+    <%= stylesheet_link_tag "application", "users", :media => "all", "data-turbolinks-track" => "true" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
     <%= javascript_include_tag Sync.adapter_javascript_url %>
     <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js" %>
     <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"%>
- 
-
   </head>
   <body>
     <% if current_user %>
@@ -39,6 +37,9 @@
               </li>
               <li class="" id="playlist_pg" >
                 <%= link_to "Playlists", user_playlists_path(current_user)%>
+              </li>
+              <li class="" id="analytics" >
+                <%= link_to "Analytics", user_analytics_path(current_user)%>
               </li>
             </ul>
               <p class="navbar-text navbar-right">

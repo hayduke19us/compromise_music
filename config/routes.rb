@@ -12,9 +12,11 @@ CompromiseMusic::Application.routes.draw do
   resources :friendships
 
   resources :users do
+    get :analytics
     resources :playlists
+    resources :groups
   end
-
+  
   resources :tracks do
     member do
       get :vote_up, as: 'vote_up'
@@ -29,14 +31,9 @@ CompromiseMusic::Application.routes.draw do
     end
   end
 
-  resources :users do
-    resources :groups
-  end
-  
   resources :groups do
    resources :playlists
   end
-  
 
   resources :grouplists
   resources :groupships

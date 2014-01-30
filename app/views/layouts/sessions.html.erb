@@ -45,6 +45,10 @@
               <%= link_to "Playlists",
                 user_playlists_path(current_user) %>
               </li>
+              <li class="" id="analytics_pg">
+              <%= link_to "Analytics",
+                user_analytics_path(current_user) %>
+              </li>
             </ul>
               <p class="navbar-text navbar-right">
               <%= current_user.name.titleize%>

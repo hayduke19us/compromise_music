@@ -2,34 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#friend_description{padding:20px 0 20px 0;}
-#white-top{padding-bottom: 30px;}
-
-/* panel that allows you to search for friends */
-
-#search_panel{padding:5%;}
-
-#friends_search_form {padding: 10px 0 10px 0;
-                      width: 20%;
+/*Sass variables and mixins */
+$delete_red: red;
+$light_title: #CAD0D5;
+$dark_title: darken($light_title, 30%);
+$shadow:  0 0 8px rgba(0, 0, 0, .8);
+$lighter_shadow: 0 0 4px($dark_title );
+$shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
+@mixin box-shadow($specs) {
+  -webkit-box-shadow: $specs;
+     -moz-box-shadow: $specs;
+          box-shadow: $specs;
 }
 
-img.img-circle {width: 60px;
-                box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-                -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-                -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+body {padding-top: 75px;}
+
+/*graph*/
+#graph_pad{padding-bottom: 5px;}
+
+#simple_success{height: 25px;
+                background-color: $light_title;
+}
+
+#dependability{height: 25px;
+               background-color: darken($light_title, 15%);
 
 }
 
-//panel that list all friends
+#outstanding{height: 25px;
+             background-color: $dark_title ;
 
-#friends_panel{padding:5%;}
-
-#buddy_name_title{float:left;
-									color: #929999;
 }
 
-#friends_tracks{text-align: right;
-								color:#929999;
-}
+
 
 
