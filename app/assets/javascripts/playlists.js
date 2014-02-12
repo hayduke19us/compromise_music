@@ -1,4 +1,4 @@
-$(function () {
+$( document ).ready (function (){
   $("#query").focus();
   $("#equalizer").hide();
   $("#option_track").click(function(){
@@ -37,7 +37,6 @@ function pause_control(){
   var btn = document.getElementById("control_button").setAttribute("onclick", "jukebox();");
   glyph.className="glyphicon glyphicon-play";
   $("#equalizer").fadeOut('slow');
-
 }
 
 function jukebox(key){
@@ -65,13 +64,5 @@ function hide_nav(){
 
 function open_nav(){
   $("#hide_nav").removeClass("invisible").addClass("show");
-
-}  
-
-
-
-
-
-
-
+}
 

@@ -8,9 +8,8 @@
       <%= content_for?(:title) ? yield(:title) : "Compromise" %>
     </title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", "playlists",
-      :media => "all", "data-turbolinks-track" => "true" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application", "playlists" %>
     <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js" %>
     <%= javascript_include_tag "http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"%>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>

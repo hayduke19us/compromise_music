@@ -35,15 +35,19 @@
               'ariel-labelledby' => "plus" %>
              <ul class = "dropdown-menu" ariel-labelledby="plus" >
                <% current_user.playlists.each do |playlist| %>
-                 <li>
-                  <%= link_to playlist.name, tracks_path(
-                    playlist_id: playlist.id,
-                    track: result,
-                    group: @group_id),
-                    remote: true,
-                    method: :post %>
-                 </li>
+                 <li><%= link_to playlist.name, tracks_path(
+                       playlist_id: playlist.id,
+                       track: result),
+                       remote: true,
+                       method: :post %></li>
                <% end %>
+               <% current_user.collab_playlists.each do |collab_pl|%>
+                 <li><%= link_to collab_pl.name, tracks_path(
+                       playlist_id: collab_pl.id,
+                       track: result),
+                       remote: true,
+                       method: :post%></li>
+               <%end%>
              </ul>
           </div>
         </div>

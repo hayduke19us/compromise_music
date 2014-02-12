@@ -19,10 +19,7 @@
     <%= link_to image_tag("#{result['icon']}", 
       'id' => "search_track_image"), 
       "javascript:undefined",
-      onclick: "jukebox('#{result['key']}')",
-      onmouseover: "show_play('#{result['key']}')", 
-      onmouseout: "hide_play('#{result['key']}')",
-      style: "postion:relative;left:0;top:0;"%>
+      onclick: "jukebox('#{result['key']}')"%>
   </div>
 </div>
 <!--album_info modal -->

@@ -210,6 +210,13 @@ h2#new_playlist_name {;
 h4#new_playlist_description {text-align: center}
 
 //my_playlist
+
+#index_delete {height:100px;
+               width:20px;
+               padding-right:30px;
+               padding-top:40px;
+}
+
 #my_pl_wrapper { border-left: 1px solid #efefef;
                  @include box-shadow($left_shadow);
                  padding: 2%;
