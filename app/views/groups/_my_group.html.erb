@@ -1,16 +1,18 @@
 <div id = "group_wrapper">
   <div id = "gr_name_wrapper">
+    <% unless group.user != current_user %>
+      <div class="pull-right">
+        <%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"),
+          group,
+          method: :delete,
+          data: {confirm: "Sure you want to delete #{group.name} ?"},
+          id: 'gr_delete'%>
+      </div>
+    <%end%>
     <div id="gr_name">
       <%= group.name.titleize%>
     </div>
     <li id="gr_owner">by <%= group.user.name%></li> 
-    <% unless group.user != current_user %>
-      <%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"),
-        group,
-        method: :delete,
-        data: {confirm: "Sure you want to delete #{group.name} ?"},
-        id: 'gr_delete'%>
-    <%end%>
   </div>
   <div class = "pull-right" id = "gp_members">
     <div id = "members_header">
@@ -42,7 +44,7 @@
             </div>
           <%end%>
           <%= render partial: "/playlists/playlist_thumbnail",
-            locals: {playlist: grouplist.playlist, grouplist: grouplist}%>
+            locals: {playlist: grouplist.playlist}%>
         </div>
       <%end%>
   </div>

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   respond_to :js, :html
-  
+
   def index
     if current_user
       @user = current_user

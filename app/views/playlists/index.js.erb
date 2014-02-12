@@ -1,0 +1,4 @@
+$("#js_search").html("");
+$("#my_playlist_partial").html("");
+$("#my_playlist_partial").html("<%= j render partial: '/playlists/all_playlists',
+                                locals: {playlists: @playlists}%>");

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def anlaytics
+    respond_with current_user
   end
 
   private

@@ -3,6 +3,11 @@ class PlaylistsController < ApplicationController
   extend VotingGame
   respond_to :js, :html 
 
+  def index
+    @playlists = current_user.playlists
+    respond_with @playlists
+  end
+
   def new
     @playlists = Playlist.all 
   end

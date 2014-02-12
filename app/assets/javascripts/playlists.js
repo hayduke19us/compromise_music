@@ -41,8 +41,8 @@ function pause_control(){
 }
 
 function jukebox(key){
-  var song=document.getElementById("apiswf").rdio_play(key);
   var nav = document.getElementById("hide_nav").className="show";
+  var song=document.getElementById("apiswf").rdio_play(key);
   document.getElementById("control_button").setAttribute("onclick", "pause_control();")
   document.getElementById("pause_glyph").className="glyphicon glyphicon-pause";
   $("#graph").attr("class", "hide")

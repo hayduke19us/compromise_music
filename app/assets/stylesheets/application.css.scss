@@ -7,9 +7,8 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *= require groups
  *= require bootstrap
- *= require_self
+ *= require_tree .
  */
 
 @font-face {
@@ -24,7 +23,7 @@
 
 /*Sass variables and mixins */
 $color_body: #606a7a;
-$shadow:  0 0 8px rgba(0, 0, 0, .8);
+$shadow: 0 0 8px rgba(0, 0, 0, .8);
 $shadow_light: 1px 1px 1px lighten($color_body, 30%);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
@@ -37,20 +36,16 @@ div#beta-link a {color: #606a7a;}
 
 /*body padding, backgrounds and page wide styles*/
 
-.glyphicon{top:0px;}
-
 .navbar-default{background-color: white;}
 
 a {color: #777777}
 
-body {padding-bottom: 150px;
-      background-color: white;
+body {padding: 75px 0 150px 0;
 }
 
 #colored_body {padding-top: 40px;
 }
 #white_top{background-color:white;
-           padding-top:70px;
            box-shadow:$shadow_light;
 }
 

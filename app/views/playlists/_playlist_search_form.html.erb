@@ -1,19 +1,14 @@
 <%=form_tag(playlists_search_result_path, method: 'get', remote: true) do%>
   <div class= "input-group" >
     <div class="input-group-btn">
-      <button class="btn btn-default btn-md"
-        type="submit" name="commit" tabindex= -1>
+      <button class="btn btn-default" type="submit" name="commit" tabindex= -1>
         Search
       </button>
-      <button class="btn btn-default dropdown-toggle"
-        data-toggle="dropdown" type="button" 
-        id="dropdownMenu1"
-        style=padding:14px;>
-        <span class="sr-only">hello</span>
+      <button type= "button" class="btn btn-default dropdown-toggle"
+        data-toggle="dropdown" tabindex= "-1">
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu" 
-        aria-labeledby="dropdownMenu1">
+      <ul class="dropdown-menu" role="menu">
         <ul id="radio_hover">
           <li class="radio"> 
           <label>
