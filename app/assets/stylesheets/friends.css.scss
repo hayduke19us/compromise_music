@@ -1,1 +1,52 @@
+/*Sass variables and mixins */
+
+$light_title: #CAD0D5;
+$dark_title: darken($light_title, 30%);
+$shadow:  0 0 8px rgba(0, 0, 0, .8);
+$lighter_shadow: 0 0 4px($dark_title );
+$shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
+@mixin box-shadow($specs) {
+  -webkit-box-shadow: $specs;
+     -moz-box-shadow: $specs;
+          box-shadow: $specs;
+}
+
+
+
 #friends {color: red;}
+
+#add_fr_gp_link {padding: 18px 0 0 200px;}
+
+#partial_fr_title {color: $light_title;
+                   border-bottom: solid 1px #efefef
+}
+
+#fr_name{padding-top: 15px;
+}
+#fr_image {padding: 10px;}
+
+#rm_friend_glyph {padding: 18px 0 0 10px;}
+
+#friends_search_form{width: 300px;}
+
+#search_form_wrapper{width: 300px;
+                     height: 100%;
+                     border-left: solid 1px #efefef;
+                     padding: 10px 0 0 10px;
+}
+
+#friends {color: $dark_title ;}
+
+/*search sidebar */
+
+#user_title {font-size: 20px;
+             color: $light_title;
+             padding-bottom: 10px;
+}
+
+#not_friends {color: $dark_title ;}
+
+#not_fr_image{width: 50px; }
+
+#not_fr_name {padding-bottom: 5px;}
+

@@ -5,7 +5,7 @@
 
 
 /*Sass variables and mixins */
-$delete_red: red;
+
 $light_title: #CAD0D5;
 $dark_title: darken($light_title, 30%);
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
@@ -16,6 +16,7 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
      -moz-box-shadow: $specs;
           box-shadow: $specs;
 }
+
 .badge{background-color: transparent;
        color: $light_title;
        padding: 2px;
@@ -25,92 +26,51 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 /*body padding, backgrounds and page wide styles*/
 
-.navbar-default{background-color: white;}
-
 a:hover {text-decoration: none;
          color:#333333;
        }
 
 div.well{background-color: white; }
 
-//playlist_search_form
+/*search_form */
 
-/*graph*/
-
-#graph_pad{padding-bottom: 5px;}
-
-#simple_success{height: 25px;
-                background-color: $light_title;
+#search_description {color: $dark_title;
+                    padding-top:20px;
 }
 
-#dependability{height: 25px;
-               background-color: darken($light_title, 15%);
-
+//equalizer//
+#equalizer {opacity: 0.2;
+            padding-top: 30px;
 }
 
-#outstanding{height: 25px;
-             background-color: $dark_title ;
-
-}
+#my_playlists_title{padding-right:10px;}
 
 
 /*specs*/
+
 #specs_wrapper {padding-bottom: 30px;}
 
-/*playlist dashboard*/
+// playlist specs
 
 #playlist_row {height: 100%;}
 
-#pl_title {font-size: 20px; 
+#pl_title {font-size: 20px;
            color: $light_title;
 }
 
-li {list-style-type: none;}
 #pl_link {color: $dark_title ;
 }
+
 #pl_link:hover {color: $light_title ;
 }
-#pl_opt_wrap{padding-left: 10px; 
-}
+
 #new_pl_link {color: $light_title;}
+
 #new_pl_link:hover {color: black;}
+
 .pl_link:hover {color: black;}
 
-#playlist_panel{padding:5%;}
-
-#new_playlist {padding-bottom: 20px;}
-
-#playlist_title {padding-right: 20px;}
-
-/*friends dashboard*/
-
-#user_title {font-size: 20px;
-             color: $light_title;
-             padding-bottom: 10px;
-}
-
-#partial_fr_title {color: $light_title;
-                   border-bottom: solid 1px #efefef
-}
-
-#fr_name{padding-top: 15px;
-}
-#fr_image {padding: 10px;}
-#rm_friend_glyph {padding: 18px 0 0 10px;}
-#add_fr_gp_link {padding: 18px 0 0 200px;}
-
-
-#friends_search_form{width: 300px;}
-#search_form_wrapper{width: 300px;
-                     height: 100%;
-                     border-left: solid 1px #efefef;
-                     padding: 10px 0 0 10px;
-}
-
-#friends {color: $dark_title ;}
-#not_friends {color: $dark_title ;}
-#not_fr_image{width: 50px; }
-#not_fr_name {padding-bottom: 5px;}
+// friends spec
 
 #fr_title {font-size: 20px;
            color: $light_title;
@@ -118,19 +78,45 @@ li {list-style-type: none;}
 }
 
 #fr_name {color: $dark_title }
+
 #fr_name:hover {color: black;}
+
 #new_fr_link {color: $light_title; }
+
 #new_fr_link:hover {color: black;}
 
-#friends_row {height: 100%;}
+// groups spec
 
-#friend_panel{padding:5%;}
-
-#new_friend {padding-bottom: 20px;}
-
-#friend_image {width: 40px;
-               @include box-shadow($shadow);
+#members_title {font-size: 20px;
+                color: $light_title;
+                padding-bottom: 10px;
 }
+
+#gp_title {font-size: 20px; 
+           color: $light_title;
+           padding-top: 10px;
+}
+
+#gp_link {color: $dark_title;
+          text-decoration: none;
+}
+#gp_link:hover {color: $light_title;}
+
+#new_gp_link {color: $light_title;}
+
+#new_gp_link:hover {color: black;}
+
+
+
+#gp_link {color: $dark_title;
+          text-decoration: none;
+}
+
+#gp_link:hover {color: $light_title;}
+
+#new_gp_link {color: $light_title;}
+
+#new_gp_link:hover {color: black;}
 
 /*collaborations*/
 

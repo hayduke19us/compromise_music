@@ -3,10 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //Sass variables
-$dark_title: #CAD0D5;
 
-$left_shadow: -1px -1px 3px 1px $dark_title; 
-$light_shadow: 1px 1px 1px 1px $dark_title;
+$light_title: #CAD0D5;
+$dark_title: darken($light_title, 30%);
+$shadow:  0 0 8px rgba(0, 0, 0, .8);
+$lighter_shadow: 0 0 4px($dark_title );
+$shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
@@ -16,9 +18,8 @@ $light_shadow: 1px 1px 1px 1px $dark_title;
 #white_top {padding-bottom: 20px;}
 
 //playlist index
-#my_playlists_title{padding-right:10px;}
 
-#collab_playlists_title{ color:#CAD0D5;}
+#playlist_title {padding-right: 20px;}
 
 //heading
 
@@ -32,13 +33,11 @@ $light_shadow: 1px 1px 1px 1px $dark_title;
 
 /*carousel*/
 
-#carousel_pad{padding:0 0 0 0;
-}
 #heavy_rotation {width: 812px;
                  display: inline;
 }
 #carousel_image{height:50px;}
-img#carousel_image:hover{transform:scale(2,2); 
+img#carousel_image:hover{transform:scale(2,2);
                          -webkit-transform: scale(2,2);
                         transition-duration: 2s;
 }
@@ -56,9 +55,9 @@ img#carousel_image:hover{transform:scale(2,2);
                        padding: 0 10px 5px 0;
 }
 
-#search_track_image{ @include box-shadow($light_shadow);}
+#search_track_image{ @include box-shadow($lighter_shadow);}
 
-#search_track_image:hover{opacity: 0.4; 
+#search_track_image:hover{opacity: 0.4;
 
 }
 
@@ -66,7 +65,7 @@ img#carousel_image:hover{transform:scale(2,2);
                     color: darken($dark_title, 30%);
 }
 
-a#track_result_name:hover {color: $dark_title;} 
+a#track_result_name:hover {color: $dark_title;}
 
 #album_result_name {font-size: 14px;
                    color: $dark_title;
@@ -90,10 +89,6 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
                        border-bottom: solid 1px #efefef;
                        }
 
-#search_description{color: darken($dark_title, 30%);
-                    padding-top:20px;
-}
-
 #artist_query_input{width: 50%;}
 
 
@@ -104,7 +99,7 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 #add_bar{height: 50px;
          width: 40px;
          background-color:white;
-        @include box-shadow($light_shadow);
+        @include box-shadow($lighter_shadow);
          text-align: center;
          padding-top:16px;
          font-size: 20px;
@@ -118,7 +113,7 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 #add_bar_tracks{height: 30px;
                 width: 20px;
                 background-color:white;
-                @include box-shadow($light_shadow);
+                @include box-shadow($lighter_shadow);
                 text-align: center;
                 padding-top:9px;
                 font-size: 10px;
@@ -131,18 +126,9 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 
 #artist_options {border-top: 1px solid #efefef;
                  padding: 10px 0 10px 0;
-}  
-
-#radio_hover:hover{background-color:#efefef;}
-
-#add_to_collection {text-align: center;}
-
-#title_and_add{padding-bottom:5px;
 }
 
-#artist_name{padding-top:3%; }
-
-#album_name{padding-top:3px;}
+#radio_hover:hover{background-color:#efefef;}
 
 #album_and_tracks{padding: 0 0 20px 0 ;}
 
@@ -163,17 +149,10 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
                color: $dark_title;
 }
 #pl_owner {color: $dark_title;}
-#vote {padding-left: 20px;}
-
-#delete_track{font-size: 30px;
-            }
-
 
 /*modal*/
 
 #album_cover{width: 100%;}
-
-#friends_list_title {float: left;}
 
 #playlist_name {float: left;}
 
@@ -185,9 +164,9 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 
 #playlist_names_carousel{padding-top: 40px;}
 
-textarea#description {width: 100%;}
+#description {width: 100%;}
 
-input#name {width: 100%;}
+#name {width: 100%;}
 
 #new_playlist_btn {width: 100%;}
 
@@ -197,14 +176,8 @@ h4#track_name{float: left;
 							padding-right: 2%;
 }
 
-
-#new_playlist_name{float:left;
-}
-
-#vote_count{text-align:right;}
-
 h2#new_playlist_name {;
- 									
+
 }
 
 h4#new_playlist_description {text-align: center}
@@ -218,7 +191,7 @@ h4#new_playlist_description {text-align: center}
 }
 
 #my_pl_wrapper { border-left: 1px solid #efefef;
-                 @include box-shadow($left_shadow);
+                 @include box-shadow($lighter_shadow);
                  padding: 2%;
 }
 #my_playlist {padding-top: 30px;}
@@ -230,35 +203,21 @@ h4#new_playlist_description {text-align: center}
                    padding-right: 20px;
 }
 
-
-#playlist_title_box{width:100%;
-                    border-bottom: 3px solid #efefef;
-                    border-left: none;
-                    border-right: none;
-                    border-top: none;
-}
-
-
-/*jukebox swf object player*/
+/* equalizer */
 
 #fade_sound{opacity: 0.3;}
+
 #fade_sound2{opacity: 0.4;}
+
 #fade_sound3{opacity: 0.5;}
-#playlist_header {padding-bottom: 30px;}
-#equalizer{width:0;
-           height:50px;
-           padding: 55px 0 0 0;
-}
 
-
-
-div#freq{-webkit-transform:rotate(180deg);
+#freq{-webkit-transform:rotate(180deg);
          width: 550px;
          height:0px;
          position: absolute;
-        
+
 }
-div#sound{background-color: lighten($dark_title, 18%);
+#sound{background-color: lighten($dark_title, 18%);
           float: left;
           width:20px;
           border-right: 1px solid lighten($dark_title, 20%);
@@ -266,7 +225,7 @@ div#sound{background-color: lighten($dark_title, 18%);
 
 }
 
-div#freq2{-webkit-transform:rotate(180deg);
+#freq2{-webkit-transform:rotate(180deg);
           width: 550px;
           height: 50px;
           opacity: 0.3;
@@ -274,17 +233,22 @@ div#freq2{-webkit-transform:rotate(180deg);
           opacity: 0.1;
 
 }
-div#sound2{background-color: #a3b3cc;
-           float:left;
-           width:20px;
-           border-right: 1px solid #667080;
-           border-top: 1px solid #667080;
+#sound2 {background-color: #a3b3cc;
+            float:left;
+            width:20px;
+            border-right: 1px solid #667080;
+            border-top: 1px solid #667080;
 }
+
+
+
+
+
 
 //footer
 
-#footer{-webkit-box-shadow: 0 5px 0 #888; 
-         min-height: 111px;} 
+#footer{-webkit-box-shadow: 0 5px 0 #888;
+         min-height: 111px;}
 
 #close_nav{width:100%;
           height: 20px;
@@ -307,6 +271,25 @@ div#sound2{background-color: #a3b3cc;
 
 #open_nav:hover{background-color: darken(#efefef, 10%)}
 
+/* playlist thumbnails */
+//group_playlist
 
+#pl_thumb_wrapper {height: 200px;
+                   width: 100%;
+                   overflow: auto; 
+                   padding: 3%;
+                   border: 1px solid $light_title;
+                   border-radius: 1px;
+                   @include box-shadow($lighter_shadow);
+}
+#pl_thumb_wrapper:hover {border: 1px solid darken($light_title, 10%);
+}
+#pl_thumb_name{font-size: 20px;
+              color: $light_title;
+              border-bottom: 1px solid #efefef;
+}
+#tr_thumb_name {font-size: 12px;
+                border-bottom: solid 1px #efefef;
+}
 
 

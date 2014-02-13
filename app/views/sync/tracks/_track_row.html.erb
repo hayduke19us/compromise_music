@@ -4,8 +4,7 @@
     <div class="pull-left" id = "index_delete">
       <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
         track_path(
-        id: track.id,
-        group: @group_id),
+        id: track.id),
         method:"delete",
         remote: true,
         data: {confirm: "are you sure?"}%>
@@ -17,20 +16,12 @@
         <%=link_to raw(
           "<span class='glyphicon glyphicon-chevron-up'</span>"),
            vote_up_track_path(
-           id: track.id,
-           playlist_id: track.playlist_id,
-           playlists_owner: track.user_id,
-           current_user: current_user.id,
-           group: @group_id),
+           id: track.id),
            remote: true %>
         <%=link_to raw(
           "<span class='glyphicon glyphicon-chevron-down'</span>"),
            vote_down_track_path(
-           id: track.id,
-           playlist_id: track.playlist_id,
-           playlist_owner: track.user_id,
-           current_user: current_user.id,
-           group: @group_id),
+           id: track.id),
            remote: true%>
       </div>
     </h4>
