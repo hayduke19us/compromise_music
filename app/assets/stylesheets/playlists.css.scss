@@ -141,7 +141,7 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 
 
 #pl_header_wrapper { padding-bottom: 30px;
-                     height: 70px;
+                     height: auto;
                      width: 100%;
                      border-bottom: 2px solid $dark_title;
                  }
