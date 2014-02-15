@@ -12,22 +12,28 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 }
 
 
-#friend_wrapper {margin: 0 0 30 0;
-                 width: 100%;
+#friend_wrapper {margin: 30 0 30 0;
                  height: auto;
 }
 
-#add_fr_gp_link {padding: 18px 0 0 200px;}
+#add_fr_gp_link {padding: 18 0 0 10;
+                 display: inline;
+}
 
 #partial_fr_title {color: $light_title;
                    border-bottom: solid 1px #efefef
 }
 
 #fr_name{padding-top: 15px;
+         display: inline;
 }
-#fr_image {padding: 10px;}
+#fr_image {padding: 10px;
+           display: inline;
+}
 
-#rm_friend_glyph {padding: 18px 0 0 10px;}
+#rm_friend_glyph {padding: 18px 0 0 10px;
+                  display: inline;
+}
 
 #friends_search_form{width: 300px;}
 
