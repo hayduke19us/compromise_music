@@ -141,7 +141,7 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 
 
 #pl_header_wrapper { padding-bottom: 30px;
-                     height: 70px;
+                     height: auto;
                      width: 100%;
                      border-bottom: 2px solid $dark_title;
                  }
@@ -282,14 +282,22 @@ h4#new_playlist_description {text-align: center}
                    border-radius: 1px;
                    @include box-shadow($lighter_shadow);
 }
-#pl_thumb_wrapper:hover {border: 1px solid darken($light_title, 10%);
-}
+#pl_thumb_wrapper:hover {border: 1px solid darken($light_title, 10%);}
+
 #pl_thumb_name{font-size: 20px;
               color: $light_title;
               border-bottom: 1px solid #efefef;
 }
 #tr_thumb_name {font-size: 12px;
                 border-bottom: solid 1px #efefef;
+}
+
+//all_playlist
+
+#all_pl_thumb {width: 200px;
+               height: 200px;
+               float: left;
+               margin: 0 10 10 0;
 }
 
 
