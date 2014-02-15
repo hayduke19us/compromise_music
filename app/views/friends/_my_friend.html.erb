@@ -38,6 +38,7 @@
 </div>
 <div id = "friends">
   <% for friendship in current_user.friendships%>
+    <div id="friend_wrapper">
       <div class = 'pull-left'  id = "fr_image">
         <%= image_tag friendship.friend.image, 
           class: 'img-circle',
@@ -50,26 +51,27 @@
       method: :delete,
       class: "pull-left",
       id: "rm_friend_glyph"%> 
-     <div id = "add_fr_gp_link">
-       <div class= "dropdown right">
-         <%=link_to raw("<span class= 'glyphicon glyphicon-user'</span>"),
-           "#", 
-           class: "dropdown-toggle",
-           'data-toggle' => 'dropdown'%>
-         <ul class = "dropdown-menu">
-         <% current_user.groups.each do |group| %>
-           <li>
-           <%= link_to group.name, groupships_path(
-               friend_id: friendship.friend.id, 
-               group_id: group, 
-               users: users),
-               remote: true,
-               method: :post%>
-           </li>
-         <%end%>
-         </ul>
-       </div>
-     </div>
+      <div id = "add_fr_gp_link">
+        <div class= "dropdown right">
+          <%=link_to raw("<span class= 'glyphicon glyphicon-user'</span>"),
+            "#", 
+            class: "dropdown-toggle",
+            'data-toggle' => 'dropdown'%>
+          <ul class = "dropdown-menu">
+          <% current_user.groups.each do |group| %>
+            <li>
+            <%= link_to group.name, groupships_path(
+                friend_id: friendship.friend.id, 
+                group_id: group, 
+                users: users),
+                remote: true,
+                method: :post%>
+            </li>
+          <%end%>
+          </ul>
+        </div>
+      </div>
+    </div>
   <%end%>
 </div>
 
