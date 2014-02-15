@@ -33,7 +33,7 @@
   </div>
   <div id = "gp_playlists" >
       <% group.grouplists.each do |grouplist| %>
-        <div id= "pl_thumb">
+        <div id= "group_pl_thumb">
           <% unless group.user != current_user %> 
             <div id = "pl_remove_glyph" class = 'pull-right'>
             <%=link_to raw("<span id = 'pl_remove_glyph' 
