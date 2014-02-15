@@ -1,10 +1,11 @@
-<div class="playlist_pg" id="current_page"></div>
 <div class="container">
   <div class="row">
-    <div class="col-md-3 pull-left">
+    <div class="col-md-10">
       <% playlists.each do |playlist| %>
-        <%= render partial: "/playlists/playlist_thumbnail", 
-          locals: {playlist: playlist} %> 
+        <div id="all_pl_thumb">
+          <%= render partial: "/playlists/playlist_thumbnail", 
+            locals: {playlist: playlist} %> 
+        </div>
       <%end%>
     </div>
   </div>
