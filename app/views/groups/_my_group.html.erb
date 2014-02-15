@@ -31,9 +31,9 @@
         <%end%>
       <%end%>
   </div>
-  <div id = "gp_playlists">
+  <div id = "gp_playlists" >
       <% group.grouplists.each do |grouplist| %>
-        <div class= "pull-left col-md-3" >
+        <div id= "pl_thumb">
           <% unless group.user != current_user %> 
             <div id = "pl_remove_glyph" class = 'pull-right'>
             <%=link_to raw("<span id = 'pl_remove_glyph' 

@@ -283,6 +283,14 @@ h4#new_playlist_description {text-align: center}
                    @include box-shadow($lighter_shadow);
 }
 #pl_thumb_wrapper:hover {border: 1px solid darken($light_title, 10%);
+
+#pl_thumb {width: 200px;
+                 height: 200px;
+                 float: left;
+                 margin: 0 10 30 0;
+}
+
+
 }
 #pl_thumb_name{font-size: 20px;
               color: $light_title;
