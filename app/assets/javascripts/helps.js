@@ -1,10 +1,9 @@
-var playback_token= "GAlS5vtLAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdJ8OL52Dkys8nRRXmZxlbJo="
-//var playback_token = "GBxSyJp0AKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb21dY3Ro-V0Rd1TWoclJ07DW"
+//var playback_token= "GAlS5vtLAKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdJ8OL52Dkys8nRRXmZxlbJo="
+var playback_token = "GBxSyJp0AKKdtGR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbndhcm0td2F2ZS04NjgzLmhlcm9rdWFwcC5jb21dY3Ro-V0Rd1TWoclJ07DW"
 
+//var domain = "localhost";
 
-var domain = "localhost";
-
-//var domain = "warm-wave-8683.herokuapp.com";
+var domain = "warm-wave-8683.herokuapp.com";
 
 
 // a global variable that will hold a reference to the api swf once it has loaded
@@ -13,8 +12,8 @@ var apiswf = null;
 $(document).ready(function() {
   // on page load use SWFObject to load the API swf into div#apiswf
   var flashvars = {
-    'playbackToken': playback_token, // from token.js
-    'domain': domain,                // from token.js
+    'playbackToken': playback_token,
+    'domain': domain,
     'listener': 'callback_object'    // the global name of the object that will receive callbacks from the SWF
     };
   var params = {
@@ -27,7 +26,6 @@ $(document).ready(function() {
 
 
  });
-
 
 // the global callback object
 var callback_object = {};
