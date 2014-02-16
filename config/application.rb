@@ -1,6 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-
 require 'rails/all'
 
 # Pick the frameworks you want:
@@ -25,10 +24,10 @@ module CompromiseMusic
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    # 
-    #config for heroku assets precompiled locally 
+    #
+    #config for heroku assets precompiled locally
     config.assets.initialize_on_precompile = false
-    
+
     config.generators do |g|
       g.test_framework :mini_test, :spec => false, :fixture => true
     end
