@@ -1,19 +1,111 @@
 <div class = "container">
   <div class="row">
-    <div class="col-md-5" id= "user-widget" style=padding-top:5%;>
+    <div class="col-md-5" id= "user-widget" >
       <div id="sign_in">
-        <h2>Playlist for now, playlist for then. 
-        <h2></br>
+        <li id="compromise_title">Compromise</li>
+        <h2>Playlist for now, playlist for later.</h2></br>
         <%= link_to "Sign in with Rdio",
             'auth/rdio/',
             'class' => 'btn btn-primary btn-lg' %>
       </div>
     </div>
-    <div class="col-md-5">
-      
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-4">
+      <%= image_tag "http://i.imgur.com/IIIV9r0.png?1", id: "raccoon"%> 
     </div>
   </div>
 </div>
-<div class = "col-md-12" id = "colored_footer" style="background-color:#efefef;height:100%;">
+<div id = "colored_footer" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div id = "search_flow">
+          <li class="lead">
+            <blockquote>
+              Find your favorite Songs, Albums
+              and Artist with an easy to use and
+              intuative search flow.
+            </blockquote>
+          </li>
+          <li class= "lead">
+            <blockquote>
+              Create playlist and share them
+              with groups of friends.
+            </blockquote>
+          </li>
+          <li class= "lead">
+            <blockquote>
+              Vote on songs and
+              keep your playlist organized
+              by song popularity.
+            </blockquote>
+          </li>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <%= image_tag "http://i.imgur.com/fSKOAt7.png?1", id: "flow_example" %>
+      </div>
+    </div>
+  </div>
 </div>
-
+<div class="container">
+  <div class="row">
+    <div class= "col-md-8">
+      <li id="analyze_title">Analyze my listening mood</li>
+      <div id= mood-add-wrapper>
+        <blockquote>
+          <li id="mood_add" class="lead">
+            Tag playlist by the mood your in,</br>
+            the occasion, or even the weather.
+          </li>
+        </blockquote>
+        <li id="cloud">
+          <%= image_tag "http://i.imgur.com/DX2vHcc.png?3"%>
+        </li>
+        <li id="sunshine">
+          <%= image_tag "http://i.imgur.com/mzuqlht.png?2"%>
+        </li>
+        <li id="heart">
+        <%= image_tag "http://i.imgur.com/kX6vMvJ.png?2" %>
+        </li>
+      </div>
+      <div id="graph_add_wrapper">
+        <blockquote>
+          <li id= "graph_add"class="lead">
+            Graph your listening habits,</br>
+            your voting patterns and let</br>
+            us recommend new compilations.
+          </li>
+        </blockquote>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="raccoon-back">
+        <%= image_tag "http://i.imgur.com/TeqGIy6.png?1"%>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="me_add">
+  <div class="container">
+    <div id="row">
+      <div class="col-md-4">
+        <h2>Stop beating around the bush and get started!</h2>
+        <div id="footer-sign-in">
+          <%= link_to "Sign in with Rdio",
+              'auth/rdio/',
+              'class' => 'btn btn-primary btn-lg' %>
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <div id="about-me">
+          <li class="lead">By Matthew Sullivan</li>
+          <li><%= link_to "Github", "http://github/hayduke19us" %></li>
+          <li><%= link_to "Twitter", "twitter.com/hayduke19us" %></li>
+          <li><%= link_to "About me", "mcsullivan.com"%></li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

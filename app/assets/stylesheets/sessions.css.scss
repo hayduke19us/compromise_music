@@ -3,11 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //
 
-//stupid caret issue
-
-#stupid-caret {padding: 14px 6px 14px 6;
-}
-
 /*Sass variables and mixins */
 
 $light_title: #CAD0D5;
@@ -19,6 +14,70 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
           box-shadow: $specs;
+}
+
+/*sign in*/
+
+#user_widget {padding-top: 2%;}
+
+#colored_footer {background-color: #efefef;
+                 min-height: 100%;
+}
+
+// compromise_title
+#compromise_title {font-size: 60px;
+                   color: $dark_title;
+}
+
+// raccoon
+
+#raccoon {padding-bottom: 30px;}
+
+#search_flow {padding: 30px 0 0 0;}
+
+//stupid caret issue
+
+#stupid-caret {padding: 14px 6px 14px 6;
+}
+
+//analyze
+
+#analyze_title {font-size: 60px;
+                color: $dark_title;
+                padding-top: 30px;
+}
+
+#raccoon-back {padding-top: 60px;
+               opacity: 0.3;
+}
+
+#mood-add-wrapper {padding-top: 30px;}
+
+#cloud {display: inline;
+        padding-right: 10px;
+}
+
+#sunshine {display: inline;
+           padding-right: 10px;
+}
+
+#heart {display: inline;
+        padding-right: 10px;
+}
+
+#graph_add_wrapper {padding-top: 30px;}
+
+#me_add {background-color: $light_title;
+         height: 250px;
+         margin-bottom: -11em;
+}
+
+#footer-sign-in {padding: 30 0 30 0;}
+
+#about-me {margin-top: 30px;
+           padding-left: 10px;
+           border-left: solid 3px white;
+           color: $dark_title;
 }
 
 .badge{background-color: transparent;
