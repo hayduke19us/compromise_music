@@ -1,21 +1,11 @@
-$( function(){
- $("#simple").tooltip({trigger: "hover", 
-                       placement: "left",
-                       title: "Simple Success",
-                       delay: {show: 10, hide: 20}
- });
-});
-$( function(){
- $("#middle").tooltip({trigger: "hover", 
-                       placement: "left",
-                       title: "Middle of the road",
-                       delay: {show: 10, hide: 20}
- });
-});
-$( function(){
- $("#top_dog").tooltip({trigger: "hover", 
-                       placement: "left",
-                       title: "Top of the class",
-                       delay: {show: 10, hide: 20}
- });
+$(function() {
+  $("#flow").hover( function(){
+    $("#flow_example").attr("src", "http://i.imgur.com/fSKOAt7.png?1");
+  });
+  $("#share").hover( function(){
+    $("#flow_example").attr("src", "http://i.imgur.com/uKAda1l.png?1");
+  });
+  $("#vote").hover( function(){
+    $("#flow_example").attr("src", "http://i.imgur.com/Z99Helb.png?1");
+  });
 });
