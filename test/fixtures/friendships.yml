@@ -1,9 +1,9 @@
 #sample data for a friendship
 
 short_friendship:
-  user_id: 1
-  friend_id: 2
+  user: martha
+  friend: tom
 
 long_frienship:
-  user_id: 2
-  friend_id: 1
+  user: tom
+  friend: martha

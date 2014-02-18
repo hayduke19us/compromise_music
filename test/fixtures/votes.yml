@@ -3,27 +3,27 @@
 martha_vote_for_ramona:
   vote: true
   voteable_type: "Track"
-  voteable_id: 1
-  voter_id: 1
+  voteable: ramona
+  voter: martha
   voter_type: "User"
 
 tom_vote_against_ramona:
   vote: false
   voteable_type: "Track"
-  voteable_id: 1
-  voter_id: 2
+  voteable: armchairs
+  voter: tom
   voter_type: "User"
 
 martha_vote_for_armchairs:
   vote: true
   voteable_type: "Track"
-  voteable_id: 2
-  voter_id: 1
+  voteable: armchairs
+  voter: martha
   voter_type: "User"
 
 tom_vote_for_imitosis:
   vote: true
   voteable_type: "Track"
-  voteable_id: 3 
-  voter_id: 2
+  voteable: imitosis
+  voter: tom
   voter_type: "User"

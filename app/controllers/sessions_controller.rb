@@ -45,7 +45,6 @@ class SessionsController < ApplicationController
     arr.join(",")
   end
 
-
   def create
     reset_session
     user = User.from_omniauth(env["omniauth.auth"])

@@ -2,13 +2,13 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 friends_tom:
-  group_id: 1
-  friend_id: 2
+  group: marthas_friends
+  friend: tom
 
 family_tom:
-  group_id: 2
-  friend_id: 2
+  group: marthas_family
+  friend: tom
 
-toms_friends: 
-  group_id: 3
-  friend_id: 1
+toms_friends:
+  group: toms_friends
+  friend: martha

@@ -1,7 +1,6 @@
 #sample data for users
 
 martha:
-  id: 1
   name: martha
   provider: rdio
   key: abc123
@@ -12,7 +11,6 @@ martha:
   uid: pqr123
 
 tom:
-  id: 2
   name: tom
   provider: rdio
   key: abc456

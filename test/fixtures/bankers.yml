@@ -2,8 +2,9 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_id: 1
+  user: martha
   simple_success: 0
+
 two:
-  user_id: 2
+  user: tom
   simple_success: 0 

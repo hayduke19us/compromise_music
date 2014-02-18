@@ -2,13 +2,13 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 friend_playlist:
-  group_id: 1
-  playlist_id: 1
+  group: marthas_friends
+  playlist: road_trip
 
 family_playlist:
-  group_id: 2
-  playlist_id: 2
+  group: marthas_family
+  playlist: raod_trip
 
 toms_friends:
-  group_id: 3
-  playlist_id: 3
+  group: toms_friends
+  playlist: toms_friends
