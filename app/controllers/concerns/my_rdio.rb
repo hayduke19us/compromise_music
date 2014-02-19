@@ -1,4 +1,5 @@
 module My_Rdio
+
   class RdioUser
     def self.verify_user(token, secret)
       #create rdio object with current users info
@@ -23,6 +24,7 @@ module My_Rdio
   end
 
   class RdioPlaylist
+
     def self.verified(rdio)
       @rdio = rdio
     end

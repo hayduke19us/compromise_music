@@ -1,6 +1,6 @@
 class Playlist < ActiveRecord::Base
 
-  include My_Rdio
+  extend My_Rdio
   extend VotingGame
 
   has_many :grouplists, :dependent => :destroy
@@ -12,13 +12,11 @@ class Playlist < ActiveRecord::Base
 
   def sort_playlist
     sorted_playlist = self.tracks.sort_by {|t| t.index}
-    sorted_tracks = []
-    sorted_playlist.each {|track| sorted_tracks << track.key}
-    sorted_tracks
+    sorted_playlist.map {|track| track.key}
   end
 
   def sort_for_rdio
-    RdioPlaylist.playlist_order self.key, sort_playlist.join(", ")
+    My_Rdio::RdioPlaylist.playlist_order self.key, sort_playlist.join(", ")
   end
 
   def game
