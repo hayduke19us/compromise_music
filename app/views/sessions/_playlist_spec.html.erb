@@ -3,7 +3,8 @@
   <span class="badge pull-right"><%=playlist.tracks.count%></span>
   <li><%= link_to playlist.name.titleize,
     sessions_my_playlist_path(playlist: playlist),
-    remote: true%>
+    remote: true,
+    id: 'pl_link' %>
   </li>
 <% end %>
 <li>

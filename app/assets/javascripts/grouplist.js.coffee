@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  $("#collaborations").hide()
   $("#collab_title").on("click", ->
-    $("#collaborations").toggle('easeOtElastic'))
+    $("#collaborations").toggle('easeOutElastic'))
 
 
