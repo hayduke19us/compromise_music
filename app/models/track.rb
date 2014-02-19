@@ -1,18 +1,20 @@
 class Track < ActiveRecord::Base
+
   include My_Rdio
+
   belongs_to :playlist
   belongs_to :user
+
   acts_as_voteable
-  
+
   validates :name, :key, :playlist_id, :playlist_key,
     :embedUrl, :index,  presence: true
   validates :index, numericality: { only_integer: true }
-  validates :key, uniqueness: {scope: :playlist_key} 
+  validates :key, uniqueness: {scope: :playlist_key}
 
   def vote_up user
     user.vote_for self
     self.save
-
   end
 
   def vote_down user
@@ -20,8 +22,8 @@ class Track < ActiveRecord::Base
     self.save
   end
 
-  def index_after 
-    playlist = Playlist.find self.playlist_id 
+  def index_after
+    playlist = Playlist.find self.playlist_id
     sorted_playlist = playlist.tracks.sort_by {|t| t.votes_for - t.votes_against}
     x = 0
     sorted_playlist.reverse.each do |t|
@@ -30,12 +32,12 @@ class Track < ActiveRecord::Base
      x += 1
     end
   end
-  
+
   def destroy_with_rdio(count=1)
     playlist = Playlist.find self.playlist_id
     RdioTrack.remove_track(self.playlist_key, self.index, self.key, count)
 
-    self.index_destroy playlist 
+    self.index_destroy playlist
   end
 
   def index_destroy playlist
@@ -46,7 +48,5 @@ class Track < ActiveRecord::Base
       end
     end
   end
-
-
 
 end

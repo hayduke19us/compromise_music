@@ -13,10 +13,10 @@ class FriendshipTest < ActiveSupport::TestCase
   end
 
   test "friendships must be unique" do
-    friendship = friendships(:short_friendship)
-    assert friendship.valid?, "The first friendship is valid"
-    dup_friendship = Friendship.new(user_id: 1, friend_id: 2)
-    refute dup_friendship.valid?, "the second duplicated friendship is not valid"
+    tom = users(:tom)
+    martha = users(:martha)
+    dup_friendship = Friendship.new(user_id: martha.id, friend_id: tom.id)
+    refute dup_friendship.valid?
   end
 
   test "friendship needs a user_id" do
@@ -24,10 +24,11 @@ class FriendshipTest < ActiveSupport::TestCase
     friendship.user_id = nil
     refute friendship.valid?
   end
-  
+
    test "friendship needs a friend_id" do
     friendship = friendships(:short_friendship)
     friendship.friend_id = nil
     refute friendship.valid?
   end
+
 end

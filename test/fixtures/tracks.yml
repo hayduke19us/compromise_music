@@ -14,7 +14,7 @@ armchairs:
   key: def123
   embedUrl: http/embedUrl
   playlist: road_trip
-  playlist_key: def123
+  playlist_key: abc123
   index: 1
   user: tom
 
@@ -22,7 +22,7 @@ imitosis:
   name: imitosis
   key: abl879
   embedUrl: http/embedUrl
-  playlist: raod_trip
+  playlist: road_trip
   playlist_key: abc123
   index: 2
   user: tom

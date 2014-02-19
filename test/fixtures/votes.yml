@@ -10,7 +10,7 @@ martha_vote_for_ramona:
 tom_vote_against_ramona:
   vote: false
   voteable_type: "Track"
-  voteable: armchairs
+  voteable: ramona
   voter: tom
   voter_type: "User"
 

@@ -1,30 +1,31 @@
 module VotingGame
   class Playlist
+
     attr_accessor :attributes, :point_adjuster, :grouplists
+
     def initialize(args)
       @attributes     = args[:attributes]
       @grouplists     = args[:grouplists]
       @point_adjuster = args[:point_adjuster]
     end
-    
+
     def groups
-      array = []
-      self.grouplists.each {|grouplist| array << grouplist.group }
-      array
+      self.grouplists.map {|grouplist| grouplist.group }
     end
-    
+
     def members
-      owner_incl = self.grouplists.count # 1 owner per group
-      groups.inject(owner_incl) {|sum, group| sum += group.friends.count }
+      sum = 0
+      groups.each {|group| sum += group.friends.count }
+      sum + self.grouplists.count # 1 owner per group
     end
 
     def min_votes
-      members/self.attributes.tracks.count.to_f 
+      members/self.attributes.tracks.count.to_f
     end
 
     def simple_success
       @point_adjuster.simple_success self.attributes, min_votes
-      @point_adjuster.simple_failure self.attributes, min_votes 
+      @point_adjuster.simple_failure self.attributes, min_votes
       @point_adjuster.points
     end
   end
@@ -36,8 +37,8 @@ module VotingGame
       @failure_tracks = []
       @total_votes = lambda {|track| total = track.votes_for - track.votes_against}
     end
-   
-    def simple_success attributes, min_votes 
+
+    def simple_success attributes, min_votes
       attributes.tracks.each do |track|
         if @total_votes.call(track) >= min_votes
           self.success_tracks = self.success_tracks << track
@@ -52,7 +53,7 @@ module VotingGame
         end
       end
    end
-  
+
    def points
       unless self.success_tracks.blank?
         VotingGame::SuccessTracks.new(self.success_tracks).simple_success_points
@@ -71,7 +72,7 @@ module VotingGame
         banker = Banker.find_by(user_id: track.user_id)
         banker.simple_success -= 1
         banker.save
-      end 
+      end
     end
   end
 
@@ -92,7 +93,7 @@ module VotingGame
 
   class FailureTracks
     include My_Rdio
-  
+
     def initialize tracks
       @tracks = tracks.sort_by {|track| track.index }
     end

@@ -42,27 +42,24 @@ class TracksTest < ActiveSupport::TestCase
     refute track.valid?
   end
 
-  test "track index is an integer" do
+  test "track index must be an integer to be valid" do
     track = tracks(:ramona)
-    index = track.index
-    type = index.class
-    assert type.superclass, Integer
+    track.index = "one"
+    refute track.valid?
   end
 
   test "track must be unique in a playlist(no replications)" do
+    user = users(:martha)
     playlist = playlists(:road_trip)
-    assert_equal 3, playlist.tracks.count
-
     track = tracks(:ramona)
-    assert track.valid?, "track should be valid"
-
-    track_dup = Track.new(id: 2, name: 'ramona', key: track.key,
-                          embedUrl: track.embedUrl, playlist_id: 1,
-                          index: 1, user_id: 1 )
+    track_dup = Track.new(id: track.id,
+                          name: track.name,
+                          key: track.key,
+                          embedUrl: track.embedUrl,
+                          playlist_id: playlist.id,
+                          index: track.id,
+                          user_id: user.id)
     refute track_dup.valid?, "should not be valid scope p_id and key"
-  end
-
-  test "when track is created its index is determined by its total votes" do
   end
 
   test "when track is deleted the index of other tracks is appended" do
@@ -71,7 +68,7 @@ class TracksTest < ActiveSupport::TestCase
 
     track1 = tracks(:ramona)
     assert_equal 0, track1.index
-    
+
     track2 = tracks(:armchairs)
     assert_equal 1, track2.index
 
@@ -82,26 +79,21 @@ class TracksTest < ActiveSupport::TestCase
     test_track1.index_destroy playlist
     test_track2 = Track.find track2.id
     assert_equal 0, test_track2.index
-    
+
     test_track3 = Track.find track3.id
     assert_equal 1, test_track3.index
   end
 
   test "tracks have and association with vote" do
     track = tracks(:ramona)
-    vote = votes(:martha_vote_for_ramona)
-    refute_nil track.votes_for
-    assert_equal 1, track.votes_for, "should be one"
-    assert_equal 1,  track.votes_against, "should be none"
+    assert_respond_to track, votes
   end
 
   test "tracks can be voted on" do
     track = tracks(:ramona)
     assert_equal 1, track.votes_for, "ramona has one vote for"
-    assert_equal 1, track.votes_against, "ramona has one vote against"
-    assert_equal 2, track.votes.count
   end
-  
+
   test "tracks total vote value is (for - against)" do
     track = tracks(:ramona)
     total_vote = track.votes_for - track.votes_against
@@ -115,22 +107,20 @@ class TracksTest < ActiveSupport::TestCase
     total_vote_3 = track3.votes_for - track3.votes_against
     assert_equal 1, total_vote_3, "armchairs .....1"
   end
-  
+
   test "indexing of all tracks is appended with index_after method" do
     track = tracks(:ramona)
     assert_equal 0, track.index, "ramona should start w/ index of 0"
 
     track2 = tracks(:armchairs)
     assert_equal 1, track2.index
-   
+
     track3 = tracks(:imitosis)
     assert_equal 2, track3.index
 
-    playlist = Playlist.find track.id
-    assert_equal 3, playlist.tracks.count
-
     track.index_after
-    ramona = Track.find track.id
+    ramona = Track.find(track)
+
     assert_equal 2, ramona.index
   end
 
@@ -138,19 +128,8 @@ class TracksTest < ActiveSupport::TestCase
     martha = users(:martha)
     track = tracks(:ramona)
     vote = Vote.new vote: true, voteable_type: "Track", voteable_id: track.id,
-      voter_id: martha.id, voter_type: "User" 
+      voter_id: martha.id, voter_type: "User"
     refute vote.valid?, "martha has already voted on ramona track"
-  end
-  
-  test "a track is :vote_up" do
-    tom = users(:tom)
-    track = tracks(:armchairs)
-    assert_equal 1, track.votes_for
-    track.vote_up tom
-
-    track = Track.find track.id
-    total_votes = track.votes_for - track.votes_against
-    assert_equal 2, total_votes
   end
 
 end

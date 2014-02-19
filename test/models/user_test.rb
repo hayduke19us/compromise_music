@@ -2,11 +2,6 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
 
-  test "omniauth spike" do
-    user = users(:martha)
-    assert user.from_omniauth
-  end
-
   test "if user is empty it is invalid" do
     user = User.new
     refute user.valid?, "user lacks validations"

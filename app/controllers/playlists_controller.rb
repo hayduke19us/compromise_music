@@ -1,7 +1,10 @@
 class PlaylistsController < ApplicationController
-  before_filter :get_rdio_user 
+
+  before_filter :get_rdio_user
+
   extend VotingGame
-  respond_to :js, :html 
+
+  respond_to :js, :html
 
   def index
     @playlists = current_user.playlists
@@ -9,7 +12,7 @@ class PlaylistsController < ApplicationController
   end
 
   def new
-    @playlists = Playlist.all 
+    @playlists = Playlist.all
   end
 
   def create
@@ -18,18 +21,10 @@ class PlaylistsController < ApplicationController
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
       playlist.save
-      flash[:notice] = "You have succesfully created a Playlist"
-      redirect_to root_path 
+      redirect_to root_path
     else
-        flash[:notice] = "A playlist requires a name and description"
-        redirect_to root_path
+      redirect_to root_path
     end
-  end
-  
-  def total_votes tracks
-    x = 0 
-    tracks.each {|track| x += track.votes_for - track.votes_against}
-    x
   end
 
   def search_result
@@ -65,16 +60,14 @@ class PlaylistsController < ApplicationController
 
   def publish
     playlist = Playlist.find(params[:id])
-    grouplists = playlist.grouplists
     playlist.sort_for_rdio
 
     #voting game begins
+    game = playlist.game
 
-    game = VotingGame::Playlist.new attributes: playlist,
-                                    grouplists: grouplists,
-                                    point_adjuster: VotingGame::SuccessFilter.new
     async = game.simple_success
-    unless async == nil 
+
+    unless async == nil
       async.each do |track|
         sync_destroy track
         track.destroy

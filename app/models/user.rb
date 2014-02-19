@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_voter
-  
-  validates_presence_of  :provider, 
-    :uid, :name, :key, :oauth_token, :access_token, :access_secret 
+
+  validates_presence_of  :provider,
+    :uid, :name, :key, :oauth_token, :access_token, :access_secret
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -21,9 +21,9 @@ class User < ActiveRecord::Base
   end
 
   has_one  :banker, :dependent => :destroy
-  has_many :tracks, :dependent => :destroy 
+  has_many :tracks, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
-  has_many :friends, :through => :friendships  
+  has_many :friends, :through => :friendships
   has_many :playlists, :dependent => :destroy
   has_many :groups, :dependent => :destroy
 
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     friendships = Friendship.where(friend_id: self)
     friendships.each {|f| f.destroy!}
   end
-  
+
   def collab_groups
     g = Groupship.where(friend_id: self)
     g.inject([]) {|array, groupship| array << groupship.group}

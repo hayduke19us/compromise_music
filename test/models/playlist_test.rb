@@ -37,7 +37,6 @@ class PlaylistTest < ActiveSupport::TestCase
     refute playlist.valid?
   end
 
-
   test "A playlist has an association to tracks" do
     playlist = playlists(:road_trip)
     assert_equal 3, playlist.tracks.count
@@ -57,4 +56,5 @@ class PlaylistTest < ActiveSupport::TestCase
      sort = roadtrip.sort_playlist
     assert_equal 3, sort.count
   end
+
 end

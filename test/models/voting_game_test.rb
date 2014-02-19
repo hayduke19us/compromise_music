@@ -32,7 +32,8 @@ module VotingGame
     end
 
     test "number of tracks is attributes" do
-      assert_equal @playlist.attributes.tracks.count, 3, "number of tracks in pl"
+      playlist = @playlist.attributes
+      assert_equal 3, playlist.tracks.count
     end
   end
 
