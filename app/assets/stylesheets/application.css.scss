@@ -36,7 +36,7 @@ div#beta-link a {color: #606a7a;}
 
 /*body padding, backgrounds and page wide styles*/
 
-.navbar-default{background-color: white;}
+.navbar-default{background-color: #efefef;}
 
 a {color: #777777}
 
@@ -48,7 +48,7 @@ li {list-style-type: none;}
 #colored_body {padding-top: 40px;
 }
 #white_top{background-color:white;
-           box-shadow:$shadow_light;
+           border-bottom: solid 1px #efefef;
 }
 
 
