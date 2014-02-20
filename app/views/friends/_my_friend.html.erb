@@ -18,21 +18,23 @@
     <div id = "not_friends">
       <%unless users.blank?%>
         <% users.each do |user| %>
-          <div class="pull-right" id="user_image_search">
-            <%= image_tag user.image, 
-              'class' => "img-circle", id: "not_fr_image"%></p>
-          </div>
-          <li id="not_fr_name"><%= user.name.titleize%></li>
-          <%= link_to 'Add friend', 
-            friendships_path(:friend_id => user),
-            remote: true,
-            :method => :post ,
-            'id' => 'add_friend_link',
-            'class' => 'btn btn-xs btn-default' %>
+          <div id="not_friends_wrapper">
+            <div class="pull-right" id="user_image_search">
+              <%= image_tag user.image,
+                'class' => "img-circle", id: "not_fr_image"%></p>
+            </div>
+            <li id="not_fr_name"><%= user.name.titleize%></li>
+            <%= link_to 'Add friend', 
+              friendships_path(:friend_id => user),
+              remote: true,
+              :method => :post ,
+              'id' => 'add_friend_link',
+              'class' => 'btn btn-xs btn-default' %>
+          <%end%>
+        <%else%>
+          Your friends with everyone!
         <%end%>
-      <%else%>
-        Your friends with everyone!
-      <%end%>
+      </div>
     </div>
   </div>
 </div>
