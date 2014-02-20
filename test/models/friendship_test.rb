@@ -31,4 +31,20 @@ class FriendshipTest < ActiveSupport::TestCase
     refute friendship.valid?
   end
 
+   test "friendships have a friend" do
+     friendship = friendships(:short_friendship)
+     tom = users(:tom)
+     assert_equal friendship.friend, tom
+   end
+
+   test "when friendship is deleted the associated groupships are deleted" do
+     martha = users(:martha)
+     friendship = friendships(:short_friendship)
+     friendship.delete_associated_groupships
+
+     martha.groups.each do |g|
+       assert_equal 0, g.groupships.where(friend_id: friendship.friend).count
+     end
+   end
+
 end
