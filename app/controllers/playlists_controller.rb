@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
 
-  before_filter :get_rdio_user, only: [:create, :search_helper, :publish, :destroy]
+  before_filter :get_rdio_user, only: [:create, :search_helper, :publish, 
+                                       :destroy, :search_result]
 
   respond_to :js, :html
 
