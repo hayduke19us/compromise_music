@@ -4,16 +4,22 @@ class GroupsController < ApplicationController
   end
 
   def create
+    user = User.find(params[:user_id])
     name = params[:name]
-    if name.match(/'/)
-     name = name.gsub(/'/, '')
-    end
-    group = Group.new(name: name, user_id: params[:user_id])
-    if group.save
+    @name = name_match name
+    @group = Group.new(name: @name, user_id: user.id) 
+    if @group.save
       redirect_to root_path
     else
-      flash[:notice] = "something went wrong"
-      render :new
+      redirect_to new_user_group_path(user) 
+    end
+  end
+
+  def name_match name
+    unless name.blank?
+      if name.match(/'/)
+        return name.gsub(/'/, '')
+      end
     end
   end
 
@@ -23,4 +29,13 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
+  private
+    def name_match name
+      unless name.blank?
+        if name.match(/'/)
+          name = name.gsub(/'/, '')
+        end
+        return name
+      end
+    end
 end

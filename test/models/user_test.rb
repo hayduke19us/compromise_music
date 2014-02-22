@@ -98,4 +98,27 @@ class UserTest < ActiveSupport::TestCase
     user = users(:martha)
     assert_equal 1, user.collab_playlists.count
   end
+
+  test "friends ids should return a collection of users friends ids" do
+    user = users(:martha)
+    assert_equal 1, user.friends_ids.count
+  end
+
+  test "not friends should return all users except user friends" do
+    user = users(:martha)
+    assert_equal 2, user.not_friends.count
+  end
+
+  test "all_others should return all users except friends and user" do
+    user = users(:martha)
+    assert_equal 1, user.all_others.count
+  end
+
+  test "all_others should return all users except current_user if no friends" do
+   user = users(:martha)
+   friendship = user.friendships.first 
+   friendship.delete
+   assert_equal 0, user.friendships.count
+   assert_equal 2, user.all_others.count
+  end
 end

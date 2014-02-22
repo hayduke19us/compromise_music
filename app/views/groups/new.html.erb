@@ -5,13 +5,13 @@
       </div>
       <div class="col-md-10">
         <div class= "lead" id="group_description">
-          A group is a place to add friends and playlists. 
+          A group is a place to add friends and playlists.
           Group members can add playlists and vote on each others tracks.
         </div>
       </div>
       <div class="col-md-1">
       </div>
-    </div> 
+    </div>
   </div>
 </div>
 <div id="colored_body">
@@ -19,17 +19,17 @@
     <div class="row">
         </div>
       <div class="col-md-4">
-      </div>	
-      <div class= "col-md-4"> 
+      </div>
+      <div class= "col-md-4">
         <div class="panel panel-default" id= "new_group_form">
-          <%=form_tag(controller: "groups", action: "create", 
+          <%=form_tag(controller: "groups", action: "create",
                       user_id: current_user.id) do%>
             <h4>Name</h4>
-            <%=text_field_tag(:name, 
+            <%=text_field_tag(:name,
                               nil, :placeholder => "Name that group!",
                               id: "new_group_input" )%>
             <div id ="new_group_btn">
-              <%=submit_tag "create group", 'class' => 'btn btn-default', 
+              <%=submit_tag "create group", 'class' => 'btn btn-default',
                 id: 'new_group_btn' %>
             </div>
           <%end%>

@@ -48,4 +48,22 @@ class User < ActiveRecord::Base
   def collab_playlists
     self.collab_groups.inject([]) {|array, group| group.playlists.each {|p| array << p }}
   end
+
+  def friends_ids
+    self.friends.map {|friend| friend.id}
+  end
+
+  def not_friends
+    User.where.not(id: self.friends)
+  end
+
+  def all_others
+    unless self.friends.blank?
+      users = self.not_friends.map {|user| user unless user == self}
+      users.delete(nil)
+      users
+    else
+      users = User.where.not(id: self)
+    end
+  end
 end

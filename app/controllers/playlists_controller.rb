@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
 
-  before_filter :get_rdio_user
+  before_filter :get_rdio_user, only: [:create, :search_helper, :publish, :destroy]
 
   respond_to :js, :html
 
@@ -18,8 +18,9 @@ class PlaylistsController < ApplicationController
       RdioPlaylist.new_playlist(params[:name], params[:description])
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
-      playlist.save
-      redirect_to root_path
+      if playlist.save
+        redirect_to root_path
+      end
     else
       redirect_to root_path
     end

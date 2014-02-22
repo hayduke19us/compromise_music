@@ -10,13 +10,16 @@ class Playlist < ActiveRecord::Base
   validates :key, uniqueness: true
   validates :name, :description, :key, :embedUrl, :user_id, presence: true
 
+  def sort_playlist_tracks
+    sort_playlist.map {|track| track.key}
+  end
+
   def sort_playlist
-    sorted_playlist = self.tracks.sort_by {|t| t.index}
-    sorted_playlist.map {|track| track.key}
+    self.tracks.sort_by {|t| t.index}
   end
 
   def sort_for_rdio
-    My_Rdio::RdioPlaylist.playlist_order self.key, sort_playlist.join(", ")
+    My_Rdio::RdioPlaylist.playlist_order self.key, sort_playlist_tracks.join(", ")
   end
 
   def game

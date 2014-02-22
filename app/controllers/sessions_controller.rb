@@ -6,16 +6,19 @@ class SessionsController < ApplicationController
       @user = current_user
       @collab_groups = @user.collab_groups
       @collab_playlists = @user.collab_playlists
+
+      #sorted tracks by votes for playlist
       unless @sorted.blank?
-        @sorted = @playlist.tracks.sort_by {|t| t.index}
+        @sorted = @playlist.sort_playlist
       end
+
     end
     @online_users = User.where("online = ? AND id != ?", true, current_user)
   end
 
   def my_playlist
     @playlist = Playlist.find(params[:playlist])
-    @sorted = @playlist.tracks.sort_by {|t| t.index}
+    @sorted = @playlist.sort_playlist
     respond_with @playlist
   end
 

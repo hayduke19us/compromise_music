@@ -19,3 +19,13 @@ tom:
   access_token: dfg123
   access_secret: hij123
   uid: klm123 
+
+sarah:
+  name: sarah
+  provider: rdio
+  key: abc4567
+  oauth_token: abc7890
+  oauth_secret: abc1234
+  access_token: dfg1234
+  access_secret: hij1234
+  uid: klm1235
