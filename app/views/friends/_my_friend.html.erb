@@ -6,8 +6,8 @@
     <%= form_tag(users_path, :method => 'get', remote: true) do%>
       <div class="input-group input-group-sm">
         <div class= "input-group-btn">
-          <button class="btn btn-default" 
-            name="commit" 
+          <button class="btn btn-default"
+            name="commit"
             type="submit">
             Search
           </button>
@@ -22,8 +22,8 @@
             <%= image_tag user.image,
               'class' => "img-circle pull-right", id: "not_fr_image"%></p>
             <li id="not_fr_name"><%= user.name.titleize%></li>
-            <%= link_to 'Add friend', 
-              friendships_path(:friend_id => user),
+            <%= link_to 'Add friend',
+              friendships_path(friend: user, user: current_user),
               remote: true,
               :method => :post ,
               'id' => 'add_friend_link',
@@ -40,32 +40,36 @@
   <% for friendship in current_user.friendships%>
     <div id="friend_wrapper">
       <div id = "fr_image">
-        <%= image_tag friendship.friend.image, 
+        <%= image_tag friendship.friend.image,
           class: 'img-circle',
-          id: "not_fr_image" %> 
+          id: "not_fr_image" %>
       </div>
       <li id="fr_name"><%= friendship.friend.name%></li>
-      <%=link_to raw("<span class= 'glyphicon glyphicon-remove'</span>"), 
-      friendship, 
+      <%=link_to raw("<span class= 'glyphicon glyphicon-remove'</span>"),
+      friendship,
       remote: true,
       method: :delete,
-      id: "rm_friend_glyph"%> 
+      id: "rm_friend_glyph"%>
       <div id = "add_fr_gp_link">
         <div class= "dropdown right">
           <%=link_to raw("<span class= 'glyphicon glyphicon-user'</span>"),
-            "#", 
+            "#",
             class: "dropdown-toggle",
             'data-toggle' => 'dropdown'%>
           <ul class = "dropdown-menu">
-          <% current_user.groups.each do |group| %>
-            <li>
-            <%= link_to group.name, groupships_path(
-                friend_id: friendship.friend.id, 
-                group_id: group, 
-                users: users),
-                remote: true,
-                method: :post%>
-            </li>
+          <% unless current_user.groups.empty? %>
+            <% current_user.groups.each do |group| %>
+              <li>
+              <%= link_to group.name, groupships_path(
+                  friend_id: friendship.friend.id,
+                  group_id: group,
+                  users: users),
+                  remote: true,
+                  method: :post%>
+              </li>
+            <%end%>
+          <%else%>
+            <li><%= link_to "create group", new_user_group_path(current_user) %></li>
           <%end%>
           </ul>
         </div>

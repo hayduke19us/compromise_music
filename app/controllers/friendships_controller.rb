@@ -3,23 +3,26 @@ class FriendshipsController < ApplicationController
   respond_to :js, :html
 
   def create
-    @friendship = current_user.friendships.build(friend_id: params[:friend_id])
-    if @friendship.save
-      flash[:notice] = "Added friend."
-      @users = current_user.all_others
-      respond_with @users
+    if params[:user] && params[:friend]
+      user = User.find(params[:user]) 
+      @friendship = user.friendships.build(friend_id: params[:friend])
+      if @friendship.save
+        @users = user.all_others
+        respond_with @users
+      else
+        redirect_to root_path
+      end
     else
-      flash[:notice] = "Unable to add friend."
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 
   def destroy
-    friendship = current_user.friendships.find(params[:id])
+    friendship = Friendship.find(params[:id])
+    user = friendship.user
     friendship.destroy
     friendship.delete_associated_groupships
-    flash[:notice] = "You just ended a friendship."
-    @users = current_user.all_others
+    @users = user.all_others
     respond_with @users
   end
 end
