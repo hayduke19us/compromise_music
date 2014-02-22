@@ -51,7 +51,7 @@
       method: :delete,
       id: "rm_friend_glyph"%>
       <div id = "add_fr_gp_link">
-        <div class= "dropdown right">
+        <div class= "dropdown pull-right">
           <%=link_to raw("<span class= 'glyphicon glyphicon-user'</span>"),
             "#",
             class: "dropdown-toggle",
@@ -69,7 +69,9 @@
               </li>
             <%end%>
           <%else%>
-            <li><%= link_to "create group", new_user_group_path(current_user) %></li>
+            <li>
+            <%= link_to "create group", new_user_group_path(current_user) %>
+            </li>
           <%end%>
           </ul>
         </div>
