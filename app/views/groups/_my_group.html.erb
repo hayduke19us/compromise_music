@@ -17,7 +17,28 @@
   <div class = "pull-right" id = "gp_members">
     <div id = "members_header">
       <span class= "pull-right badge"><%= group.friends.count%></span>
-      <span id = "members_glyph" class = "glyphicon glyphicon-user"></span>
+      <div class="dropdown">
+        <%= link_to raw("<span id = 'members_glyph' 
+          class = 'glyphicon glyphicon-user'></span>"), 
+          "javascript:undefined", 
+          'data-toggle' => "dropdown",
+           class: "dropdown-toggle"%>
+         <ul class = "dropdown-menu">
+           <% unless current_user.friends.empty? %>
+             <% current_user.friends.each do |friend| %>
+               <li><%= link_to friend.name, 
+                   groupships_path(group_id: group,
+                                   friend_id: friend),
+                                   remote: true,
+                                   method: :post%></li>
+             <%end%>
+             <div class="divider"></div>
+             <li><%=link_to "new friend", sessions_my_friend_path,
+             remote: true%></li>
+           <%end%>
+           <li></li>
+         </ul>
+      </div>
     </div>
       <% group.groupships.each do |groupship|%>
         <li id = "member_name"><%= groupship.friend.name.titleize %></li>

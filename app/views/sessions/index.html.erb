@@ -36,8 +36,7 @@
           </div>
           <div id="collaborations_spec_partial">
             <%= render partial: 'collaborations_spec',
-              locals: {collab_groups: @collab_groups,
-                       collab_playlists: @collab_playlists }%>
+              locals: {user: current_user} %>
           </div>
         </div>
         <div class="col-md-10" id= "playlist_col">
@@ -83,8 +82,7 @@
               </div>
             </div>
           </div>
-
-
+        </div>
       </div>
     </div>
   </div>

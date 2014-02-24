@@ -47,4 +47,12 @@ class FriendshipTest < ActiveSupport::TestCase
      end
    end
 
+   test "when friendship is deleted the collaborated groups your apart of are deleted"  do
+     martha = users(:martha) 
+     friendship = friendships(:short_friendship)
+     friendship.delete_collaborated_groupships
+
+     assert_equal 0, Groupship.where(friend_id: martha).count
+   end
+
 end

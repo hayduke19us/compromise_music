@@ -22,6 +22,7 @@ class FriendshipsController < ApplicationController
     user = friendship.user
     friendship.destroy
     friendship.delete_associated_groupships
+    friendship.delete_collaborated_groupships
     @users = user.all_others
     respond_with @users
   end

@@ -12,4 +12,13 @@ class Friendship < ActiveRecord::Base
     end
   end
 
+  def delete_collaborated_groupships
+    transaction do
+      groupships = Groupship.where(friend_id: self.user)
+      groupships.each do |groupship|
+        groupship.destroy if groupship.owner == self.friend
+      end
+    end
+  end
+
 end

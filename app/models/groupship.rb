@@ -3,4 +3,9 @@ class Groupship < ActiveRecord::Base
   validates_uniqueness_of :group_id, scope: :friend_id
   belongs_to :group
   belongs_to :friend
+
+  def owner
+    self.group.user
+  end
+
 end
