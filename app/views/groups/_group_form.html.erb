@@ -1,0 +1,12 @@
+<%=form_tag(controller: "groups", action: "create",
+            user_id: current_user.id) do%>
+  <h4>Name</h4>
+  <%=text_field_tag(:name,
+                    nil, :placeholder => "Name that group!",
+                    id: "new_group_input" )%>
+  <div id ="new_group_btn">
+    <%=submit_tag "create group", 'class' => 'btn btn-default',
+      id: 'new_group_btn' %>
+  </div>
+<%end%>
+

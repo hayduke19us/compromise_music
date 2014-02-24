@@ -45,7 +45,46 @@
           </div>
           <div id = "my_playlist_partial">
           </div>
-        </div>
+          <div id="new-playlistModal" class="modal fade" tabindex="-1"
+            role="dialog" aria-labelledby="new_playlist_modal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" 
+                    aria-hidden="true">x</button>
+                  <h3 id="new_playlist_header">New Playlist</h3>
+                </div>
+                <div id="all-time-modal" class="modal-body">
+                  <%=render "/playlists/form"%>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default" data-dismiss="modal" 
+                    aria-hidden="true">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="new-groupModal" class="modal fade" tabindex="-1"
+            role="dialog" aria-labelledby="new_group_modal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" 
+                    aria-hidden="true">x</button>
+                  <h3 id="new_playlist_header">New Group</h3>
+                </div>
+                <div id="all-time-modal" class="modal-body">
+                  <%= render "/groups/group_form"%>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default" data-dismiss="modal" 
+                    aria-hidden="true">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
       </div>
     </div>
   </div>
