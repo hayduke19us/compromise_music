@@ -1,5 +1,4 @@
 <song>
-
   <% unless track.playlist.user != current_user %>
     <div class="pull-left" id = "index_delete">
       <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
@@ -7,6 +6,7 @@
         id: track.id),
         method:"delete",
         remote: true,
+        id: "index-delete-glyph",
         data: {confirm: "are you sure?"}%>
     </div>
   <%end%>

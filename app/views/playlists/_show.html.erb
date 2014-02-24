@@ -35,6 +35,18 @@
               method: :post %>
             </li>
           <%end%>
+          <li class="divider"></li>
+          <% current_user.collab_playlists.each do |playlist| %>
+            <li>
+            <%=link_to playlist.name, tracks_path(
+              playlist_id: playlist.id,
+              track: track[1],
+              group: @group_id),
+              remote: true,
+              method: :post %>
+            </li>
+          <%end%>
+
         </div>
         <div id="album_tracks_name"> 
           <%= link_to track[1]['name'],"javascript:indefined", 

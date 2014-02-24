@@ -1,11 +1,15 @@
 <div id= "pl_title"> Playlists</div>
 <% user.playlists.each do |playlist|%>
-  <span class="badge pull-right"><%=playlist.tracks.count%></span>
-  <li><%= link_to playlist.name.titleize,
-    sessions_my_playlist_path(playlist: playlist),
-    remote: true,
-    id: 'pl_link' %>
-  </li>
+  <div id="count">
+    <span class="badge pull-right"><%=playlist.tracks.count%></span>
+  </div>
+  <div id="name_wrapper">
+    <li><%= link_to playlist.name.titleize,
+      sessions_my_playlist_path(playlist: playlist),
+      remote: true,
+      id: 'pl_link' %>
+    </li>
+  </div>
 <% end %>
 <li>
   <%= link_to "New", 

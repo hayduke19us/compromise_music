@@ -44,6 +44,8 @@ img#carousel_image:hover{transform:scale(2,2);
 
 /*search results*/
 
+#search_result_well:hover {background-color: #efefef;}
+
 #track_result_wrapper {border-top: solid 1px #efefef;
                        padding-bottom: 30px;
                        width: 100%;
@@ -133,21 +135,35 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 #album_and_tracks{padding: 0 0 20px 0 ;}
 
 //playlist
-#playlist_play_glyph{display: inline;}
-#pl_add_gr{display: inline;}
-#pl_remove{display: inline;
-           padding-left: 14px;
+#playlist_play_glyph{display: inline;
+                     margin-left: 20px;
 }
 
+#pl_controls {margin-left: 20px;
+              height: 100%;
+}
+
+#remove_pl {border: solid 1px #efefef;
+           padding: 3px;
+           margin-left: 10px;
+           border-radius: 10px;
+           float: right;
+           display: inline;
+}
+
+#remove_pl:hover {background-color: #efefef;}
 
 #pl_header_wrapper { padding-bottom: 30px;
                      height: auto;
                      width: 100%;
                      border-bottom: 2px solid $dark_title;
-                 }
+}
+
+
 #pl_main_name {font-size: 30px;
                color: $dark_title;
 }
+
 #pl_owner {color: $dark_title;}
 
 /*modal*/
@@ -190,17 +206,36 @@ h4#new_playlist_description {text-align: center}
                padding-top:40px;
 }
 
+#index-delete-glyph {padding: 3px;
+                     border: 1px solid #efefef;
+                     border-radius: 10px;
+                     float:left;
+}
+
+#index-delete-glyph:hover {background-color: #efefef;}
+
+
+
 #my_pl_wrapper { border-left: 1px solid #efefef;
                  @include box-shadow($lighter_shadow);
-                 padding: 2%;
+                 padding: 5%;
 }
+
+#playlist_col {padding-bottom: 100px;}
+
+
+#playlist-controls {padding-top: 10px;}
 #my_playlist {padding-top: 30px;}
 #pl_play_glyph{padding-right: 20px;
                color: darken($dark_title, 30%);
 }
+
+
 #pl_play_glyph:hover{color: $dark_title;}
-#bullhorn_publish {display: inline;
-                   padding-right: 20px;
+
+#pl_play_glyph:hover{color: $dark_title;}
+
+#bullhorn {padding-right: 20px;
 }
 
 /* equalizer */

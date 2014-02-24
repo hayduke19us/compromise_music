@@ -114,6 +114,7 @@ div.well{background-color: white; }
 
 /*specs*/
 
+
 #specs_wrapper {padding-bottom: 30px;}
 
 // playlist specs
@@ -125,6 +126,12 @@ div.well{background-color: white; }
 }
 
 #pl_link {color: $dark_title ;
+}
+
+#count {padding: 5px;}
+
+#name_wrapper {padding:0 30 5px 0;
+               border-bottom: 1px solid #efefef;
 }
 
 #pl_link:hover {color: $light_title ;

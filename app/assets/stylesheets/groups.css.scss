@@ -16,8 +16,6 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
           box-shadow: $specs;
 }
 
-/*fades*/
-
 /*groups/new*/
 
 #new_group_form{padding: 5%;}
@@ -44,6 +42,11 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 /* my_group */
 
+#rm_group_glyph {padding: 3px;
+                 border: solid 1px #efefef;
+                 border-radius: 10px;
+}
+
 #pl_remove_glyph {padding-left: 30px;}
 
 #member_name{padding-bottom: 20px;}
@@ -63,7 +66,14 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
              color: $dark_title;
 }
 
-#gr_delete {float: right;}
+#gr_delete {float: right;
+            padding: 3px;
+            border: solid 1px #efefef;
+            border-radius: 10px;
+
+}
+
+#gr_delete:hover {background-color: #efefef;}
 
 //users_groups
 
