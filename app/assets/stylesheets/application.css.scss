@@ -31,9 +31,6 @@ $shadow_light: 1px 1px 1px lighten($color_body, 30%);
           box-shadow: $specs;
 }
 
-//beta_link
-div#beta-link a {color: #606a7a;}
-
 /*body padding, backgrounds and page wide styles*/
 
 .navbar-default{background-color: #efefef;}
@@ -45,10 +42,24 @@ body {padding: 75px 0 150px 0;
 
 li {list-style-type: none;}
 
-#colored_body {padding-top: 40px;
+#colored_body {padding-top: 200px;
 }
-#white_top{background-color:white;
-           border-bottom: solid 1px #efefef;
+
+#blur {position: fixed; 
+       width: 100%;
+       background-color: white;
+       z-index: 900;
+       height: 250; 
+       margin-top: -100px;
+       -webkit-filter: grayscale(0.5) opacity(0.8);
+
+}
+#white_top{background-color:transparent;
+           position: fixed;
+           z-index: 1000;
+           text-align: center;
+           width: 100%;
+
 }
 
 

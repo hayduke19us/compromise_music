@@ -1,14 +1,16 @@
-$( document ).ready (function (){
+$(function (){
   $("#query").focus();
-  $("#equalizer").hide();
   $("#option_track").click(function(){
-    $("#query").attr('placeholder', "Track name").focus();
+    $("#query").attr('placeholder', "'to ramona'").focus();
+    $("#search_type").html("Track")
   })
   $("#option_artist").click(function(){
-    $("#query").attr('placeholder', "Artist name").focus();
+    $("#query").attr('placeholder', "'bob dylan'").focus();
+    $("#search_type").html("Artist")
   })
   $("#option_album").click(function(){
-    $("#query").attr('placeholder', "Album Name").focus();
+    $("#query").attr('placeholder', "'freewheeling'").focus();
+    $("#search_type").html("Album")
   })
 })
 

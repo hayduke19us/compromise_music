@@ -18,6 +18,7 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 /*sign in*/
 
+
 #user_widget {padding-top: 2%;}
 
 #colored_footer {background-color: #efefef;
@@ -36,10 +37,8 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 #search_flow {padding: 30px 0 0 0;}
 
-//stupid caret issue
+#search_type {padding-right: 5px;}
 
-#stupid-caret {padding: 14px 6px 14px 6;
-}
 
 //analyze
 
@@ -111,11 +110,14 @@ div.well{background-color: white; }
 
 #my_playlists_title{padding-right:10px;}
 
+.dropdown-menu {text-align: left;}
+
 
 /*specs*/
 
 
-#specs_wrapper {padding-bottom: 30px;}
+#specs_wrapper {padding-bottom: 30px;
+}
 
 // playlist specs
 

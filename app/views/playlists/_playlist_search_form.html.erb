@@ -1,14 +1,12 @@
 <%=form_tag(playlists_search_result_path, method: 'get', remote: true) do%>
   <div class= "input-group" >
     <div class="input-group-btn">
-      <button class="btn btn-default" type="submit" name="commit" tabindex= -1>
-        Search
-      </button>
       <button type= "button" class="btn btn-default dropdown-toggle"
         data-toggle="dropdown" tabindex= "-1" id="stupid-caret">
+        <span id="search_type">Track</span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu">
+      <ul class="dropdown-menu" id="search-type-dropdown " role="menu">
         <ul id="radio_hover">
           <li class="radio"> 
           <label>
@@ -39,8 +37,13 @@
         </ul>
       </ul>
     </div>
-    <input name="query" id="query" type="text" placeholder="track name" 
+    <input name="query" id="query" type="text" placeholder="'to ramona'" 
     class="form-control" >
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit" name="commit" tabindex= -1>
+        Go!
+      </button>
+    </div> 
   </div>
 <%end%>
 
