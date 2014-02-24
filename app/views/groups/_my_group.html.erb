@@ -35,6 +35,9 @@
              <div class="divider"></div>
              <li><%=link_to "new friend", sessions_my_friend_path,
              remote: true%></li>
+           <%else%>
+             <li><%=link_to "new friend", sessions_my_friend_path,
+             remote: true%></li>
            <%end%>
            <li></li>
          </ul>

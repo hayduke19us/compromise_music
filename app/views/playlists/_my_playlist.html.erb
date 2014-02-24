@@ -15,12 +15,14 @@
          onclick: "jukebox('#{playlist.key}')",
          id: 'pl_play_glyph'%>
 
-      <% unless playlist.user != current_user || playlist.grouplists.blank?%> 
+      <% unless unpublishable(playlist)%> 
         <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
            publish_playlist_path(playlist),
            remote: true,
            id: 'bullhorn',
            data: {confirm: "Are you sure?"}%>
+      <%end%>
+      <%unless playlist.user != current_user %>
         <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
           "javascript:undefined",
           class: "dropdown-toggle",

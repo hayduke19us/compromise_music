@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  #used in playlists/my_playlist to prevent the bullhorn publish glyph from
+  #being accesible unless the requirements are met
+  #
+  def unpublishable playlist
+    playlist.user != current_user || playlist.grouplists.blank? || 
+     playlist.tracks.blank? 
+  end
+
+  helper_method :unpublishable
+
   helper_method :current_user
 
   def get_rdio_user
