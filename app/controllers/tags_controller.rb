@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   respond_to :js
-  
+
   def create
     track = Track.find(params[:taggable_id].to_i)
     tag = Tag.new(name: params[:name],
@@ -11,6 +11,7 @@ class TagsController < ApplicationController
     if tag.save
       @response = {playlist: @playlist, sorted: @sorted}
       tag.tagged_playlist
+      sync_update track
       respond_with @response 
     else
       redirect_to root_url

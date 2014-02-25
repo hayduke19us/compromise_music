@@ -10,6 +10,6 @@ $(function() {
   });
 });
 
-function closeModal(){
-  $("#new-tagModal").modal('hide');
+function closeModal(trackId){
+  $("#" + trackId).modal('hide');
 };
