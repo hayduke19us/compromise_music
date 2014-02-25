@@ -339,4 +339,13 @@ h4#new_playlist_description {text-align: center}
                margin: 0 10 10 0;
 }
 
+#tag-form-wrapper {padding: 3%;
+}
+#new_tag_input {width: 100%;
+                height: 50px;
+                border: none;
+                border-radius: 3px;
+                margin-bottom: 10px;
+                @include box-shadow($lighter_shadow);
+}
 

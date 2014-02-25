@@ -1,9 +1,9 @@
-<div class="col-md-4">
+<div id='tag-form-wrapper'>
   <%= form_tag(tags_path, method: :post, remote: true) do %>
       <input type="hidden" name = "taggable_type" value="Track">
       <input type="hidden" name = "taggable_id" value = <%=track.id%>>
     <h4>Name</h4>
-    <%= text_field_tag(:name, nil, placeholder: "melancholy",
+    <%= text_field_tag(:name, nil, placeholder: " 'melancholy'",
                        id: "new_tag_input") %>
     <%= submit_tag "create tag", class: "btn btn-default",
       id: 'new-tag-btn', :onclick => "closeModal('')"%>
