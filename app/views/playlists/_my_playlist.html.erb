@@ -22,7 +22,13 @@
            id: 'bullhorn',
            data: {confirm: "Are you sure?"}%>
       <%end%>
+
       <%unless playlist.user != current_user %>
+        <%= link_to raw("<span class= 'glyphicon glyphicon-tag'></span>"),
+          "##{playlist.id}Tag",
+          id: 'playlist-tag',
+          "data-toggle" => "modal"%>
+
         <%= link_to raw("<span class = 'glyphicon glyphicon-user'></span>"),
           "javascript:undefined",
           class: "dropdown-toggle",
@@ -39,7 +45,21 @@
         </ul>
       <%end%>
     </div>
-
+  </div>
+  <div class="modal fade" id=<%="#{playlist.id}Tag"%> tab-index="-1" 
+    aria-hidden= 'true' aria-labelledby="new-pl-tagModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+            aria-hidden="true">x</button>
+          <h3 id="new-playlist-tag">New Playlist Tag</h3>
+        </div>
+        <div id="pl-tag-modal">
+          <%=render partial: "/tags/pl_tag_form", locals: {playlist: playlist}%> 
+        </div>
+      </div>
+    </div>
   </div>
   <div id = "my_playlist">
     <track>

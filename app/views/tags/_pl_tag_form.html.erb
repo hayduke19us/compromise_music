@@ -1,0 +1,10 @@
+<div id='tag-form-wrapper'>
+  <%=form_tag(tags_path, method: :post, remote: true) do%>
+    <input type='hidden' name= 'taggable_id' value= <%=playlist.id%>>
+    <input type='hidden' name= 'taggable_type' value='Playlist'>
+    <h4>Name</h4>
+    <%=text_field_tag :name, nil, placeholder: "'brakeup'", id: "new_tag_input"%>
+    <%=submit_tag "create tag", class: "btn btn-default", id: 'new-tag-btn',
+      onclick: "closeModal('#{playlist.id}Tag')"%>
+  <%end%>
+</div>

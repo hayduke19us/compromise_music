@@ -9,12 +9,12 @@
         id: "index-delete-glyph",
         data: {confirm: "are you sure?"}%>
       <%= link_to raw("<span class= 'glyphicon glyphicon-tag'></span>"),
-        "##{track.id}",
+        "##{track.id}Tag",
         id: 'tag-track-glyph',
         'data-toggle' => 'modal'%>
     </div>
   <%end%>
-  <div class="modal fade" id=<%=track.id%> tabindex="-1" rold="dialog",
+  <div class="modal fade" id=<%="#{track.id}Tag"%> tabindex="-1" role="dialog",
     aria-labelledby="new-tagModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class= "modal-content">
