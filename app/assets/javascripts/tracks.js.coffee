@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 class Sync.TrackRow extends Sync.View
-  
+
   beforeInsert: ($el) ->
     $el.hide()
     @insert($el)
@@ -13,3 +13,6 @@ class Sync.TrackRow extends Sync.View
 
   beforeRemove: ->
     @$el.fadeOut 'slow', => @remove()
+
+#tags
+

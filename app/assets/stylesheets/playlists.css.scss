@@ -339,8 +339,11 @@ h4#new_playlist_description {text-align: center}
                margin: 0 10 10 0;
 }
 
+/* track tags */
+
 #tag-form-wrapper {padding: 3%;
 }
+
 #new_tag_input {width: 100%;
                 height: 50px;
                 border: none;
@@ -350,9 +353,17 @@ h4#new_playlist_description {text-align: center}
 }
 
 #tag-name {float: left;
-           margin-left: 5px;
+           margin: 5 5 0 0;
            padding: 3px;
            font-size: 12px;
            @include box-shadow($lighter_shadow);
 }
+
+#tag-name:hover {background-color: #efefef;}
+
+#delete-tag {float: left;
+             margin-right: 5px;
+             font-size: 10px;
+}
+
 
