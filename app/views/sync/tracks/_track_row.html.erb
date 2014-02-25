@@ -63,14 +63,17 @@
         playlists_search_result_path(list: track.album_key), remote: true%>
     </h6>
     <div id="tags-wrapper">
-      <% track.tags.each do |tags| %>
-        <li class="tag-name" id="tag-name" ><%= link_to  tags.name, "#" %></li>
-        <li class="delete-tag" id="delete-tag">
-        <%= link_to raw("<span class='glyphicon glyphicon-remove'>
-                         </span>"), tags, method: :delete,
-                         remote: true%>
-
-      <%end%>
+      <ul id="tag-block">
+        <% track.tags.each do |tags| %>
+          <li id= "tag">
+          <li class="tag-name" id="tag-name" ><%= link_to  tags.name, "#" %></li>
+          <li class="delete-tag" id="delete-tag">
+          <%= link_to raw("<span class='glyphicon glyphicon-remove'>
+                           </span>"), tags, method: :delete,
+                           remote: true%></li>
+          </li>
+        <%end%>
+      </ul>
     </div>
     <h4>
       <div id="vote" style=text-align:right;>
