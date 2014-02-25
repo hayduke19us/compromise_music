@@ -8,7 +8,6 @@ CompromiseMusic::Application.routes.draw do
   get "sessions/my_group"
   get "sessions/my_friend"
   get "playlists/search_result"
-
   resources :friendships
 
   resources :users do
@@ -37,5 +36,7 @@ CompromiseMusic::Application.routes.draw do
 
   resources :grouplists
   resources :groupships
+  resources :tags
+
   root "sessions#index"
 end

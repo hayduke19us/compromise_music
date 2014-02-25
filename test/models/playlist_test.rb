@@ -53,8 +53,22 @@ class PlaylistTest < ActiveSupport::TestCase
 
   test "sort_playlist sorts playlist by index and puts keys in array" do
     roadtrip = playlists(:road_trip)
-     sort = roadtrip.sort_playlist
+    sort = roadtrip.sort_playlist
     assert_equal 3, sort.count
+  end
+
+  test "a playlist has an association to tags" do
+    playlist = playlists(:road_trip)
+    assert playlist.tags
+  end
+
+  test "if a playlist is tagged all of the tracks are therefore tagged" do
+    playlist = playlists(:road_trip)
+    assert_equal "travel", playlist.tags.first.name
+    tag = playlist.tags.first
+    tag.tagged_playlist
+    track = playlist.tracks.first
+    assert_equal 1, track.tags.where(name: "travel").count
   end
 
 end

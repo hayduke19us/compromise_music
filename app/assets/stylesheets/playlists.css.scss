@@ -202,14 +202,18 @@ h4#new_playlist_description {text-align: center}
 
 #index_delete {height:100px;
                width:20px;
-               padding-right:30px;
-               padding-top:40px;
+               padding: 8 30 0 0;
 }
 
 #index-delete-glyph {padding: 3px;
                      border: 1px solid #efefef;
                      border-radius: 10px;
                      float:left;
+}
+
+#tag-track-glyph {padding: 3px;
+                  float: left;
+                  margin-top: 40px;
 }
 
 #index-delete-glyph:hover {background-color: #efefef;}

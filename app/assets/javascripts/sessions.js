@@ -9,3 +9,7 @@ $(function() {
     $("#flow_example").attr("src", "http://i.imgur.com/Z99Helb.png?1");
   });
 });
+
+function closeModal(){
+  $("#new-tagModal").modal('hide');
+};

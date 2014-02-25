@@ -8,8 +8,33 @@
         remote: true,
         id: "index-delete-glyph",
         data: {confirm: "are you sure?"}%>
+      <%= link_to raw("<span class= 'glyphicon glyphicon-tag'></span>"),
+        "#new-tagModal",
+        id: 'tag-track-glyph',
+        'data-toggle' => 'modal'%>
     </div>
   <%end%>
+  <div class="modal fade" id="new-tagModal" tabindex="-1" rold="dialog",
+    aria-labelledby="new-tagModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class= "modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" 
+            aria-hidden="true">x</button>
+          <h3 id="new-tag-header">New Tag</h3> 
+        </div>
+        <div id="tag-modal">
+          <%= render partial: "/tags/tag_form", locals: {track: track} %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" 
+            data-dismiss="modal" aria-hidden="true">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="panel" id="song">
     <h4 class="pull-right">
       <div id="vote">

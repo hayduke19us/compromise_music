@@ -11,6 +11,7 @@ class Track < ActiveRecord::Base
     :embedUrl, :index,  presence: true
   validates :index, numericality: { only_integer: true }
   validates :key, uniqueness: {scope: :playlist_key}
+  has_many :tags, as: :taggable
 
   def vote_up user
     user.vote_for self

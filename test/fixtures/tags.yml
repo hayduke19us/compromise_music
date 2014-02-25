@@ -1,0 +1,17 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: happy
+  taggable_type: Track
+  taggable: ramona
+
+two:
+  name: sad
+  taggable_type: Track
+  taggable: imitosis
+
+road_trip: 
+  name: travel
+  taggable_type: Playlist
+  taggable: road_trip

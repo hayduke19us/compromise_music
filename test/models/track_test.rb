@@ -132,4 +132,21 @@ class TracksTest < ActiveSupport::TestCase
     refute vote.valid?, "martha has already voted on ramona track"
   end
 
+  test "tracks have an associatoion to tags" do
+    track = tracks(:ramona)
+    assert_respond_to track, tags
+  end
+
+  test "a track can be tagged" do
+    track = tracks(:ramona)
+    assert_equal 1, track.tags.count
+  end
+
+  test "a track can be taggd multiple times" do
+    track = tracks(:ramona)
+    track.tags.build(name: "cloudy")
+    track.save
+    assert_equal 2, track.tags.count
+  end
+
 end

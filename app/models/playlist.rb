@@ -5,6 +5,7 @@ class Playlist < ActiveRecord::Base
 
   has_many :grouplists, :dependent => :destroy
   has_many :tracks, :dependent => :destroy
+  has_many :tags, as: :taggable
   belongs_to :user
 
   validates :key, uniqueness: true
