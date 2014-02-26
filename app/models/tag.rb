@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
     end
   end
 
-  def self.group_by_tag named_tag
+  def self.group_by_tag *named_tag
     self.where(name: named_tag) 
   end
 end

@@ -66,4 +66,15 @@ class User < ActiveRecord::Base
       users = User.where.not(id: self)
     end
   end
+
+  def track_tags
+    tags = []
+    self.tracks.each  {|track| tags << track.tags if track.tags}
+    tags.flatten
+  end
+
+  def user_tags
+    self.track_tags.map {|tag| tag.name }
+  end
+
 end

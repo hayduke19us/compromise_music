@@ -37,4 +37,10 @@ class TagTest < ActiveSupport::TestCase
   test "group_by_tag should return a collection of tagged tracks by" do
     assert_equal 1, Tag.group_by_tag("happy").count 
   end
+
+  test "group_by_tag can take multiple args for grouping" do
+    assert_equal 3, Tag.group_by_tag("happy", "sad", "travel").count
+  end
+
+  
 end

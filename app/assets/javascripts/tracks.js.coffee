@@ -14,5 +14,3 @@ class Sync.TrackRow extends Sync.View
   beforeRemove: ->
     @$el.fadeOut 'slow', => @remove()
 
-#tags
-

@@ -121,4 +121,20 @@ class UserTest < ActiveSupport::TestCase
    assert_equal 0, user.friendships.count
    assert_equal 2, user.all_others.count
   end
+
+  test "tracks tags should return the users tags based on tracks" do
+    user = users(:martha)
+    assert_equal 1, user.track_tags.count 
+  end
+
+  test "returns all the users tags by way of playlist and tracks" do
+    user = users(:martha)
+    assert_equal 1, user.user_tags.count
+  end
+
+  test "user_tags returns the names of all the users tags assigned to tracks" do
+    user = users(:matha)
+    assert_equal ["happy"], user.user_tags
+  end
+
 end
