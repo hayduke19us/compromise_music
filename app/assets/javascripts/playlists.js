@@ -71,7 +71,7 @@ function open_nav(){
 function plTag(tag){
   var value = $("#new-pl-tag").val()
   if(value)
-    $("#new-pl-tag").val(value + ", " + tag);
+    $("#new-pl-tag").val(value + " " + tag);
   else
     $("#new-pl-tag").val(tag);
 }
