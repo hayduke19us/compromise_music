@@ -15,14 +15,14 @@ class Tag < ActiveRecord::Base
 
   #finding tags by an array of names
 
-  def self.group_by_tag *named_tag
-    self.where(name: named_tag) 
+  def self.group_by_tag named_tag
+    self.where(name: named_tag)
   end
 
   #finding the tagged objects by a name array and returning an array 
   #of tracks if the tagged object is a track
 
-  def self.tagged_tracks *named_tags
+  def self.tagged_tracks named_tags
     array = []
     Tag.group_by_tag(named_tags).each do |tag|
       array << tag.taggable if tag.taggable_type == "Track"
@@ -33,7 +33,7 @@ class Tag < ActiveRecord::Base
   #returning an array of tracks if the tagged tracks belong to the user
   #in the arg
 
-  def self.users_tracks user, *tags
+  def self.users_tracks user, tags
     array = []
     Tag.tagged_tracks(tags).each do |track|
       array << track if track.user_id == user.id

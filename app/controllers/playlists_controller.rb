@@ -21,11 +21,13 @@ class PlaylistsController < ApplicationController
       playlist = Playlist.new(playlist_params)
       if playlist.save
         if params[:tags]
-          tags = params[:tags].split
-          tracks = Tag.users_tracks(playlist.user, tags)
-
-          tag_created_playlist tracks, playlist
-
+          tags = params[:tags].split(',')
+          tracks = Tag.users_tracks(playlist.user, tags.flatten)
+          tracks.each do |track|
+            @tagged = playlist.tag_compilation track
+            new_track = Track.find(@tagged)
+            sync_new new_track, scope: playlist 
+          end
         end
         redirect_to root_path
       end
@@ -33,7 +35,7 @@ class PlaylistsController < ApplicationController
       redirect_to root_path
     end
   end
-
+=begin
   def tag_created_playlist tracks, playlist
     unless tracks.empty?
       tracks.each do |track|
@@ -51,13 +53,13 @@ class PlaylistsController < ApplicationController
         if @new_track.save
           RdioTrack.add_track playlist.key, @new_track.key
           sync_new @new_track, scope: playlist
-          sync_update playlist
           @new_track.index_after
           playlist.sort_for_rdio
         end
       end
     end
   end
+=end
 
   def search_result
     respond_with search_helper
