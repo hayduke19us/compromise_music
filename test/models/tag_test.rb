@@ -12,7 +12,7 @@ class TagTest < ActiveSupport::TestCase
     tag.name = nil
     refute tag.valid?
   end
-  
+
   test "tags type is accesible thru taggable" do
     tag = tags(:one) 
     assert_equal  "Track", tag.taggable.class.name
@@ -31,16 +31,18 @@ class TagTest < ActiveSupport::TestCase
 
   test "playlist can be grouped by tags" do
     tags = Tag.where(name: "happy")
-    assert_equal ["ramona"], tags.map{|tag| tag.taggable.name} 
-  end
-
-  test "group_by_tag should return a collection of tagged tracks by" do
-    assert_equal 1, Tag.group_by_tag("happy").count 
+    assert_equal ["ramona", "road trip"], tags.map{|tag| tag.taggable.name} 
   end
 
   test "group_by_tag can take multiple args for grouping" do
-    assert_equal 3, Tag.group_by_tag("happy", "sad", "travel").count
+    assert_equal 4, Tag.group_by_tag("happy", "sad", "travel").count
   end
 
-  
+  test "returns the tracks that are grouped my group_by_tag" do
+    #no playlist should be returned
+
+    assert_equal 1, Tag.tagged_tracks("happy").count
+    assert_equal Track, Tag.tagged_tracks("happy").first.class
+  end
+
 end

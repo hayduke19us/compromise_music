@@ -69,8 +69,22 @@ class User < ActiveRecord::Base
 
   def track_tags
     tags = []
-    self.tracks.each  {|track| tags << track.tags if track.tags}
+    self.tracks.each {|track| tags << track.tags if track.tags}
     tags.flatten
+  end
+
+  def user_tag_object 
+    self.track_tags.map {|tag| tag.taggable}
+  end
+
+  def match_tag? tag
+    self.tracks.each do |track|
+      if track.tags.include?(tag)
+        return true 
+      else
+        return false
+      end
+    end
   end
 
   def user_tags

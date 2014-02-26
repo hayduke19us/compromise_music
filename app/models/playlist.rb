@@ -29,6 +29,14 @@ class Playlist < ActiveRecord::Base
                                point_adjuster: VotingGame::SuccessFilter.new
   end
 
+  def next_index
+    if self.tracks.count == 0
+      return 0
+    elsif self.tracks.count > 0
+      return self.tracks.count
+    end
+  end
+
 end
 
 

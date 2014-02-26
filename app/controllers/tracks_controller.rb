@@ -1,10 +1,10 @@
 class TracksController < ApplicationController
   respond_to :js, :html 
   before_filter :get_rdio_user
+
    def create
      playlist = Playlist.find(params[:playlist_id])
-     all_tracks = playlist.tracks.count
-     index = index_create all_tracks
+     index = playlist.next_index
      rdio_track = RdioTrack.track_attributes(params[:track])
      my_track = {playlist_id: playlist.id,
                  index: index,
@@ -63,12 +63,4 @@ class TracksController < ApplicationController
     end
   end
 
-    private
-    def index_create(track_count)
-      if track_count == 0
-        @index = 0
-      elsif track_count > 0
-        @index = track_count
-      end
-    end
 end

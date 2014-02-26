@@ -9,10 +9,17 @@ $dark_title: darken($light_title, 30%);
 $shadow:  0 0 8px rgba(0, 0, 0, .8);
 $lighter_shadow: 0 0 4px($dark_title );
 $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
+$input-shadow: inset 0 0 5px($dark_title);
 @mixin box-shadow($specs) {
   -webkit-box-shadow: $specs;
      -moz-box-shadow: $specs;
           box-shadow: $specs;
+}
+
+//coming soon
+
+#coming-soon {text-align: center;
+              color: $dark_title;
 }
 
 #white_top {padding-bottom: 20px;}
@@ -173,6 +180,45 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
 #playlist_name {float: left;}
 
 /* playlists new form*/
+
+#pl-name-label {color: $light_title;}
+
+#pl-descript-label {color: $light_title;}
+
+#pl-tags-label {color: $light_title;}
+
+#pl-name-input {width: 100%;
+               height: 50px;
+               border-radius: 3px;
+               font-size: 16px;
+               color: $dark_title;
+               border: none;
+               @include box-shadow($input-shadow);
+               margin-bottom: 5px;
+               padding-left: 5px;
+}
+
+#pl-descript-input {width: 100%;
+                    height: 75px;
+                    border-radius: 3px;
+                    font-size: 16px;
+                    color: $dark_title;
+                    border: none;
+                    @include box-shadow($input-shadow);
+                    margin-bottom: 5px;
+                    padding-left: 5px;
+}
+
+#new-pl-tag {width: 100%;
+             height: 50px;
+             border-radius: 3px;
+             font-size: 16px;
+             color: $dark_title;
+             border: none;
+             @include box-shadow($input-shadow);
+             margin-bottom: 5px;
+             padding-left: 5px;
+}
 
 #popular_title{padding-bottom:40px;}
 

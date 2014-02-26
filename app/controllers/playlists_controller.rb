@@ -20,10 +20,42 @@ class PlaylistsController < ApplicationController
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
       if playlist.save
+        if params[:tags]
+          tags = params[:tags].split
+          tracks = Tag.users_tracks(playlist.user, tags)
+
+          tag_created_playlist tracks, playlist
+
+        end
         redirect_to root_path
       end
     else
       redirect_to root_path
+    end
+  end
+
+  def tag_created_playlist tracks, playlist
+    unless tracks.empty?
+      tracks.each do |track|
+        index = playlist.next_index
+        @new_track = Track.new(name: track.name,
+                               key:  track.key,
+                               embedUrl: track.embedUrl,
+                               playlist_id: playlist.id,
+                               index: index,
+                               user_id: playlist.user_id,
+                               album: track.album,
+                               artist: track.artist,
+                               album_key: track.album_key,
+                               playlist_key: playlist.key)
+        if @new_track.save
+          RdioTrack.add_track playlist.key, @new_track.key
+          sync_new @new_track, scope: playlist
+          sync_update playlist
+          @new_track.index_after
+          playlist.sort_for_rdio
+        end
+      end
     end
   end
 

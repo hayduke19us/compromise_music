@@ -133,8 +133,24 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user_tags returns the names of all the users tags assigned to tracks" do
-    user = users(:matha)
+    user = users(:martha)
     assert_equal ["happy"], user.user_tags
+  end
+
+  test "users tracks can be accessed thru their tags" do
+    user = users(:martha) 
+    assert_equal 1, user.user_tag_object.count
+  end
+
+  test "users can find their tracks dependent on the tag given" do
+    user = users(:martha)
+    tag = tags(:one)
+    assert_equal true, user.match_tag?(tag)
+  end
+
+  test "users can find their tracks based on the name of tag and the track belonging to them" do
+    tom = users(:tom)
+    assert_equal 2, Tag.users_tracks(tom, ["sad", "subtle", "happy"]).count
   end
 
 end

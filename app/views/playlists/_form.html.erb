@@ -1,10 +1,27 @@
 <%= form_tag({controller: "playlists", action: "create"}, 
                  class: "new_playlist_form") do %>
-  <h4>Name</h4>
-  <%= text_field_tag(:name, nil, :placeholder => "Name that playlist!")%>
-  <h4>Description</h4>
+  <h4 id= 'pl-name-label'>Name</h4>
+  <%= text_field_tag(:name, nil, :placeholder => " 'road trip to L.A.' ", 
+                     id: 'pl-name-input')%>
+  <h4 id= 'pl-descript-label'>Description</h4>
   <%= text_area_tag(:description, nil, 
-                    :placeholder => "Give a brief Description.") %></br>
+                    :placeholder => " 'a 16 hour trip with friends' ", 
+                    id: "pl-descript-input")  %></br>
+  <%unless current_user.user_tags.empty?%>
+    <h4 id= 'pl-tags-label'>Tags</h4> 
+    <h6>leave blank if you want an empty playlist</h6>
+    <input name="tags" value"" id="new-pl-tag">
+    <h6 id="click-tag">Click on a tag to add it<h6>
+    <div id="tags-wrapper">
+      <ul id="tag-block">
+        <% current_user.user_tags.each do |tags| %>
+          <li id="tag">
+          <li id="tag-name"><%= link_to_function  tags, "plTag('#{tags}')" %></li>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
   <div class="new_playlist_btn">
     <%= submit_tag "Create Playlist", 
                    'class' => 'btn btn-default btn-large', 

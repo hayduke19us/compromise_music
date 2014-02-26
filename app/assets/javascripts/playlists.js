@@ -68,3 +68,11 @@ function open_nav(){
   $("#hide_nav").removeClass("invisible").addClass("show");
 }
 
+function plTag(tag){
+  var value = $("#new-pl-tag").val()
+  if(value)
+    $("#new-pl-tag").val(value + ", " + tag);
+  else
+    $("#new-pl-tag").val(tag);
+}
+

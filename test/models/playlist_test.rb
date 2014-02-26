@@ -71,4 +71,8 @@ class PlaylistTest < ActiveSupport::TestCase
     assert_equal 1, track.tags.where(name: "travel").count
   end
 
+  test "user can create a playlist with tracks in the playlist" do
+    skip
+  end
+
 end

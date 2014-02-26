@@ -11,7 +11,20 @@ two:
   taggable_type: Track
   taggable: imitosis
 
-road_trip: 
+three:
+  name: subtle
+  taggable_type: Track
+  taggable: armchairs
+
+road_trip:
   name: travel
   taggable_type: Playlist
   taggable: road_trip
+
+road_trip_happy:
+  name: happy
+  taggable_type: Playlist
+  taggable: road_trip
+
+
+
