@@ -64,13 +64,13 @@
     </h6>
     <div id="tags-wrapper">
       <ul id="tag-block">
-        <% track.tags.each do |tags| %>
+        <% track.tags.each do |tagged| %>
           <li id= "tag">
-          <li class="tag-name" id="tag-name" ><%= link_to  tags.name, "#" %></li>
+          <li class="tag-name" id="tag-name" ><%= link_to  tagged.name, "#" %></li>
           <li class="delete-tag" id="delete-tag">
           <%= link_to raw("<span class='glyphicon glyphicon-remove'>
-                           </span>"), tags, method: :delete,
-                           remote: true%></li>
+                           </span>"), tagged, method: :delete,
+                           remote: true %></li>
           </li>
         <%end%>
       </ul>

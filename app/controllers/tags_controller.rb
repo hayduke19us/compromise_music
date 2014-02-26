@@ -10,7 +10,7 @@ class TagsController < ApplicationController
       track = Track.find(params[:taggable_id].to_i)
       playlist = Playlist.find(track.playlist_id)
       if tag.save
-        sync_update track
+        sync_update track.reload
         @response = response_hash(playlist) 
         respond_with @response 
       else
@@ -20,7 +20,7 @@ class TagsController < ApplicationController
       playlist = Playlist.find(params[:taggable_id].to_i)
       if tag.save
         tag.tagged_playlist
-        playlist.tracks.each { |track| sync_update track} 
+        playlist.tracks.each {|track| sync_update track} 
         @response = response_hash(playlist) 
         respond_with @response 
       end
@@ -34,9 +34,9 @@ class TagsController < ApplicationController
     track = tag.taggable
     playlist = Playlist.find(track.playlist_id)
     if tag.destroy
-      sync_update track
+      sync_update track.reload
       @response = response_hash(playlist)
-      respond_with @response 
+      respond_with @response
     else
       redirect_to root_url
     end

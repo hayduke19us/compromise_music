@@ -6,6 +6,6 @@
     <%= text_field_tag(:name, nil, placeholder: " 'melancholy'",
                        id: "new_tag_input") %>
     <%= submit_tag "create tag", class: "btn btn-default",
-      id: 'new-tag-btn', :onclick => "closeModal('#{track.id}Tag')"%>
+      id: 'new-tag-btn', onclick: "closeModal('#{track.id}Tag')"%>
   <%end%>
 </div>

@@ -34,8 +34,8 @@ class TagTest < ActiveSupport::TestCase
     assert_equal ["ramona", "road trip"], tags.map{|tag| tag.taggable.name} 
   end
 
-  test "group_by_tag can take multiple args for grouping" do
-    assert_equal 4, Tag.group_by_tag("happy", "sad", "travel").count
+  test "group_by_tag can take an array with multiple values for grouping" do
+    assert_equal 4, Tag.group_by_tag(["happy", "sad", "travel"]).count
   end
 
   test "returns the tracks that are grouped my group_by_tag" do

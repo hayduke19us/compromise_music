@@ -63,7 +63,7 @@
   </div>
   <div id = "my_playlist">
     <track>
-      <% @sorted.each do |track| %>
+      <% sorted.each do |track| %>
         <%= sync partial: 'track_row', resource: track %>
       <%end%>
     </track>

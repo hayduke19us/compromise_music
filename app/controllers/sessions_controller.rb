@@ -17,9 +17,10 @@ class SessionsController < ApplicationController
   end
 
   def my_playlist
-    @playlist = Playlist.find(params[:playlist])
-    @sorted = @playlist.sort_playlist
-    respond_with @playlist
+    playlist = Playlist.find(params[:playlist])
+    sorted = playlist.sort_playlist
+    @response = {playlist: playlist, sorted: sorted}
+    respond_with @response
   end
 
   def my_group

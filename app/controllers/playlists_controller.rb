@@ -35,31 +35,6 @@ class PlaylistsController < ApplicationController
       redirect_to root_path
     end
   end
-=begin
-  def tag_created_playlist tracks, playlist
-    unless tracks.empty?
-      tracks.each do |track|
-        index = playlist.next_index
-        @new_track = Track.new(name: track.name,
-                               key:  track.key,
-                               embedUrl: track.embedUrl,
-                               playlist_id: playlist.id,
-                               index: index,
-                               user_id: playlist.user_id,
-                               album: track.album,
-                               artist: track.artist,
-                               album_key: track.album_key,
-                               playlist_key: playlist.key)
-        if @new_track.save
-          RdioTrack.add_track playlist.key, @new_track.key
-          sync_new @new_track, scope: playlist
-          @new_track.index_after
-          playlist.sort_for_rdio
-        end
-      end
-    end
-  end
-=end
 
   def search_result
     respond_with search_helper

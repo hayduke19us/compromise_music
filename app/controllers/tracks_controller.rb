@@ -16,7 +16,6 @@ class TracksController < ApplicationController
      if track.save
        RdioTrack.add_track playlist.key, rdio_track[:key]
        sync_new track, scope: playlist
-       sync_update playlist
        track.index_after
        playlist.sort_for_rdio
        respond_with 
@@ -29,7 +28,6 @@ class TracksController < ApplicationController
     if track.destroy
       track.destroy_with_rdio
       sync_destroy track
-      sync_update playlist.reload
       playlist.sort_for_rdio
       respond_with 
     end
