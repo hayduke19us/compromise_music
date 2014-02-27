@@ -8,7 +8,7 @@ road_trip:
   user: martha
 
 short_trip:
-  name: short tri
+  name: short trip
   description: a playlist for short trips
   key: def123
   embedUrl: http/embedurl

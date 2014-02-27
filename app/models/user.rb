@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def user_tags
-    self.track_tags.map {|tag| tag.name }
+    self.track_tags.map {|tag| tag.name }.uniq
   end
 
 end

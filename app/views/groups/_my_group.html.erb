@@ -1,6 +1,6 @@
 <div id = "group_wrapper">
   <div id = "gr_name_wrapper">
-    <% unless group.user != current_user %>
+    <% unless user != current_user %>
       <div class="pull-right">
         <%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"),
           group,
@@ -12,7 +12,7 @@
     <div id="gr_name">
       <%= group.name.titleize%>
     </div>
-    <li id="gr_owner">by <%= group.user.name%></li> 
+    <li id="gr_owner">by <%= user.name %></li> 
   </div>
   <div class = "pull-right" id = "gp_members">
     <div id = "members_header">
@@ -24,13 +24,13 @@
           'data-toggle' => "dropdown",
            class: "dropdown-toggle"%>
          <ul class = "dropdown-menu">
-           <% unless current_user.friends.empty? %>
-             <% current_user.friends.each do |friend| %>
-               <li><%= link_to friend.name, 
-                   groupships_path(group_id: group,
-                                   friend_id: friend),
-                                   remote: true,
-                                   method: :post%></li>
+           <% unless user.friends.empty? %>
+             <% user.friends.each do |friend| %>
+                 <li><%= link_to friend.name,
+                     groupships_path(group_id: group,
+                                     friend_id: friend),
+                                     remote: true,
+                                     method: :post%></li>
              <%end%>
              <div class="divider"></div>
              <li><%=link_to "new friend", sessions_my_friend_path,
@@ -45,7 +45,7 @@
     </div>
       <% group.groupships.each do |groupship|%>
         <li id = "member_name"><%= groupship.friend.name.titleize %></li>
-        <% unless group.user != current_user %>
+        <% unless user != current_user %>
           <%= link_to "remove",
             groupship_path(groupship, group_id: group),
             remote: true,
@@ -58,7 +58,7 @@
   <div id = "gp_playlists" >
       <% group.grouplists.each do |grouplist| %>
         <div id= "group_pl_thumb">
-          <% unless group.user != current_user %> 
+          <% unless user != current_user %> 
             <div id = "pl_remove_glyph" class = 'pull-right'>
             <%=link_to raw("<span id = 'pl_remove_glyph' 
               class = 'glyphicon glyphicon-remove'></span>"),

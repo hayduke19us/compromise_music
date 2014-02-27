@@ -10,15 +10,16 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "my playlist returns a sorted playlist" do
      playlist = playlists(:road_trip)
-     post(:my_playlist, {playlist: playlist}) 
-     assert_response :found
-     refute_nil assigns(:sorted)
+     get :my_playlist, format: 'js', playlist: playlist
+     assert assigns(:response)
+     assert_response :success
   end
 
   test "my group returns users group" do
     group = groups(:marthas_friends)
-    post(:my_group, {group: group}) 
-    refute_nil assigns(:group)
+    get :my_group, format: 'js', group: group
+    assert assigns(:response)
+    assert_response :success
   end
 
   test "my friend returns users_except friends" do

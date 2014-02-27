@@ -46,9 +46,9 @@ class PlaylistTest < ActiveSupport::TestCase
     playlist = playlists(:road_trip)
     assert_equal 3, playlist.tracks.count, "road trip playlist track count '3'"
     tracks = Track.all
-    assert_equal 3, tracks.count, "all tracks count '3'"
+    assert_equal 4, tracks.count, "all tracks count '3'"
     playlist.destroy
-    assert_equal 0, tracks.count, "tracks count after playlist delete '0'"
+    assert_equal 1, tracks.count, "tracks count after playlist delete '0'"
   end
 
   test "sort_playlist sorts playlist by index and puts keys in array" do

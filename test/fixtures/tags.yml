@@ -6,6 +6,11 @@ one:
   taggable_type: Track
   taggable: ramona
 
+one_dup:
+  name: happy
+  taggable_type: Track
+  taggable: ramona_dup
+
 two:
   name: sad
   taggable_type: Track

@@ -12,7 +12,9 @@ class SessionsController < ApplicationController
         @sorted = @playlist.sort_playlist
       end
 
+      @user_tags = @user.user_tags
     end
+
     @online_users = User.where("online = ? AND id != ?", true, current_user)
   end
 
@@ -24,8 +26,10 @@ class SessionsController < ApplicationController
   end
 
   def my_group
-    @group = Group.find(params[:group])
-    respond_with @group
+    group = Group.find(params[:group])
+    user = User.find(group.user)
+    @response = {user: user, group: group}
+    respond_with @response
   end
 
   def my_friend

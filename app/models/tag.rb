@@ -5,9 +5,9 @@ class Tag < ActiveRecord::Base
 
   def tagged_playlist
     if self.taggable_type == "Playlist"
-      playlist = self.taggable 
+      playlist = self.taggable
       playlist.tracks.each do |track|
-        track.tags.build(name: self.name) 
+        track.tags.build(name: self.name)
         track.save
       end
     end
@@ -27,6 +27,13 @@ class Tag < ActiveRecord::Base
     Tag.group_by_tag(named_tags).each do |tag|
       array << tag.taggable if tag.taggable_type == "Track"
     end
+    array = array.compact
+    #removes the duplicated tracks from array
+    new = array.uniq! {|x| x.name if x.name}
+    unless new == nil
+      array = array | new
+      return array
+    end
     array
   end
 
@@ -38,7 +45,6 @@ class Tag < ActiveRecord::Base
     Tag.tagged_tracks(tags).each do |track|
       array << track if track.user_id == user.id
     end
-    array
   end
 
 end

@@ -5,7 +5,16 @@ ramona:
   key: abc123
   embedUrl: http/embedUrl
   playlist: road_trip
-  playlist_key: abc123
+  playlist_key: road_trip.key
+  index: 0
+  user: martha
+
+ramona_dup:
+  name: ramona
+  key: abc123
+  embedUrl: http/embedUrl
+  playlist: short_trip
+  playlist_key: short_trip.key
   index: 0
   user: martha
 
@@ -14,7 +23,7 @@ armchairs:
   key: def123
   embedUrl: http/embedUrl
   playlist: road_trip
-  playlist_key: abc123
+  playlist_key: road_trip.key
   index: 1
   user: tom
 
@@ -23,7 +32,7 @@ imitosis:
   key: abl879
   embedUrl: http/embedUrl
   playlist: road_trip
-  playlist_key: abc123
+  playlist_key: road_trip.key
   index: 2
   user: tom
 

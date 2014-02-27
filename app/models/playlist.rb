@@ -3,9 +3,9 @@ class Playlist < ActiveRecord::Base
   extend My_Rdio
   extend VotingGame
 
-  has_many :grouplists, :dependent => :destroy
-  has_many :tracks, :dependent => :destroy
-  has_many :tags, as: :taggable
+  has_many :grouplists, dependent: :destroy
+  has_many :tracks, dependent: :destroy
+  has_many :tags, as: :taggable, dependent: :destroy
   belongs_to :user
 
   validates :key, uniqueness: true

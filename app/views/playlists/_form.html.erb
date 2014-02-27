@@ -7,14 +7,14 @@
   <%= text_area_tag(:description, nil, 
                     :placeholder => " 'a 16 hour trip with friends' ", 
                     id: "pl-descript-input")  %></br>
-  <%unless current_user.user_tags.empty?%>
+  <%unless user_tags.empty?%>
     <h4 id= 'pl-tags-label'>Tags</h4> 
     <h6>leave blank if you want an empty playlist</h6>
     <input name="tags" value"" id="new-pl-tag">
     <h6 id="click-tag">Click on a tag to add it<h6>
     <div id="tags-wrapper">
       <ul id="tag-block">
-        <% current_user.user_tags.each do |tags| %>
+        <% user_tags.each do |tags| %>
           <li id="tag">
           <li id="tag-name"><%= link_to_function  tags, "plTag('#{tags}')" %></li>
           </li>
