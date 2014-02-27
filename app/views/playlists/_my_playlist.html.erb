@@ -1,10 +1,12 @@
 <div id = "my_pl_wrapper">
   <div id = "pl_header_wrapper" >
-    <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
-      playlist,
-      id: "remove_pl",
-      method: :delete,
-      data: {confirm: "Sure you want to delete #{playlist.name}"}%>
+    <%unless playlist.user != current_user %>
+      <%= link_to raw("<span class = 'glyphicon glyphicon-remove'></span>"),
+        playlist,
+        id: "remove_pl",
+        method: :delete,
+        data: {confirm: "Sure you want to delete #{playlist.name}"}%>
+    <%end%>
 
     <li id="pl_main_name"><%=playlist.name.titleize%></li>
     <li id="pl_owner">by <%=playlist.user.name %></li>

@@ -1,19 +1,17 @@
 <song>
-  <% unless track.playlist.user != current_user %>
-    <div class="pull-left" id = "index_delete">
-      <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
-        track_path(
-        id: track.id),
-        method:"delete",
-        remote: true,
-        id: "index-delete-glyph",
-        data: {confirm: "are you sure?"}%>
-      <%= link_to raw("<span class= 'glyphicon glyphicon-tag'></span>"),
-        "##{track.id}Tag",
-        id: 'tag-track-glyph',
-        'data-toggle' => 'modal'%>
-    </div>
-  <%end%>
+  <div class="pull-left" id = "index_delete">
+    <%=link_to raw("<span class= 'glyphicon glyphicon-remove'></span>"),
+      track_path(
+      id: track.id),
+      method:"delete",
+      remote: true,
+      id: "index-delete-glyph",
+      data: {confirm: "are you sure?"}%>
+    <%= link_to raw("<span class= 'glyphicon glyphicon-tag'></span>"),
+      "##{track.id}Tag",
+      id: 'tag-track-glyph',
+      'data-toggle' => 'modal'%>
+  </div>
   <div class="modal fade" id=<%="#{track.id}Tag"%> tabindex="-1" role="dialog",
     aria-labelledby="new-tagModal" aria-hidden="true">
     <div class="modal-dialog">
