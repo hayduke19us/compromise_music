@@ -13,3 +13,4 @@ $(function() {
 function closeModal(trackId){
   $("#" + trackId).modal('hide');
 };
+

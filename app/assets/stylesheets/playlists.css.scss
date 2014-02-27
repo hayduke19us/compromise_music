@@ -394,8 +394,8 @@ h4#new_playlist_description {text-align: center}
                overflow-x: scroll;
 }
 
-::-webkit-scrollbar {display: none;
-}
+::-webkit-scrollbar {opacity: 0.1;}
+
 
 ul#tag-block {width: 2000px;}
 
