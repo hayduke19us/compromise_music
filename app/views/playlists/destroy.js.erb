@@ -1,10 +1,16 @@
+$("#playlist_spec_partial").html('');
+$("#playlist_spec_partial").html("<%= j render partial: '/sessions/playlist_spec',
+                                 locals: {user: current_user} %>");
 $("#my_playist_partial").html('')
 $("#my_playlist_partial").html("<%= j render partial: '/playlists/all_playlists',
                                locals: {playlists: @response[:playlist]}%>");
 $("#search_description").fadeOut('fast');
 $("#playlist_search_form").fadeOut('fast', function() {
-  $("#notice").html("<h2><%= j @response[:deleted].name%> was deleted</h2>");
+  $("#notice").hide()
+  $("#notice").html(
+  "<li id='alert'>The playlist <%= j @response[:deleted].name%> was deleted</li>");
   window.setTimeout(closeNotice, 3000);
+  $("#notice").fadeIn('slow');
 });
 
 function closeNotice(){
