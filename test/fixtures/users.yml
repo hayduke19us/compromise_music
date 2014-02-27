@@ -9,6 +9,7 @@ martha:
   access_token: jkl123
   access_secret: mno123
   uid: pqr123
+  online: true
 
 tom:
   name: tom
@@ -19,6 +20,7 @@ tom:
   access_token: dfg123
   access_secret: hij123
   uid: klm123 
+  online: false
 
 sarah:
   name: sarah
@@ -29,3 +31,4 @@ sarah:
   access_token: dfg1234
   access_secret: hij1234
   uid: klm1235
+  online: false

@@ -1,6 +1,10 @@
 <div id = "fr_title">Friends</div>
 <% user.friends.each do |friend| %>
-  <li><%= link_to friend.name, "#", id: "fr_name" %></li>
+  <% if friend.online?%>
+    <li><%= link_to friend.name, "#", id: "fr_name" %></li>
+  <%else%>
+    <li id='offline-friend'><%=friend.name%></li>
+  <%end%>
 <%end%>
 <li><%= link_to "New", sessions_my_friend_path,
       remote: true,

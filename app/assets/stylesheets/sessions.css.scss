@@ -152,6 +152,11 @@ div.well{background-color: white; }
            padding-top: 10px;
 }
 
+
+#offline-friend { color: $dark_title;
+                  opacity: 0.5;
+}
+
 #fr_name {color: $dark_title }
 
 #fr_name:hover {color: $light_title;}
