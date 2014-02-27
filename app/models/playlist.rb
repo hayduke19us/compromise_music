@@ -9,7 +9,7 @@ class Playlist < ActiveRecord::Base
   belongs_to :user
 
   validates :key, uniqueness: true
-  validates :name, :description, :key, :embedUrl, :user_id, presence: true
+  validates :name, :key, :embedUrl, :user_id, presence: true
 
   def sort_playlist
     self.tracks.sort_by {|t| t.index}

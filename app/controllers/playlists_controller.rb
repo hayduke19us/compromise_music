@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    unless params[:name].blank? || params[:description].blank?
+    unless params[:name].blank? 
       RdioPlaylist.new_playlist(params[:name], params[:description])
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
