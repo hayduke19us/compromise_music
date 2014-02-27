@@ -8,16 +8,13 @@
         remote: true,
         data: {confirm: "Sure you want to delete #{playlist.name}"}%>
     <%end%>
-
-    <li id="pl_main_name"><%=playlist.name.titleize%></li>
+    <li><%=link_to playlist.name.titleize,
+          "javascript:undefined",
+           onclick: "jukebox('#{playlist.key}')",
+           id: 'pl_main_name'%></li>
     <li id="pl_owner">by <%=playlist.user.name %></li>
 
     <div id= "playlist-controls" class="dropdown">
-     <%= link_to raw("<span class='glyphicon glyphicon-play'></span>"), 
-         "javascript:undefined",
-         onclick: "jukebox('#{playlist.key}')",
-         id: 'pl_play_glyph'%>
-
       <% unless unpublishable(playlist)%> 
         <%= link_to raw("<span class='glyphicon glyphicon-bullhorn'>"), 
            publish_playlist_path(playlist),

@@ -36,10 +36,6 @@
           <div id="friends_spec_partial">
             <%= render partial: 'friends_spec', locals: {user: current_user}%>
           </div>
-          <div id="collaborations_spec_partial">
-            <%= render partial: 'collaborations_spec',
-              locals: {user: current_user} %>
-          </div>
         </div>
         <div class="col-md-8" id= "playlist_col">
           <div id="js_search">
@@ -87,6 +83,10 @@
           </div>
         </div>
         <div class="col-md-2">
+          <div id="collaborations_spec_partial">
+            <%= render partial: 'collaborations_spec',
+              locals: {user: current_user} %>
+          </div>
         </div>
       </div>
     </div>

@@ -22,8 +22,6 @@ $input-shadow: inset 0 0 5px($dark_title);
               color: $dark_title;
 }
 
-#white_top {padding-bottom: 20px;}
-
 //playlist index
 
 #notice{color: white;
@@ -180,6 +178,8 @@ a#artist_result_name:hover {color: darken($dark_title, 30%);}
                color: $dark_title;
 }
 
+#pl_main_name:hover {color: $light_title;}
+
 #pl_owner {color: $dark_title;}
 
 /*modal*/
@@ -280,7 +280,11 @@ h4#new_playlist_description {text-align: center}
                  padding: 5%;
 }
 
-#playlist_col {padding-bottom: 100px;}
+#playlist_col {padding-bottom: 50px;
+               height: 100%;
+               overflow: scroll;
+               padding-left: 3%;
+}
 
 
 #playlist-controls {padding-top: 10px;}

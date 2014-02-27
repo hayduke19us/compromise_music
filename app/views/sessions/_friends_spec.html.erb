@@ -3,6 +3,7 @@
   <% if friend.online?%>
     <li><%= link_to friend.name, "#", id: "fr_name" %></li>
   <%else%>
+    <li id= "divider"></li>
     <li id='offline-friend'><%=friend.name%></li>
   <%end%>
 <%end%>
