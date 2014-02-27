@@ -64,7 +64,9 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.find(params[:id])
     RdioPlaylist.delete_playlist(playlist.key)
     playlist.destroy
-    redirect_to root_url
+    user = User.find(playlist.user)
+    @playlists = user.playlists
+    respond_with
   end
 
   def publish
