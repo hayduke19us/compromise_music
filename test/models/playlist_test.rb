@@ -13,10 +13,10 @@ class PlaylistTest < ActiveSupport::TestCase
     refute playlist.valid?
   end
 
-  test "A playlist without a description is invalid" do
+  test "A playlist without a description is still valid" do
     playlist = playlists(:road_trip)
     playlist.description = nil
-    refute playlist.valid?
+    assert playlist.valid?
   end
 
   test "A playlist without an embedUrl is invalid" do

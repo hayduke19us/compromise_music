@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    unless params[:name].blank? || params[:description].blank?
+    unless params[:name].blank? 
       RdioPlaylist.new_playlist(params[:name], params[:description])
       playlist_params = RdioPlaylist.playlist_attributes(current_user.id)
       playlist = Playlist.new(playlist_params)
@@ -64,7 +64,11 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.find(params[:id])
     RdioPlaylist.delete_playlist(playlist.key)
     playlist.destroy
-    redirect_to root_url
+    user = User.find(playlist.user)
+    @playlists = user.playlists
+    @deleted = playlist
+    @response = {playlist: @playlists, deleted: @deleted}
+    respond_with @response
   end
 
   def publish

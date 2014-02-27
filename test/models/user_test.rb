@@ -153,4 +153,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 3, Tag.users_tracks(tom, ["sad", "subtle", "happy"]).count
   end
 
+  test "if a user is online their online status is true" do
+    user = users(:martha)
+    assert user.online?
+  end
+
+  test "if a user is not online their online status is false" do
+    user = users(:tom)
+    refute user.online?
+  end
 end

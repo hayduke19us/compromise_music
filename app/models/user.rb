@@ -91,4 +91,7 @@ class User < ActiveRecord::Base
     self.track_tags.map {|tag| tag.name }.uniq
   end
 
+  def online?
+    self.online == true
+  end
 end

@@ -12,7 +12,7 @@ $(function (){
     $("#query").attr('placeholder', "'freewheeling'").focus();
     $("#search_type").html("Album")
   })
-})
+});
 
 function show_search(artist_key_id){
   var tag = "#" + artist_key_id
@@ -75,4 +75,3 @@ function plTag(tag){
   else
     $("#new-pl-tag").val(tag);
 }
-

@@ -100,7 +100,7 @@ div.well{background-color: white; }
 /*search_form */
 
 #search_description {color: $dark_title;
-                    padding-top:20px;
+                     padding-top:20px;
 }
 
 //equalizer//
@@ -152,6 +152,11 @@ div.well{background-color: white; }
            padding-top: 10px;
 }
 
+
+#offline-friend { color: $dark_title;
+                  opacity: 0.5;
+}
+
 #fr_name {color: $dark_title }
 
 #fr_name:hover {color: $light_title;}
@@ -195,13 +200,13 @@ div.well{background-color: white; }
 
 /*collaborations*/
 
-#collaborations_spec_partial {padding-top: 10px;}
-
 #collab_title {color: $dark_title;
                font-size: 20px;
-               border-top: 1px solid #efefef;
                padding-bottom: 10px;
 }
+
+#collab_title:hover {color: $light_title;}
+
 #collab_gr_title {color: $light_title;
                   font-size: 20px;
 }
