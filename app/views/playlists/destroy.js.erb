@@ -1,3 +1,15 @@
 $("#my_playist_partial").html('')
 $("#my_playlist_partial").html("<%= j render partial: '/playlists/all_playlists',
-                               locals: {playlists: @playlists}%>");
+                               locals: {playlists: @response[:playlist]}%>");
+$("#search_description").fadeOut('fast');
+$("#playlist_search_form").fadeOut('fast', function() {
+  $("#notice").html("<h2><%= j @response[:deleted].name%> was deleted</h2>");
+  window.setTimeout(closeNotice, 3000);
+});
+
+function closeNotice(){
+  $("#notice").fadeOut('slow', function(){
+  $("#playlist_search_form").fadeIn('slow')
+  $("#search_description").fadeIn('slow')
+  });
+}

@@ -66,7 +66,9 @@ class PlaylistsController < ApplicationController
     playlist.destroy
     user = User.find(playlist.user)
     @playlists = user.playlists
-    respond_with
+    @deleted = playlist
+    @response = {playlist: @playlists, deleted: @deleted}
+    respond_with @response
   end
 
   def publish
