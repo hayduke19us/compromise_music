@@ -5,6 +5,7 @@
         <%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"),
           group,
           method: :delete,
+          remote: true,
           data: {confirm: "Sure you want to delete #{group.name} ?"},
           id: 'gr_delete'%>
       </div>

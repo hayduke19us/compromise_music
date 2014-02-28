@@ -25,10 +25,10 @@ class GroupsControllerTest < ActionController::TestCase
   test "if group is destroyed redirect to root_path" do
     assert_difference('Group.count', -1) do
       group = groups(:marthas_friends)
-      delete :destroy, id: group.id
+      delete :destroy, format: 'js', id: group.id
     end
-
-    assert_redirected_to root_path
+    assert assigns(:response)
+    assert_response :success
   end
 
 end

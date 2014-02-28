@@ -1,0 +1,4 @@
+$("#group_spec_partial").html('');
+$("#group_spec_partial").html("<%= j render partial: '/sessions/group_spec',
+                               locals: {user: @response[:user]}%>")
+$("#my_playlist_partial").html('');

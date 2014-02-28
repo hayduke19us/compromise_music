@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  respond_to :js, :html
+
   def new
   end
 
@@ -25,8 +27,11 @@ class GroupsController < ApplicationController
 
   def destroy
     group = Group.find(params[:id])
-    group.destroy
-    redirect_to root_path
+    user = group.user
+     if group.destroy
+       @response = {user: user, group: group}
+       respond_with @response
+     end
   end
 
   private
