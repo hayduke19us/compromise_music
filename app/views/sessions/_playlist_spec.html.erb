@@ -11,8 +11,9 @@
     </li>
   </div>
 <% end %>
-<li>
-  <%= link_to "New",
-    "#new-playlistModal", "data-toggle" =>"modal", id: "new_pl_link"%>
+<li id="create-playlist">
+  <%= link_to "Create Playlist",
+    "#new-playlistModal", "data-toggle" =>"modal", id: "new_pl_link", 
+    class: "btn btn-default btn-sm"%>
 </li>
 
