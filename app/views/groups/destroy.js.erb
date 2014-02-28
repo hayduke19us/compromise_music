@@ -2,3 +2,18 @@ $("#group_spec_partial").html('');
 $("#group_spec_partial").html("<%= j render partial: '/sessions/group_spec',
                                locals: {user: @response[:user]}%>")
 $("#my_playlist_partial").html('');
+$("#search_description").fadeOut('fast');
+$("#playlist_search_form").fadeOut('fast', function() {
+  $("#notice").hide()
+  $("#notice").html(
+  "<li id='alert'>The group <%= j @response[:group].name%> was deleted</li>");
+  window.setTimeout(closeNotice, 3000);
+  $("#notice").fadeIn('slow');
+});
+
+function closeNotice(){
+  $("#notice").fadeOut('slow', function(){
+  $("#playlist_search_form").fadeIn('slow')
+  $("#search_description").fadeIn('slow')
+  });
+}
