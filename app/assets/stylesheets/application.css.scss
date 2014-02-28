@@ -35,7 +35,7 @@ $shadow_light: 1px 1px 1px lighten($color_body, 30%);
 
 /*body padding, backgrounds and page wide styles*/
 
-.navbar-default {background-image:url('stardust.png');
+.navbar-default {background-image: asset_url('stardust.png');
                  color: $light_title;
                  padding: 10px;
 }
