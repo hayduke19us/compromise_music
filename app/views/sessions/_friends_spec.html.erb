@@ -1,14 +1,17 @@
 <div id = "fr_title">Friends</div>
 <% user.friends.each do |friend| %>
-  <% if friend.online?%>
-    <li><%= link_to friend.name, "#", id: "fr_name" %></li>
-  <%else%>
-    <li id= "divider"></li>
-    <li id='offline-friend'><%=friend.name%></li>
-  <%end%>
+  <div id ="name_wrapper">
+    <% if friend.online?%>
+      <li><%= link_to friend.name, "#", id: "fr_name" %></li>
+    <%else%>
+      <li id= "divider"></li>
+      <li id='offline-friend'><%=friend.name%></li>
+    <%end%>
+  </div>
 <%end%>
-<li><%= link_to "New", sessions_my_friend_path,
+<li id= "create-friendship">
+  <%= link_to "Create Friend", sessions_my_friend_path,
       remote: true,
-      id: "new_fr_link"%>
+      id: "new_fr_link", class: "btn btn-default btn-sm"%>
 </li>
 

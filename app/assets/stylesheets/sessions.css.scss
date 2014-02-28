@@ -18,8 +18,27 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 /*sign in*/
 
-
 #user_widget {padding-top: 2%;}
+
+li#home_pg.active a{background-color: transparent;
+                    color: white;
+                    font-size: 20px;
+}
+
+li#playlist_pg.active a{background-color: transparent;
+                        color: white;
+                        font-size: 20px;
+}
+li#analytics_pg.active a{background-color: transparent;
+                         color: white;
+                         font-size: 20px;
+}
+
+#log-out{color: white;
+}
+#log-out:hover {color: $light_title;}
+
+a.navbar-link.btn-sm.btn-default:hover {opacity: 0.5;} 
 
 #colored_footer {background-color: #efefef;
                  min-height: 100%;
@@ -139,17 +158,18 @@ div.well{background-color: white; }
 #pl_link:hover {color: $light_title ;
 }
 
-#new_pl_link {color: $light_title;}
+#create-playlist {padding-top: 10px;}
+
+#new_pl_link {color: $dark_title;
+}
 
 #new_pl_link:hover {color: black;}
-
-.pl_link:hover {color: black;}
 
 // friends spec
 
 #fr_title {font-size: 20px;
            color: $light_title;
-           padding-top: 10px;
+           padding: 10 0 10 0;
 }
 
 
@@ -161,11 +181,15 @@ div.well{background-color: white; }
 
 #fr_name:hover {color: $light_title;}
 
-#new_fr_link {color: $light_title; }
+#new_fr_link {color: $dark_title; }
+
+#create-friendship {padding-top: 10px;}
 
 #new_fr_link:hover {color: black;}
 
 // groups spec
+
+#create-group {padding-top: 10px;}
 
 #members_title {font-size: 20px;
                 color: $light_title;
@@ -182,7 +206,7 @@ div.well{background-color: white; }
 }
 #gp_link:hover {color: $light_title;}
 
-#new_gp_link {color: $light_title;}
+#new_gp_link {color: $dark_title;}
 
 #new_gp_link:hover {color: black;}
 
@@ -193,8 +217,6 @@ div.well{background-color: white; }
 }
 
 #gp_link:hover {color: $light_title;}
-
-#new_gp_link {color: $light_title;}
 
 #new_gp_link:hover {color: black;}
 
@@ -209,11 +231,13 @@ div.well{background-color: white; }
 
 #collab_gr_title {color: $light_title;
                   font-size: 20px;
+                  padding-bottom: 10px;
 }
 
 #collab_gr_wrapper {padding-bottom: 10px;}
 #collab_pl_title {color: $light_title;
                  font-size: 20px;
+                 padding-bottom: 10px;
 }
 
 /* sign_in page*/

@@ -3,17 +3,21 @@
   <div id="collab_gr_wrapper">
     <div id="collab_gr_title">Groups</div>
     <% user.collab_groups.each do |group|%>
-      <li><%= link_to group.name, sessions_my_group_path(group: group), 
-        remote: true,
-        id: "gp_link" %></li>
+      <div id="name_wrapper">
+        <li><%= link_to group.name.titleize, sessions_my_group_path(group: group), 
+          remote: true,
+          id: "gp_link" %></li>
+      </div>
     <%end%>
   </div>
   <div id="collab_pl_title">Playlists</div>
   <% user.collab_playlists.each do |playlist|%>
-    <li><%= link_to  playlist.name, 
-      sessions_my_playlist_path(playlist: playlist), 
-      remote: true,
-      id: "pl_link" %></li>
+    <div id="name_wrapper">
+      <li><%= link_to  playlist.name.titleize, 
+        sessions_my_playlist_path(playlist: playlist), 
+        remote: true,
+        id: "pl_link" %></li>
+    </div>
   <%end%>
 </div>
 
