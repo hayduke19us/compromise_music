@@ -22,6 +22,8 @@
 
 
 /*Sass variables and mixins */
+
+$light_title: #CAD0D5;
 $color_body: #606a7a;
 $shadow: 0 0 8px rgba(0, 0, 0, .8);
 $shadow_light: 1px 1px 1px lighten($color_body, 30%);
@@ -37,8 +39,10 @@ $shadow_light: 1px 1px 1px lighten($color_body, 30%);
 
 a {color: #777777}
 
-body {padding: 75px 0 150px 0;
+body {padding: 75px 0 75px 0;
 }
+
+#colored_body {height: 100%;}
 
 li {list-style-type: none;}
 

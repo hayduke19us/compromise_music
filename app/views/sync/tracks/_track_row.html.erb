@@ -63,13 +63,13 @@
     <div id="tags-wrapper">
       <ul id="tag-block">
         <% track.tags.each do |tagged| %>
-          <li id= "tag">
+          <div id= "tag">
           <li class="tag-name" id="tag-name" ><%= link_to  tagged.name, "#" %></li>
           <li class="delete-tag" id="delete-tag">
           <%= link_to raw("<span class='glyphicon glyphicon-remove'>
                            </span>"), tagged, method: :delete,
                            remote: true %></li>
-          </li>
+          </div>
         <%end%>
       </ul>
     </div>

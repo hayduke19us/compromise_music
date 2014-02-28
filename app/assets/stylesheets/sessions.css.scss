@@ -18,8 +18,31 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 /*sign in*/
 
-
 #user_widget {padding-top: 2%;}
+
+li#home_pg.active a{background-color: $light_title;
+                    color: white;
+                    font-size: 20px;
+                    height: 60;
+                    
+}
+
+li#playlist_pg.active a{background-color: $light_title;
+                        color: white;
+                        font-size: 20px;
+                        height: 60;
+}
+li#analytics_pg.active a{background-color: $light_title;
+                         color: white;
+                         height: 60;
+                         font-size: 20px;
+}
+
+a.navbar-link.btn-sm.btn-default {background-color: $light_title;
+                                  color: white;
+                                  font-size: 20px;
+}
+a.navbar-link.btn-sm.btn-default:hover {opacity: 0.5;} 
 
 #colored_footer {background-color: #efefef;
                  min-height: 100%;
@@ -143,8 +166,6 @@ div.well{background-color: white; }
 
 #new_pl_link:hover {color: black;}
 
-.pl_link:hover {color: black;}
-
 // friends spec
 
 #fr_title {font-size: 20px;
@@ -209,11 +230,13 @@ div.well{background-color: white; }
 
 #collab_gr_title {color: $light_title;
                   font-size: 20px;
+                  padding-bottom: 10px;
 }
 
 #collab_gr_wrapper {padding-bottom: 10px;}
 #collab_pl_title {color: $light_title;
                  font-size: 20px;
+                 padding-bottom: 10px;
 }
 
 /* sign_in page*/
