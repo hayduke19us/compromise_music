@@ -20,28 +20,24 @@ $shadow_light: 0 1px 2px rgba(0, 0, 0, .8);
 
 #user_widget {padding-top: 2%;}
 
-li#home_pg.active a{background-color: $light_title;
+li#home_pg.active a{background-color: transparent;
                     color: white;
                     font-size: 20px;
-                    height: 60;
-                    
 }
 
-li#playlist_pg.active a{background-color: $light_title;
+li#playlist_pg.active a{background-color: transparent;
                         color: white;
                         font-size: 20px;
-                        height: 60;
 }
-li#analytics_pg.active a{background-color: $light_title;
+li#analytics_pg.active a{background-color: transparent;
                          color: white;
-                         height: 60;
                          font-size: 20px;
 }
 
-a.navbar-link.btn-sm.btn-default {background-color: $light_title;
-                                  color: white;
-                                  font-size: 20px;
+#log-out{color: white;
 }
+#log-out:hover {color: $light_title;}
+
 a.navbar-link.btn-sm.btn-default:hover {opacity: 0.5;} 
 
 #colored_footer {background-color: #efefef;

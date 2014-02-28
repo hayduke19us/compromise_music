@@ -35,7 +35,14 @@ $shadow_light: 1px 1px 1px lighten($color_body, 30%);
 
 /*body padding, backgrounds and page wide styles*/
 
-.navbar-default{background-color: white;}
+.navbar-default {background-image:url('stardust.png');
+                 color: $light_title;
+}
+.navbar-default .navbar-text {color: $light_title;}
+
+.navbar-default .navbar-nav li a {color: $light_title;}
+
+.navbar-default .navbar-nav li a:hover {color: #efefef;}
 
 a {color: #777777}
 
